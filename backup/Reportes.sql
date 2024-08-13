@@ -94,16 +94,21 @@ delete from contrato where fechafirma = '2023-02-01';
 -- Reporte 1
 select Cliente.nombre, idcliente, countContratos(idcliente) as cant_contratos,
 							sum(calculateImporte(idcliente, 750, 300)) as valor_alquileres
-							from Cliente where Cliente.municipio = 'Vedado' group by nombre, idcliente;
+							from Cliente group by nombre, idcliente where Cliente.municipio = 'Vedado' ;
+	
+create or replace view getClientes as select Cliente.nombre, idcliente, countContratos(idcliente) as cant_contratos,
+							sum(calculateImporte(idcliente, 750, 300)) as valor_alquileres
+							from Cliente group by nombre, idcliente ;
 							
+select * from getClientes where municipio = 'Vedado';
 -- Reporte 2
-select matricula, marca, modelo,color, cantkm from Moto;
+create or replace view moto_view as select matricula, marca, modelo,color, cantkm from Moto;
 
-
+select * from moto_view
 -- Reporte 3
-select nombre, Moto.matricula, Modelo, Marca, formapago, fechainicio,
+create or replace view contrato_view as select nombre, Moto.matricula, Modelo, Marca, formapago, fechainicio,
 fechafin, diasprorroga, seguro, ((diasprorroga * 300) + (fechafin - fechainicio) * 750) as importe
 from ((Cliente inner join Contrato on Cliente.idcliente = Contrato.idcliente)
 as tabl inner join Moto on tabl.matricula = Moto.matricula);
 							
-							
+select * from contrato_view
