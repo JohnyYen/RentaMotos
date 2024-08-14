@@ -12,30 +12,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContractService = void 0;
+exports.MarcService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
-let ContractService = class ContractService {
+let MarcService = class MarcService {
     constructor(conn) {
         this.conn = conn;
     }
-    async getAllContract() {
-        const res = await this.conn.query("SELECT * FROM contrato_view");
+    async getMarc() {
+        const res = await this.conn.query('SELECT nommarca FROM marca');
         return res.rows;
     }
-    async createContract(contract) {
-        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
+    async deleteMarc(marc) {
+        await this.conn.query(`DELETE FROM marca WHERE nommarca = ${marc}`);
     }
-    updateContract(contract, idCliente, matricula) {
-    }
-    deleteContract(idCliente, matricula) {
-        this.conn.query(`DELETE FROM Contrato where idcliente = '${idCliente} and matricula = '${matricula}'`);
+    async createMarc(marc) {
+        console.log(marc);
+        await this.conn.query(`INSERT INTO marca VALUES ('${marc.name}')`);
     }
 };
-exports.ContractService = ContractService;
-exports.ContractService = ContractService = __decorate([
+exports.MarcService = MarcService;
+exports.MarcService = MarcService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)(constants_1.PG_CONNECTION)),
     __metadata("design:paramtypes", [Object])
-], ContractService);
-//# sourceMappingURL=contract.service.js.map
+], MarcService);
+//# sourceMappingURL=marc.service.js.map

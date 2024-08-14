@@ -3,7 +3,7 @@ import { ContractService } from './contract.service';
 import { ContractDto } from './dto/contract.dto';
 import { ContractPatchDto } from './dto/contractPatch.dto';
 
-@Controller('contract')
+@Controller('api/contract')
 export class ContractController {
     constructor(private readonly contractService : ContractService){}
 

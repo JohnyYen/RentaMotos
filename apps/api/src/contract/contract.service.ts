@@ -12,8 +12,8 @@ export class ContractService {
         return res.rows;
     }
 
-    createContract(contract : ContractDto){
-        //await this.conn.query("")
+    async createContract(contract : ContractDto){
+        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
     }
 
     updateContract(contract : ContractPatchDto, idCliente : string, matricula : string){

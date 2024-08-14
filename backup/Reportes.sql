@@ -1,5 +1,7 @@
 select * from contrato;
 select * from moto;
+select * from marca
+select * from modelo
 select * from cliente;
 select * from formapago;
 select * from situacion

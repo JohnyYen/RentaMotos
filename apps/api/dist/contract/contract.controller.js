@@ -73,7 +73,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "updateContract", null);
 exports.ContractController = ContractController = __decorate([
-    (0, common_1.Controller)('contract'),
+    (0, common_1.Controller)('api/contract'),
     __metadata("design:paramtypes", [contract_service_1.ContractService])
 ], ContractController);
 //# sourceMappingURL=contract.controller.js.map
