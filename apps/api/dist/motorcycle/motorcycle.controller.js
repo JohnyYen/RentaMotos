@@ -65,7 +65,7 @@ __decorate([
 __decorate([
     (0, common_1.Patch)(),
     __param(0, (0, common_1.Body)("id")),
-    __param(1, (0, common_1.Body)("update")),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, motorcyclePatch_dto_1.MotorcyclePatchDto]),
     __metadata("design:returntype", void 0)

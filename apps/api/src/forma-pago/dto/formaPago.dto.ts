@@ -1,6 +1,6 @@
 import { IsString } from "class-validator";
 
-export class MarcDto{
+export class FormaPagoDto {
     @IsString()
-    public nommarca : string;
+    public formaPago : string;
 }

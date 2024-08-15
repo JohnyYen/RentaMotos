@@ -1,7 +1,7 @@
 import { IsString } from "class-validator";
 
 export class ModelDto{
-    @IsString()
+    @IsString()  
     public nomMarca : string;
 
     @IsString()

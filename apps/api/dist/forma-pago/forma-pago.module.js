@@ -10,11 +10,13 @@ exports.FormaPagoModule = void 0;
 const common_1 = require("@nestjs/common");
 const forma_pago_controller_1 = require("./forma-pago.controller");
 const forma_pago_service_1 = require("./forma-pago.service");
+const pg_module_1 = require("../models/pg.module");
 let FormaPagoModule = class FormaPagoModule {
 };
 exports.FormaPagoModule = FormaPagoModule;
 exports.FormaPagoModule = FormaPagoModule = __decorate([
     (0, common_1.Module)({
+        imports: [pg_module_1.PgModule],
         controllers: [forma_pago_controller_1.FormaPagoController],
         providers: [forma_pago_service_1.FormaPagoService]
     })

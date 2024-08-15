@@ -12,6 +12,7 @@ export class ModelService {
     }
 
     async deleteModels(nomModelo : string) {
+        console.log(nomModelo);
         await this.conn.query(`DELETE FROM modelo WHERE nommodelo = '${nomModelo}'`);
     }
 

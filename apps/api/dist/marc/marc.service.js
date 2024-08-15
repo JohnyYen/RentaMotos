@@ -24,11 +24,10 @@ let MarcService = class MarcService {
         return res.rows;
     }
     async deleteMarc(marc) {
-        await this.conn.query(`DELETE FROM marca WHERE nommarca = ${marc}`);
+        await this.conn.query(`DELETE FROM marca WHERE nommarca = '${marc}'`);
     }
-    async createMarc(marc) {
-        console.log(marc);
-        await this.conn.query(`INSERT INTO marca VALUES ('${marc.name}')`);
+    async createMarc(nommarca) {
+        await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
     }
 };
 exports.MarcService = MarcService;

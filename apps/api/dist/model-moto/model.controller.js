@@ -46,7 +46,7 @@ __decorate([
 ], ModelController.prototype, "deleteModel", null);
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)('model')),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [model_dto_1.ModelDto]),
     __metadata("design:returntype", void 0)

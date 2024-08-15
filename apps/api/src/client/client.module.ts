@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ClientController } from './client.controller';
 import { ClientService } from './client.service';
+import { PgModule } from 'src/models/pg.module';
 
 @Module({
+  imports: [PgModule],
   controllers: [ClientController],
   providers: [ClientService]
 })

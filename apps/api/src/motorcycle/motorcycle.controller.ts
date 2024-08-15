@@ -27,7 +27,7 @@ export class MotorcycleController {
     }
 
     @Patch()
-    updateMoto(@Body("id") id : string, @Body("update") update : MotorcyclePatchDto){
+    updateMoto(@Body("id") id : string, @Body() update : MotorcyclePatchDto){
         //Aqui va la llamada a la actualización
     }
 }

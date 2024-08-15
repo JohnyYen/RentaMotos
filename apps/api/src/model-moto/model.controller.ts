@@ -17,7 +17,7 @@ export class ModelController {
     }
 
     @Post()
-    createModel(@Body('model') model : ModelDto) {
+    createModel(@Body() model : ModelDto) {
         this.modelService.createModels(model);
     }
 }

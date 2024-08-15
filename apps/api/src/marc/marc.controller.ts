@@ -17,7 +17,7 @@ export class MarcController {
     }
 
     @Post()
-    createMarc(@Body('marc') marc : MarcDto) {
+    createMarc(@Body() marc : MarcDto) {
         this.marcService.createMarc(marc);
     }
 }

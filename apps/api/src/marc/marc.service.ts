@@ -12,12 +12,11 @@ export class MarcService {
     }
 
     async deleteMarc(marc : string) {
-        await this.conn.query(`DELETE FROM marca WHERE nommarca = ${marc}`);
+        await this.conn.query(`DELETE FROM marca WHERE nommarca = '${marc}'`);
     }
 
-    async createMarc(marc : MarcDto) {
-        console.log(marc);
-        await this.conn.query(`INSERT INTO marca VALUES ('${marc.name}')`);
+    async createMarc(nommarca : MarcDto) {
+        await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
     }
 
 }

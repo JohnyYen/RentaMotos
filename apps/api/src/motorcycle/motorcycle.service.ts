@@ -21,7 +21,7 @@ export class MotorcycleService {
     }
 
     async createMotorcycle (moto : MotorcycleDto){
-        await this.conn.query(`INSERT FROM moto values (${moto.matricula}, ${moto.color}, ${moto.cantKm}, ${moto.marca}, ${moto.modelo}, ${moto.situacion})`);
+        await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
     }
 
     async updateMotorcycle (moto : MotorcyclePatchDto){

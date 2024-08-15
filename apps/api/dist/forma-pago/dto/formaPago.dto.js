@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MarcDto = void 0;
+exports.FormaPagoDto = void 0;
 const class_validator_1 = require("class-validator");
-class MarcDto {
+class FormaPagoDto {
 }
-exports.MarcDto = MarcDto;
+exports.FormaPagoDto = FormaPagoDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], MarcDto.prototype, "nommarca", void 0);
-//# sourceMappingURL=marc.dto.js.map
+], FormaPagoDto.prototype, "formaPago", void 0);
+//# sourceMappingURL=formaPago.dto.js.map

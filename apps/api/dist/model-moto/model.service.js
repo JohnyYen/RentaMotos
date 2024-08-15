@@ -24,6 +24,7 @@ let ModelService = class ModelService {
         return res.rows;
     }
     async deleteModels(nomModelo) {
+        console.log(nomModelo);
         await this.conn.query(`DELETE FROM modelo WHERE nommodelo = '${nomModelo}'`);
     }
     async createModels(model) {

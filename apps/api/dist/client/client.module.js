@@ -10,11 +10,13 @@ exports.ClientModule = void 0;
 const common_1 = require("@nestjs/common");
 const client_controller_1 = require("./client.controller");
 const client_service_1 = require("./client.service");
+const pg_module_1 = require("../models/pg.module");
 let ClientModule = class ClientModule {
 };
 exports.ClientModule = ClientModule;
 exports.ClientModule = ClientModule = __decorate([
     (0, common_1.Module)({
+        imports: [pg_module_1.PgModule],
         controllers: [client_controller_1.ClientController],
         providers: [client_service_1.ClientService]
     })
