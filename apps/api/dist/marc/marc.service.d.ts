@@ -5,4 +5,5 @@ export declare class MarcService {
     getMarc(): Promise<any>;
     deleteMarc(marc: string): Promise<void>;
     createMarc(nommarca: MarcDto): Promise<void>;
+    updateMarc(marc: MarcDto, id: string): Promise<void>;
 }

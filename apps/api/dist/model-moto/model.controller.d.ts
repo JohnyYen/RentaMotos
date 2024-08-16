@@ -6,4 +6,5 @@ export declare class ModelController {
     getAllModels(): Promise<any>;
     deleteModel(id: string): void;
     createModel(model: ModelDto): void;
+    updateModel(id: string, body: ModelDto): void;
 }

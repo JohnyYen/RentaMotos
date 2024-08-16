@@ -5,4 +5,5 @@ export declare class ModelService {
     getModels(): Promise<any>;
     deleteModels(nomModelo: string): Promise<void>;
     createModels(model: ModelDto): Promise<void>;
+    updateModel(model: ModelDto, nomModel: string): Promise<void>;
 }

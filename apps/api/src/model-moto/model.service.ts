@@ -19,4 +19,8 @@ export class ModelService {
     async createModels(model : ModelDto) {
         await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
     }
+
+    async updateModel(model : ModelDto, nomModel : string){
+        this.conn.query(`UPDATE modelo SET nomModelo = '${model.nomModelo}' WHERE nommodelo = '${nomModel}'`);
+    }
 }

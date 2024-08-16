@@ -19,4 +19,8 @@ export class MarcService {
         await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
     }
 
+    async updateMarc(marc : MarcDto, id : string){
+        await this.conn.query(`UPDATE marca SET nommarca = '${marc.nommarca}' WHERE nommarca = '${id}'`);
+    }
+
 }

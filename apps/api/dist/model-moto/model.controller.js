@@ -29,6 +29,9 @@ let ModelController = class ModelController {
     createModel(model) {
         this.modelService.createModels(model);
     }
+    updateModel(id, body) {
+        this.modelService.updateModel(body, id);
+    }
 };
 exports.ModelController = ModelController;
 __decorate([
@@ -38,8 +41,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ModelController.prototype, "getAllModels", null);
 __decorate([
-    (0, common_1.Delete)(),
-    __param(0, (0, common_1.Body)('id')),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
@@ -51,6 +54,14 @@ __decorate([
     __metadata("design:paramtypes", [model_dto_1.ModelDto]),
     __metadata("design:returntype", void 0)
 ], ModelController.prototype, "createModel", null);
+__decorate([
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, model_dto_1.ModelDto]),
+    __metadata("design:returntype", void 0)
+], ModelController.prototype, "updateModel", null);
 exports.ModelController = ModelController = __decorate([
     (0, common_1.Controller)('api/model'),
     __metadata("design:paramtypes", [model_service_1.ModelService])

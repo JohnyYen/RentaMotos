@@ -25,6 +25,6 @@ export class ClientService {
     }
 
     async updateClient(client : ClientPatchDto, id : string){
-
+        this.conn.query(`UPDATE cliente SET edad = ${client.edad}, nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${client.idCliente}'`)
     }
 }

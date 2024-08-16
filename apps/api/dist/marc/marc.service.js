@@ -29,6 +29,9 @@ let MarcService = class MarcService {
     async createMarc(nommarca) {
         await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
     }
+    async updateMarc(marc, id) {
+        await this.conn.query(`UPDATE marca SET nommarca = '${marc.nommarca}' WHERE nommarca = '${id}'`);
+    }
 };
 exports.MarcService = MarcService;
 exports.MarcService = MarcService = __decorate([

@@ -21,6 +21,6 @@ export class FormaPagoService {
     }
 
     async updateFormaPago(formaPago : FormaPagoDto, changeFormaPago : string){
-        await this.conn.query(`UPDATE FROM formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
+        await this.conn.query(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
     }
 }

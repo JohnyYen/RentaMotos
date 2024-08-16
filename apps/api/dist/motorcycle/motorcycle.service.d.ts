@@ -6,5 +6,5 @@ export declare class MotorcycleService {
     getAllMotorcycle(): Promise<any>;
     deleteMotorcycle(id: string): Promise<void>;
     createMotorcycle(moto: MotorcycleDto): Promise<void>;
-    updateMotorcycle(moto: MotorcyclePatchDto): Promise<void>;
+    updateMotorcycle(moto: MotorcyclePatchDto, id: string): Promise<void>;
 }

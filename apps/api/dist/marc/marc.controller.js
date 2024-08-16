@@ -23,11 +23,14 @@ let MarcController = class MarcController {
     getAllMarc() {
         return this.marcService.getMarc();
     }
-    deleteMarc(marc) {
-        this.marcService.deleteMarc(marc);
+    deleteMarc(id) {
+        this.marcService.deleteMarc(id);
     }
     createMarc(marc) {
         this.marcService.createMarc(marc);
+    }
+    updateMarc(id, body) {
+        this.marcService.updateMarc(body, id);
     }
 };
 exports.MarcController = MarcController;
@@ -38,8 +41,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MarcController.prototype, "getAllMarc", null);
 __decorate([
-    (0, common_1.Delete)(),
-    __param(0, (0, common_1.Body)('marc')),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
@@ -51,6 +54,14 @@ __decorate([
     __metadata("design:paramtypes", [marc_dto_1.MarcDto]),
     __metadata("design:returntype", void 0)
 ], MarcController.prototype, "createMarc", null);
+__decorate([
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, marc_dto_1.MarcDto]),
+    __metadata("design:returntype", void 0)
+], MarcController.prototype, "updateMarc", null);
 exports.MarcController = MarcController = __decorate([
     (0, common_1.Controller)('api/marc'),
     __metadata("design:paramtypes", [marc_service_1.MarcService])

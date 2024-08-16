@@ -48,14 +48,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], FormaPagoController.prototype, "createFormaPago", null);
 __decorate([
-    (0, common_1.Delete)("/form"),
+    (0, common_1.Delete)("/:form"),
     __param(0, (0, common_1.Param)('form')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], FormaPagoController.prototype, "deleteFormaPago", null);
 __decorate([
-    (0, common_1.Patch)('/id'),
+    (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -63,7 +63,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], FormaPagoController.prototype, "updateFormaPago", null);
 exports.FormaPagoController = FormaPagoController = __decorate([
-    (0, common_1.Controller)('forma-pago'),
+    (0, common_1.Controller)('api/formaPago'),
     __metadata("design:paramtypes", [forma_pago_service_1.FormaPagoService])
 ], FormaPagoController);
 //# sourceMappingURL=forma-pago.controller.js.map

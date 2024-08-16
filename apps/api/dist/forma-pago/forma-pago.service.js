@@ -30,7 +30,7 @@ let FormaPagoService = class FormaPagoService {
         await this.conn.query(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
     }
     async updateFormaPago(formaPago, changeFormaPago) {
-        await this.conn.query(`UPDATE FROM formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
+        await this.conn.query(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
     }
 };
 exports.FormaPagoService = FormaPagoService;

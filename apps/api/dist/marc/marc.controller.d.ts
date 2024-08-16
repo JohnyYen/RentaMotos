@@ -4,6 +4,7 @@ export declare class MarcController {
     private readonly marcService;
     constructor(marcService: MarcService);
     getAllMarc(): Promise<any>;
-    deleteMarc(marc: string): void;
+    deleteMarc(id: string): void;
     createMarc(marc: MarcDto): void;
+    updateMarc(id: string, body: MarcDto): void;
 }

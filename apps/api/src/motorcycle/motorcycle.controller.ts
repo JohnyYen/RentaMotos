@@ -1,9 +1,9 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { MotorcycleService } from './motorcycle.service';
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
 
-@Controller('api/motorcycle')
+@Controller('api/moto')
 export class MotorcycleController {
     constructor (private readonly motoService : MotorcycleService){}
 
@@ -21,13 +21,13 @@ export class MotorcycleController {
         this.motoService.createMotorcycle(body);
     }
 
-    @Delete()
-    deleteMoto(@Body("id") id : string ) {
+    @Delete('/:id')
+    deleteMoto(@Param("id") id : string ) {
         this.motoService.deleteMotorcycle(id);
     }
 
-    @Patch()
-    updateMoto(@Body("id") id : string, @Body() update : MotorcyclePatchDto){
-        //Aqui va la llamada a la actualización
+    @Patch('/:id')
+    updateMoto(@Param("id") id : string, @Body() update : MotorcyclePatchDto){
+        this.motoService.updateMotorcycle(update, id);
     }
 }

@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { FormaPagoService } from './forma-pago.service';
 import { FormaPagoDto } from './dto/formaPago.dto';
 
-@Controller('forma-pago')
+@Controller('api/formaPago')
 export class FormaPagoController {
     constructor (private formaPagoService : FormaPagoService){}
 
@@ -16,12 +16,12 @@ export class FormaPagoController {
         this.formaPagoService.createFormaPago(form);
     }
 
-    @Delete("/form")
+    @Delete("/:form")
     deleteFormaPago(@Param('form') form : string){
         this.formaPagoService.deleteFormaPago(form);
     }
 
-    @Patch('/id')
+    @Patch('/:id')
     updateFormaPago(@Body() body : FormaPagoDto, @Param('id') id : string){
         this.formaPagoService.updateFormaPago(body, id);
     }

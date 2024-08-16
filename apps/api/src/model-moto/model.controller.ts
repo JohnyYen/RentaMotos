@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ModelService } from './model.service';
 import { ModelDto } from './dto/model.dto';
 
@@ -11,13 +11,18 @@ export class ModelController {
         return this.modelService.getModels();
     }
 
-    @Delete()
-    deleteModel(@Body('id') id : string){
+    @Delete('/:id')
+    deleteModel(@Param('id') id : string){
         this.modelService.deleteModels(id);
     }
 
     @Post()
     createModel(@Body() model : ModelDto) {
         this.modelService.createModels(model);
+    }
+
+    @Patch('/:id')
+    updateModel(@Param('id') id : string, @Body() body : ModelDto){
+        this.modelService.updateModel(body, id);
     }
 }

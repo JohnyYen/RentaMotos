@@ -33,6 +33,7 @@ let MotorcycleController = class MotorcycleController {
         this.motoService.deleteMotorcycle(id);
     }
     updateMoto(id, update) {
+        this.motoService.updateMotorcycle(update, id);
     }
 };
 exports.MotorcycleController = MotorcycleController;
@@ -56,22 +57,22 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "createMoto", null);
 __decorate([
-    (0, common_1.Delete)(),
-    __param(0, (0, common_1.Body)("id")),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "deleteMoto", null);
 __decorate([
-    (0, common_1.Patch)(),
-    __param(0, (0, common_1.Body)("id")),
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, motorcyclePatch_dto_1.MotorcyclePatchDto]),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "updateMoto", null);
 exports.MotorcycleController = MotorcycleController = __decorate([
-    (0, common_1.Controller)('api/motorcycle'),
+    (0, common_1.Controller)('api/moto'),
     __metadata("design:paramtypes", [motorcycle_service_1.MotorcycleService])
 ], MotorcycleController);
 //# sourceMappingURL=motorcycle.controller.js.map

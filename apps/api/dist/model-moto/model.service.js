@@ -30,6 +30,9 @@ let ModelService = class ModelService {
     async createModels(model) {
         await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
     }
+    async updateModel(model, nomModel) {
+        this.conn.query(`UPDATE modelo SET nomModelo = '${model.nomModelo}' WHERE nommodelo = '${nomModel}'`);
+    }
 };
 exports.ModelService = ModelService;
 exports.ModelService = ModelService = __decorate([
