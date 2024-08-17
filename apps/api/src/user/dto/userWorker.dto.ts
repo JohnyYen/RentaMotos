@@ -3,7 +3,7 @@ import { IsString, IsStrongPassword } from "class-validator";
 export class UserWorkerDto {
 
     @IsString()
-    public name_user : string;
+    public user_name : string;
 
     @IsStrongPassword()
     public password : string;
