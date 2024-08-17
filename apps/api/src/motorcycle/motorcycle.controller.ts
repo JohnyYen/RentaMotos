@@ -16,6 +16,10 @@ export class MotorcycleController {
         //Aqui va la función para devolver a pdf
     }
 
+    @Get('/situation')
+    getSituationMoto(){
+        return this.motoService.getSituationMoto();
+    }
     @Post()
     createMoto(@Body() body : MotorcycleDto){
         this.motoService.createMotorcycle(body);

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MotorcycleService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
+const pdfkit_table_1 = require("pdfkit-table");
 let MotorcycleService = class MotorcycleService {
     constructor(conn) {
         this.conn = conn;
@@ -22,6 +23,10 @@ let MotorcycleService = class MotorcycleService {
     async getAllMotorcycle() {
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
+    }
+    async getPDF(responde) {
+        const data = await this.getAllMotorcycle();
+        const doc = new pdfkit_table_1.default();
     }
     async deleteMotorcycle(id) {
         try {
@@ -36,6 +41,10 @@ let MotorcycleService = class MotorcycleService {
     }
     async updateMotorcycle(moto, id) {
         this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
+    }
+    async getSituationMoto() {
+        const res = await this.conn.query('SELECT * FROM SituacionMoto()');
+        return res.rows;
     }
 };
 exports.MotorcycleService = MotorcycleService;

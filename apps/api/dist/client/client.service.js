@@ -34,6 +34,10 @@ let ClientService = class ClientService {
     async updateClient(client, id) {
         this.conn.query(`UPDATE cliente SET edad = ${client.edad}, nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${client.idCliente}'`);
     }
+    async getAllBadClients() {
+        const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
+        return res.rows;
+    }
 };
 exports.ClientService = ClientService;
 exports.ClientService = ClientService = __decorate([

@@ -8,4 +8,5 @@ export declare class ClientService {
     deleteClient(id: string): Promise<void>;
     createClient(client: ClientDto): Promise<void>;
     updateClient(client: ClientPatchDto, id: string): Promise<void>;
+    getAllBadClients(): Promise<any>;
 }

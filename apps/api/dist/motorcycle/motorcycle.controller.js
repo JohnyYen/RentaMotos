@@ -26,6 +26,9 @@ let MotorcycleController = class MotorcycleController {
     }
     getAllMotoInPDF() {
     }
+    getSituationMoto() {
+        return this.motoService.getSituationMoto();
+    }
     createMoto(body) {
         this.motoService.createMotorcycle(body);
     }
@@ -49,6 +52,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getAllMotoInPDF", null);
+__decorate([
+    (0, common_1.Get)('/situation'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "getSituationMoto", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

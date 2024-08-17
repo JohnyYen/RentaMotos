@@ -24,6 +24,9 @@ let ClientController = class ClientController {
     async getClients() {
         return await this.clientService.getAllClients();
     }
+    async getBadClients() {
+        return await this.clientService.getAllBadClients();
+    }
     getClientsByPDF() {
         this.clientService.getAllClientByPDF();
     }
@@ -44,6 +47,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClients", null);
+__decorate([
+    (0, common_1.Get)("/bad"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getBadClients", null);
 __decorate([
     (0, common_1.Get)('/pdf'),
     __metadata("design:type", Function),
@@ -73,7 +82,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "updateClient", null);
 exports.ClientController = ClientController = __decorate([
-    (0, common_1.Controller)('client'),
+    (0, common_1.Controller)('api/client'),
     __metadata("design:paramtypes", [client_service_1.ClientService])
 ], ClientController);
 //# sourceMappingURL=client.controller.js.map

@@ -3,14 +3,19 @@ import { ClientService } from './client.service';
 import { ClientDto } from './dto/client.dto';
 import { ClientPatchDto } from './dto/clientPatch.dto';
 
-@Controller('client')
+@Controller('api/client')
 export class ClientController {
 
     constructor (private clientService : ClientService){}
-
+    
     @Get()
     async getClients() {
         return await this.clientService.getAllClients();
+    }
+
+    @Get("/bad")
+    async getBadClients() {
+        return await this.clientService.getAllBadClients();
     }
 
     @Get('/pdf')
