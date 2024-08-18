@@ -41,7 +41,8 @@ function loguin() {
     <div className="Alternativa">
     
     <Button onClick={loguear} type="primary" htmlType="submit" block>Aceptar</Button>
-  <Divider style={{borderColor: "white"}}><span style={{ color: 'white', fontSize: '0.8em' }}>Registrarse </span></Divider>
+
+   <Button type="link">Registrarse </Button>
   
     </div>
   
