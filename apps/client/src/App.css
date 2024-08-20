@@ -76,7 +76,7 @@
  
 }
 
-/*Pantall de eliminar*/
+/*Pantall de eliminar #0*/
 
 
 .Eliminar{
@@ -130,6 +130,117 @@
        color: white;
         width: 150px;
         left:50%; }
+
+        /*Pantall de eliminar #1*/
+
+        .Eliminar1{
+          display:flex;
+         position: fixed;
+          justify-content: center;
+          align-items: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #06325d;
+          background-size: cover ;
+          padding: 20px;
+          width: 600px;
+          height: 160px;
+          border-radius: 9%;
+        }
+        
+        
+        .Mensaje1{
+          position: absolute;
+          top: 30px;
+          left: 50%;
+           margin-top: 10px;
+            color: white; 
+            text-align: center;
+            margin-bottom: 20px;
+             transform: translateX(-50%);
+             font-size: 120%;
+        }
+        
+        
+        .Botones1{
+        
+          position: fixed;
+          align-items: center;
+           display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .B11{
+           background-color: #2975b7;
+            color: white;
+             width: 250px ;
+            left:-50%;
+          }
+        
+             .B21{
+              background-color: #2975b7;
+               color: white;
+                width: 150px;
+                left:50%; }
+
+        /*Pantall de eliminar #2*/
+
+
+
+        .Eliminar2{
+          display:flex;
+         position: fixed;
+          justify-content: center;
+          align-items: center;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #06325d;
+          background-size: cover ;
+          padding: 20px;
+          width: 600px;
+          height: 160px;
+          border-radius: 9%;
+        }
+        
+        
+        .Mensaje2{
+          position: absolute;
+          top: 30px;
+          left: 50%;
+           margin-top: 10px;
+            color: white; 
+            text-align: center;
+            margin-bottom: 20px;
+             transform: translateX(-50%);
+             font-size: 120%;
+        }
+        
+        
+        .Botones2{
+        
+          position: fixed;
+          align-items: center;
+           display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .B12{
+           background-color: #2975b7;
+            color: white;
+             width: 250px ;
+            left:-50%;
+          }
+        
+             .B22{
+              background-color: #2975b7;
+               color: white;
+                width: 150px;
+                left:50%; }
+
 
         /*Pantalla de nuevo usuario*/
 

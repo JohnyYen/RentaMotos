@@ -4,17 +4,17 @@ import "../App.css";
 const EliminarElemento = () => {
     return (
   
-    <div className="Eliminar">
+    <div className="Eliminar2">
     
-        <div className="Mensaje" >
-          ¿Seguro que desea eliminar este usuario?
+        <div className="Mensaje2" >
+          ¿Seguro que desea eliminar este contrato?
         </div>
   
-        <div  className="Botones"  >
-          <Button className="B1" type="primary" htmlType="submit" block >Cancelar
+        <div  className="Botones2"  >
+          <Button className="B12" type="primary" htmlType="submit" block >Cancelar
           </Button>
   
-          <Button className="B2"
+          <Button className="B22"
             type="primary" htmlType="submit" block
   
           >
