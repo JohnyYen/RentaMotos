@@ -1,5 +1,6 @@
 import { Space, Typography, Table } from "antd";
 import { useState } from "react";
+import "../../App.css";
 
 const ListadoClientes = () => {
 
@@ -47,8 +48,8 @@ const ListadoClientes = () => {
             key: "acciones",
             render: (_, record) => (
               <Space size="middle">
-                <button>Modificar</button>
-                <button>Delete</button>
+                <button className="accionTable">Modificar</button>
+                <button className="accionTable">Delete</button>
               </Space>
             ),
           },

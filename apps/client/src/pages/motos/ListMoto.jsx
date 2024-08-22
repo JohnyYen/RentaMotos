@@ -1,5 +1,6 @@
 import { Space, Typography, Table } from "antd";
 import { useState } from "react";
+import "../../App.css";
 
 const ListMoto = () => {
   const dataSource = [
@@ -130,13 +131,13 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Space size="middle">
-                <button>Modificar</button>
-                <button>Delete</button>
+                <button className="actionTable">Modificar</button>
+                <button className="actionTable">Delete</button>
               </Space>
             ),
           },
         ]}
-      ></Table>
+      />
     </Space>
   );
 };

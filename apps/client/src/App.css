@@ -12,6 +12,12 @@
   height: 2rem;
   padding: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  color: white;
+  background: hsla(205, 41%, 62%, 1);
+  background: linear-gradient(0deg, hsla(205, 41%, 62%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
+  background: -moz-linear-gradient(0deg, hsla(205, 41%, 62%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
+  background: -webkit-linear-gradient(0deg, hsla(205, 41%, 62%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#75A4C5", endColorstr="#75A4C5", GradientType=1);
 }
 
 .container-sideBar-content {
@@ -21,6 +27,28 @@
   align-items: flex-start;
 }
 
+.container-sideBar {
+  height: 100vh;
+  background: hsla(208, 36%, 49%, 1);
+
+  background: linear-gradient(0deg, hsla(208, 36%, 49%, 1) 22%, hsla(208, 36%, 49%, 1) 80%);
+
+  background: -moz-linear-gradient(0deg, hsla(208, 36%, 49%, 1) 22%, hsla(208, 36%, 49%, 1) 80%);
+
+  background: -webkit-linear-gradient(0deg, hsla(208, 36%, 49%, 1) 22%, hsla(208, 36%, 49%, 1) 80%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#507FA9", endColorstr="#507FA9", GradientType=1);
+}
+
 .page-content {
-  padding-left: 1rem;
+  padding: 0 1rem;
+}
+
+.actionTable {
+  color: white;
+  background: hsla(213, 30%, 80%, 1);
+  background: linear-gradient(0deg, hsla(213, 30%, 80%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
+  background: -moz-linear-gradient(0deg, hsla(213, 30%, 80%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
+  background: -webkit-linear-gradient(0deg, hsla(213, 30%, 80%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#BCCADB", endColorstr="#75A4C5", GradientType=1);
 }

@@ -1,14 +1,15 @@
-import { CarOutlined, FileDoneOutlined, UserOutlined } from "@ant-design/icons";
+import { CarOutlined, DollarOutlined, FileDoneOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const SideBar = () => {
     const navigate = useNavigate();
 
     return (
         <div>
-            <Menu 
+            <Menu className="container-sideBar"
             defaultSelectedKeys={['/listadoClientes']}
             defaultOpenKeys={['/clientes']}
             mode="inline"
@@ -63,6 +64,11 @@ const SideBar = () => {
                             key: '/contratoMunicipio'
                         }                                                
                     ]
+                },
+                {
+                    label: 'Ingresos del año',
+                    icon: <DollarOutlined />,
+                    key: '/ingresosAño'
                 }
             ]}>
 

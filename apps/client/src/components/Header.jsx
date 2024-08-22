@@ -6,7 +6,7 @@ const Header = () => {
     <div className="nav-container">
       <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjs3Ynou5ClBhLVlkXKLRrEFAZkL6JDUm61U6O6rJ0FQ_mwOABgVMzWZ73wtCjCoIMh4w&usqp=CAU"
       width={60}></Image>
-      <Typography.Title>Renta Motos</Typography.Title>
+      <Typography.Title style={{color: 'white'}}>Renta Motos</Typography.Title>
       <Space>
         <UserOutlined style={{fontSize: '1.5rem'}} />
       </Space>

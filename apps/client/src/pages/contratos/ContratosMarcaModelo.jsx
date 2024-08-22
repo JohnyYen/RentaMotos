@@ -53,14 +53,9 @@ const ContratosMarcaModelo = () => {
             key: "ingresos por efectivo",
           },
           {
-            title: "Acciones",
-            key: "acciones",
-            render: (_, record) => (
-              <Space size="middle">
-                <button>Modificar</button>
-                <button>Delete</button>
-              </Space>
-            ),
+            title: "Ingresos totales",
+            dataIndex: "ingresos totales",
+            key: "ingresos totales",
           },
         ]}
       ></Table>

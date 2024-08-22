@@ -46,14 +46,9 @@ const ContratosMunicipio = () => {
             key: "total efectivo",
           },
           {
-            title: "Acciones",
-            key: "acciones",
-            render: (_, record) => (
-              <Space size="middle">
-                <button>Modificar</button>
-                <button>Delete</button>
-              </Space>
-            ),
+            title: "Valor total",
+            dataIndex: "valor total",
+            key: "valor total",
           },
         ]}
       ></Table>
