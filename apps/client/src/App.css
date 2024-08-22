@@ -313,3 +313,149 @@
                left:50%; 
             
              }
+
+ /*Pantalla nueva moto*/
+
+
+
+ .pantallamoto{
+
+  display:flex;
+  position: fixed;
+   justify-content: center;
+   align-items: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #06325d;
+   background-size: cover ;
+   padding: 20px;
+   width: 400px;
+   height: 450px;
+   border-radius: 9%;
+
+}
+
+
+.Creamoto{
+  color: rgb(253, 255, 254);
+  font-size:60px; 
+}
+
+.panelBotonesmoto{
+
+
+position: fixed;
+align-items: center;
+display: flex;
+justify-content: space-between;
+margin-top: 79%;
+
+}
+
+.Bm1{
+background-color: #2975b7;
+color: white;
+width: 150px ;
+left:-40%;
+
+}
+
+.Bm2{
+ background-color: #2975b7;
+  color: white;
+   width: 150px;
+   left:40%; 
+
+ }
+
+  /*Pantalla nuevo contrato*/
+
+  .pantallacontrato{
+    display:flex;
+    position: fixed;
+     justify-content: center;
+     align-items: center;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background-color: #06325d;
+     background-size: cover ;
+     padding: 20px;
+     width: 700px;
+     height: 500px;
+     border-radius: 9%;
+   }
+
+
+
+   .pantallacontrato{
+    color: rgb(253, 255, 254);
+    font-size:60px; 
+   }
+
+   .panelIzquierdo{
+    display:flex;
+    position: fixed;
+     justify-content: center;
+     align-items: center;
+    transform: translate(-80%, -30%);
+  
+  }
+  
+  
+  .panelDerecho{
+    display:flex;
+    position: fixed;
+     justify-content: center;
+     align-items: center;
+    transform: translate(60%, -190%);
+  }
+  
+
+.panelDermini{
+display:flex;
+position: fixed;
+ justify-content: center;
+ align-items: center;
+transform: translate(-10%, 70%);
+}
+
+.panelCentral{
+display:flex;
+    position: fixed;
+     justify-content: center;
+     align-items: center;
+    transform: translate(5%, 80%);
+    
+}
+
+
+.panel-central h2 {
+margin-bottom: 10px;
+}
+
+   .panelBotonescontrato{
+    position: fixed;
+    align-items: center;
+     display: flex;
+      justify-content: space-between;
+      margin-top: 50%;
+    
+  }
+  
+  .Bc1{
+    background-color: #2975b7;
+     color: white;
+      width: 150px ;
+     left:-40%;
+     
+   }
+  
+      .Bc2{
+       background-color: #2975b7;
+        color: white;
+         width: 150px;
+         left:40%; 
+      
+       }
