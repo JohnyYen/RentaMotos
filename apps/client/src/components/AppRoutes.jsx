@@ -6,7 +6,7 @@ import Incumplidores from "../pages/clientes/Incumplidores";
 import ListadoContratos from "../pages/contratos/ListadoContratos";
 import ContratosMarcaModelo from "../pages/contratos/ContratosMarcaModelo";
 import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
-import IngresosAnno from "../pages/Ingresos del año/IngresosAño";
+import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 
 const AppRouter = () => {
   return (
