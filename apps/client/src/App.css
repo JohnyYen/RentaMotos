@@ -1,54 +1,61 @@
+.header {
+  /* position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  height: 5rem;
+}  
+
+.content{
+  padding: 0 1rem;
+}
+
+.sider {
+  position: sticky !important;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  height: 100vh;
+}
+
+/* .sider-btn {
+  position: fixed;
+  font-size: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  border: none;
+  background-color: darkblue;
+} */
+
+.sider-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+
+.ant-menu-item-selected {
+  background-color: darkblue !important;
+}
+
+.header-button {
+  margin-top: 0.5rem;
+  background-color: darkblue;
+}
+
+.ant-btn:hover {
+  background-color: darkblue !important;
+  border-color: white;
+}
+
 .App {
   display: flex;
-  height: 100vh;
   flex-direction: column;
   width: 100vw;
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 2rem;
-  padding: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  color: white;
-  background: hsla(205, 41%, 62%, 1);
-  background: linear-gradient(0deg, hsla(205, 41%, 62%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
-  background: -moz-linear-gradient(0deg, hsla(205, 41%, 62%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
-  background: -webkit-linear-gradient(0deg, hsla(205, 41%, 62%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#75A4C5", endColorstr="#75A4C5", GradientType=1);
-}
-
-.container-sideBar-content {
-  display: flex;
-  flex: 1;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.container-sideBar {
-  height: 100vh;
-  background: hsla(208, 36%, 49%, 1);
-
-  background: linear-gradient(0deg, hsla(208, 36%, 49%, 1) 22%, hsla(208, 36%, 49%, 1) 80%);
-
-  background: -moz-linear-gradient(0deg, hsla(208, 36%, 49%, 1) 22%, hsla(208, 36%, 49%, 1) 80%);
-
-  background: -webkit-linear-gradient(0deg, hsla(208, 36%, 49%, 1) 22%, hsla(208, 36%, 49%, 1) 80%);
-
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#507FA9", endColorstr="#507FA9", GradientType=1);
-}
-
-.page-content {
-  padding: 0 1rem;
-}
-
 .actionTable {
+  background-color: darkblue;
   color: white;
-  background: hsla(213, 30%, 80%, 1);
-  background: linear-gradient(0deg, hsla(213, 30%, 80%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
-  background: -moz-linear-gradient(0deg, hsla(213, 30%, 80%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
-  background: -webkit-linear-gradient(0deg, hsla(213, 30%, 80%, 1) 22%, hsla(205, 41%, 62%, 1) 80%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#BCCADB", endColorstr="#75A4C5", GradientType=1);
 }

@@ -1,4 +1,4 @@
-import { Space, Typography, Table } from "antd";
+import { Space, Typography, Table, Flex, Button } from "antd";
 import { useState } from "react";
 import "../../App.css";
 
@@ -88,9 +88,12 @@ const ListMoto = () => {
   ];
 
   return (
-    <Space size={20} direction="vertical">
+    <Flex vertical="true">
       <Typography.Title level={3}>Listado de Motos</Typography.Title>
       <Table
+      scroll={{
+        x: 920,
+      }}
         pagination={{
           pageSize: 5,
         }}
@@ -100,11 +103,15 @@ const ListMoto = () => {
             title: "Fecha",
             dataIndex: "fecha",
             key: "fecha",
+            fixed: "left",
+            width: "7rem"
           },
           {
             title: "Matricula",
             dataIndex: "matricula",
             key: "matricula",
+            fixed: "left",
+            width: "8rem"
           },
           {
             title: "Marca",
@@ -130,15 +137,17 @@ const ListMoto = () => {
             title: "Acciones",
             key: "acciones",
             render: (_, record) => (
-              <Space size="middle">
-                <button className="actionTable">Modificar</button>
-                <button className="actionTable">Delete</button>
-              </Space>
+              <Flex align="center" justify="center" gap="1rem">
+                <Button className="actionTable">Modificar</Button>
+                <Button className="actionTable">Delete</Button>
+              </Flex>
             ),
+            fixed: "right",
+            width: "14rem"
           },
         ]}
       />
-    </Space>
+    </Flex>
   );
 };
 

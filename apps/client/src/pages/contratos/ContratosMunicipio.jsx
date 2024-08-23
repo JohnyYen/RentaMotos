@@ -1,24 +1,30 @@
-import { Space, Typography, Table } from "antd";
+import { Space, Typography, Table, Flex } from "antd";
 import { useState } from "react";
 
 const ContratosMunicipio = () => {
   return (
-    <Space size={20} direction="vertical">
+    <Flex vertical="true">
       <Typography.Title level={3}>Contratos por Municipio</Typography.Title>
       <Table
+      scroll={{
+        x: 920,
+      }}
         pagination={{
           pageSize: 5,
         }}
         columns={[
           {
-            title: "Fecha",
-            dataIndex: "fecha",
-            key: "fecha",
+            title: "Fecha actual",
+            dataIndex: "fecha actual",
+            key: "fecha actual",
+            fixed: "left",
+            width: "7rem"
           },
           {
             title: "Municipio",
             dataIndex: "municipio",
             key: "municipio",
+            fixed: "left"
           },
           {
             title: "Marca",
@@ -52,7 +58,7 @@ const ContratosMunicipio = () => {
           },
         ]}
       ></Table>
-    </Space>
+    </Flex>
   );
 };
 
