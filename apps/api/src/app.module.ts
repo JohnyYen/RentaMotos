@@ -9,9 +9,10 @@ import { ModelModule } from './model-moto/model.module';
 import { MarcModule } from './marc/marc.module';
 import { FormaPagoModule } from './forma-pago/forma-pago.module';
 import { UserModule } from './user/user.module';
+import { MunModule } from './mun/mun.module';
 
 @Module({
-  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule],
+  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule],
   controllers: [AppController],
   providers: [AppService],
 })

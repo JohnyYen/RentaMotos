@@ -67,14 +67,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "createClient", null);
 __decorate([
-    (0, common_1.Delete)(),
-    __param(0, (0, common_1.Body)("id")),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "deleteClient", null);
 __decorate([
-    (0, common_1.Patch)('/id'),
+    (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

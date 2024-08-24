@@ -52,3 +52,6 @@ http://localhost:3000/api/marc GET
 http://localhost:3000/api/marc POST
 http://localhost:3000/api/marc/:id DELETE
 http://localhost:3000/api/marc/:id PATCH
+
+## Municipio
+http://localhost:3000/api/mun GET

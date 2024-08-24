@@ -26,6 +26,9 @@ let ContractController = class ContractController {
     }
     getContractInPDF() {
     }
+    async getContractByMun() {
+        return await this.contractService.getContractByMun();
+    }
     async getFilterContract() {
         return await this.contractService.getContractFilter();
     }
@@ -53,15 +56,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "getContractInPDF", null);
 __decorate([
+    (0, common_1.Get)('/mun'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getContractByMun", null);
+__decorate([
     (0, common_1.Get)('/marcxmodel'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getFilterContract", null);
 __decorate([
-    (0, common_1.Delete)(),
-    __param(0, (0, common_1.Body)("idCliente")),
-    __param(1, (0, common_1.Body)("matricula")),
+    (0, common_1.Delete)('/:idCliente/:matricula'),
+    __param(0, (0, common_1.Param)("idCliente")),
+    __param(1, (0, common_1.Param)("matricula")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
@@ -74,9 +83,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "createContract", null);
 __decorate([
-    (0, common_1.Patch)(),
-    __param(0, (0, common_1.Body)("idCliente")),
-    __param(1, (0, common_1.Body)("matricula")),
+    (0, common_1.Patch)('/:idClient/:matricula'),
+    __param(0, (0, common_1.Param)("idCliente")),
+    __param(1, (0, common_1.Param)("matricula")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, contractPatch_dto_1.ContractPatchDto]),
     __metadata("design:returntype", void 0)
