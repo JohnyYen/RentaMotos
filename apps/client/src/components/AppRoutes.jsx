@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import ListMoto from "../pages/motos/ListMoto";
 import ListadoClientes from "../pages/clientes/ListadoClientes";
-import SituacionMoto from "../pages/motos/SituacionMoto";
+import SituacionMoto from "../pages/Motos/SituacionMoto";
 import Incumplidores from "../pages/clientes/Incumplidores";
 import ListadoContratos from "../pages/contratos/ListadoContratos";
 import ContratosMarcaModelo from "../pages/contratos/ContratosMarcaModelo";
