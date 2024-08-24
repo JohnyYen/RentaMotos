@@ -1,7 +1,7 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useEffect, useState } from "react";
 import "../../App.css";
-import axios from 'axios';
+import axios from "axios";
 
 const ListadoClientes = () => {
   const date = new Date();
@@ -10,23 +10,29 @@ const ListadoClientes = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
 
-  const dataClient = axios.get('http://localhost:3000/api/moto/client');
-  console.log(dataClient);
+  const data = extractData();
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Listado de Clientes</Typography.Title>
       <Flex align="center">
-        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
-        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+        <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
+          Fecha actual:
+        </Typography.Text>
+        <Mentions
+          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          readOnly
+          variant="borderless"
+          defaultValue={currentDate}
+        />
       </Flex>
       <Table
-      scroll={{
-        x: 920,
-      }}
+        scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 5,
         }}
-
         columns={[
           {
             title: "Municipio",
@@ -66,12 +72,22 @@ const ListadoClientes = () => {
               </Flex>
             ),
             fixed: "right",
-            width: "13rem"
+            width: "13rem",
           },
         ]}
       ></Table>
     </Flex>
   );
+};
+
+const extractData = async () => {
+  try {
+    const dataClient = await axios.get("http://localhost:3000/api/moto/client");
+    console.log(dataClient);
+  } catch (error) {
+    console.log(error);
+  }
+  return dataClient.data;
 };
 
 export default ListadoClientes;
