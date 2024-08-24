@@ -1,42 +1,66 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.header {
+  /* position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  height: 5rem;
+}  
+
+.header-button {
+  margin-top: 0.5rem;
+  border: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.ant-btn:hover {
+  border: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content{
+  padding: 0 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.sider {
+  position: sticky !important;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  height: 100vh;
 }
 
-.card {
-  padding: 2em;
+.cycling-icon {
+  height: 4rem;
+  width: 4rem;
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+/* .sider-btn {
+  position: fixed;
+  font-size: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  border: none;
+  background-color: darkblue;
+} */
+
+.sider-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+
+.ant-menu-item-selected {
+  background-color: darkblue !important;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.actionTable {
+  background-color: darkblue;
+  color: white;
 }
