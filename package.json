@@ -16,5 +16,9 @@
   ],
   "devDependencies": {
     "turbo": "^2.0.4"
+  },
+  "dependencies": {
+    "antd": "^5.20.0",
+    "axios": "^1.7.5"
   }
 }
