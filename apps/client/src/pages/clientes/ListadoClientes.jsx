@@ -10,7 +10,6 @@ const ListadoClientes = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
 
-  const data = extractData();
 
   return (
     <Flex vertical="true">
@@ -80,14 +79,14 @@ const ListadoClientes = () => {
   );
 };
 
-const extractData = async () => {
-  try {
-    const dataClient = await axios.get("http://localhost:3000/api/moto/client");
-    console.log(dataClient);
-  } catch (error) {
-    console.log(error);
-  }
-  return dataClient.data;
-};
+// const extractData = async () => {
+//   try {
+//     const dataClient = await axios.get("http://localhost:3000/api/client");
+//     console.log(dataClient);
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return dataClient.data;
+// };
 
 export default ListadoClientes;
