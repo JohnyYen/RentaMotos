@@ -1,6 +1,7 @@
-import{ Button, Divider, Form, Input, message }from "antd";
+import{ Button, Divider, Form, Input, message,Modal }from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import "../App.css";
+import "./nuevoUsuario";
 
 
 
