@@ -21,10 +21,13 @@ let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
     }
-    getContract() {
-        return this.contractService.getAllContract();
+    async getContract() {
+        return await this.contractService.getAllContract();
     }
     getContractInPDF() {
+    }
+    async getFilterContract() {
+        return await this.contractService.getContractFilter();
     }
     deleteContract(idCliente, matricula) {
         this.contractService.deleteContract(idCliente, matricula);
@@ -41,7 +44,7 @@ __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContract", null);
 __decorate([
     (0, common_1.Get)("/pdf"),
@@ -49,6 +52,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "getContractInPDF", null);
+__decorate([
+    (0, common_1.Get)('/marcxmodel'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getFilterContract", null);
 __decorate([
     (0, common_1.Delete)(),
     __param(0, (0, common_1.Body)("idCliente")),

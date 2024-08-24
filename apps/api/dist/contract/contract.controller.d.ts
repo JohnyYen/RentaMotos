@@ -6,6 +6,7 @@ export declare class ContractController {
     constructor(contractService: ContractService);
     getContract(): Promise<any>;
     getContractInPDF(): void;
+    getFilterContract(): Promise<any>;
     deleteContract(idCliente: string, matricula: string): void;
     createContract(contract: ContractDto): void;
     updateContract(idCliente: string, matricula: string, contract: ContractPatchDto): void;

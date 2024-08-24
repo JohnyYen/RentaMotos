@@ -12,6 +12,11 @@ export class ContractService {
         return res.rows;
     }
 
+    async getContractFilter(){
+        const res = await this.conn.query('SELECT contratoxmarcamodelo()')
+        return res.rows;
+    }
+
     async createContract(contract : ContractDto){
         await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
     }

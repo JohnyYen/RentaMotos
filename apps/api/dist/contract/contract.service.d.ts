@@ -4,6 +4,7 @@ export declare class ContractService {
     private conn;
     constructor(conn: any);
     getAllContract(): Promise<any>;
+    getContractFilter(): Promise<any>;
     createContract(contract: ContractDto): Promise<void>;
     updateContract(contract: ContractPatchDto, idCliente: string, matricula: string): void;
     deleteContract(idCliente: string, matricula: string): void;

@@ -8,8 +8,8 @@ export class ContractController {
     constructor(private readonly contractService : ContractService){}
 
     @Get()
-    getContract(){
-        return this.contractService.getAllContract();
+    async getContract(){
+        return await this.contractService.getAllContract();
     }
 
     @Get("/pdf")
@@ -17,6 +17,10 @@ export class ContractController {
 
     }
 
+    @Get('/marcxmodel')
+    async getFilterContract(){
+        return await this.contractService.getContractFilter();
+    }
     @Delete()
     deleteContract(@Body("idCliente") idCliente : string, @Body("matricula") matricula : string){
         this.contractService.deleteContract(idCliente, matricula);
