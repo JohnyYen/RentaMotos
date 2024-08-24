@@ -1,11 +1,20 @@
-import { Space, Typography, Table, Flex } from "antd";
+import { Mentions, Typography, Table, Flex } from "antd";
 import { useState } from "react";
 
 const Incumplidores = () => {
+  const date = new Date();
+  const day = date.getDay();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
 
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Clientes Incumplidores</Typography.Title>
+      <Flex align="center">
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+      </Flex>
       <Table
       scroll={{
         x: 920,
@@ -15,13 +24,6 @@ const Incumplidores = () => {
         }}
 
         columns={[
-          {
-            title: "Fecha actual",
-            dataIndex: "fecha",
-            key: "fecha",
-            fixed: "left",
-            width: "7rem"
-          },
           {
             title: "Nombre",
             dataIndex: "nombre",

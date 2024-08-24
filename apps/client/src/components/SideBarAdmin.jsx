@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import "../App.css";
 import "boxicons";
 
-const SideBar = () => {
+const SideBarAdmin = () => {
   const navigate = useNavigate();
 
   return (
@@ -93,4 +93,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default SideBarAdmin;

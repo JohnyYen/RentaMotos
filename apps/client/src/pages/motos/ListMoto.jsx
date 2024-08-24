@@ -1,4 +1,4 @@
-import { Space, Typography, Table, Flex, Button } from "antd";
+import { Mentions, Typography, Table, Flex, Button } from "antd";
 import { useState } from "react";
 import "../../App.css";
 
@@ -87,36 +87,50 @@ const ListMoto = () => {
     },
   ];
 
+  const date = new Date();
+  const day = date.getDay();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Listado de Motos</Typography.Title>
+      <Flex align="center">
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+      </Flex>
       <Table
-      scroll={{
-        x: 920,
-      }}
+        scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 5,
         }}
         dataSource={dataSource}
         columns={[
           {
-            title: "Fecha",
-            dataIndex: "fecha",
-            key: "fecha",
-            fixed: "left",
-            width: "7rem"
-          },
-          {
             title: "Matricula",
             dataIndex: "matricula",
             key: "matricula",
             fixed: "left",
-            width: "8rem"
+            width: "8rem",
           },
           {
             title: "Marca",
             dataIndex: "marca",
             key: "marca",
+            filters: [
+              {
+                text: "yamaha",
+                value: "yamaha",
+              },
+              {
+                text: "suzuki",
+                value: "suzuki",
+              }
+            ],
+            onFilter: (value, record) => record.marca.indexOf(value) === 0,
           },
           {
             title: "Modelo",
@@ -143,7 +157,7 @@ const ListMoto = () => {
               </Flex>
             ),
             fixed: "right",
-            width: "14rem"
+            width: "13rem",
           },
         ]}
       />

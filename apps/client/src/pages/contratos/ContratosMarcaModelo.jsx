@@ -1,11 +1,20 @@
-import { Space, Typography, Table, Flex } from "antd";
+import { Mentions, Typography, Table, Flex } from "antd";
 import { useState } from "react";
 
 const ContratosMarcaModelo = () => {
+  const date = new Date();
+  const day = date.getDay();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
 
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Contratos por marca y modelo</Typography.Title>
+      <Flex align="center">
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+      </Flex>
       <Table
       scroll={{
         x: 920,
@@ -14,25 +23,22 @@ const ContratosMarcaModelo = () => {
           pageSize: 5,
         }}
         
-        columns={[
-        {
-            title: "Fecha actual",
-            dataIndex: "fecha actual",
-            key: "fecha actual",
-            fixed: "left",
-            width: "7rem"
-        },  
+        columns={[  
         {
             title: "Marca",
             dataIndex: "marca",
             key: "marca",
-            fixed: "left"
+            fixed: "left",
+            filters: [],
+            onFilter: (value, record) => record.marca.indexOf(value) === 0
           },
           {
             title: "Modelo",
             dataIndex: "modelo",
             key: "modelo",
-            fixed: "left"
+            fixed: "left",
+            filters: [],
+            onFilter: (value, record) => record.modelo.indexOf(value) === 0,
           },
           {
             title: "Cantidad de motos",

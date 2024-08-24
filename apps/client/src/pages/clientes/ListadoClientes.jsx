@@ -1,12 +1,21 @@
-import { Space, Flex, Typography, Table, Button } from "antd";
-import { useState } from "react";
+import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
+import { useEffect, useState } from "react";
 import "../../App.css";
 
 const ListadoClientes = () => {
+  const date = new Date();
+  const day = date.getDay();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
 
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Listado de Clientes</Typography.Title>
+      <Flex align="center">
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+      </Flex>
       <Table
       scroll={{
         x: 920,
@@ -17,16 +26,12 @@ const ListadoClientes = () => {
 
         columns={[
           {
-            title: "Fecha actual",
-            dataIndex: "fecha actual",
-            key: "fecha actual",
-            fixed: "left",
-            width: "7rem"
-          },
-          {
             title: "Municipio",
             dataIndex: "municipio",
             key: "municipio",
+            fixed: "left",
+            filters: [],
+            onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
           {
             title: "Nombre",
@@ -37,7 +42,6 @@ const ListadoClientes = () => {
             title: "CI",
             dataIndex: "ci",
             key: "ci",
-            fixed: "left"
           },
           {
             title: "Veces alquiladas",
@@ -59,7 +63,7 @@ const ListadoClientes = () => {
               </Flex>
             ),
             fixed: "right",
-            width: "14rem"
+            width: "13rem"
           },
         ]}
       ></Table>

@@ -6,6 +6,15 @@
   height: 5rem;
 }  
 
+.header-button {
+  margin-top: 0.5rem;
+  border: none;
+}
+
+.ant-btn:hover {
+  border: none;
+}
+
 .content{
   padding: 0 1rem;
 }
@@ -16,6 +25,12 @@
   bottom: 0;
   top: 0;
   height: 100vh;
+}
+
+.cycling-icon {
+  height: 4rem;
+  width: 4rem;
+  color: white;
 }
 
 /* .sider-btn {
@@ -37,16 +52,6 @@
 
 .ant-menu-item-selected {
   background-color: darkblue !important;
-}
-
-.header-button {
-  margin-top: 0.5rem;
-  background-color: darkblue;
-}
-
-.ant-btn:hover {
-  background-color: darkblue !important;
-  border-color: white;
 }
 
 .App {
