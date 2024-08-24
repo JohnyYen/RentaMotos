@@ -1,6 +1,7 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useEffect, useState } from "react";
 import "../../App.css";
+import axios from 'axios';
 
 const ListadoClientes = () => {
   const date = new Date();
@@ -9,6 +10,8 @@ const ListadoClientes = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
 
+  const dataClient = axios.get('http://localhost:3000/api/moto/client');
+  console.log(dataClient);
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Listado de Clientes</Typography.Title>
