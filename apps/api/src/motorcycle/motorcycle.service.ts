@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
-import PDFDocument from 'pdfkit-table'
 import {Response} from 'express'
-import fs from 'fs'
-import {Readable} from 'stream'
+import buildPDF from 'src/libs/pdfKit';
+import { arrayFormatter } from 'src/libs/jsonFormatter';
+
 @Injectable()
 export class MotorcycleService {
     constructor(@Inject(PG_CONNECTION) private conn : any){}
@@ -15,10 +15,22 @@ export class MotorcycleService {
         return await res.rows;
     }
 
-    async getPDF(responde : Response){
-        const data = await this.getAllMotorcycle();
-        const doc = new PDFDocument();
-        
+    async getPDF(res : Response){
+
+        const stream = res.writeHead(200, {
+            "Content-Type": "aplication/pdf",
+            "Content-Disposition": "attachment; filename=employements.pdf",
+        })
+
+        const motors = await this.getAllMotorcycle();
+        //console.log(arrayFormatter(motors));
+       //console.log(stream);
+       buildPDF(Object.keys(motors[0]), arrayFormatter(motors), (data) => stream.write(data), () => stream.end);
+
+    //    res.setHeader('Content-Type', 'application/pdf');
+    //    res.setHeader('Content-Disposition', 'attachment; filename=reporte.pdf');
+    //    res.setHeader('Content-Length', build.length);
+    //    res.send(build);
     }
     async deleteMotorcycle( id : string){
         try {

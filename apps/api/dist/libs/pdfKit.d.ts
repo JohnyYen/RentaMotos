@@ -1,1 +1,1 @@
-export default function buildPDF(dataCallback: any, endCallback: any, dataHeaders: any, dataRows: any): void;
+export default function buildPDF(dataHeaders: any, dataRows: any, dataCallback?: any, endCallback?: any): void;

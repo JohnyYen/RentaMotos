@@ -5,7 +5,7 @@ export declare class MotorcycleService {
     private conn;
     constructor(conn: any);
     getAllMotorcycle(): Promise<any>;
-    getPDF(responde: Response): Promise<void>;
+    getPDF(res: Response): Promise<void>;
     deleteMotorcycle(id: string): Promise<void>;
     createMotorcycle(moto: MotorcycleDto): Promise<void>;
     updateMotorcycle(moto: MotorcyclePatchDto, id: string): Promise<void>;

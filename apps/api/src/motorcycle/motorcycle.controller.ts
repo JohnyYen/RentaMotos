@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { MotorcycleService } from './motorcycle.service';
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
+import { Response } from 'express';
 
 @Controller('api/moto')
 export class MotorcycleController {
@@ -12,8 +13,8 @@ export class MotorcycleController {
         return this.motoService.getAllMotorcycle();
     }
     @Get('/pdf')
-    getAllMotoInPDF(){
-        //Aqui va la función para devolver a pdf
+    async getAllMotoInPDF(@Res() res: Response){
+       await this.motoService.getPDF(res);
     }
 
     @Get('/situation')

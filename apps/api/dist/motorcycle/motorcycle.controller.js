@@ -24,7 +24,8 @@ let MotorcycleController = class MotorcycleController {
     getAllMoto() {
         return this.motoService.getAllMotorcycle();
     }
-    getAllMotoInPDF() {
+    async getAllMotoInPDF(res) {
+        await this.motoService.getPDF(res);
     }
     getSituationMoto() {
         return this.motoService.getSituationMoto();
@@ -48,9 +49,10 @@ __decorate([
 ], MotorcycleController.prototype, "getAllMoto", null);
 __decorate([
     (0, common_1.Get)('/pdf'),
+    __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllMotoInPDF", null);
 __decorate([
     (0, common_1.Get)('/situation'),

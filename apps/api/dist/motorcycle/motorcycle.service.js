@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MotorcycleService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
-const pdfkit_table_1 = require("pdfkit-table");
+const pdfKit_1 = require("../libs/pdfKit");
+const jsonFormatter_1 = require("../libs/jsonFormatter");
 let MotorcycleService = class MotorcycleService {
     constructor(conn) {
         this.conn = conn;
@@ -24,9 +25,13 @@ let MotorcycleService = class MotorcycleService {
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
-    async getPDF(responde) {
-        const data = await this.getAllMotorcycle();
-        const doc = new pdfkit_table_1.default();
+    async getPDF(res) {
+        const stream = res.writeHead(200, {
+            "Content-Type": "aplication/pdf",
+            "Content-Disposition": "attachment; filename=employements.pdf",
+        });
+        const motors = await this.getAllMotorcycle();
+        (0, pdfKit_1.default)(Object.keys(motors[0]), (0, jsonFormatter_1.arrayFormatter)(motors), (data) => stream.write(data), () => stream.end);
     }
     async deleteMotorcycle(id) {
         try {
