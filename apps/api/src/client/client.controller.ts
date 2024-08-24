@@ -28,12 +28,12 @@ export class ClientController {
         this.clientService.createClient(clientDto);
     }
 
-    @Delete()
-    deleteClient(@Body("id") id : string){
+    @Delete('/:id')
+    deleteClient(@Param("id") id : string){
         this.clientService.deleteClient(id);
     }
 
-    @Patch('/id')
+    @Patch('/:id')
     updateClient(@Param('id') id : string, @Body() client : ClientPatchDto){
         this.clientService.updateClient(client, id);
     }

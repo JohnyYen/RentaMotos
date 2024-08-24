@@ -17,6 +17,10 @@ export class ContractService {
         return res.rows;
     }
 
+    async getContractByMun(){
+        const res = await this.conn.query('select * from cont_mun');
+        return res.rows
+    }
     async createContract(contract : ContractDto){
         await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
     }
