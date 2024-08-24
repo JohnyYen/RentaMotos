@@ -1,11 +1,11 @@
 import{ Button, Divider, Form, Input, message,Modal }from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import "../App.css";
-import "./nuevoUsuario";
+import "./NuevoUsuario";
 
 
 
-function loguin() {
+function Loguin() {
   
     const loguear=()=>{
       message.success("Registro completado");
@@ -50,4 +50,4 @@ function loguin() {
     </div>
   }
   
-  export default loguin;
+  export default Loguin;
