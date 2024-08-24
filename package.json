@@ -16,5 +16,11 @@
   ],
   "devDependencies": {
     "turbo": "^2.0.4"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.4.0",
+    "antd": "^5.19.0",
+    "boxicons": "^2.1.4",
+    "react-router-dom": "^6.26.1"
   }
 }
