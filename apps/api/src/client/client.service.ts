@@ -2,6 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
 import { ClientDto } from './dto/client.dto';
 import { ClientPatchDto } from './dto/clientPatch.dto';
+import generatePDF from 'src/libs/pdfKit';
+import { arrayFormatter } from 'src/libs/jsonFormatter';
 
 @Injectable()
 export class ClientService {
@@ -12,8 +14,9 @@ export class ClientService {
         return res.rows;
     }
 
-    getAllClientByPDF() {
-
+    async getAllClientByPDF() {
+        const client = await this.getAllClients();
+        return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
     }
 
     async deleteClient(id : string){
@@ -31,5 +34,10 @@ export class ClientService {
     async getAllBadClients(){
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
+    }
+
+    async getPDFBadClients(){
+        const client = await this.getAllBadClients();
+        return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
     }
 }

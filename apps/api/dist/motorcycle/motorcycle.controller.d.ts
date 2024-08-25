@@ -8,6 +8,7 @@ export declare class MotorcycleController {
     getAllMoto(): Promise<any>;
     getAllMotoInPDF(res: Response): Promise<void>;
     getSituationMoto(): Promise<any>;
+    getPDFSituation(res: any): Promise<void>;
     createMoto(body: MotorcycleDto): void;
     deleteMoto(id: string): void;
     updateMoto(id: string, update: MotorcyclePatchDto): void;
