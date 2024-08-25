@@ -7,7 +7,6 @@ import { Response } from 'express';
 @Controller('api/moto')
 export class MotorcycleController {
     constructor (private readonly motoService : MotorcycleService){}
-
     @Get()
     @HttpCode(200)
     getAllMoto(){

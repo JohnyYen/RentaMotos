@@ -7,10 +7,15 @@ import axios from 'axios';
 
 const extractData = async () => {
   let data = null;
+ try{
   data = await axios.get("http://localhost:3000/api/moto")
   .then((resolve) => data = resolve.data)
   .catch((error) => console.log(error));
   console.log(data);
+ }
+ catch(error){
+  console.log(error);
+ }
   return data;
 };
 
