@@ -98,6 +98,7 @@ const SituacionMoto = () => {
       }}
         pagination={{
           pageSize: 6,
+          position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
@@ -125,6 +126,8 @@ const SituacionMoto = () => {
           },
         ]}
       ></Table>
+      
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

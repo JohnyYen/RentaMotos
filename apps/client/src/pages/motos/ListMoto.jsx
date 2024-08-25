@@ -1,7 +1,21 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
-import { useState } from "react";
 import "../../App.css";
 import axios from 'axios';
+import { DownloadOutlined } from "@ant-design/icons";
+
+// console.log('Hello MotherFucker');
+
+
+const extractData = async () => {
+  let data = null;
+  data = await axios.get("http://localhost:3000/api/moto")
+  .then((resolve) => data = resolve.data)
+  .catch((error) => console.log(error));
+  console.log(data);
+  return data;
+};
+
+console.log( await extractData());
 
 const ListMoto = () => {
   const dataSource = [
@@ -93,8 +107,7 @@ const ListMoto = () => {
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
-
-  const data = extractData();
+ 
 
   return (
     <Flex vertical="true">
@@ -109,6 +122,7 @@ const ListMoto = () => {
         }}
         pagination={{
           pageSize: 5,
+          position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
@@ -155,8 +169,8 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable">Modificar</Button>
-                <Button className="actionTable">Delete</Button>
+                <Button className="actionTable" type="primary">Modificar</Button>
+                <Button className="actionTable" type="primary">Delete</Button>
               </Flex>
             ),
             fixed: "right",
@@ -164,19 +178,9 @@ const ListMoto = () => {
           },
         ]}
       />
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
-};
-
-const extractData = async () => {
-  const data = null;
-  try {
-    data = await axios.get("http://localhost:3000/api/moto");
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-  return data.data;
 };
 
 export default ListMoto;
