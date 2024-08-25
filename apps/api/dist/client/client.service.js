@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
+const pdfKit_1 = require("../libs/pdfKit");
+const jsonFormatter_1 = require("../libs/jsonFormatter");
 let ClientService = class ClientService {
     constructor(conn) {
         this.conn = conn;
@@ -23,7 +25,9 @@ let ClientService = class ClientService {
         const res = await this.conn.query('SELECT * FROM client_view');
         return res.rows;
     }
-    getAllClientByPDF() {
+    async getAllClientByPDF() {
+        const client = await this.getAllClients();
+        return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
     async deleteClient(id) {
         this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
@@ -37,6 +41,10 @@ let ClientService = class ClientService {
     async getAllBadClients() {
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
+    }
+    async getPDFBadClients() {
+        const client = await this.getAllBadClients();
+        return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
 };
 exports.ClientService = ClientService;

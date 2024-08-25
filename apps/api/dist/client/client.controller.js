@@ -24,11 +24,22 @@ let ClientController = class ClientController {
     async getClients() {
         return await this.clientService.getAllClients();
     }
+    async getClientsByPDF(res) {
+        const buffer = await this.clientService.getAllClientByPDF();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Clients.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
     async getBadClients() {
         return await this.clientService.getAllBadClients();
     }
-    getClientsByPDF() {
-        this.clientService.getAllClientByPDF();
+    async getBadClientsByPDF(res) {
+        const buffer = await this.clientService.getPDFBadClients();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=BadClients.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     createClient(clientDto) {
         this.clientService.createClient(clientDto);
@@ -48,17 +59,25 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClients", null);
 __decorate([
+    (0, common_1.Get)('/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClientsByPDF", null);
+__decorate([
     (0, common_1.Get)("/bad"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClients", null);
 __decorate([
-    (0, common_1.Get)('/pdf'),
+    (0, common_1.Get)('/bad/pdf'),
+    __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ClientController.prototype, "getClientsByPDF", null);
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getBadClientsByPDF", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

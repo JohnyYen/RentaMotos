@@ -24,13 +24,32 @@ let ContractController = class ContractController {
     async getContract() {
         return await this.contractService.getAllContract();
     }
-    getContractInPDF() {
+    async getContractInPDF(res) {
+        const buffer = await this.contractService.getPDFContract();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Contracts.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     async getContractByMun() {
         return await this.contractService.getContractByMun();
     }
+    async getContractInPDFMun(res) {
+        const buffer = await this.contractService.getPDFContractByMun();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ContractsByMun.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
     async getFilterContract() {
         return await this.contractService.getContractFilter();
+    }
+    async getContractInPDFMarc(res) {
+        const buffer = await this.contractService.getPDFContractXModelo();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ContractsXModeloXMarca.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     deleteContract(idCliente, matricula) {
         this.contractService.deleteContract(idCliente, matricula);
@@ -51,9 +70,10 @@ __decorate([
 ], ContractController.prototype, "getContract", null);
 __decorate([
     (0, common_1.Get)("/pdf"),
+    __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDF", null);
 __decorate([
     (0, common_1.Get)('/mun'),
@@ -62,11 +82,25 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractByMun", null);
 __decorate([
+    (0, common_1.Get)("/mun/pdf"),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getContractInPDFMun", null);
+__decorate([
     (0, common_1.Get)('/marcxmodel'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getFilterContract", null);
+__decorate([
+    (0, common_1.Get)("/marcxmodel/pdf"),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getContractInPDFMarc", null);
 __decorate([
     (0, common_1.Delete)('/:idCliente/:matricula'),
     __param(0, (0, common_1.Param)("idCliente")),

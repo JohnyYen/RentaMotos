@@ -25,10 +25,21 @@ let MotorcycleController = class MotorcycleController {
         return this.motoService.getAllMotorcycle();
     }
     async getAllMotoInPDF(res) {
-        await this.motoService.getPDF(res);
+        const buffer = await this.motoService.getPDF();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ReporteMoto.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     getSituationMoto() {
         return this.motoService.getSituationMoto();
+    }
+    async getPDFSituation(res) {
+        const buffer = await this.motoService.getPDFSituation();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=SituacionMoto.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     createMoto(body) {
         this.motoService.createMotorcycle(body);
@@ -60,6 +71,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getSituationMoto", null);
+__decorate([
+    (0, common_1.Get)('/situation/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "getPDFSituation", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
