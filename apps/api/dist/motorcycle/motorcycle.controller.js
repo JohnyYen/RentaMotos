@@ -54,6 +54,7 @@ let MotorcycleController = class MotorcycleController {
 exports.MotorcycleController = MotorcycleController;
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.HttpCode)(200),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
