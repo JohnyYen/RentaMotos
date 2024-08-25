@@ -2,6 +2,7 @@ import { Mentions, Typography, Table, Flex, Button } from "antd";
 import { useState } from "react";
 import "../../App.css";
 import axios from 'axios';
+import { DownloadOutlined } from "@ant-design/icons";
 
 const ListMoto = () => {
   const dataSource = [
@@ -109,6 +110,7 @@ const ListMoto = () => {
         }}
         pagination={{
           pageSize: 5,
+          position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
@@ -155,8 +157,8 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable">Modificar</Button>
-                <Button className="actionTable">Delete</Button>
+                <Button className="actionTable" type="primary">Modificar</Button>
+                <Button className="actionTable" type="primary">Delete</Button>
               </Flex>
             ),
             fixed: "right",
@@ -164,6 +166,7 @@ const ListMoto = () => {
           },
         ]}
       />
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

@@ -21,6 +21,7 @@ const Incumplidores = () => {
       }}
         pagination={{
           pageSize: 5,
+          position: ["bottomLeft"],
         }}
 
         columns={[
@@ -48,6 +49,7 @@ const Incumplidores = () => {
           },
         ]}
       ></Table>
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };
