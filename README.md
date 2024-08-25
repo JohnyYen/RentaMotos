@@ -5,12 +5,12 @@ y el front en http://localhost:5173 (Señores es copiar la dirrecion despues de 
 
 # Rutas API BACKEND
 ## Cliente
-http://localhost:3000/api/moto/client GET
-http://localhost:3000/api/moto/client/pdf GET
-http://localhost:3000/api/moto/client/bad GET
-http://localhost:3000/api/moto/client POST
-http://localhost:3000/api/moto/client/:id DELETE
-http://localhost:3000/api/moto/client/:id PATCH
+http://localhost:3000/api/client GET
+http://localhost:3000/api/client/pdf GET
+http://localhost:3000/api/client/bad GET
+http://localhost:3000/api/client POST
+http://localhost:3000/api/client/:id DELETE
+http://localhost:3000/api/client/:id PATCH
 
 ## Contrato
 http://localhost:3000/api/contract GET

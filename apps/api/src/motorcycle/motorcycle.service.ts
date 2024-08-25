@@ -3,8 +3,8 @@ import { PG_CONNECTION } from 'src/constants';
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
 import {Response} from 'express'
-import buildPDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
+import generatePDF from 'src/libs/pdfKit';
 
 @Injectable()
 export class MotorcycleService {
@@ -15,23 +15,17 @@ export class MotorcycleService {
         return await res.rows;
     }
 
-    async getPDF(res : Response){
+    async getPDF(){
 
-        const stream = res.writeHead(200, {
-            "Content-Type": "aplication/pdf",
-            "Content-Disposition": "attachment; filename=employements.pdf",
-        })
-
-        const motors = await this.getAllMotorcycle();
-        //console.log(arrayFormatter(motors));
-       //console.log(stream);
-       buildPDF(Object.keys(motors[0]), arrayFormatter(motors), (data) => stream.write(data), () => stream.end);
-
-    //    res.setHeader('Content-Type', 'application/pdf');
-    //    res.setHeader('Content-Disposition', 'attachment; filename=reporte.pdf');
-    //    res.setHeader('Content-Length', build.length);
-    //    res.send(build);
+        const moto = await this.getAllMotorcycle();
+        return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
+
+    async getPDFSituation(){
+        const moto = await this.getSituationMoto();
+        return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
+    }
+
     async deleteMotorcycle( id : string){
         try {
             await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
