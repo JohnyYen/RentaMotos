@@ -1,6 +1,24 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
-import * as axios from 'axios';
+import axios from 'axios';
+
+// console.log('Hello MotherFucker');
+
+
+const extractData = async () => {
+  let data = null;
+  data = await axios.get("http://localhost:3000/api/moto").then((resolve) => data = resolve.data).catch((error) => console.log(error));
+  // console.log(data);
+  console.log(data);
+  // try {
+
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  return data;
+};
+
+console.log( await extractData());
 
 const ListMoto = () => {
   const dataSource = [
@@ -92,9 +110,7 @@ const ListMoto = () => {
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
-
-  // extractData();
-  // console.log(axios);
+ 
 
   return (
     <Flex vertical="true">
@@ -166,18 +182,6 @@ const ListMoto = () => {
       />
     </Flex>
   );
-};
-
-const extractData = async () => {
-  //let data = null;
-  //data = axios.get("http://localhost:3000/api/moto");
-  console.log(axios);
-  // try {
-
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  //return data.data;
 };
 
 export default ListMoto;
