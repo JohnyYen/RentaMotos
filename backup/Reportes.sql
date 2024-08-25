@@ -113,4 +113,27 @@ fechafin, diasprorroga, seguro, ((diasprorroga * 300) + (fechafin - fechainicio)
 from ((Cliente inner join Contrato on Cliente.idcliente = Contrato.idcliente)
 as tabl inner join Moto on tabl.matricula = Moto.matricula);
 							
-select * from contrato_view
+-- Reporte #7
+-- select CURRENT_DATE, municipio.nommun, moto.marca, moto.modelo, 
+-- sum(contrato.fechafin - contrato.fechainicio) as diasalquilados, 
+-- sum(contrato.diasprorroga) as diasprorroga,
+-- case
+-- 	when contrato.formapago = 'efectivo' then sum(contrato.diasprorroga * 300 + (contrato.fechafin - contrato.fechainicio) * 750)
+-- 	else 0
+-- end as valor_efectivo,
+-- sum(contrato.diasprorroga * 300 + (contrato.fechafin - contrato.fechainicio) * 750) as valor_general
+-- from contrato inner join cliente on cliente.idcliente = contrato.idcliente
+-- inner join municipio on municipio.nommun = cliente.municipio
+-- inner join moto on contrato.matricula = moto.matricula
+-- group by municipio.nommun, moto.marca, moto.modelo, contrato.formapago
+
+-- Trigger para eliminar todos los contratos de un cliente despues de ser borrado de la lista de clientes
+-- create or replace function deleteContratosCliente() returns trigger as
+-- $$
+-- begin
+-- 	delete from contrato where contrato.idcliente = NEW.idcliente;
+-- end
+-- $$
+-- language 'plpgsql';
+
+-- create trigger tg_deleteContratosCliente after delete on cliente for each row execute function deleteContratosCliente()
