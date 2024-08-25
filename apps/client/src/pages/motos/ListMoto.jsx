@@ -1,7 +1,6 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
-import { useState } from "react";
 import "../../App.css";
-import axios from 'axios';
+import * as axios from 'axios';
 
 const ListMoto = () => {
   const dataSource = [
@@ -94,7 +93,8 @@ const ListMoto = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
 
-  const data = extractData();
+  // extractData();
+  // console.log(axios);
 
   return (
     <Flex vertical="true">
@@ -169,14 +169,15 @@ const ListMoto = () => {
 };
 
 const extractData = async () => {
-  const data = null;
-  try {
-    data = await axios.get("http://localhost:3000/api/moto");
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-  return data.data;
+  //let data = null;
+  //data = axios.get("http://localhost:3000/api/moto");
+  console.log(axios);
+  // try {
+
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  //return data.data;
 };
 
 export default ListMoto;
