@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Res } from '@nestjs/common';
 import { MotorcycleService } from './motorcycle.service';
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
@@ -9,6 +9,7 @@ export class MotorcycleController {
     constructor (private readonly motoService : MotorcycleService){}
 
     @Get()
+    @HttpCode(200)
     getAllMoto(){
         return this.motoService.getAllMotorcycle();
     }
