@@ -21,6 +21,7 @@ const ContratosMunicipio = () => {
       }}
         pagination={{
           pageSize: 5,
+          position: ["bottomLeft"],
         }}
         columns={[
           {
@@ -63,6 +64,8 @@ const ContratosMunicipio = () => {
           },
         ]}
       ></Table>
+      
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

@@ -13,10 +13,23 @@
 
 .ant-btn:hover {
   border: none;
+  background-color: rgb(39, 39, 192) !important;
 }
 
 .content {
   padding: 0 1rem;
+}
+
+.ant-btn-download {
+  position: fixed;
+  right: 2rem;
+  bottom: 4.5rem;
+  width: 9rem;
+  background-color: darkblue;
+}
+
+.ant-btn-download:hover {
+  background-color: rgb(39, 39, 192) !important;
 }
 
 .sider {

@@ -31,6 +31,7 @@ const ListadoClientes = () => {
         }}
         pagination={{
           pageSize: 5,
+          position: ["bottomLeft"],
         }}
         columns={[
           {
@@ -66,8 +67,8 @@ const ListadoClientes = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="accionTable">Modificar</Button>
-                <Button className="accionTable">Eliminar</Button>
+                <Button className="accionTable" type="primary">Modificar</Button>
+                <Button className="accionTable" type="primary">Eliminar</Button>
               </Flex>
             ),
             fixed: "right",
@@ -75,6 +76,7 @@ const ListadoClientes = () => {
           },
         ]}
       ></Table>
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };
