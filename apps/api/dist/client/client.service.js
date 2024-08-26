@@ -22,7 +22,7 @@ let ClientService = class ClientService {
         this.conn = conn;
     }
     async getAllClients() {
-        const res = await this.conn.query('SELECT * FROM client_view');
+        const res = await this.conn.query('SELECT * FROM cliente_view');
         return res.rows;
     }
     async getAllClientByPDF() {

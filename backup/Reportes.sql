@@ -92,8 +92,14 @@ delete from contrato where fechafirma = '2023-02-01';
 -- 	return count;
 -- END;
 -- $$ LANGUAGE plpgsql
-
+select ('2024-05-10'::date - '2024-01-10'::date) * 750
 -- Reporte 1
+select * from cliente inner join contrato on Cliente.idcliente = contrato.idcliente
+create or replace view cliente_view as select Cliente.Municipio, Cliente.nombre, Cliente.idCliente, count(*), sum(((fechafin - fechainicio) * 750) + (diasprorroga * 300)) from
+(Cliente inner join Contrato on Cliente.idcliente = Contrato.idCliente)
+Group by Cliente.municipio, nombre, Cliente.idcliente
+order by Cliente.Municipio asc
+
 select Cliente.nombre, idcliente, countContratos(idcliente) as cant_contratos,
 							sum(calculateImporte(idcliente, 750, 300)) as valor_alquileres
 							from Cliente group by nombre, idcliente where Cliente.municipio = 'Vedado' ;
