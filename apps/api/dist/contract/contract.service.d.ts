@@ -1,5 +1,4 @@
 import { ContractDto } from './dto/contract.dto';
-import { ContractPatchDto } from './dto/contractPatch.dto';
 export declare class ContractService {
     private conn;
     constructor(conn: any);
@@ -10,6 +9,6 @@ export declare class ContractService {
     getPDFContractXModelo(): Promise<Buffer>;
     getPDFContractByMun(): Promise<Buffer>;
     createContract(contract: ContractDto): Promise<void>;
-    updateContract(contract: ContractPatchDto, idCliente: string, matricula: string): void;
+    updateContract(contract: ContractDto, idCliente: string, matricula: string): void;
     deleteContract(idCliente: string, matricula: string): void;
 }

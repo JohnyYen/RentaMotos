@@ -16,7 +16,6 @@ exports.ContractController = void 0;
 const common_1 = require("@nestjs/common");
 const contract_service_1 = require("./contract.service");
 const contract_dto_1 = require("./dto/contract.dto");
-const contractPatch_dto_1 = require("./dto/contractPatch.dto");
 let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
@@ -121,7 +120,7 @@ __decorate([
     __param(0, (0, common_1.Param)("idCliente")),
     __param(1, (0, common_1.Param)("matricula")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, contractPatch_dto_1.ContractPatchDto]),
+    __metadata("design:paramtypes", [String, String, contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "updateContract", null);
 exports.ContractController = ContractController = __decorate([

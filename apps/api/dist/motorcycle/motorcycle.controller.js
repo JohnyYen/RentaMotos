@@ -16,7 +16,6 @@ exports.MotorcycleController = void 0;
 const common_1 = require("@nestjs/common");
 const motorcycle_service_1 = require("./motorcycle.service");
 const motorcycle_dto_1 = require("./dto/motorcycle.dto");
-const motorcyclePatch_dto_1 = require("./dto/motorcyclePatch.dto");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -98,7 +97,7 @@ __decorate([
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, motorcyclePatch_dto_1.MotorcyclePatchDto]),
+    __metadata("design:paramtypes", [String, motorcycle_dto_1.MotorcycleDto]),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "updateMoto", null);
 exports.MotorcycleController = MotorcycleController = __decorate([
