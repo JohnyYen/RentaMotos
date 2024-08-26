@@ -1,14 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import UserClient from "./pages/UserPages/UserClient";
+import AppRoutes from "./components/AppRoutes";
+import { Switch } from "antd";
 import UserAdmin from "./pages/UserPages/UserAdmin";
+
+
 
 function App() {
 
   return (
-    <UserAdmin />
-  );
+      <UserAdmin></UserAdmin>
+    );
 }
 
 export default App;

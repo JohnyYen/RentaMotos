@@ -7,6 +7,8 @@ import ListadoContratos from "../pages/contratos/ListadoContratos";
 import ContratosMarcaModelo from "../pages/contratos/ContratosMarcaModelo";
 import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
+import UserAdmin from "../pages/UserPages/UserAdmin";
+import Loguin from "../component/Loguin";
 
 const AppRouter = () => {
   return (
@@ -22,6 +24,7 @@ const AppRouter = () => {
       <Route path="/crearContrato" element></Route>
       <Route path="/contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="/motosCliente" element={<ListMoto />}></Route>
+      <Route path="/userAdmin" element={<UserAdmin />}></Route>
     </Routes>
   );
 };

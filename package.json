@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
-    "@nestjs/mapped-types": "^2.0.5",
+    "@nestjs/mapped-types": "github:nestJs/mapped-Types",
     "antd": "^5.19.0",
     "axios": "^1.7.5",
     "boxicons": "^2.1.4",

@@ -1,5 +1,4 @@
-import { ModelDto } from "./model.dto";
-declare const ModelPatchDto_base: import("@nestjs/mapped-types").MappedType<Partial<ModelDto>>;
+declare const ModelPatchDto_base: any;
 export declare class ModelPatchDto extends ModelPatchDto_base {
 }
 export {};

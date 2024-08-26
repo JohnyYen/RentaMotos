@@ -12,7 +12,7 @@ const extractData = async () => {
   data = await axios.get("http://localhost:3000/api/moto")
   .then((resolve) => data = resolve.data)
   .catch((error) => console.log(error));
-  console.log(data);
+    console.log(data);
  }
  catch(error){
   console.log(error);
