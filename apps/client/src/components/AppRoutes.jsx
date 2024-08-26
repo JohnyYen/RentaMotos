@@ -10,7 +10,7 @@ import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
 
-const AppRouter = () => {
+const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/listadoClientes" element={<ListadoClientes />}></Route>
@@ -29,4 +29,4 @@ const AppRouter = () => {
   );
 };
 
-export default AppRouter;
+export default AppRoutes;
