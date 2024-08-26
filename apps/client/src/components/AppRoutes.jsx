@@ -9,7 +9,7 @@ import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
-
+import UserClient from "../pages/UserPages/UserClient"
 const AppRoutes = () => {
   return (
     <Routes>
@@ -25,6 +25,8 @@ const AppRoutes = () => {
       <Route path="/contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="/motosCliente" element={<ListMoto />}></Route>
       <Route path="/userAdmin" element={<UserAdmin />}></Route>
+      <Route path="/userClient" element={<UserClient />}></Route>
+      <Route path="/" element={<Loguin />}></Route>
     </Routes>
   );
 };

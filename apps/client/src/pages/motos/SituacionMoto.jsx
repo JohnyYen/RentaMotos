@@ -1,89 +1,44 @@
-import { Mentions, Typography, Table, Flex } from "antd";
-import { useState } from "react";
+import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { useState, useEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import axios from "axios";
+
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/moto/situation");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        matricula: element.matricula,
+      marca: element.marca,
+      situacion: element.situacion,
+      "Fin de contrato": element.fecha_entrega,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
 
 const SituacionMoto = () => {
-  const dataSource = [
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      modelo: "458feg",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      modelo: "458feg",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key:  "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-  ];
-
   const date = new Date();
   const day = date.getDay();
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
+
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
 
   return (
     <Flex vertical="true">
@@ -97,7 +52,7 @@ const SituacionMoto = () => {
         x: 920,
       }}
         pagination={{
-          pageSize: 6,
+          pageSize: 5,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}

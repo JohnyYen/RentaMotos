@@ -8,9 +8,10 @@ const PgProvider = {
         user: 'postgres',
         host: 'localhost',
         database: 'RentaMotos',
-        password: '0403',
+        password: 'FernaBS2002*',
         port: 5432
-    })
+    }
+    )
 }
 
 @Module({

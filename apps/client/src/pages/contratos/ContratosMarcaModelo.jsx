@@ -1,5 +1,34 @@
-import { Mentions, Typography, Table, Flex } from "antd";
-import { useState } from "react";
+import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { useState, useEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import axios from "axios";
+
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/contract");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        nombre: element.nombre,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        "fecha de fin": element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro,
+        "importe total": element.importe,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
 
 const ContratosMarcaModelo = () => {
   const date = new Date();
@@ -7,6 +36,14 @@ const ContratosMarcaModelo = () => {
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
+
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
 
   return (
     <Flex vertical="true">

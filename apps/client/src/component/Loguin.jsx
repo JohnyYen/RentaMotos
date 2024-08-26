@@ -17,6 +17,8 @@ function Loguin() {
     const handleSubmit = (values) => {
       if(values['contraseña']==='loca')
         <Link to='/userAdmin' />
+      else
+        <Link to="/userClient"></Link>
       }
 
     return <div className="loguin">

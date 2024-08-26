@@ -1,7 +1,30 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useEffect, useState } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
+
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/client");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        color: element.color,
+        "Km recorridos": element.cantkm,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
 
 const ListadoClientes = () => {
   const date = new Date();
@@ -9,6 +32,14 @@ const ListadoClientes = () => {
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
+
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
 
 
   return (

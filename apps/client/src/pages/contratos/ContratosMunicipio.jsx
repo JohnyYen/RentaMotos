@@ -1,5 +1,31 @@
-import { Mentions, Typography, Table, Flex } from "antd";
-import { useState } from "react";
+import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { useState, useEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import axios from "axios";
+
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/contract/mun");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        municipio: element.nommun,
+        marca: element.marca,
+        modelo: element.modelo,
+        "días alquilados": element.diasalquilados,
+        "días de prórroga": element.diasprorroga,
+        "total efectivo": element.valor_efectivo,
+        "valor total": element.valor_general,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
 
 const ContratosMunicipio = () => {
   const date = new Date();
@@ -8,6 +34,14 @@ const ContratosMunicipio = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
   
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>Contratos por Municipio</Typography.Title>
@@ -23,6 +57,7 @@ const ContratosMunicipio = () => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
+        dataSource={dataSource}
         columns={[
           {
             title: "Municipio",

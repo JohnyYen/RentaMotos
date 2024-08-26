@@ -1,7 +1,44 @@
 import { Space, Typography, Table, Flex, Button } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import axios from "axios";
+
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/contract");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        nombre: element.nombre,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        "fecha de fin": element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro,
+        "importe total": element.importe,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
 
 const ListadoContratos = () => {
+
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
 
   return (
     <Flex vertical="true">
@@ -14,7 +51,7 @@ const ListadoContratos = () => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
-        
+        dataSource={dataSource}
         columns={[
           {
             title: "Nombre",
@@ -74,7 +111,7 @@ const ListadoContratos = () => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">Modificar</Button>
-                <Button className="actiontable" type="primary">Delete</Button>
+                <Button className="actionTable" type="primary">Delete</Button>
               </Flex>
             ),
             fixed: "right",
