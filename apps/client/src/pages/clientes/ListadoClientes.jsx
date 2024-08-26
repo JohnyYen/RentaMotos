@@ -64,6 +64,7 @@ const ListadoClientes = () => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
+        dataSource={dataSource}
         columns={[
           {
             title: "Municipio",
