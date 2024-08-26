@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { ContractService } from './contract.service';
 import { ContractDto } from './dto/contract.dto';
-import { ContractPatchDto } from './dto/contractPatch.dto';
 
 @Controller('api/contract')
 export class ContractController {
@@ -65,7 +64,7 @@ export class ContractController {
         this.contractService.createContract(contract);
     }
     @Patch('/:idClient/:matricula')
-    updateContract(@Param("idCliente") idCliente : string, @Param("matricula") matricula : string, contract : ContractPatchDto){
+    updateContract(@Param("idCliente") idCliente : string, @Param("matricula") matricula : string, contract : ContractDto){
         this.contractService.updateContract(contract, idCliente, matricula);
     }
 }

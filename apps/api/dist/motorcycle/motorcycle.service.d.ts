@@ -1,5 +1,4 @@
 import { MotorcycleDto } from './dto/motorcycle.dto';
-import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
 export declare class MotorcycleService {
     private conn;
     constructor(conn: any);
@@ -8,6 +7,6 @@ export declare class MotorcycleService {
     getPDFSituation(): Promise<Buffer>;
     deleteMotorcycle(id: string): Promise<void>;
     createMotorcycle(moto: MotorcycleDto): Promise<void>;
-    updateMotorcycle(moto: MotorcyclePatchDto, id: string): Promise<void>;
+    updateMotorcycle(moto: MotorcycleDto, id: string): Promise<void>;
     getSituationMoto(): Promise<any>;
 }

@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
 import { ContractDto } from './dto/contract.dto';
-import { ContractPatchDto } from './dto/contractPatch.dto';
 import generatePDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
 
@@ -44,7 +43,7 @@ export class ContractService {
         await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
     }
 
-    updateContract(contract : ContractPatchDto, idCliente : string, matricula : string){
+    updateContract(contract : ContractDto, idCliente : string, matricula : string){
         
     }
 
