@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { ClientDto } from './dto/client.dto';
-import { ClientPatchDto } from './dto/clientPatch.dto';
 
 @Controller('api/client')
 export class ClientController {
@@ -51,7 +50,7 @@ export class ClientController {
     }
 
     @Patch('/:id')
-    updateClient(@Param('id') id : string, @Body() client : ClientPatchDto){
+    updateClient(@Param('id') id : string, @Body() client : ClientDto){
         this.clientService.updateClient(client, id);
     }
 }

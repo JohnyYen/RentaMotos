@@ -10,14 +10,19 @@ exports.PgModule = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
 const pg_1 = require("pg");
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({ path: path.resolve(__dirname, '../../../../.env') });
+const TYPE_DATE = 1082;
+pg_1.types.setTypeParser(TYPE_DATE, date => date);
 const PgProvider = {
     provide: constants_1.PG_CONNECTION,
     useValue: new pg_1.Pool({
-        user: 'postgres',
-        host: 'localhost',
-        database: 'RentaMotos',
-        password: '0403',
-        port: 5432
+        user: process.env.USER,
+        host: process.env.HOST,
+        database: process.env.DATABASE,
+        password: process.env.PASSWORD,
+        port: process.env.PORT
     })
 };
 let PgModule = class PgModule {
