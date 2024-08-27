@@ -34,12 +34,7 @@ let MotorcycleService = class MotorcycleService {
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
     async deleteMotorcycle(id) {
-        try {
-            await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
-        }
-        catch (error) {
-            console.log('Ocurrio un error');
-        }
+        await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
     }
     async createMotorcycle(moto) {
         await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);

@@ -30,6 +30,9 @@ let ContractController = class ContractController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
+    async getContractByCliente(id) {
+        return await this.contractService.getCotnractByCliente(id);
+    }
     async getContractByMun() {
         return await this.contractService.getContractByMun();
     }
@@ -74,6 +77,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDF", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getContractByCliente", null);
 __decorate([
     (0, common_1.Get)('/mun'),
     __metadata("design:type", Function),

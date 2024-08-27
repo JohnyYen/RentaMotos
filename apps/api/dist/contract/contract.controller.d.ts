@@ -5,6 +5,7 @@ export declare class ContractController {
     constructor(contractService: ContractService);
     getContract(): Promise<any>;
     getContractInPDF(res: any): Promise<void>;
+    getContractByCliente(id: string): Promise<any>;
     getContractByMun(): Promise<any>;
     getContractInPDFMun(res: any): Promise<void>;
     getFilterContract(): Promise<any>;
