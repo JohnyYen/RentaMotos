@@ -1,7 +1,15 @@
-import{ Button }from "antd";
+import{ Button, SetState }from "antd";
 import "../App.css";
+import axios from 'axios';
 
-const EliminarElemento = () => {
+
+
+const Econtrato=()=>{
+
+}
+
+
+const EliminarContrato = () => {
     return (
   
     <div className="Eliminar2">
@@ -14,10 +22,11 @@ const EliminarElemento = () => {
           <Button className="B12" type="primary" htmlType="submit" block >Cancelar
           </Button>
   
-          <Button className="B22"
-            type="primary" htmlType="submit" block
+    
+          <Button onClick = {Econtrato} className="B22"
+            type="primary" htmlType="submit" block 
   
-          >
+           >
             Aceptar
           </Button>
         </div>
@@ -28,4 +37,4 @@ const EliminarElemento = () => {
     );
   };
   
-  export default  EliminarElemento;
+  export default  EliminarContrato;

@@ -2,7 +2,7 @@ import{ InputNumber,Button,  Form, Input,Select }from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import './App.css';
 import Operation from "antd/es/transfer/operation";
-
+import axios from 'axios';
 
 
 const NuevoCliente = () => {
