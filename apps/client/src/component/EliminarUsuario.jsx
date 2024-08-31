@@ -8,16 +8,32 @@ import axios from 'axios';
 
 const EliminarUsuario = (nombreU) => {
 
-  const [visible, setVisible] = useState(false);
-
-const Activar =() =>{
-  setVisible(true)
+  const [abrirModal, setabrirModal]= useState (false);
   
-}
-const Desactivar =() =>{
-  setVisible(false)
-  
-}
+  const Modal =(isOpen, closeModal) =>{
+    if(!isOpen) return null;
+    
+      return(
+        <div className="Eliminar">
+       
+            <div className="Mensaje" >
+              ¿Seguro que desea eliminar este usuario?
+            </div>
+      
+            <div  className="Botones"  >
+              <Button onCick ={Desactivar} className="B1" type="primary" htmlType="submit" block >Cancelar
+              </Button>
+      
+              <Button onCick = {Eusuario(nombreU)} className="B2"
+                type="primary" htmlType="submit" block
+      
+              >
+                Aceptar
+              </Button>
+            </div>
+        
+      
+        </div>  )};
 
 const Eusuario = async(nombreU) =>{
 
@@ -31,30 +47,9 @@ return(Desactivar)};
 
 
     return (
-      <div>
-   <Modal visible={visible}>
-    <div className="Eliminar">
-   
-        <div className="Mensaje" >
-          ¿Seguro que desea eliminar este usuario?
-        </div>
-  
-        <div  className="Botones"  >
-          <Button onCick ={Desactivar} className="B1" type="primary" htmlType="submit" block >Cancelar
-          </Button>
-  
-          <Button onCick = {Eusuario(nombreU)} className="B2"
-            type="primary" htmlType="submit" block
-  
-          >
-            Aceptar
-          </Button>
-        </div>
-    
-  
-    </div>  
-      </Modal>
-      </div>
+      <div className="Loguin">
+      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
+    </div>
     );
   };
   

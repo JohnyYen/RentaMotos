@@ -3,33 +3,12 @@ import "../App.css";
 import axios from 'axios';
 
 const EliminarMoto = (idmoto) => {
-
-  const [visible, setVisible] = useState(false);
-
-const Activar =() =>{
-  setVisible(true)
+  const [abrirModal, setabrirModal]= useState (false);
   
-}
-const Desactivar =() =>{
-  setVisible(false)};
-
-  const Emoto = async(idmoto) =>{
-
-    try{
-    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `
-    ;
-    const response = await axios.delete(apiUrl);
-    alert('Elemento eliminado con éxito:', response.data);
-  }catch(error){alert('Error al eliminar el elemento:', error);}
-  };
-  
-
-    return (
-
-      <div>
-      <Modal visible={visible}>
-  
-    <div className="Eliminar1">
+  const Modal =(isOpen, closeModal) =>{
+    if(!isOpen) return null;
+    
+      return(    <div className="Eliminar1">
     
         <div className="Mensaje1" >
           ¿Seguro que desea eliminar esta moto?
@@ -48,10 +27,24 @@ const Desactivar =() =>{
         </div>
     
     
-    </div> 
-     </Modal>
-     </div>
-    
+    </div> )};
+
+  const Emoto = async(idmoto) =>{
+
+    try{
+    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `
+    ;
+    const response = await axios.delete(apiUrl);
+    alert('Elemento eliminado con éxito:', response.data);
+  }catch(error){alert('Error al eliminar el elemento:', error);}
+  };
+  
+
+    return (
+
+      <div className="Loguin">
+      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
+    </div>
     );
   };
   

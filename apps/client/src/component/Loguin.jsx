@@ -10,12 +10,13 @@ import {NuevoCliente} from "./NuevoUsuario";
 function Loguin() {
 
 
-  const [visibleNuevoCliente, setVisibleNuevoCliente] = useState(false);
-
-  const Registrar= () => {
-    setVisibleNuevoCliente(true);
-  };
-    return (<div className="loguin">
+  
+  const [abrirModal, setabrirModal]= useState (false);
+  
+  const Modal =(isOpen, closeModal) =>{
+    if(!isOpen) return null;
+    
+      return(<div className="loguin">
   
   
         <div style={{ 
@@ -52,7 +53,14 @@ function Loguin() {
   </div>
     </div>
   
+    </div>)}
+
+    return (
+
+      <div className="Loguin">
+      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
     </div>
+
     )
   }
   

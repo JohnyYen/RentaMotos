@@ -8,16 +8,33 @@ import axios from 'axios';
 const EliminarContrato = (idcliente,matricula) => {
 
 
-  const [visible, setVisible] = useState(false);
-
-const Activar =() =>{
-  setVisible(true)
+  const [abrirModal, setabrirModal]= useState (false);
   
-}
-const Desactivar =() =>{
-  setVisible(false)
-  
-}
+  const Modal =(isOpen, closeModal) =>{
+    if(!isOpen) return null;
+    
+      return(
+        <div className="Eliminar2">
+    
+            <div className="Mensaje2" >
+              ¿Seguro que desea eliminar este contrato?
+            </div>
+      
+            <div  className="Botones2"  >
+              <Button onClick ={Desactivar} className="B12" type="primary" htmlType="submit" block >Cancelar
+              </Button>
+      
+        
+              <Button onClick = {Econtrato(idcliente,matricula) } className="B22"
+                type="primary" htmlType="submit" block 
+      
+               >
+                Aceptar
+              </Button>
+            </div>
+        
+        
+        </div>  )};
 
   const Econtrato = async(idcliente,matricula) =>{
 
@@ -31,34 +48,12 @@ const Desactivar =() =>{
 
 
     return (
-      <div>
-      Activar();
-  <Modal visible={visible}>
   
-
-    <div className="Eliminar2">
-
-        <div className="Mensaje2" >
-          ¿Seguro que desea eliminar este contrato?
-        </div>
   
-        <div  className="Botones2"  >
-          <Button onClick ={Desactivar} className="B12" type="primary" htmlType="submit" block >Cancelar
-          </Button>
-  
-    
-          <Button onClick = {Econtrato(idcliente,matricula) } className="B22"
-            type="primary" htmlType="submit" block 
-  
-           >
-            Aceptar
-          </Button>
-        </div>
-    
-    
-    </div>  
-    </Modal>
+      <div className="Loguin">
+      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
     </div>
+    
     
     );
   };
