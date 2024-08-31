@@ -1,6 +1,5 @@
 import{ Button, Form, Input,Select }from "antd";
 import {CarOutlined } from '@ant-design/icons';
-import './App.css';
 import Operation from "antd/es/transfer/operation";
 
 

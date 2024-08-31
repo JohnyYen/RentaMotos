@@ -1,7 +1,7 @@
 import{ Button }from "antd";
 import "../App.css";
 
-const EliminarElemento = () => {
+const EliminarMoto = () => {
     return (
   
     <div className="Eliminar1">
@@ -28,4 +28,4 @@ const EliminarElemento = () => {
     );
   };
   
-  export default  EliminarElemento;
+  export default  EliminarMoto;

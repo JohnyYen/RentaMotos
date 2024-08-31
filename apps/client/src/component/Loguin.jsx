@@ -1,6 +1,8 @@
-import{ Button, Form, Input, message}from "antd";
+import{Form, Input, message}from "antd";
 import {UserOutlined} from '@ant-design/icons';
+import {useState} from "react"
 import "./NuevoUsuario";
+import NuevoCliente from "./NuevoUsuario";
 
 
 
@@ -10,7 +12,8 @@ function Loguin() {
       message.success("Registro completado");
     }
   
-    return <div className="loguin">
+    return (
+      <div className="loguin">
   
   
         <div style={{ 
@@ -19,34 +22,33 @@ function Loguin() {
           left: '50%', 
           transform: 'translateX(-50%)', 
         }} >
-        <UserOutlined className= "iconoUsuario"/>
+          <UserOutlined className= "iconoUsuario"/>
         </div>
   
   
   
-    <div className="Registro">
+      <div className="Registro">
   
-      <Form className="miLoguin"  >
-    <Form.Item  label={<span style={{ color: 'white' }}>Usuario</span>} name={"miUsuario"} >
-        <Input placeholder="Ingrese su usuario"/>
-    </Form.Item>
+        <Form className="miLoguin"  >
+          <Form.Item>
+            <label className="labelLoguin">Usuario</label>
+            <Input placeholder="Ingrese su usuario" className="inputLoguin userInput"/>
+          </Form.Item>
   
-    <Form.Item label={<span style={{ color: 'white' }}>Contraseña</span>} name={"micontraseña"}>
-        <Input placeholder="Ingrese su contraseña"/>
-    </Form.Item>
+          <Form.Item>
+              <label className="labelLoguin">Contraseña</label>
+              <Input placeholder="Ingrese su contraseña" className="inputLoguin"/>
+          </Form.Item>
   
-  </Form>
+        </Form>
+      </div>
+  
+      <div className="Alternativa">
+        <button className="buttonLoguin" type="submit" onClick={loguear}>Aceptar</button>
+        <button className="linkLoguin">Registrarse</button>
+      </div>
     </div>
-  
-    <div className="Alternativa">
-    
-    <Button onClick={loguear} type="primary" htmlType="submit" block>Aceptar</Button>
-
-   <Button type="link">Registrarse </Button>
-  
-    </div>
-  
-    </div>
+    )
   }
   
   export default Loguin;

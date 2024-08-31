@@ -89,13 +89,28 @@
   transform: translate(-50%, -50%);
   width: 50vw;
   height: 50vh;
-  background-color: rgb(2, 2, 86);
-  background-size: cover;
   z-index: 100;
   border-radius: 10%;
+
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
 }
 
-.Registr {
+.userInput{
+  margin-left: 1.5rem;
+}
+
+.Registro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   padding: 0px 16px 16px 16px;
   margin-bottom: 20px;
 }
@@ -105,17 +120,63 @@
   font-size: 50px;
 }
 
+.inputLoguin {
+  height: 2.5rem;
+  width: 15rem;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inputLoguin::placeholder{
+  color: #202020;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.labelLoguin{
+  color: floralwhite;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
 .Alternativa {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   justify-content: center;
   align-items: center;
   margin-top: 250px;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
 
+.buttonLoguin{
+  background-color: #2975b7;
+  transition: all .5s ease;
+}
+
+.buttonLoguin:hover{
+  background-color: #06325d;
+}
+
+.linkLoguin{
+  color: beige;
+  background-color: transparent;
+  transition: all .5s ease;
+  border-style: none;
+}
+
+.linkLoguin:hover{
+  border: none;
+  color:#202020;
 }
 
 /*Pantall de eliminar usuario*/
-
-
 .Eliminar {
   display: flex;
   position: fixed;
@@ -132,7 +193,6 @@
   border-radius: 9%;
 }
 
-
 .Mensaje {
   position: absolute;
   top: 30px;
@@ -145,9 +205,7 @@
   font-size: 120%;
 }
 
-
 .Botones {
-
   position: fixed;
   align-items: center;
   display: flex;
@@ -179,8 +237,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #06325d;
-  background-size: cover;
   padding: 20px;
   width: 600px;
   height: 160px;
@@ -305,41 +361,6 @@
 .actionTable {
   background-color: darkblue;
   color: white;
-}
-
-/*Pantalla de loguin*/
-.loguin {
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 50vh;
-  background-color: rgb(2, 2, 86);
-  background-size: cover;
-  z-index: 100;
-  border-radius: 10%;
-}
-
-.Registr {
-  padding: 0px 16px 16px 16px;
-  margin-bottom: 20px;
-}
-
-.iconoUsuario {
-  color: rgb(253, 255, 254);
-  font-size: 50px;
-}
-
-.Alternativa {
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  margin-top: 250px;
-
 }
 
 /*Pantall de eliminar usuario*/
@@ -514,21 +535,47 @@
 /*Pantalla de nuevo usuario*/
 
 .pantalla {
-
   display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #06325d;
-  background-size: cover;
-  padding: 20px;
-  width: 600px;
-  height: 400px;
+  width: 50%;
+  padding: 0rem 3rem;
+  height:90%;
   border-radius: 9%;
+  flex-wrap: nowrap;
 
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+
+}
+
+.inputLoguin{
+  width: fit-content;
+}
+
+.sexItem{
+  width: 30px;
+}
+
+.selectItem{
+  color: #202020;
+  font-size: 17px;
+}
+
+.selectItem::placeholder{
+  color: #202020;
 }
 
 .CreaUsuario {
@@ -536,35 +583,49 @@
   font-size: 60px;
 }
 
-.panelImputIzquierdo {
+#left-div, #rigth-div{
   display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  transform: translate(-50%, -5%);
-
+  flex-direction: column;
+  padding: 1rem;
 }
 
-
-.panelImputDerecho {
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  transform: translate(110%, -50%);
+#left-div label, #rigth-div label{
+  font-weight: 600;
+  font-variant: small-caps;
 }
 
+#left-div input, #rigth-div input, #rigth-div select{
+  border-radius: 5px;
+  background: wheat;
+  color: #363636;
+  font-size: large;
+  transition: all 0.5s ease;
+  border: solid 3px wheat;
+}
 
+#left-div input:hover, #rigth-div input:hover, #rigth-div select:hover{
+  border-color: indigo;
+}
+
+.panelImputIzquierdo form{
+  display: flex;
+  padding: 1rem;
+  margin-top: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.panelImputIzquierdo form input, .panelImputIzquierdo form select{
+  margin-bottom: 10px;
+  width: fit-content;
+
+}
 
 .panelBotones {
-
-
-  position: fixed;
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 40%;
-
 }
 
 .B1 {
