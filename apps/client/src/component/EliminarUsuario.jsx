@@ -7,33 +7,25 @@ import axios from 'axios';
 
 
 const EliminarUsuario = (nombreU) => {
+ 
+  const [modal, setModal]= useState (false);
 
-  const [abrirModal, setabrirModal]= useState (false);
+
+
+  const abrirModal =() =>{
+  setModal(true);
+  }
   
-  const Modal =(isOpen, closeModal) =>{
-    if(!isOpen) return null;
+  const cerrarModal =() =>{
+    setModal(false);
+    }
     
-      return(
-        <div className="Eliminar">
-       
-            <div className="Mensaje" >
-              ¿Seguro que desea eliminar este usuario?
-            </div>
-      
-            <div  className="Botones"  >
-              <Button onCick ={Desactivar} className="B1" type="primary" htmlType="submit" block >Cancelar
-              </Button>
-      
-              <Button onCick = {Eusuario(nombreU)} className="B2"
-                type="primary" htmlType="submit" block
-      
-              >
-                Aceptar
-              </Button>
-            </div>
-        
-      
-        </div>  )};
+  
+  const accion=() =>{
+    cerrarModal();
+  };
+  
+
 
 const Eusuario = async(nombreU) =>{
 
@@ -43,14 +35,65 @@ const Eusuario = async(nombreU) =>{
   const response = await axios.delete(apiUrl);
   alert('Elemento eliminado con éxito:', response.data);
 }catch(error){alert('Error al eliminar el elemento:', error);}
-return(Desactivar)};
+};
 
 
     return (
-      <div className="Loguin">
-      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
-    </div>
+      <div className="EliminarElemento">
+
+      <Modal 
+         
+         visible = {modal}
+         onCancel = {cerrarModal}
+         onOk = {accion}
+         footer ={[ <div  className="Botones"  >
+          <Button  onClick={cerrarModal} className="B1" type="primary" htmlType="submit" block >Cancelar
+          </Button>
+      
+          <Button onClick={accion} className="B2"
+            type="primary" htmlType="submit" block
+      
+          >
+            Aceptar
+          </Button>
+        </div>
+      ]}>
+        <div className="Eliminar">
+        
+            <div className="Mensaje" >
+              ¿Seguro que desea eliminar este usuario?
+            </div>
+      
+           
+        
+        </div>
+         </Modal> 
+        </div>
+        
     );
   };
   
   export default  EliminarUsuario;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

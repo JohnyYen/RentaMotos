@@ -7,37 +7,22 @@ import axios from 'axios';
 
 const EliminarContrato = (idcliente,matricula) => {
 
+  const [modal, setModal]= useState (false);
 
-  const [abrirModal, setabrirModal]= useState (false);
+
+
+  const abrirModal =() =>{
+  setModal(true);
+  }
   
-  const Modal =(isOpen, closeModal) =>{
-    if(!isOpen) return null;
+  const cerrarModal =() =>{
+    setModal(false);
+    }
     
-      return(
-        <div className="Eliminar2">
-    
-            <div className="Mensaje2" >
-              ¿Seguro que desea eliminar este contrato?
-            </div>
-      
-            <div  className="Botones2"  >
-              <Button onClick ={Desactivar} className="B12" type="primary" htmlType="submit" block >Cancelar
-              </Button>
-      
-        
-              <Button onClick = {Econtrato(idcliente,matricula) } className="B22"
-                type="primary" htmlType="submit" block 
-      
-               >
-                Aceptar
-              </Button>
-            </div>
-        
-        
-        </div>  )};
-
-
-
+  
+  const accion=() =>{
+    cerrarModal();
+  };
 
 
   const Econtrato = async(idcliente,matricula) =>{
@@ -53,12 +38,39 @@ const EliminarContrato = (idcliente,matricula) => {
 
     return (
   
-  
-      <div className="Loguin">
-      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
-    </div>
-    
-    
+      <div className="EliminarElemento">
+
+ 
+      <Modal 
+         
+         visible = {modal}
+         onCancel = {cerrarModal}
+         onOk = {accion}
+         footer ={[ <div  className="Botones2"  >
+          <Button  onClick={cerrarModal} className="B12" type="primary" htmlType="submit" block >Cancelar
+          </Button>
+      
+          <Button onClick={accion} className="B22"
+            type="primary" htmlType="submit" block
+      
+          >
+            Aceptar
+          </Button>
+        </div>
+      ]}>
+        <div className="Eliminar2">
+        
+            <div className="Mensaje2" >
+              ¿Seguro que desea eliminar esta moto?
+            </div>
+      
+           
+        
+        </div>
+         </Modal> 
+        </div>
+        
+      
     );
   };
   

@@ -3,31 +3,24 @@ import "../App.css";
 import axios from 'axios';
 
 const EliminarMoto = (idmoto) => {
-  const [abrirModal, setabrirModal]= useState (false);
   
-  const Modal =(isOpen, closeModal) =>{
-    if(!isOpen) return null;
-    
-      return(    <div className="Eliminar1">
-    
-        <div className="Mensaje1" >
-          ¿Seguro que desea eliminar esta moto?
-        </div>
+  const [modal, setModal]= useState (false);
+
+
+
+  const abrirModal =() =>{
+  setModal(true);
+  }
   
-        <div  className="Botones1"  >
-          <Button className="B11" type="primary" htmlType="submit" block >Cancelar
-          </Button>
-  
-          <Button onClick = {Emoto(idmoto)} className="B21"
-            type="primary" htmlType="submit" block
-  
-          >
-            Aceptar
-          </Button>
-        </div>
+  const cerrarModal =() =>{
+    setModal(false);
+    }
     
-    
-    </div> )};
+  
+  const accion=() =>{
+    cerrarModal();
+  };
+  
 
   const Emoto = async(idmoto) =>{
 
@@ -42,9 +35,39 @@ const EliminarMoto = (idmoto) => {
 
     return (
 
-      <div className="Loguin">
-      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
-    </div>
+      <div className="EliminarElemento">
+
+ 
+      <Modal 
+         
+         visible = {modal}
+         onCancel = {cerrarModal}
+         onOk = {accion}
+         footer ={[ <div  className="Botones1"  >
+          <Button  onClick={cerrarModal} className="B11" type="primary" htmlType="submit" block >Cancelar
+          </Button>
+      
+          <Button onClick={accion} className="B21"
+            type="primary" htmlType="submit" block
+      
+          >
+            Aceptar
+          </Button>
+        </div>
+      ]}>
+        <div className="Eliminar1">
+        
+            <div className="Mensaje1" >
+              ¿Seguro que desea eliminar esta moto?
+            </div>
+      
+           
+        
+        </div>
+         </Modal> 
+        </div>
+        
+      
     );
   };
   

@@ -127,7 +127,7 @@
   background-color: #06325d;
   background-size: cover;
   padding: 20px;
-  width: 600px;
+  width: 500px;
   height: 160px;
   border-radius: 9%;
 }
@@ -182,7 +182,7 @@
   background-color: #06325d;
   background-size: cover;
   padding: 20px;
-  width: 600px;
+  width: 500px;
   height: 160px;
   border-radius: 9%;
 }
@@ -239,7 +239,7 @@
   background-color: #06325d;
   background-size: cover;
   padding: 20px;
-  width: 600px;
+  width: 500px;
   height: 160px;
   border-radius: 9%;
 }
@@ -346,19 +346,19 @@
 
 
 .Eliminar {
-  display: flex;
+  display:flex;
   position: fixed;
-  justify-content: center;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #06325d;
-  background-size: cover;
-  padding: 20px;
-  width: 600px;
-  height: 160px;
-  border-radius: 9%;
+   justify-content: center;
+   align-items: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #06325d;
+   background-size: cover ;
+   padding: 20px;
+   width: 500px;
+   height: 160px;
+   border-radius: 9%;
 }
 
 
@@ -513,6 +513,22 @@
 
 /*Pantalla de nuevo usuario*/
 
+
+
+.Mod{
+  display:flex;
+  position: fixed;
+   justify-content:center;
+   align-items: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ 
+   padding: 20px;
+   width: 800px;
+   height: 400px;
+ }
+
 .pantalla {
 
   display: flex;
@@ -561,9 +577,10 @@
 
   position: fixed;
   align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 40%;
+   display: flex;
+    justify-content: space-between;
+    margin-top: 30%;
+    transform: translate(-50%, -50%);
 
 }
 
@@ -585,7 +602,21 @@
 
 /*Pantalla nueva moto*/
 
-
+.Modimoto{
+  display:flex;
+      position: fixed;
+       justify-content: center;
+       align-items: center;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+     
+      
+       width: 300px;
+       height: 300px;
+   
+   
+  }
 
 .pantallamoto {
 
@@ -618,7 +649,8 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 79%;
+  margin-top: 40%;
+  transform: translate(-50%, -50%);
 
 }
 
@@ -639,6 +671,20 @@
 }
 
 /*Pantalla nuevo contrato*/
+
+.Modi{
+  display:flex;
+  position: fixed;
+   justify-content:center;
+   align-items: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ 
+   padding: 20px;
+   width: 800px;
+   height: 400px;
+ }
 
 .pantallacontrato {
   display: flex;
@@ -709,7 +755,8 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 50%;
+   margin-top: 30%;
+    transform: translate(-50%, -50%);
 
 }
 
