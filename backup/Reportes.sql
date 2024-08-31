@@ -142,13 +142,21 @@ as tabl inner join Moto on tabl.matricula = Moto.matricula);
 -- group by municipio.nommun, moto.marca, moto.modelo, contrato.formapago
 
 -- Trigger para eliminar todos los contratos de un cliente despues de ser borrado de la lista de clientes
-create or replace function deleteContratosCliente() returns trigger as
-$$
-begin
-	delete from contrato where contrato.idcliente = OLD.idcliente;
-end
-$$
-language 'plpgsql';
+-- create or replace function deleteContratosCliente() returns trigger as
+-- $$
+-- begin
+-- 	delete from contrato where contrato.idcliente = OLD.idcliente;
+-- end
+-- $$
+-- language 'plpgsql';
 
-create trigger tg_deleteContratosCliente after delete on cliente for each row execute function deleteContratosCliente()
-drop trigger tg_deleteContratosCliente
+-- create trigger tg_deleteContratosCliente after delete on cliente for each row execute function deleteContratosCliente()
+-- drop trigger tg_deleteContratosCliente
+
+
+select * from contrato
+
+create or replace view contrato_cliente_view as select Contrato.matricula, Contrato.fechainicio, Contrato.fechafin,
+Contrato.formapago, Contrato.seguro, Contrato.diasprorroga from Contrato
+
+drop view contrato_cliente_view;
