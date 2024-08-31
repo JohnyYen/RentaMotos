@@ -1,7 +1,9 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
+import {useState} from "react"
 import "../../App.css";
 import axios from 'axios';
 import { DownloadOutlined } from "@ant-design/icons";
+import EliminarMoto from "../../component/EliminarMoto";
 
 // console.log('Hello MotherFucker');
 
@@ -23,6 +25,16 @@ const extractData = async () => {
 console.log( await extractData());
 
 const ListMoto = () => {
+
+  const [visDisplay, setVisDisplay] = useState(false);
+
+  const clickHandlerVis = () => {
+    setVisDisplay(true);
+  }
+
+  const clickHandlerClosed = () => {
+    setVisDisplay(false);
+  }
   const dataSource = [
     {
       key: "1",
@@ -176,6 +188,8 @@ const ListMoto = () => {
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">Modificar</Button>
                 <Button className="actionTable" type="primary">Delete</Button>
+
+                {visDisplay && <EliminarMoto/>}
               </Flex>
             ),
             fixed: "right",

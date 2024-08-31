@@ -10,20 +10,19 @@ const EliminarContrato = (idcliente,matricula) => {
 
   const [visible, setVisible] = useState(false);
 
-const Activar =() =>{
+const Activar = () =>{
   setVisible(true)
   
 }
 const Desactivar =() =>{
   setVisible(false)
-  
+
 }
 
   const Econtrato = async(idcliente,matricula) =>{
 
     try{
-    const apiUrl = `http://localhost:3000/api/contract/${idcliente,matricula} `
-    ;
+    const apiUrl = `http://localhost:3000/api/contract/${idcliente+"/"+matricula}`;
     const response = await axios.delete(apiUrl);
     alert('Elemento eliminado con éxito:', response.data);
   }catch(error){alert('Error al eliminar el elemento:', error);}
@@ -48,9 +47,7 @@ const Desactivar =() =>{
   
     
           <Button onClick = {Econtrato(idcliente,matricula) } className="B22"
-            type="primary" htmlType="submit" block 
-  
-           >
+            type="primary" htmlType="submit" block >
             Aceptar
           </Button>
         </div>

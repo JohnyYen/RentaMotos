@@ -1,4 +1,4 @@
-import{ Button,useEffect, useState,Modal }from "antd";
+import{ Button, useState ,Modal }from "antd";
 import "../App.css";
 import axios from 'axios';
 
@@ -16,8 +16,7 @@ const Desactivar =() =>{
   const Emoto = async(idmoto) =>{
 
     try{
-    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `
-    ;
+    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `;
     const response = await axios.delete(apiUrl);
     alert('Elemento eliminado con éxito:', response.data);
   }catch(error){alert('Error al eliminar el elemento:', error);}
@@ -25,7 +24,6 @@ const Desactivar =() =>{
   
 
     return (
-
       <div>
       <Modal visible={visible}>
   
