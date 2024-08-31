@@ -38,7 +38,7 @@ const EliminarUsuario = (nombreU) => {
 const Eusuario = async(nombreU) =>{
 
   try{
-  const apiUrl = `http://localhost:3000/api/user/${nombreU} `
+  const apiUrl = `http://localhost:3000/api/user?${nombreU} `
   ;
   const response = await axios.delete(apiUrl);
   alert('Elemento eliminado con éxito:', response.data);

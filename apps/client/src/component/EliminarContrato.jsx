@@ -36,10 +36,14 @@ const EliminarContrato = (idcliente,matricula) => {
         
         </div>  )};
 
+
+
+
+
   const Econtrato = async(idcliente,matricula) =>{
 
     try{
-    const apiUrl = `http://localhost:3000/api/contract/${idcliente,matricula} `
+    const apiUrl = `http://localhost:3000/api/contract?idcliente=${idcliente}&matricula=${matricula} `
     ;
     const response = await axios.delete(apiUrl);
     alert('Elemento eliminado con éxito:', response.data);

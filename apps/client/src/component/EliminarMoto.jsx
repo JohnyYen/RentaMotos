@@ -32,7 +32,7 @@ const EliminarMoto = (idmoto) => {
   const Emoto = async(idmoto) =>{
 
     try{
-    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `
+    const apiUrl = `http://localhost:3000/api/moto?${idmoto} `
     ;
     const response = await axios.delete(apiUrl);
     alert('Elemento eliminado con éxito:', response.data);
