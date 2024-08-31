@@ -9,6 +9,18 @@ import axios from 'axios';
 const NuevaMoto = () => {
 
 
+  const [visible, setVisible] = useState(false);
+
+const Activar =() =>{
+  setVisible(true)
+  
+}
+const Desactivar =() =>{
+  setVisible(false)
+  
+}
+
+
   return (
 
 

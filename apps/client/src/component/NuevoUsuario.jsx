@@ -1,17 +1,30 @@
-import{ InputNumber,Button,  Form, Input,Select }from "antd";
+import{ InputNumber,Button,  Form, Input,Select,Modal }from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import './App.css';
 import Operation from "antd/es/transfer/operation";
 import axios from 'axios';
 
 
+
+
 const NuevoCliente = () => {
 
+  const [visible, setVisible] = useState(false);
+
+const Activar =() =>{
+  setVisible(true)
+  
+}
+const Desactivar =() =>{
+  setVisible(false)
+  
+}
 
     return (
-  
+      <div>
+   <Modal visible={visible}>
   <div className="pantalla">
-  
+ 
   <div style={{ 
           position: 'fixed', 
           top: '20px', 
@@ -86,15 +99,17 @@ const NuevoCliente = () => {
   
   
   <div className="panelBotones">
-  <Button className="B1" type="primary" size="large" block >Cancelar
+  <Button onClick ={setVisible(false)} className="B1" type="primary" size="large" block >Cancelar
           </Button>
   
-          <Button className="B2" type="primary"  size="large" block>
+          <Button onClick ={setVisible(false)} className="B2" type="primary"  size="large" block>
             Aceptar
           </Button>
   </div>
   
-  
+ 
+  </div>
+   </Modal> 
   </div>
     );};
   

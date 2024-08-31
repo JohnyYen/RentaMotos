@@ -10,6 +10,19 @@ import axios from 'axios';
 
 const NuevoContrato = () => {
 
+
+  const [visible, setVisible] = useState(false);
+
+  const Activar =() =>{
+    setVisible(true)
+    
+  }
+  const Desactivar =() =>{
+    setVisible(false)
+    
+  }
+
+
 const [pagoSeleccionado, setPagoSeleccionado] = useState(null);
   const [seguroSeleccionado, setSeguroSeleccionado] = useState(false);
 

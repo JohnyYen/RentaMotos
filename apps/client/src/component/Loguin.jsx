@@ -3,16 +3,19 @@ import {UserOutlined} from '@ant-design/icons';
 import "../App.css";
 import "./NuevoUsuario";
 import axios from 'axios';
+import {NuevoCliente} from "./NuevoUsuario";
 
 
 
 function Loguin() {
-  
-    const loguear=()=>{
-      message.success("Registro completado");
-    }
-  
-    return <div className="loguin">
+
+
+  const [visibleNuevoCliente, setVisibleNuevoCliente] = useState(false);
+
+  const Registrar= () => {
+    setVisibleNuevoCliente(true);
+  };
+    return (<div className="loguin">
   
   
         <div style={{ 
@@ -42,13 +45,15 @@ function Loguin() {
   
     <div className="Alternativa">
     
-    <Button onClick={loguear} type="primary" htmlType="submit" block>Aceptar</Button>
-
-   <Button type="link">Registrarse </Button>
-  
+    <Button  type="primary" htmlType="submit" block>Aceptar</Button>
+<div>
+   <Button onClick={Registrar} type="link" >Registrarse </Button>
+   <NuevoCliente visible={visibleNuevoCliente} />
+  </div>
     </div>
   
     </div>
+    )
   }
   
   export default Loguin;
