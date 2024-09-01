@@ -646,41 +646,70 @@
 
 /*Pantalla nueva moto*/
 
-
-
 .pantallamoto {
-
   display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #06325d;
-  background-size: cover;
-  padding: 20px;
-  width: 400px;
-  height: 450px;
+  width: 30%;
+  padding: 0rem 5rem;
+  height: 70%;
   border-radius: 9%;
-
 }
 
+.panelCentral{
+  height: 60%;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rem;
+  margin-top: 3rem;
+}
+
+.formMoto{
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  width: fit-content;
+}
+
+.formMoto input, .formMoto select{
+  width: fit-content;
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 3px #202020;
+}
+
+.formMoto label{
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.formMoto select{
+  padding-right: 0.5rem;
+  text-align: left;
+}
 
 .Creamoto {
   color: rgb(253, 255, 254);
   font-size: 60px;
 }
 
-.panelBotonesmoto {
-
-
-  position: fixed;
+.panelBotonesmoto{
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 79%;
-
+  position: relative;
+  top: 30%;
 }
 
 .Bm1 {
@@ -717,11 +746,38 @@
   border-radius: 9%;
 }
 
+#nuevo-contrato-form{
+  display: flex;
+  flex-direction: row;
+}
+
+#nuevo-contrato-form div{
+  margin: 2rem;
+} 
+
+#nuevo-contrato-form #left-div input, #nuevo-contrato-form #rigth-div input, #nuevo-contrato-form #rigth-div select{
+  margin-bottom: 1rem;
+}
+
+.checkbox{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: left;
+  width: 100%;
+}
+
+#forma-pago{
+  margin-bottom: 0;
+}
+
+#seguro{
+  margin-left: 1rem;
+}
 
 
 .pantallacontrato {
   color: rgb(253, 255, 254);
-  font-size: 60px;
 }
 
 .panelIzquierdo {

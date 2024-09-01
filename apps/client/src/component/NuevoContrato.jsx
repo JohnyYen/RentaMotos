@@ -1,6 +1,5 @@
-import{ InputNumber,Button,DatePicker,Switch , Form, Input, Radio }from "antd";
+import{ Button}from "antd";
 import {FileDoneOutlined } from '@ant-design/icons';
-import './App.css';
 import { useState} from "react";
 
 
@@ -27,82 +26,49 @@ const [pagoSeleccionado, setPagoSeleccionado] = useState(null);
 
     <div className="pantallacontrato">
 
-<div style={{ 
-        position: 'fixed', 
-        top: '20px', 
-        left: '50%', 
-        transform: 'translateX(-50%)', 
-      }} >
-      <FileDoneOutlined  className= "Creamoto"/>
+      <div style={{ 
+          position: 'fixed', 
+          top: '20px', 
+          left: '50%', 
+          transform: 'translateX(-50%)', 
+        }} >
+        <FileDoneOutlined  className= "Creamoto"/>
       </div>
 
+        <div>
+          <form id="nuevo-contrato-form">
+            <div id="left-div">
+            <label>Matricula</label>
+            <input placeholder="Matricula de la Moto"/>
 
-<div className="panelIzquierdo">
+            <label>Id cliente</label>
+            <input placeholder="CI del Cliente"/>
 
-<Form  >
-  <Form.Item  label={<span style={{ color: 'white' }}>Fecha de firma:</span>} name={"matriculamoto"} >
-      <DatePicker picker="date"/>
-  </Form.Item>
+            <label>Fecha de Firma</label>
+            <input type="date" placeholder="    "/>
 
-  <Form.Item  label={<span style={{ color: 'white' }}>Fecha de inicio:</span>} name={"matriculamoto"} >
-      <DatePicker picker="date"/>
-  </Form.Item>
+            <label>Fecha de Inicio</label>
+            <input type="date"/>
+            </div>
+            
+            <div id="rigth-div">
+            <label>Fecha de Fin</label>
+            <input type="date"/>
 
-  <Form.Item  label={<span style={{ color: 'white' }}>Fecha de fin:</span>} name={"matriculamoto"} >
-      <DatePicker picker="date"/>
-  </Form.Item>
+            <label>Forma de Pago</label>
+            <select id="forma-pago">
 
+            </select>
 
-</Form>
+            <div className="checkbox">
+            <label htmlFor="seguro">Seguro</label>
+            <input type="checkbox" name="seguro" id="seguro"></input>
+            </div>
 
-</div>
-
-
-
-<div className="panelDerecho">  
-<Form>
-
-<Form.Item  label={<span style={{ color: 'white' }}>Modificar ID:</span>} name={"matriculamoto"} >
-      <Input placeholder="nuevo ID"/>
-  </Form.Item>
-
-</Form>
-
-<div className="panelDermini">
-<Form>
-
-<Form.Item  label={<span style={{ color: 'white' }}>Tarifa:</span>} name={"$"} >
-      <Input placeholder="Ingrse la tarifa"/>
-  </Form.Item>
-
-  <Form.Item  label={<span style={{ color: 'white' }}> Kilómetros:</span>} name={"km"} >
-      <InputNumber placeholder="Ingrese los kilómetros" min={0}/>
-  </Form.Item>
-
-</Form>
-</div>
-
-</div>
-
-<div className="panelCentral">
-  <Form>
-<Form.Item  label={<span style={{ color: 'white' }}> Forma de pago:</span>} name={"pago"} >
-      
-      <Radio.Group onChange={handlePagoChange} value={pagoSeleccionado}>
-        <Radio style={{ color: 'white' }} value="efectivo">Efectivo</Radio>
-        <Radio style={{ color: 'white' }} value="tarjeta">Tarjeta</Radio>
-        <Radio style={{ color: 'white' }} value="cheque">Cheque</Radio>
-      </Radio.Group>
-  </Form.Item>
-  <Form.Item  label={<span style={{ color: 'white' }}> Seguro:</span>} name={"seguro"} >
-      <Switch checked={seguroSeleccionado} onChange={handleSeguroChange} />
-      </Form.Item>
-</Form>
-</div>
-
-
-
-
+            </div>
+            
+          </form>
+        </div>
 
       <div className="panelBotonescontrato">
 <Button className="Bc1" type="primary" size="large" block >Cancelar
