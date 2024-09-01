@@ -1,15 +1,8 @@
-import UserAdmin from "./pages/UserPages/UserAdmin";
-import Loguin from './component/Loguin';
-import UserClient from './pages/UserPages/UserClient'
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import ListadoClientes from "./pages/clientes/ListadoClientes";
-import AppRouter from "./components/AppRoutes";
-import NuevoCliente from "./component/NuevoUsuario";
-import EliminarElemento from "./component/EliminarContrato";
-import EliminarMoto from "./component/EliminarMoto";
-import NuevaMoto from "./component/NuevaMoto";
-import NuevoContrato from "./component/NuevoContrato"
+import { ModificarCliente } from "./components/ModificarCliente";
+import ModificarContrato from "./components/ModificarContrato";
+import ModificarMoto from "./components/ModificarMoto";
+import UserAdmin from "./pages/UserPages/UserAdmin";
 {/* <Route path="/" element={<Loguin/>}/>
       <Route path="/admin" element={<UserAdmin/>}>
         <Route path="listadoClientes" element={<ListadoClientes/>}/>
@@ -19,7 +12,9 @@ import NuevoContrato from "./component/NuevoContrato"
 function App() {
 
   return (
-    <NuevoContrato/>
+    <>
+      <UserAdmin/>
+    </>
   );
 }
 

@@ -1,12 +1,38 @@
-import{ InputNumber,Button,  Form, Input,Select }from "antd";
+import{ Button}from "antd";
 import {UserOutlined} from '@ant-design/icons';
-import Operation from "antd/es/transfer/operation";
+import axios from 'axios';
+import { useState } from "react";
 
 
+const NuevoCliente = ({visible, setVisible}) => {
 
-const NuevoCliente = () => {
+  //User
+  const [user, setUser] = useState("")
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [ci, setCi] = useState("");
 
-    return (
+  //Client
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [age, setAge] = useState(0);
+  const [sex, setSex] = useState("");
+  const [mun, setMun] = useState("");
+  const [numCont, setNumCont] = useState("");
+
+  //Municipios
+  const [munList, setMunList] = useState([]);
+
+  axios.get("http://localhost:3000/api/mun").then((res) => setMunList(res.data)).catch((error) => console.log(error));
+
+  if (!visible) return null;
+
+  const handlePetition = async (userInfo, client) => {
+    console.log(client);
+    console.log(await axios.post('http://localhost:3000/api/user/client', userInfo));
+    
+  }
+  return (
   
   <div className="pantalla">
   
@@ -17,73 +43,64 @@ const NuevoCliente = () => {
           transform: 'translateX(-50%)', 
         }} >
         <UserOutlined className= "CreaUsuario"/>
-        </div>
+  </div>
   
   
   <div className="panelImputIzquierdo">
   <form>
     <div id="left-div">
     <label htmlFor="userName">Nombre de Usuario</label>
-      <input type="text" placeholder="Introduce su nombre de usuario" id="userName" name="userName"/>
+      <input onChange={(e) => setUser(e.target.value)} type="text" placeholder="Introduce su nombre de usuario" id="userName" name="userName"/>
     
       <label htmlFor="email">Correo Electrónico</label>
-      <input type="email" placeholder="Correo Electrónico" name="email" id="email"/>
+      <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo Electrónico" name="email" id="email"/>
 
       <label>Nombre</label>
-      <input placeholder="Introduce su nombre"/>
+      <input onChange={(e) => setName(e.target.value)} placeholder="Introduce su nombre"/>
 
       <label>Primer Apellido</label>
-      <input placeholder="Introduce su apellido"/>
+      <input onChange={(e) => setLastName(e.target.value)} placeholder="Introduce su apellido"/>
 
       <label>CI</label>
-      <input placeholder="Introduce su CI"/>
+      <input onChange={(e) => setCi(e.target.value)} placeholder="Introduce su CI"/>
     </div>
 
     <div id="rigth-div">
     <label>Numero Contacto</label>
-      <input placeholder="Introduce su numero Contacto"/>
+      <input onChange={(e) => setNumCont(e.target.value)} placeholder="Introduce su numero Contacto"/>
 
       <label>Contraseña</label>
-      <input placeholder="Introduce su Contraseña"/>
+      <input onChange={(e) => setPassword(e.target.value)} placeholder="Introduce su Contraseña"/>
 
 
       <label>Sexo</label>
-      <select>
+      <select onChange={(e) => setSex(e.target.value)}>
         <option>F</option>
         <option>M</option>
       </select>
 
       <label>Municipio</label>
-      <select>
-        <option>Centro Habana</option>
-        <option>Habana Vieja</option>
-        <option>Vedado</option>
-        <option>Plaza de la Revolución</option>
-        <option>10 de Octubre</option>
-        <option>Playa</option>
-        <option>Cerro</option>
-        <option>San Miguel del Padrón</option>
-        <option>Lawton</option>
-        <option>Cotorro</option>
+      <select onChange={(e) => setMun(e.target.value)}>
+        {munList.map((item, i) => (
+          <option key={i}>{item}</option>
+        ))}
       </select>
 
       <label>Edad</label>
-      <input type="number"  min={16} max={70} placeholder="Introduce su Edad"/>
+      <input onChange={(e) => setAge(e.target.value)} type="number"  min={16} max={70} placeholder="Edad"/>
     </div>
-
-      
-
   </form>
-  
-  
   </div>
-  
-    
+
   <div className="panelBotones">
-          <Button className="B1" type="primary" size="large" block >Cancelar
+          <Button onClick={setVisible} className="B1" type="primary" size="large" block >Cancelar
           </Button>
   
-          <Button className="B2" type="primary"  size="large" block>
+          <Button
+           onClick={() => handlePetition({user_name:user, password:password, email:email, id: ci}, 
+            {idCliente:ci, nombre:name, segNombre:name, primApellido:lastName, segApellido: lastName, edad:age, municipio:mun, sexo:sex, numcont:numCont}
+           )}
+            className="B2" type="primary"  size="large" block>
             Aceptar
           </Button>
   </div>

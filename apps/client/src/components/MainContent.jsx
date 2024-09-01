@@ -4,7 +4,7 @@ import AppRoutes from './AppRoutes';
 const MainContent = () => {
     return (
         <div className="page-content">
-           <Outlet/>
+           <AppRoutes/>
         </div>
     );
 }

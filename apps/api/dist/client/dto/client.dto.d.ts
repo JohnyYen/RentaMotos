@@ -7,5 +7,5 @@ export declare class ClientDto {
     edad: number;
     municipio: string;
     sexo: string;
-    numcont?: string;
+    numcont: string;
 }

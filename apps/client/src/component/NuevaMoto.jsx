@@ -1,15 +1,22 @@
-import{ Button, Form, Input,Select }from "antd";
+import{ Button}from "antd";
 import {CarOutlined } from '@ant-design/icons';
-import Operation from "antd/es/transfer/operation";
+import { useState } from "react";
+import axios from 'axios';
 
 
+const NuevaMoto = ({isVisible, setVisible}) => {
 
-const NuevaMoto = () => {
-  
+  const [matricula, setMatricula] = useState("");
+  const [Color, setColor] = useState("");
+  const [marca, setMarca] = useState("");
+  const [modelo, setModelo] = useState("");
 
+  if(!isVisible) return null;
+
+  const handlePetition = (moto) => {
+    console.log(moto);
+  }
   return (
-
-
 <div className="pantallamoto">
 
 <div style={{ 
@@ -25,10 +32,10 @@ const NuevaMoto = () => {
 
   <form className="formMoto">
     <label htmlFor="matricula">Matricula</label>
-    <input placeholder="Ingrese su matricula" id="matricula" name="matricula"/>
+    <input onChange={(e) => setMatricula(e.target.value)} placeholder="Ingrese su matricula" id="matricula" name="matricula"/>
 
     <label htmlFor="color">Color</label>
-    <select name="color" id="color">
+    <select onChange={(e) => setColor(e.target.value)} name="color" id="color">
       <option value ="1"  >rojo</option>
       <option value ="2">negro</option>
       <option value ="3">azul</option>
@@ -43,22 +50,22 @@ const NuevaMoto = () => {
     </select>
 
     <label htmlFor="marca">Marca</label>
-    <select id="marca" name="marca">
+    <select onChange={(e) => setMarca(e.target.value)} id="marca" name="marca">
 
     </select>
 
     <label htmlFor="modelo">Modelo</label>
-    <select id="modelo" name="modelo">
+    <select onChange={(e) => setModelo(e.target.value)} id="modelo" name="modelo">
 
     </select>
   </form>
 </div>
 
       <div className="panelBotonesmoto">
-        <Button className="Bm1" type="primary" size="large" block >Cancelar
+        <Button onClick={setVisible} className="Bm1" type="primary" size="large" block >Cancelar
         </Button>
 
-          <Button className="Bm2" type="primary"  size="large" block>
+          <Button onClick={() => handlePetition({matricula: matricula, color:Color, cantKm: 0, marca : marca, modelo : modelo, situacion: "Disponible"})} className="Bm2" type="primary"  size="large" block>
             Aceptar
           </Button>
       </div>

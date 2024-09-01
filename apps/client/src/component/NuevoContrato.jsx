@@ -3,25 +3,26 @@ import {FileDoneOutlined } from '@ant-design/icons';
 import { useState} from "react";
 
 
-
   
 
 
-const NuevoContrato = () => {
+const NuevoContrato = ({isVisible, setVisible}) => {
+  
+  
+  const [Matricula, setMatricula] = useState("");
+  const [Id, setId] = useState("");
+  const [dateEnd, setDateEnd] = useState(new Date());
+  const [dateBegin, setDateBegin] = useState(new Date());
+  const [dateFirma, setDateFirma] = useState(new Date());
+  const [isChecked, setIsChecked] = useState(false);
+  const [formaPago, setFormaPago] = useState("");
 
-const [pagoSeleccionado, setPagoSeleccionado] = useState(null);
-  const [seguroSeleccionado, setSeguroSeleccionado] = useState(false);
-
-  const handlePagoChange = (e) => {
-    setPagoSeleccionado(e.target.value);
-  };
-
-  const handleSeguroChange = (checked) => {
-    setSeguroSeleccionado(checked);
-  };
+  if (!isVisible) return null;
 
 
-
+  const handlePetition = async (contract) => {
+    console.log(contract);
+  }
   return (
 
     <div className="pantallacontrato">
@@ -39,49 +40,42 @@ const [pagoSeleccionado, setPagoSeleccionado] = useState(null);
           <form id="nuevo-contrato-form">
             <div id="left-div">
             <label>Matricula</label>
-            <input placeholder="Matricula de la Moto"/>
+            <input onChange={(e) => setMatricula(e.target.value)} placeholder="Matricula de la Moto"/>
 
             <label>Id cliente</label>
-            <input placeholder="CI del Cliente"/>
+            <input onChange={(e) => setId(e.target.value)} placeholder="CI del Cliente"/>
 
             <label>Fecha de Firma</label>
-            <input type="date" placeholder="    "/>
+            <input onChange={(e) => setDateFirma(e.target.value)} type="date" placeholder="    "/>
 
             <label>Fecha de Inicio</label>
-            <input type="date"/>
+            <input onChange={(e) => setDateBegin(e.target.value)} type="date"/>
             </div>
             
             <div id="rigth-div">
             <label>Fecha de Fin</label>
-            <input type="date"/>
+            <input onChange={(e) => setDateEnd(e.target.value)} type="date"/>
 
             <label>Forma de Pago</label>
-            <select id="forma-pago">
+            <select onChange={(e) => setFormaPago(e.target.value)} id="forma-pago">
 
             </select>
 
             <div className="checkbox">
-            <label htmlFor="seguro">Seguro</label>
-            <input type="checkbox" name="seguro" id="seguro"></input>
+              <label htmlFor="seguro">Seguro</label>
+              <input onChange={(e) => setIsChecked(e.target.value)} type="checkbox" name="seguro" id="seguro"></input>
             </div>
-
             </div>
-            
           </form>
         </div>
-
       <div className="panelBotonescontrato">
-<Button className="Bc1" type="primary" size="large" block >Cancelar
+        <Button onClick={setVisible} className="Bc1" type="primary" size="large" block >Cancelar
         </Button>
 
-        <Button className="Bc2" type="primary"  size="large" block>
+        <Button onClick={() => handlePetition({idCliente:Id, matricula: Matricula, beginDate : dateBegin, endDate : dateEnd, firmaDate : dateFirma, formaPago : formaPago, seguro : isChecked, diasProrroga: 0})} className="Bc2" type="primary"  size="large" block>
           Aceptar
         </Button>
-</div>
-
-
-
-
+      </div>
     </div>
 
 

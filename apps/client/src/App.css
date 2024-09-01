@@ -89,7 +89,6 @@
   transform: translate(-50%, -50%);
   width: 50vw;
   height: 50vh;
-  z-index: 100;
   border-radius: 10%;
 
   background: hsla(216, 91%, 35%, 1);
@@ -844,4 +843,171 @@
   width: 150px;
   left: 40%;
 
+}
+
+/* Pantallas de Modificaciones */
+
+/*Moto*/
+
+.model {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modify-container {
+  
+  width: 40rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.modify-container form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.modify-container form input, select{
+  width: fit-content;
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 2px #202020;
+}
+
+.button{
+  width: 5rem;
+  padding: 10px;
+  background-color: #2975b7;
+  transition: all .8s ease;
+}
+
+.button:hover{
+  background-color: #06325d;
+}
+
+.modify-container div{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+
+/*Cliente*/
+
+.modify-container-cliente{
+  width: fit-content;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.modify-container-cliente form{
+  display: flex;
+  flex-direction: row;
+}
+
+.modify-container-cliente div{
+  margin-top: 15px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2rem;
+}
+
+.modify-container-cliente form input, .modify-container-cliente form select{
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 2px #202020;
+  width: 80%;
+}
+
+/*Contrato*/
+#contrato-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+#contrato-container form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 1rem;
+  margin-left: 25%;
+}
+
+#contrato-container #rigth-div{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+#checkbox{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+#checkbox input{
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  height: 1rem;
+  width: 1rem;
 }
