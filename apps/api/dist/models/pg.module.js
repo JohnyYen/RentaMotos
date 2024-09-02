@@ -18,11 +18,11 @@ pg_1.types.setTypeParser(TYPE_DATE, date => date);
 const PgProvider = {
     provide: constants_1.PG_CONNECTION,
     useValue: new pg_1.Pool({
-        user: 'postgres',
-        host: 'localhost',
-        database: 'RentaMotos',
-        password: 'FernaBS2002*',
-        port: 5432
+        user: process.env.USER,
+        host: process.env.HOST,
+        database: process.env.DATABASE,
+        password: process.env.PASSWORD,
+        port: process.env.PORT
     })
 };
 let PgModule = class PgModule {

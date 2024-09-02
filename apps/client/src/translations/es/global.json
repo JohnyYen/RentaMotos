@@ -1,0 +1,63 @@
+{
+    "header": {
+        "motorcycleRent": "Renta Motos"
+    },
+    "client": {
+        "clientListTitle": "Listado de Clientes",
+        "clientNonCompliant": "Lista incumplidores"
+    },
+    "motorcycle": {
+        "motorcycleList": "Listado de motos",
+        "motorcycleSituation": "Situacion motos"
+    },
+    "contract": {
+        "contractList": "Listado de contratos",
+        "contractMunicipality": "Contratos por municipio",
+        "contractMakeModel": "Contratos por marca y modelo"
+    },
+    "sideBar": {
+        "client": "Clientes",
+        "clientList": "Listado Clientes",
+        "clientNonCompliant": "Incumplidores",
+        "motorcycle": "Motos",
+        "motorcycleList": "Listado motos",
+        "motorcycleSituation": "Situacion",
+        "contract": "Contratos",
+        "contractList": "Listado contratos",
+        "contractMunicipality": "Por Municipio",
+        "contractMakeModel": "Por Marca y Modelo",
+        "annualIncome": "Ingresos Anuales"
+    },
+    "mainContent": {
+        "downloadPDF": "Descargar PDF",
+        "table": {
+            "serialNumber": "Matricula",
+            "mark": "Marca",
+            "model": "Modelo",
+            "color": "Color",
+            "kmTraveled": "Km recorrids",
+            "actions": "Acciones",
+            "name": "Nombre",
+            "lastName": "Apellidos",
+            "endContract": "Fin de contrato",
+            "motorcycleDelivery": "Entrega de moto",
+            "municipality": "Municipio",
+            "timesRented": "Veces alquiladas",
+            "rentalValue": "Valor alquileres",
+            "situation": "Situación",
+            "methodPayment": "Forma de pago",
+            "startContract": "Inicio de contrato",
+            "extension": "Prórroga",
+            "additionalInsurance": "Seguro adicional",
+            "totalAmount": "Importe total",
+            "numberMotorcycle": "Cantidad de motos",
+            "totalDaysRented": "Dias totales alquilados",
+            "creditCardIncome": "Ingresos por tarjeta de crédito",
+            "incomeCheck": "Ingresos por cheque",
+            "cashIncome": "Ingresos por efectivo",
+            "daysRented": "Dias alquilados",
+            "extensionDays": "Días de prórroga",
+            "totalCash": "Total efectivo"
+        }
+    }
+}

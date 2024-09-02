@@ -1,6 +1,7 @@
 import { Mentions, Button, Typography, Table, Flex } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 const extractData = async () => {
@@ -13,9 +14,9 @@ const extractData = async () => {
       dataSource = response.data.map((element, index) => ({
         key: index,
         matricula: element.matricula,
-      marca: element.marca,
-      situacion: element.situacion,
-      "Fin de contrato": element.fecha_entrega,
+        marca: element.marca,
+        situacion: element.situacion,
+        "Fin de contrato": element.fecha_entrega,
       }));
     }
   } catch (error) {
@@ -23,7 +24,6 @@ const extractData = async () => {
   }
   return dataSource;
 };
-
 
 const SituacionMoto = () => {
   const date = new Date();
@@ -33,6 +33,7 @@ const SituacionMoto = () => {
   const currentDate = `${day}/${month}/${year}`;
 
   const [dataSource, setDataSource] = useState([]);
+  const [t] = useTranslation("global");
 
   useEffect(() => {
     extractData().then((result) => {
@@ -42,15 +43,22 @@ const SituacionMoto = () => {
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Situacion de Motos</Typography.Title>
+      <Typography.Title level={3}>{t("motorcycle.motorcycleSituation")}</Typography.Title>
       <Flex align="center">
-        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
-        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+        <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
+          Fecha actual:
+        </Typography.Text>
+        <Mentions
+          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          readOnly
+          variant="borderless"
+          defaultValue={currentDate}
+        />
       </Flex>
       <Table
-       scroll={{
-        x: 920,
-      }}
+        scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 5,
           position: ["bottomLeft"],
@@ -58,31 +66,29 @@ const SituacionMoto = () => {
         dataSource={dataSource}
         columns={[
           {
-            title: "Matricula",
+            title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
             fixed: "left",
-            width: "8rem"
+            width: "8rem",
           },
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
           },
           {
-            title: "Situacion",
+            title: t("mainContent.table.situation"),
             dataIndex: "situacion",
             key: "situacion",
           },
           {
-            title: "Fin de contrato",
+            title: t("mainContent.table.endContract"),
             dataIndex: "Fin de contrato",
             key: "Fin de contrato",
           },
         ]}
       ></Table>
-      
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

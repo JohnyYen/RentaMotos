@@ -1,6 +1,7 @@
 import { Mentions, Button, Typography, Table, Flex } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 const extractData = async () => {
@@ -27,6 +28,19 @@ const extractData = async () => {
   return dataSource;
 };
 
+const extractDataFilter = async () => {
+  let dataFilter = [];
+  try {
+     const response = await axios.get('http://localhost:3000/api/mun');
+    if(response.status === 200){
+      dataFilter = response.data
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataFilter;
+};
+
 const ContratosMunicipio = () => {
   const date = new Date();
   const day = date.getDay();
@@ -35,16 +49,26 @@ const ContratosMunicipio = () => {
   const currentDate = `${day}/${month}/${year}`;
   
   const [dataSource, setDataSource] = useState([]);
+  const [dataFilter, setDataFilter] = useState([]);
+  const [t] = useTranslation("global");
 
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
     });
+    extractDataFilter().then(result => {
+      setDataFilter(result.map(municipio => (
+        {
+          text: municipio.nommun,
+          value: municipio.nommun,
+        }
+      )));
+    });
   }, []);
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Contratos por Municipio</Typography.Title>
+      <Typography.Title level={3}>{t("contract.contractMunicipality")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
@@ -64,7 +88,7 @@ const ContratosMunicipio = () => {
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
-            filters: [],
+            filters: dataFilter,
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
           {
@@ -99,8 +123,6 @@ const ContratosMunicipio = () => {
           },
         ]}
       ></Table>
-      
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

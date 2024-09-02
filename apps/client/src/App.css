@@ -11,6 +11,16 @@
   border: none;
 }
 
+.popup-language {
+  margin-top: 0.5rem;
+  background-color: darkblue;
+  border-radius: 5px;
+}
+
+.popup-language span {
+  color: white;
+}
+
 .content {
   padding: 0 1rem;
 }

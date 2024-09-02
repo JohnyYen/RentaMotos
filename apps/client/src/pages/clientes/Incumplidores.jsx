@@ -2,21 +2,21 @@ import { Mentions, Button, Typography, Table, Flex } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/client");
+    response = await axios.get("http://localhost:3000/api/client/bad");
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        matricula: element.matricula,
-        marca: element.marca,
-        modelo: element.modelo,
-        color: element.color,
-        "Km recorridos": element.cantkm,
+        nombre: element.nombre,
+        apellidos: element.prim_apellido + ' ' + element.seg_apellido,
+        "fin de contrato": element.fecha_fin,
+        "entrega de moto": element.fecha_entrega,
       }));
     }
   } catch (error) {
@@ -33,17 +33,18 @@ const Incumplidores = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
 
+  const [t] = useTranslation("global");
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
     extractData().then((result) => {
-      setDataSource(result);
+      setDataSource(result);à
     });
   }, []);
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Clientes Incumplidores</Typography.Title>
+      <Typography.Title level={3}>{t("client.clientNonCompliant")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
@@ -56,33 +57,32 @@ const Incumplidores = () => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
-
+        dataSource={dataSource}
         columns={[
           {
-            title: "Nombre",
+            title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
             fixed: "left",
             width: "8rem"
           },
           {
-            title: "Apellidos",
+            title: t("mainContent.table.lastName"),
             dataIndex: "apellidos",
             key: "apellidos",
           },
           {
-            title: "Fin de contrato",
+            title: t("mainContent.table.endContract"),
             dataIndex: "fin de contrato",
             key: "fin de contrato",
           },
           {
-            title: "Entrega de moto",
+            title: t("mainContent.table.motorcycleDelivery"),
             dataIndex: "entrega de moto",
             key: "entrega de moto",
           },
         ]}
       ></Table>
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

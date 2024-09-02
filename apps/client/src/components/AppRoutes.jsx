@@ -10,10 +10,10 @@ import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
 import UserClient from "../pages/UserPages/UserClient"
-const AppRoutes = () => {
+const AppRoutes = ({ dateToday }) => {
   return (
     <Routes>
-      <Route path="/listadoClientes" element={<ListadoClientes />}></Route>
+      <Route path="/listadoClientes" element={<ListadoClientes dateToday={dateToday} />}></Route>
       <Route path="/incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="/listadoMoto" element={<ListMoto />}></Route>
       <Route path="/situacionMotos" element={<SituacionMoto />}></Route>
@@ -26,7 +26,6 @@ const AppRoutes = () => {
       <Route path="/motosCliente" element={<ListMoto />}></Route>
       <Route path="/userAdmin" element={<UserAdmin />}></Route>
       <Route path="/userClient" element={<UserClient />}></Route>
-      <Route path="/" element={<Loguin />}></Route>
     </Routes>
   );
 };

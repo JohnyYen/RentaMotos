@@ -1,6 +1,7 @@
 import { Space, Typography, Table, Flex, Button } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 const extractData = async () => {
@@ -30,9 +31,32 @@ const extractData = async () => {
   return dataSource;
 };
 
-const ListadoContratos = () => {
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+    
+    const urlObject = URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = urlObject;
+    link.download = 'ReporteContratos.pdf';
+    link.click();
+    
+    URL.revokeObjectURL(urlObject);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+const ListadoContratos = () => {
   const [dataSource, setDataSource] = useState([]);
+  const [t] = useTranslation("global");
 
   useEffect(() => {
     extractData().then((result) => {
@@ -40,13 +64,17 @@ const ListadoContratos = () => {
     });
   }, []);
 
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/contract/pdf");
+  };
+
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Listado de Contratos</Typography.Title>
+      <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
       <Table
-      scroll={{
-        x: 1200,
-      }}
+        scroll={{
+          x: 1200,
+        }}
         pagination={{
           pageSize: 5,
           position: ["bottomLeft"],
@@ -58,7 +86,7 @@ const ListadoContratos = () => {
             dataIndex: "nombre",
             key: "nombre",
             fixed: "left",
-            width: "8rem"
+            width: "8rem",
           },
           {
             title: "Matricula",
@@ -92,8 +120,8 @@ const ListadoContratos = () => {
           },
           {
             title: "Prórroga",
-            dataIndex: "prórroga",
-            key: "prórroga",
+            dataIndex: "prorroga",
+            key: "prorroga",
           },
           {
             title: "Seguro adicional",
@@ -110,16 +138,28 @@ const ListadoContratos = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">Modificar</Button>
-                <Button className="actionTable" type="primary">Delete</Button>
+                <Button className="actionTable" type="primary">
+                  Modificar
+                </Button>
+                <Button className="actionTable" type="primary">
+                  Eliminar
+                </Button>
               </Flex>
             ),
             fixed: "right",
-            width: "13rem"
+            width: "13rem",
           },
         ]}
       ></Table>
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };
