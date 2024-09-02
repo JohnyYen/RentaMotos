@@ -1,8 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
 import { MotorcycleDto } from './dto/motorcycle.dto';
-import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
-import {Response} from 'express'
 import { arrayFormatter } from 'src/libs/jsonFormatter';
 import generatePDF from 'src/libs/pdfKit';
 
@@ -38,7 +36,7 @@ export class MotorcycleService {
         await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
     }
 
-    async updateMotorcycle (moto : MotorcyclePatchDto, id : string){
+    async updateMotorcycle (moto : MotorcycleDto, id : string){
         this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
     }
 

@@ -1,13 +1,11 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Res } from '@nestjs/common';
 import { MotorcycleService } from './motorcycle.service';
 import { MotorcycleDto } from './dto/motorcycle.dto';
-import { MotorcyclePatchDto } from './dto/motorcyclePatch.dto';
 import { Response } from 'express';
 
 @Controller('api/moto')
 export class MotorcycleController {
     constructor (private readonly motoService : MotorcycleService){}
-
     @Get()
     @HttpCode(200)
     getAllMoto(){
@@ -51,7 +49,7 @@ export class MotorcycleController {
     }
 
     @Patch('/:id')
-    updateMoto(@Param("id") id : string, @Body() update : MotorcyclePatchDto){
+    updateMoto(@Param("id") id : string, @Body() update : MotorcycleDto){
         this.motoService.updateMotorcycle(update, id);
     }
 }

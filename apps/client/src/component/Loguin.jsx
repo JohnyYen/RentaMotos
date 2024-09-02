@@ -2,16 +2,21 @@ import{ Button, Divider, Form, Input, message,Modal }from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import "../App.css";
 import "./NuevoUsuario";
+import axios from 'axios';
+import {NuevoCliente} from "./NuevoUsuario";
 
 
 
 function Loguin() {
+
+
   
-    const loguear=()=>{
-      message.success("Registro completado");
-    }
+  const [abrirModal, setabrirModal]= useState (false);
   
-    return <div className="loguin">
+  const Modal =(isOpen, closeModal) =>{
+    if(!isOpen) return null;
+    
+      return(<div className="loguin">
   
   
         <div style={{ 
@@ -41,13 +46,22 @@ function Loguin() {
   
     <div className="Alternativa">
     
-    <Button onClick={loguear} type="primary" htmlType="submit" block>Aceptar</Button>
+    <Button  type="primary" htmlType="submit" block>Aceptar</Button>
+<div>
+   <Button onClick={Registrar} type="link" >Registrarse </Button>
+   <NuevoCliente visible={visibleNuevoCliente} />
+  </div>
+    </div>
+  
+    </div>)}
 
-   <Button type="link">Registrarse </Button>
-  
+    return (
+
+      <div className="Loguin">
+      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
     </div>
-  
-    </div>
+
+    )
   }
   
   export default Loguin;
