@@ -7,11 +7,13 @@ import ListadoContratos from "../pages/contratos/ListadoContratos";
 import ContratosMarcaModelo from "../pages/contratos/ContratosMarcaModelo";
 import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
-
-const AppRouter = () => {
+import UserAdmin from "../pages/UserPages/UserAdmin";
+import Loguin from "../component/Loguin";
+import UserClient from "../pages/UserPages/UserClient"
+const AppRoutes = ({ dateToday }) => {
   return (
     <Routes>
-      <Route path="/listadoClientes" element={<ListadoClientes />}></Route>
+      <Route path="/listadoClientes" element={<ListadoClientes dateToday={dateToday} />}></Route>
       <Route path="/incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="/listadoMoto" element={<ListMoto />}></Route>
       <Route path="/situacionMotos" element={<SituacionMoto />}></Route>
@@ -22,8 +24,10 @@ const AppRouter = () => {
       <Route path="/crearContrato" element></Route>
       <Route path="/contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="/motosCliente" element={<ListMoto />}></Route>
+      <Route path="/userAdmin" element={<UserAdmin />}></Route>
+      <Route path="/userClient" element={<UserClient />}></Route>
     </Routes>
   );
 };
 
-export default AppRouter;
+export default AppRoutes;

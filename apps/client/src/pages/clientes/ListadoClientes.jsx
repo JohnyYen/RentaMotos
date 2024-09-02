@@ -1,19 +1,96 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useEffect, useState } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
-const ListadoClientes = () => {
-  const date = new Date();
-  const day = date.getDay();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/client");
 
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        municipio: element.municipio,
+        nombre: element.nombre,
+        ci: element.idcliente,
+        "veces alquiladas": element.count,
+        "valor alquileres": element.sum,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    const urlObject = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = urlObject;
+    link.download = 'Clientes.pdf';
+    link.click();
+    
+    // Limpiar el objeto URL creado
+    URL.revokeObjectURL(urlObject);
+  } catch (error) {
+    console.error('Error al descargar el archivo:', error);
+  }
+};
+
+const extractDataFilter = async () => {
+  let dataFilter = [];
+  try {
+     const response = await axios.get('http://localhost:3000/api/mun');
+    if(response.status === 200){
+      dataFilter = response.data
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataFilter;
+};
+
+const ListadoClientes = ({ dateToday }) => {
+  const [dataSource, setDataSource] = useState([]);
+  const [dataFilter, setDataFilter] = useState([]);
+  const [t] = useTranslation("global");
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+
+    extractDataFilter().then(result => {
+      setDataFilter(result.map(municipio => (
+        {
+          text: municipio.nommun,
+          value: municipio.nommun,
+        }
+      )));
+    });
+  }, []);
+
+  const onClick = async () => {
+    await downloadPDF('http://localhost:3000/api/client/pdf');
+  };
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Listado de Clientes</Typography.Title>
+      <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           Fecha actual:
@@ -22,7 +99,7 @@ const ListadoClientes = () => {
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={currentDate}
+          defaultValue={dateToday}
         />
       </Flex>
       <Table
@@ -33,17 +110,18 @@ const ListadoClientes = () => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
+        dataSource={dataSource}
         columns={[
           {
-            title: "Municipio",
+            title: t("mainContent.table.municipality"),
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
-            filters: [],
+            filters: dataFilter,
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
           {
-            title: "Nombre",
+            title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
           },
@@ -53,22 +131,26 @@ const ListadoClientes = () => {
             key: "ci",
           },
           {
-            title: "Veces alquiladas",
+            title: t("mainContent.table.timesRented"),
             dataIndex: "veces alquiladas",
             key: "veces alquiladas",
           },
           {
-            title: "Valor alquileres",
+            title: t("mainContent.table.rentalValue"),
             dataIndex: "valor alquileres",
             key: "valor alquileres",
           },
           {
-            title: "Acciones",
+            title: t("mainContent.table.actions"),
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="accionTable" type="primary">Modificar</Button>
-                <Button className="accionTable" type="primary">Eliminar</Button>
+                <Button className="actionTable" type="primary">
+                  Modificar
+                </Button>
+                <Button className="actionTable" type="primary">
+                  Eliminar
+                </Button>
               </Flex>
             ),
             fixed: "right",
@@ -76,19 +158,17 @@ const ListadoClientes = () => {
           },
         ]}
       ></Table>
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };
-
-// const extractData = async () => {
-//   try {
-//     const dataClient = await axios.get("http://localhost:3000/api/client");
-//     console.log(dataClient);
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   return dataClient.data;
-// };
 
 export default ListadoClientes;

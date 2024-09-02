@@ -1,5 +1,8 @@
-import { Mentions, Typography, Table, Flex } from "antd";
-import { useState } from "react";
+import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { useState, useEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 const IngresosAnno = () => {
   const date = new Date();
@@ -8,9 +11,11 @@ const IngresosAnno = () => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
   
+  const [t] = useTranslation("global");
+
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Ingresos del año</Typography.Title>
+      <Typography.Title level={3}>{t("sideBar.annualIncome")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
