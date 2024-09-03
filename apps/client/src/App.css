@@ -854,8 +854,11 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  position: fixed;
   justify-content: center;
-  z-index: 10;
+  z-index: 9999;
+  top: 0;
+  left: 0;
 }
 
 .modify-container {

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export const ModificarCliente = ({visible, setVisible, client}) => {
+const ModificarCliente = ({visible, setVisible, client}) => {
 
-    const [dad, setEdad] = useState(0);
+    const [edad, setEdad] = useState(0);
     const [Municipio, setMunicipio] = useState("");
     const [name, setName] = useState("");
-    const [secondName, setSecondName] = uSeState("");
+    const [secondName, setSecondName] = useState("");
     const [lastName, setLastName] = useState("");
     const [secondLast, setSecondLast] = useState("");
     const [numCont, setNumCont] = useState("");
@@ -15,6 +15,7 @@ export const ModificarCliente = ({visible, setVisible, client}) => {
     const handlePetition = () => {
         console.log("hello World")
     }
+
   return (
     <div className='model'>
         <div className='modify-container-cliente'>
@@ -53,3 +54,6 @@ export const ModificarCliente = ({visible, setVisible, client}) => {
     </div>
   )  
 }
+
+
+export default ModificarCliente;

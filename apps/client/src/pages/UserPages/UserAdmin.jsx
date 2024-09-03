@@ -25,7 +25,6 @@ const UserAdmin = () => {
         </Header>
         <Content className="content">
           <MainContent />
-          <ModificarMoto visible={visibility} setVisible={setVisibility} moto={row}/>
         </Content>
       </Layout>
     </Layout>

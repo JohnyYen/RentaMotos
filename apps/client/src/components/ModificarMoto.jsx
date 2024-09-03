@@ -18,7 +18,7 @@ const ModificarMoto = ({visible, setVisible, moto}) => {
             <form>
                 <div id="left-div">
                 <label>Color</label>
-                <select onChange={(e) => setColor(e.target.value)}>
+                <select onChange={(e) => setColor(e.target.value)} value={moto.color}>
 
                 </select>
 

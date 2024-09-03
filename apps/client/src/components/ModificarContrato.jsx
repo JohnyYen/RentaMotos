@@ -8,6 +8,7 @@ const ModificarContrato = ({visible, setVisible, contract}) => {
     const [formaPago, setFormaPago] = useState("");
     const [Seguro, setSeguro] = useState(false);
     const [diasProrroga, setDiasProrroga] = useState(0);
+    const [date, setDate] = useState(new Date());
 
     if(!visible) return null;
 
@@ -44,6 +45,9 @@ const ModificarContrato = ({visible, setVisible, contract}) => {
                     </div>
                 <label>Dias de Prorroga</label>
                 <input onChange={(e) => setDiasProrroga(e.target.value)} type="number"/>
+
+                <label>Fecha de Entrega</label>
+                <input onChange={(e) => setDate(e.target.value)} type="date"/>
                 </div>
             </form>
 

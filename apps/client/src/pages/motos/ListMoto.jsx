@@ -3,7 +3,9 @@ import "../../App.css";
 import axios from 'axios';
 import { DownloadOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import ModificarMoto from "../../components/ModificarMoto"
+import ModificarMoto from "../../components/ModificarMoto";
+import ModalMoto from "../../components/ModalMoto";
+
 
 // console.log('Hello MotherFucker');
 
@@ -27,7 +29,7 @@ console.log( await extractData());
 const ListMoto = () => {
 
   const [visibility, setVisibility] = useState(false);
-  const [row, setRow] = useState(null);
+  const [row, setRow] = useState({});
 
   const handleVisibility = () => {
     setVisibility(!visibility);
@@ -128,7 +130,7 @@ const ListMoto = () => {
       <Flex vertical="true">
       <Typography.Title level={3}>Listado de Motos</Typography.Title>
       <Flex align="center">
-        <ModificarMoto visible={visibility} setVisible={setVisibility} moto={row}/>
+        <ModalMoto isOpen={visibility} setOpen={handleVisibility}/>
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>

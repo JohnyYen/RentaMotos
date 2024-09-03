@@ -12,7 +12,7 @@ import Loguin from "../component/Loguin";
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/listadoClientes" element={<ListadoClientes/>}/>
+      <Route path="admin/listadoClientes" element={<ListadoClientes/>}/>
       <Route path="/incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="/listadoMoto" element={<ListMoto />}></Route>
       <Route path="/situacionMotos" element={<SituacionMoto />}></Route>
