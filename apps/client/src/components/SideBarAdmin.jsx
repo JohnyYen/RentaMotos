@@ -5,8 +5,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Flex } from "antd";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Outlet, useNavigate } from "react-router-dom";
 import "../App.css";
 import "boxicons";
 //import axios from 'axios';
@@ -42,7 +41,7 @@ const SideBarAdmin = () => {
             children: [
               {
                 label: "Listado Clientes",
-                key: "/listadoClientes",
+                key: `listadoClientes`,
               },
               {
                 label: "Incumplidores",

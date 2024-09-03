@@ -1,53 +1,63 @@
-import{ Button, Divider, Form, Input, message,Modal }from "antd";
+import{Form, Input, message}from "antd";
 import {UserOutlined} from '@ant-design/icons';
-import "../App.css";
+import {useState} from "react"
 import "./NuevoUsuario";
+import NuevoCliente from "./NuevoUsuario";
 
 
 
 function Loguin() {
   
+    const [visible, setVisible] = useState(false);
+
+    const handleVisibility = () => {
+      setVisible(!visible);
+    }
+
     const loguear=()=>{
-      message.success("Registro completado");
+      message.success("Bienvenido");
     }
   
-    return <div className="loguin">
-  
-  
-        <div style={{ 
-          position: 'fixed', 
-          top: '20px', 
-          left: '50%', 
-          transform: 'translateX(-50%)', 
-        }} >
-        <UserOutlined className= "iconoUsuario"/>
-        </div>
-  
-  
-  
-    <div className="Registro">
-  
-      <Form className="miLoguin"  >
-    <Form.Item  label={<span style={{ color: 'white' }}>Usuario</span>} name={"miUsuario"} >
-        <Input placeholder="Ingrese su usuario"/>
-    </Form.Item>
-  
-    <Form.Item label={<span style={{ color: 'white' }}>Contraseña</span>} name={"micontraseña"}>
-        <Input placeholder="Ingrese su contraseña"/>
-    </Form.Item>
-  
-  </Form>
-    </div>
-  
-    <div className="Alternativa">
+    return (
+      <>
+          <div className="loguin">
     
-    <Button onClick={loguear} type="primary" htmlType="submit" block>Aceptar</Button>
+    
+    <div style={{ 
+      position: 'fixed', 
+      top: '20px', 
+      left: '50%', 
+      transform: 'translateX(-50%)', 
+    }} >
+      <UserOutlined className= "iconoUsuario"/>
+    </div>
 
-   <Button type="link">Registrarse </Button>
-  
-    </div>
-  
-    </div>
+
+
+  <div className="Registro">
+
+    <Form className="miLoguin"  >
+      <Form.Item>
+        <label className="labelLoguin">Usuario</label>
+        <Input placeholder="Ingrese su usuario" className="inputLoguin userInput"/>
+      </Form.Item>
+
+      <Form.Item>
+          <label className="labelLoguin">Contraseña</label>
+          <Input placeholder="Ingrese su contraseña" className="inputLoguin"/>
+      </Form.Item>
+
+    </Form>
+  </div>
+
+  <div className="Alternativa">
+    <button onClick={loguear}  className="buttonLoguin" type="submit">Aceptar</button>
+    <button onClick={() => setVisible(true)} className="linkLoguin">Registrarse</button>
+  </div>
+  </div>
+        <NuevoCliente setVisible={handleVisibility} visible={visible}/>
+      </>
+    )
   }
   
   export default Loguin;

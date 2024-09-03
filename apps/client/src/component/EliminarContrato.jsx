@@ -1,14 +1,12 @@
 import{ Button }from "antd";
 import "../App.css";
 
-const EliminarElemento = () => {
+const EliminarContrato = () => {
     return (
   
     <div className="Eliminar2">
     
-        <div className="Mensaje2" >
-          ¿Seguro que desea eliminar este contrato?
-        </div>
+       <h3 className="Mensaje2">Seguro que deseas eliminar este contrato?</h3>
   
         <div  className="Botones2"  >
           <Button className="B12" type="primary" htmlType="submit" block >Cancelar
@@ -28,4 +26,4 @@ const EliminarElemento = () => {
     );
   };
   
-  export default  EliminarElemento;
+  export default  EliminarContrato;

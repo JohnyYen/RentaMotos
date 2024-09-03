@@ -2,6 +2,10 @@ import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from 'axios';
 import { DownloadOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import ModificarMoto from "../../components/ModificarMoto";
+import ModalMoto from "../../components/ModalMoto";
+
 
 // console.log('Hello MotherFucker');
 
@@ -23,6 +27,13 @@ const extractData = async () => {
 console.log( await extractData());
 
 const ListMoto = () => {
+
+  const [visibility, setVisibility] = useState(false);
+  const [row, setRow] = useState({});
+
+  const handleVisibility = () => {
+    setVisibility(!visibility);
+  }
   const dataSource = [
     {
       key: "1",
@@ -115,9 +126,11 @@ const ListMoto = () => {
  
 
   return (
-    <Flex vertical="true">
+    <>
+      <Flex vertical="true">
       <Typography.Title level={3}>Listado de Motos</Typography.Title>
       <Flex align="center">
+        <ModalMoto isOpen={visibility} setOpen={handleVisibility}/>
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>
@@ -174,7 +187,7 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">Modificar</Button>
+                <Button onClick={() => {setVisibility(true); setRow(record)}} className="actionTable" type="primary">Modificar</Button>
                 <Button className="actionTable" type="primary">Delete</Button>
               </Flex>
             ),
@@ -183,8 +196,12 @@ const ListMoto = () => {
           },
         ]}
       />
+
       <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
+
+    
+    </>
   );
 };
 
