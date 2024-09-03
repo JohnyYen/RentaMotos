@@ -12,7 +12,7 @@ const ModalClient = ({isOpen, setOpen}) => {
     const [numCont, setNumCont] = useState("");
 
   return (
-    <Modal title={"Modificar Cliente"} open={isOpen} onCancel={setOpen} onClose={setOpen}>
+    <Modal title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen}>
 
         <InputNumber onChange={(e) => setEdad(e.target.value)}/>
 

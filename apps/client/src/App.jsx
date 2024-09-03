@@ -10,6 +10,7 @@ import Item from "antd/es/list/Item";
 import ModalMoto from "./components/ModalMoto";
 import ModalContract from "./components/ModalContract";
 import ModalClient from "./components/ModalClient";
+import Profile from "./components/Profile";
 
 
 
@@ -25,9 +26,12 @@ function App() {
   const handleVisibility = () => {
     setVisible(!visible);
   }
+
   return (
     <>
-      <UserAdmin/>
+      <button onClick={handleVisibility}>Touch Me</button>
+
+      <Profile isOpen={visible} setOpen={handleVisibility}/>
     </>
   );
 }
