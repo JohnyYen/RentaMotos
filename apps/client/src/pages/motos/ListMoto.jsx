@@ -96,7 +96,8 @@ const ListMoto = () => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
-      <Flex align="center">
+      <Flex align="center" justify="space-between">
+        <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           Fecha actual:
         </Typography.Text>
@@ -106,6 +107,8 @@ const ListMoto = () => {
           variant="borderless"
           defaultValue={currentDate}
         />
+        </Flex>
+        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
         scroll={{

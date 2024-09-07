@@ -72,7 +72,7 @@ const ListadoClientes = ({ dateToday }) => {
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
-    });
+    }, []);
 
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
