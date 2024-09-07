@@ -18,6 +18,10 @@ export class ContractService {
         return res.rows;
     }
 
+    async getCotnractByCliente(id : string){
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`)
+        return res.rows;
+    }
     async getContractByMun(){
         const res = await this.conn.query('select * from cont_mun');
         return res.rows
@@ -44,7 +48,7 @@ export class ContractService {
     }
 
     updateContract(contract : ContractDto, idCliente : string, matricula : string){
-        
+        this.conn.query(`UPDATE Contrato SET formapago = ${contract.formaPago}, seguro = ${contract.seguro}, diasprorroga = ${contract.diasProrroga} WHERE idcliente = ${idCliente} AND matricula = ${matricula}`);
     }
 
     deleteContract(idCliente : string, matricula : string){

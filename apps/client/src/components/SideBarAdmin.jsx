@@ -5,8 +5,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Flex } from "antd";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Outlet, useNavigate } from "react-router-dom";
 import "../App.css";
 import "boxicons";
 //import axios from 'axios';
@@ -32,7 +31,7 @@ const SideBarAdmin = () => {
         defaultOpenKeys={["/clientes"]}
         mode="inline"
         onClick={(item) => {
-          navigate(item.key);
+          navigate(`/admin/${item.key}`);
         }}
         items={[
           {
@@ -42,11 +41,11 @@ const SideBarAdmin = () => {
             children: [
               {
                 label: "Listado Clientes",
-                key: "/listadoClientes",
+                key: "listadoClientes",
               },
               {
                 label: "Incumplidores",
-                key: "/incumplidoresClientes",
+                key: "incumplidoresClientes",
               },
             ],
           },
@@ -57,11 +56,11 @@ const SideBarAdmin = () => {
             children: [
               {
                 label: "Listado Motos",
-                key: "/listadoMoto",
+                key: "listadoMoto",
               },
               {
                 label: "Situacion Motos",
-                key: "/situacionMotos",
+                key: "situacionMotos",
               },
             ],
           },
@@ -72,22 +71,22 @@ const SideBarAdmin = () => {
             children: [
               {
                 label: "Listado Contratos",
-                key: "/listadoContratos",
+                key: "listadoContratos",
               },
               {
                 label: "Por marca y modelo",
-                key: "/contratoMarcaModelo",
+                key: "contratoMarcaModelo",
               },
               {
                 label: "Por municipio",
-                key: "/contratoMunicipio",
+                key: "contratoMunicipio",
               },
             ],
           },
           {
             label: "Ingresos del año",
             icon: <DollarOutlined />,
-            key: "/ingresosAño",
+            key: "ingresosAño",
           },
         ]}
       ></Menu>

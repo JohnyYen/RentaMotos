@@ -2,6 +2,7 @@ import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useEffect, useState } from "react";
 import "../../App.css";
 import axios from "axios";
+import { DownloadOutlined } from "@ant-design/icons";
 
 const ListadoClientes = () => {
   const date = new Date();

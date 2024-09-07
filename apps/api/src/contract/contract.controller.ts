@@ -22,6 +22,12 @@ export class ContractController {
         res.send(buffer);
     }
 
+    @Get('/:id')
+    async getContractByCliente(@Param('id') id:string){
+        return await this.contractService.getCotnractByCliente(id);
+    }
+
+    
     @Get('/mun')
     async getContractByMun(){
         return await this.contractService.getContractByMun();

@@ -1,5 +1,7 @@
 import { Space, Typography, Table, Flex, Button } from "antd";
 import { useState } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+
 
 const ListadoContratos = () => {
 

@@ -2,6 +2,10 @@ import{ Button,  useState,Modal}from "antd";
 import "../App.css";
 import axios from 'axios';
 
+<<<<<<< HEAD
+const EliminarContrato = () => {
+    return (
+=======
 
 
 
@@ -12,6 +16,7 @@ const EliminarContrato = (idcliente,matricula) => {
 
 const Activar = () =>{
   setVisible(true)
+>>>>>>> main
   
 }
 const Desactivar =() =>{
@@ -36,10 +41,15 @@ const Desactivar =() =>{
   
 
     <div className="Eliminar2">
+<<<<<<< HEAD
+    
+       <h3 className="Mensaje2">Seguro que deseas eliminar este contrato?</h3>
+=======
 
         <div className="Mensaje2" >
           ¿Seguro que desea eliminar este contrato?
         </div>
+>>>>>>> main
   
         <div  className="Botones2"  >
           <Button onClick ={Desactivar} className="B12" type="primary" htmlType="submit" block >Cancelar

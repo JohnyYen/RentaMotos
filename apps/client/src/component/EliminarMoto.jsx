@@ -23,6 +23,10 @@ const Desactivar =() =>{
   };
   
 
+<<<<<<< HEAD
+const EliminarMoto = () => {
+=======
+>>>>>>> main
     return (
       <div>
       <Modal visible={visible}>

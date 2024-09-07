@@ -25,11 +25,11 @@ export class MotorcycleService {
     }
 
     async deleteMotorcycle( id : string){
-        try {
-            await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
-        } catch (error) {
-            console.log('Ocurrio un error');
-        }
+        // try {
+             await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
+        // } catch (error) {
+        //     console.log('Ocurrio un error');
+        // }
     }
 
     async createMotorcycle (moto : MotorcycleDto){

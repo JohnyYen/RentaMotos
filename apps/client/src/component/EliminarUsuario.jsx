@@ -2,6 +2,10 @@ import{ Button, Modal,useEffect, useState }from "antd";
 import "../App.css";
 import axios from 'axios';
 
+<<<<<<< HEAD
+const EliminarUsuario = () => {
+    return (
+=======
 
 
 
@@ -12,6 +16,7 @@ const EliminarUsuario = (nombreU) => {
 
 const Activar =() =>{
   setVisible(true)
+>>>>>>> main
   
 }
 const Desactivar =() =>{
