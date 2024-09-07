@@ -152,10 +152,7 @@ const ListMoto = () => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">
-                  Modificar
-                </Button>
-                <Button className="actionTable" type="primary">
-                  Eliminar
+                  Rentar
                 </Button>
               </Flex>
             ),
@@ -164,15 +161,6 @@ const ListMoto = () => {
           },
         ]}
       />
-      <Button
-        className="ant-btn-download"
-        onClick={onClick}
-        type="primary"
-        icon={<DownloadOutlined />}
-        shape="round"
-      >
-       {t("mainContent.downloadPDF")}
-      </Button>
     </Flex>
 
       )

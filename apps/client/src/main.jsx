@@ -5,9 +5,10 @@ import "./index.css";
 import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loguin from "./component/Loguin.jsx";
 import UserAdmin from "./pages/UserPages/UserAdmin.jsx";
-
+import i18next from 'i18next';
 import global_es from "./translations/es/global.json"
 import global_en from "./translations/en/global.json"
+import { I18nextProvider } from "react-i18next";
 
 /*Crear proyecton*/
 i18next.init({
