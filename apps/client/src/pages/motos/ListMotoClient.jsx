@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 // console.log('Hello MotherFucker');
 
 const extractData = async () => {
+
   let dataSource = [];
   let response = null;
   try {
@@ -70,7 +71,7 @@ const ListMoto = () => {
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
-
+  const [visible, setVisible] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
@@ -151,7 +152,7 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => setVisible(!visible)} className="actionTable" type="primary">
                   Rentar
                 </Button>
               </Flex>
