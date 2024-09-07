@@ -2,7 +2,7 @@ import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 import UserAdmin from "./pages/UserPages/UserAdmin";
 import Loguin from "./component/Loguin";
-
+import UserClient from "./pages/UserPages/UserClient";
 
 
 
@@ -16,10 +16,10 @@ function App() {
  
   return (
     <>
-       <Routes>
-          <Route path="/" element={<Loguin/>}/>
+        <Routes>
+          <Route path="/" element={<Loguin/>} />
           <Route path="/admin/*" element={<UserAdmin/>}/>
-          <Route path="/client" element={<UserClient/>}/>
+          <Route path="/client/*" element={<UserClient/>}/>
         </Routes>
     </>
   );

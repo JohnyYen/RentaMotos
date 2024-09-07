@@ -1,6 +1,5 @@
 import { Modal, Tag , Descriptions, Flex, Divider} from 'antd'
 import FormItemLabel from 'antd/es/form/FormItemLabel'
-import Password from 'antd/es/input/Password'
 import React from 'react'
 
 const Profile = ({isOpen, setOpen}) => {

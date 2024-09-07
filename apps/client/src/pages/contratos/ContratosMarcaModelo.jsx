@@ -1,5 +1,7 @@
-import { Mentions, Typography, Table, Flex } from "antd";
+import { Mentions, Typography, Table, Flex, Button } from "antd";
 import { useState } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+
 
 const ContratosMarcaModelo = () => {
   const date = new Date();

@@ -12,17 +12,17 @@ import Loguin from "../component/Loguin";
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="admin/listadoClientes" element={<ListadoClientes/>}/>
-      <Route path="/incumplidoresClientes" element={<Incumplidores />}></Route>
-      <Route path="/listadoMoto" element={<ListMoto />}></Route>
-      <Route path="/situacionMotos" element={<SituacionMoto />}></Route>
-      <Route path="/contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
-      <Route path="/listadoContratos" element={<ListadoContratos />}></Route>
+      <Route path="listadoClientes" element={<ListadoClientes/>}/>
+      <Route path="incumplidoresClientes" element={<Incumplidores />}></Route>
+      <Route path="listadoMoto" element={<ListMoto />}></Route>
+      <Route path="situacionMotos" element={<SituacionMoto />}></Route>
+      <Route path="contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
+      <Route path="listadoContratos" element={<ListadoContratos />}></Route>
       <Route path="contratoMunicipio" element={<ContratosMunicipio />}></Route>
-      <Route path="/ingresosAño" element={<IngresosAnno />}></Route>
-      <Route path="/crearContrato" element></Route>
-      <Route path="/contratosCliente" element={<ListadoContratos />}></Route>
-      <Route path="/motosCliente" element={<ListMoto />}></Route>
+      <Route path="ingresosAño" element={<IngresosAnno />}></Route>
+      <Route path="crearContrato" element></Route>
+      <Route path="contratosCliente" element={<ListadoContratos />}></Route>
+      <Route path="motosCliente" element={<ListMoto />}></Route>
     </Routes>
   );
 };
