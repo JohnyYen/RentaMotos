@@ -1,18 +1,28 @@
-import React from "react";
-import { useState } from "react";
+import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
-import AppRoutes from "./components/AppRoutes";
 import UserAdmin from "./pages/UserPages/UserAdmin";
-import { Routes, Route, Navigate, Link } from "react-router-dom";
 import Loguin from "./component/Loguin";
 import UserClient from "./pages/UserPages/UserClient";
 
 
-function App() {
 
+{/* <Route path="/" element={<Loguin/>}/>
+      <Route path="/admin" element={<UserAdmin/>}>
+        <Route path="listadoClientes" element={<ListadoClientes/>}/>
+      </Route>
+      <Route path="/client" element={<UserClient/>}/> */}
+
+function App() {
+ 
   return (
-    <UserAdmin />
-    );
+    <>
+        <Routes>
+          <Route path="/" element={<Loguin/>} />
+          <Route path="/admin/*" element={<UserAdmin/>}/>
+          <Route path="/client/*" element={<UserClient/>}/>
+        </Routes>
+    </>
+  );
 }
 
 export default App;

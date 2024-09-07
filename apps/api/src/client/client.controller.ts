@@ -23,6 +23,10 @@ export class ClientController {
         res.send(buffer);
     }
 
+    @Get('/:id')
+    async getClient(@Param('id') id : string){
+        return await this.clientService.getClient(id);
+    }
     @Get("/bad")
     async getBadClients() {
         return await this.clientService.getAllBadClients();

@@ -1,131 +1,81 @@
-import{ InputNumber,Button,DatePicker,Switch , Form, Input, Radio }from "antd";
+import{ Button}from "antd";
 import {FileDoneOutlined } from '@ant-design/icons';
-import './App.css';
 import { useState} from "react";
 import axios from 'axios';
 
-
   
 
 
-const NuevoContrato = () => {
-
-  const [abrirModal, setabrirModal]= useState (false);
+const NuevoContrato = ({isVisible, setVisible}) => {
   
-  const Modal =(isOpen, closeModal) =>{
-    if(!isOpen) return null;
-    
-      return(<div className="pantallacontrato">
+  
+  const [Matricula, setMatricula] = useState("");
+  const [Id, setId] = useState("");
+  const [dateEnd, setDateEnd] = useState(new Date());
+  const [dateBegin, setDateBegin] = useState(new Date());
+  const [dateFirma, setDateFirma] = useState(new Date());
+  const [isChecked, setIsChecked] = useState(false);
+  const [formaPago, setFormaPago] = useState("");
 
-        <div style={{ 
-                position: 'fixed', 
-                top: '20px', 
-                left: '50%', 
-                transform: 'translateX(-50%)', 
-              }} >
-              <FileDoneOutlined  className= "Creamoto"/>
-              </div>
-        
-        
-        <div className="panelIzquierdo">
-        
-        <Form  >
-          <Form.Item  label={<span style={{ color: 'white' }}>Fecha de firma:</span>} name={"matriculamoto"} >
-              <DatePicker picker="date"/>
-          </Form.Item>
-        
-          <Form.Item  label={<span style={{ color: 'white' }}>Fecha de inicio:</span>} name={"matriculamoto"} >
-              <DatePicker picker="date"/>
-          </Form.Item>
-        
-          <Form.Item  label={<span style={{ color: 'white' }}>Fecha de fin:</span>} name={"matriculamoto"} >
-              <DatePicker picker="date"/>
-          </Form.Item>
-        
-        
-        </Form>
-        
-        </div>
-        
-        
-        
-        <div className="panelDerecho">  
-        <Form>
-        
-        <Form.Item  label={<span style={{ color: 'white' }}>Modificar ID:</span>} name={"matriculamoto"} >
-              <Input placeholder="nuevo ID"/>
-          </Form.Item>
-        
-        </Form>
-        
-        <div className="panelDermini">
-        <Form>
-        
-        <Form.Item  label={<span style={{ color: 'white' }}>Tarifa:</span>} name={"$"} >
-              <Input placeholder="Ingrse la tarifa"/>
-          </Form.Item>
-        
-          <Form.Item  label={<span style={{ color: 'white' }}> Kilómetros:</span>} name={"km"} >
-              <InputNumber placeholder="Ingrese los kilómetros" min={0}/>
-          </Form.Item>
-        
-        </Form>
-        </div>
-        
-        </div>
-        
-        <div className="panelCentral">
-          <Form>
-        <Form.Item  label={<span style={{ color: 'white' }}> Forma de pago:</span>} name={"pago"} >
-              
-              <Radio.Group onChange={handlePagoChange} value={pagoSeleccionado}>
-                <Radio style={{ color: 'white' }} value="efectivo">Efectivo</Radio>
-                <Radio style={{ color: 'white' }} value="tarjeta">Tarjeta</Radio>
-                <Radio style={{ color: 'white' }} value="cheque">Cheque</Radio>
-              </Radio.Group>
-          </Form.Item>
-          <Form.Item  label={<span style={{ color: 'white' }}> Seguro:</span>} name={"seguro"} >
-              <Switch checked={seguroSeleccionado} onChange={handleSeguroChange} />
-              </Form.Item>
-        </Form>
-        </div>
-        
-        
-        
-        
-        
-              <div className="panelBotonescontrato">
-        <Button className="Bc1" type="primary" size="large" block >Cancelar
-                </Button>
-        
-                <Button className="Bc2" type="primary"  size="large" block>
-                  Aceptar
-                </Button>
-        </div>
-        
-        
-        
-        
-            </div>)}
+  if (!isVisible) return null;
 
 
-const [pagoSeleccionado, setPagoSeleccionado] = useState(null);
-  const [seguroSeleccionado, setSeguroSeleccionado] = useState(false);
-
-  const handlePagoChange = (e) => {
-    setPagoSeleccionado(e.target.value);
-  };
-
-  const handleSeguroChange = (checked) => {
-    setSeguroSeleccionado(checked);
-  };
-
-
-
+  const handlePetition = async (contract) => {
+    console.log(contract);
+  }
   return (
 
-    <div className="NuevoContrato">
-      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
+    <div className="pantallacontrato">
+
+      <div style={{ 
+          position: 'fixed', 
+          top: '20px', 
+          left: '50%', 
+          transform: 'translateX(-50%)', 
+        }} >
+        <FileDoneOutlined  className= "Creamoto"/>
+      </div>
+
+        <div>
+          <form id="nuevo-contrato-form">
+            <div id="left-div">
+            <label>Matricula</label>
+            <input onChange={(e) => setMatricula(e.target.value)} placeholder="Matricula de la Moto"/>
+
+            <label>Id cliente</label>
+            <input onChange={(e) => setId(e.target.value)} placeholder="CI del Cliente"/>
+
+            <label>Fecha de Firma</label>
+            <input onChange={(e) => setDateFirma(e.target.value)} type="date" placeholder="    "/>
+
+            <label>Fecha de Inicio</label>
+            <input onChange={(e) => setDateBegin(e.target.value)} type="date"/>
+            </div>
+            
+            <div id="rigth-div">
+            <label>Fecha de Fin</label>
+            <input onChange={(e) => setDateEnd(e.target.value)} type="date"/>
+
+            <label>Forma de Pago</label>
+            <select onChange={(e) => setFormaPago(e.target.value)} id="forma-pago">
+
+            </select>
+
+            <div className="checkbox">
+              <label htmlFor="seguro">Seguro</label>
+              <input onChange={(e) => setIsChecked(e.target.value)} type="checkbox" name="seguro" id="seguro"></input>
+            </div>
+            </div>
+          </form>
+        </div>
+      <div className="panelBotonescontrato">
+        <Button onClick={setVisible} className="Bc1" type="primary" size="large" block >Cancelar
+        </Button>
+
+        <Button onClick={() => handlePetition({idCliente:Id, matricula: Matricula, beginDate : dateBegin, endDate : dateEnd, firmaDate : dateFirma, formaPago : formaPago, seguro : isChecked, diasProrroga: 0})} className="Bc2" type="primary"  size="large" block>
+          Aceptar
+        </Button>
+      </div>
     </div>
 
 

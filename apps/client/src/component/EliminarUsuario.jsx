@@ -2,13 +2,25 @@ import{ Button, Modal,useEffect, useState }from "antd";
 import "../App.css";
 import axios from 'axios';
 
+<<<<<<< HEAD
+const EliminarUsuario = () => {
+    return (
+=======
 
 
 
 
 const EliminarUsuario = (nombreU) => {
 
+<<<<<<< HEAD
+  const [visible, setVisible] = useState(false);
+
+const Activar =() =>{
+  setVisible(true)
+>>>>>>> main
+=======
   const [abrirModal, setabrirModal]= useState (false);
+>>>>>>> 624c6d72aa96f741ef2b5f24673da529581d2ed9
   
   const Modal =(isOpen, closeModal) =>{
     if(!isOpen) return null;

@@ -33,7 +33,7 @@ const SideBarAdmin = () => {
         defaultOpenKeys={["/clientes"]}
         mode="inline"
         onClick={(item) => {
-          navigate(item.key);
+          navigate(`/admin/${item.key}`);
         }}
         items={[
           {
@@ -42,12 +42,12 @@ const SideBarAdmin = () => {
             key: "/clientes",
             children: [
               {
-                label: t("sideBar.clientList"),
-                key: "/listadoClientes",
+                label: "Listado Clientes",
+                key: "listadoClientes",
               },
               {
-                label: t("sideBar.clientNonCompliant"),
-                key: "/incumplidoresClientes",
+                label: "Incumplidores",
+                key: "incumplidoresClientes",
               },
             ],
           },
@@ -57,12 +57,12 @@ const SideBarAdmin = () => {
             key: "/motos",
             children: [
               {
-                label: t("sideBar.motorcycleList"),
-                key: "/listadoMoto",
+                label: "Listado Motos",
+                key: "listadoMoto",
               },
               {
-                label: t("sideBar.motorcycleSituation"),
-                key: "/situacionMotos",
+                label: "Situacion Motos",
+                key: "situacionMotos",
               },
             ],
           },
@@ -72,23 +72,23 @@ const SideBarAdmin = () => {
             key: "/contratos",
             children: [
               {
-                label: t("sideBar.contractList"),
-                key: "/listadoContratos",
+                label: "Listado Contratos",
+                key: "listadoContratos",
               },
               {
-                label: t("sideBar.contractMakeModel"),
-                key: "/contratoMarcaModelo",
+                label: "Por marca y modelo",
+                key: "contratoMarcaModelo",
               },
               {
-                label: t("sideBar.contractMunicipality"),
-                key: "/contratoMunicipio",
+                label: "Por municipio",
+                key: "contratoMunicipio",
               },
             ],
           },
           {
             label: t("sideBar.annualIncome"),
             icon: <DollarOutlined />,
-            key: "/ingresosAño",
+            key: "ingresosAño",
           },
         ]}
       ></Menu>

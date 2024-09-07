@@ -6,12 +6,17 @@ import NuevoCliente from "./NuevoUsuario";
 import { BrowserRouter, Link, Navigate } from "react-router-dom";
 import AppRoutes from "../components/AppRoutes";
 import UserAdmin from "../pages/UserPages/UserAdmin";
+import { useState } from "react";
 
 function Loguin() {
   const [abrirModal, setabrirModal] = useState(false);
 
   const Modal = (isOpen, closeModal) => {
     if (!isOpen) return null;
+
+    const Registrar = () => {
+
+    }
 
     return (
       <div className="loguin">
@@ -50,9 +55,9 @@ function Loguin() {
           </Button>
           <div>
             <Button onClick={Registrar} type="link">
-              Registrarse{" "}
+              Registrarse
             </Button>
-            <NuevoCliente visible={visibleNuevoCliente} />
+            {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
           </div>
         </div>
       </div>

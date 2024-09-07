@@ -3,6 +3,7 @@ import { PG_CONNECTION } from 'src/constants';
 import { ClientDto } from './dto/client.dto';
 import generatePDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
+import { log } from 'console';
 
 @Injectable()
 export class ClientService {
@@ -13,6 +14,10 @@ export class ClientService {
         return res.rows;
     }
 
+    async getClient(id : string){
+        const res = await this.conn.query(`SELECT * FROM cliente where idcliente = ${id}`);
+        return res.rows;
+    }
     async getAllClientByPDF() {
         const client = await this.getAllClients();
         return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
@@ -27,7 +32,8 @@ export class ClientService {
     }
 
     async updateClient(client : ClientDto, id : string){
-        this.conn.query(`UPDATE cliente SET edad = ${client.edad}, nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${client.idCliente}'`)
+
+        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = ${client.municipio} ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${id}'`)
     }
 
     async getAllBadClients(){

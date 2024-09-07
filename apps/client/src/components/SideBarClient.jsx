@@ -31,23 +31,23 @@ import {
           defaultOpenKeys={["/clientes"]}
           mode="inline"
           onClick={(item) => {
-            navigate(item.key);
+            navigate(`/client/${item.key}`);
           }}
           items={[
             {
               label: "Crear contrato",
               icon: <FileAddOutlined />,
-              key: "/crearContrato",
+              key: "crearContrato",
             },
             {
                 label: "Mis contratos",
                 icon: <FileDoneOutlined />,
-                key: "/contratosCliente",
+                key: "contratosCliente",
             },
             {
               label: "Listado motos",
               icon: <CarOutlined />,
-              key: "/motosCliente",
+              key: "motosCliente",
             },
           ]}
         ></Menu>
