@@ -1,10 +1,10 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from "axios";
-import { DownloadOutlined } from "@ant-design/icons";
+import NuevoContrato from "../../component/NuevoContrato"; 
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalCreateContract from "../../components/ModalCreateContract";
 
 const extractData = async () => {
 
@@ -75,7 +75,7 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
-
+  const [Row, setRow] = useState(null)
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
@@ -97,6 +97,7 @@ const ListMoto = () => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
+      <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)} row={Row}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           Fecha actual:
@@ -152,7 +153,7 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button onClick={() => setVisible(!visible)} className="actionTable" type="primary">
+                <Button onClick={() => {setVisible(!visible); setRow(record)}} className="actionTable" type="primary">
                   Rentar
                 </Button>
               </Flex>
