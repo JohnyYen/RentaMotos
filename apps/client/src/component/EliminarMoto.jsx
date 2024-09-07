@@ -1,8 +1,35 @@
-import{ Button }from "antd";
+import{ Button, useState ,Modal }from "antd";
 import "../App.css";
+import axios from 'axios';
 
+const EliminarMoto = (idmoto) => {
+
+  const [visible, setVisible] = useState(false);
+
+const Activar =() =>{
+  setVisible(true)
+  
+}
+const Desactivar =() =>{
+  setVisible(false)};
+
+  const Emoto = async(idmoto) =>{
+
+    try{
+    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `;
+    const response = await axios.delete(apiUrl);
+    alert('Elemento eliminado con éxito:', response.data);
+  }catch(error){alert('Error al eliminar el elemento:', error);}
+  };
+  
+
+<<<<<<< HEAD
 const EliminarMoto = () => {
+=======
+>>>>>>> main
     return (
+      <div>
+      <Modal visible={visible}>
   
     <div className="Eliminar1">
     
@@ -14,7 +41,7 @@ const EliminarMoto = () => {
           <Button className="B11" type="primary" htmlType="submit" block >Cancelar
           </Button>
   
-          <Button className="B21"
+          <Button onClick = {Emoto(idmoto)} className="B21"
             type="primary" htmlType="submit" block
   
           >
@@ -23,7 +50,9 @@ const EliminarMoto = () => {
         </div>
     
     
-    </div>  
+    </div> 
+     </Modal>
+     </div>
     
     );
   };

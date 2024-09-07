@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 import{ Button}from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import axios from 'axios';
 import { useState } from "react";
+=======
+import{ InputNumber,Button,  Form, Input,Select,Modal }from "antd";
+import {UserOutlined} from '@ant-design/icons';
+import './App.css';
+import Operation from "antd/es/transfer/operation";
+import axios from 'axios';
+
+>>>>>>> main
 
 
 const NuevoCliente = ({visible, setVisible}) => {
@@ -12,6 +21,7 @@ const NuevoCliente = ({visible, setVisible}) => {
   const [email, setEmail] = useState("");
   const [ci, setCi] = useState("");
 
+<<<<<<< HEAD
   //Client
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -34,8 +44,24 @@ const NuevoCliente = ({visible, setVisible}) => {
   }
   return (
   
-  <div className="pantalla">
+=======
+  const [visible, setVisible] = useState(false);
+
+const Activar =() =>{
+  setVisible(true)
   
+}
+const Desactivar =() =>{
+  setVisible(false)
+  
+}
+
+    return (
+      <div>
+   <Modal visible={visible}>
+>>>>>>> main
+  <div className="pantalla">
+ 
   <div style={{ 
           position: 'fixed', 
           top: '20px', 
@@ -93,6 +119,7 @@ const NuevoCliente = ({visible, setVisible}) => {
   </div>
 
   <div className="panelBotones">
+<<<<<<< HEAD
           <Button onClick={setVisible} className="B1" type="primary" size="large" block >Cancelar
           </Button>
   
@@ -101,11 +128,19 @@ const NuevoCliente = ({visible, setVisible}) => {
             {idCliente:ci, nombre:name, segNombre:name, primApellido:lastName, segApellido: lastName, edad:age, municipio:mun, sexo:sex, numcont:numCont}
            )}
             className="B2" type="primary"  size="large" block>
+=======
+  <Button onClick ={setVisible(false)} className="B1" type="primary" size="large" block >Cancelar
+          </Button>
+  
+          <Button onClick ={setVisible(false)} className="B2" type="primary"  size="large" block>
+>>>>>>> main
             Aceptar
           </Button>
   </div>
   
-  
+ 
+  </div>
+   </Modal> 
   </div>
     );};
   

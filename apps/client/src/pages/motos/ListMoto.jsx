@@ -1,9 +1,8 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
+import {useState} from "react"
 import "../../App.css";
 import axios from 'axios';
 import { DownloadOutlined } from "@ant-design/icons";
-import { useState } from "react";
-import ModificarMoto from "../../components/ModificarMoto";
 import ModalMoto from "../../components/ModalMoto";
 
 
@@ -189,6 +188,8 @@ const ListMoto = () => {
               <Flex align="center" justify="center" gap="1rem">
                 <Button onClick={() => {setVisibility(true); setRow(record)}} className="actionTable" type="primary">Modificar</Button>
                 <Button className="actionTable" type="primary">Delete</Button>
+
+                {visDisplay && <EliminarMoto/>}
               </Flex>
             ),
             fixed: "right",

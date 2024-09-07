@@ -1,6 +1,11 @@
 import{ Button}from "antd";
 import {CarOutlined } from '@ant-design/icons';
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import './App.css';
+import Operation from "antd/es/transfer/operation";
+>>>>>>> main
 import axios from 'axios';
 
 
@@ -13,9 +18,24 @@ const NuevaMoto = ({isVisible, setVisible}) => {
 
   if(!isVisible) return null;
 
+<<<<<<< HEAD
   const handlePetition = (moto) => {
     console.log(moto);
   }
+=======
+  const [visible, setVisible] = useState(false);
+
+const Activar =() =>{
+  setVisible(true)
+  
+}
+const Desactivar =() =>{
+  setVisible(false)
+  
+}
+
+
+>>>>>>> main
   return (
 <div className="pantallamoto">
 
