@@ -4,8 +4,8 @@ import ListadoContratos from "../pages/contratos/ListadoContratos";
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="motosCliente" element={<ListadoContratos/>} />
-      <Route path="contratosCliente" element={<ListMoto/>} />
+      <Route path="motosCliente" element={<ListMoto/>} />
+      <Route path="contratosCliente" element={<ListadoContratos/>} />
     </Routes>
   );
 };

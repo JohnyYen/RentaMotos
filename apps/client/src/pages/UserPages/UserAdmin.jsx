@@ -2,9 +2,6 @@ import { useState } from "react";
 import { Layout } from "antd";
 import SideBarAdmin from "../../components/SideBarAdmin";
 import CustomHeader from "../../components/CustomHeader";
-import MainContent from "../../components/MainContent";
-import { Outlet, Route, Routes } from "react-router-dom";
-import ListadoClientes from "../clientes/ListadoClientes";
 import AppRouter from "../../components/AppRoutes.admin";
 const { Sider, Header, Content } = Layout;
 
