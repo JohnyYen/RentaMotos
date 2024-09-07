@@ -3,6 +3,8 @@ import "./App.css";
 import UserAdmin from "./pages/UserPages/UserAdmin";
 import Loguin from "./component/Loguin";
 import UserClient from "./pages/UserPages/UserClient";
+import ModalCreateContract from "./components/ModalCreateContract";
+import Prueba from "./pages/UserPages/Prueba";
 
 
 
@@ -17,6 +19,7 @@ function App() {
   return (
     <>
         <Routes>
+          <Route path="/prueba" element={<Prueba/>}/>
           <Route path="/" element={<Loguin/>} />
           <Route path="/admin/*" element={<UserAdmin/>}/>
           <Route path="/client/*" element={<UserClient/>}/>

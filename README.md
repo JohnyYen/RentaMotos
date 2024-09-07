@@ -55,3 +55,6 @@ http://localhost:3000/api/marc/:id PATCH
 
 ## Municipio
 http://localhost:3000/api/mun GET
+
+## Situation
+http://localhost:3000/api/situation GET

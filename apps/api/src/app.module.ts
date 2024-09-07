@@ -11,9 +11,10 @@ import { FormaPagoModule } from './forma-pago/forma-pago.module';
 import { UserModule } from './user/user.module';
 import { MunModule } from './mun/mun.module';
 import {ConfigModule} from '@nestjs/config'
+import { SituationModule } from './situation/situation.module';
 
 @Module({
-  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule],
+  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule, SituationModule],
   controllers: [AppController],
   providers: [AppService],
 })
