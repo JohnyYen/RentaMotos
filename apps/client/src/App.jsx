@@ -1,16 +1,8 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 import UserAdmin from "./pages/UserPages/UserAdmin";
 import Loguin from "./component/Loguin";
-import ListMoto from "./pages/motos/ListMoto";
-import { Avatar, Checkbox, DatePicker, Dropdown, Flex, FloatButton, Input, InputNumber, List, message, Modal, Select, Skeleton, Tag, Watermark } from "antd";
-import { useState } from "react";
-import FormItemLabel from "antd/es/form/FormItemLabel";
-import Item from "antd/es/list/Item";
-import ModalMoto from "./components/ModalMoto";
-import ModalContract from "./components/ModalContract";
-import ModalClient from "./components/ModalClient";
-import Profile from "./components/Profile";
+
 
 
 
@@ -21,17 +13,14 @@ import Profile from "./components/Profile";
       <Route path="/client" element={<UserClient/>}/> */}
 
 function App() {
-  const [visible, setVisible] = useState(false)
-
-  const handleVisibility = () => {
-    setVisible(!visible);
-  }
-
+ 
   return (
     <>
-      <button onClick={handleVisibility}>Touch Me</button>
-
-      <Profile isOpen={visible} setOpen={handleVisibility}/>
+       <Routes>
+          <Route path="/" element={<Loguin/>}/>
+          <Route path="/admin/*" element={<UserAdmin/>}/>
+          <Route path="/client" element={<UserClient/>}/>
+        </Routes>
     </>
   );
 }

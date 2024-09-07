@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import SideBarAdmin from "../../components/SideBarAdmin";
 import CustomHeader from "../../components/CustomHeader";
 import MainContent from "../../components/MainContent";
-import { Outlet } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 const { Sider, Header, Content } = Layout;
 
 const UserAdmin = () => {
@@ -24,7 +24,9 @@ const UserAdmin = () => {
           <CustomHeader />
         </Header>
         <Content className="content">
-          <MainContent />
+          <Routes>
+            <Route/>
+          </Routes>
         </Content>
       </Layout>
     </Layout>
