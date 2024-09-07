@@ -5,14 +5,16 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Flex } from "antd";
-import {Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "../App.css";
 import "boxicons";
 //import axios from 'axios';
 
 const SideBarAdmin = () => {
   const navigate = useNavigate();
-  //const sourceData = axios.get()
+  const [t] = useTranslation("global"); 
 
   return (
     <>
@@ -35,7 +37,7 @@ const SideBarAdmin = () => {
         }}
         items={[
           {
-            label: "Clientes",
+            label: t("sideBar.client"),
             icon: <UserOutlined />,
             key: "/clientes",
             children: [
@@ -50,7 +52,7 @@ const SideBarAdmin = () => {
             ],
           },
           {
-            label: "Motos",
+            label: t("sideBar.motorcycle"),
             icon: <CarOutlined />,
             key: "/motos",
             children: [
@@ -65,7 +67,7 @@ const SideBarAdmin = () => {
             ],
           },
           {
-            label: "Contratos",
+            label: t("sideBar.contract"),
             icon: <FileDoneOutlined />,
             key: "/contratos",
             children: [
@@ -84,7 +86,7 @@ const SideBarAdmin = () => {
             ],
           },
           {
-            label: "Ingresos del año",
+            label: t("sideBar.annualIncome"),
             icon: <DollarOutlined />,
             key: "ingresosAño",
           },

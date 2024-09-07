@@ -23,8 +23,10 @@ const AppRouter = () => {
       <Route path="/crearContrato" element></Route>
       <Route path="/contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="/motosCliente" element={<ListMoto />}></Route>
+      <Route path="/userAdmin" element={<UserAdmin />}></Route>
+      <Route path="/userClient" element={<UserClient />}></Route>
     </Routes>
   );
 };
 
-export default AppRouter;
+export default AppRoutes;

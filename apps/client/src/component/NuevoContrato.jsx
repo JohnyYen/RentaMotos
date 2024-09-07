@@ -6,7 +6,6 @@ import axios from 'axios';
   
 
 
-<<<<<<< HEAD
 const NuevoContrato = ({isVisible, setVisible}) => {
   
   
@@ -17,33 +16,6 @@ const NuevoContrato = ({isVisible, setVisible}) => {
   const [dateFirma, setDateFirma] = useState(new Date());
   const [isChecked, setIsChecked] = useState(false);
   const [formaPago, setFormaPago] = useState("");
-=======
-const NuevoContrato = () => {
-
-
-  const [visible, setVisible] = useState(false);
-
-  const Activar =() =>{
-    setVisible(true)
-    
-  }
-  const Desactivar =() =>{
-    setVisible(false)
-    
-  }
-
-
-const [pagoSeleccionado, setPagoSeleccionado] = useState(null);
-  const [seguroSeleccionado, setSeguroSeleccionado] = useState(false);
-
-  const handlePagoChange = (e) => {
-    setPagoSeleccionado(e.target.value);
-  };
-
-  const handleSeguroChange = (checked) => {
-    setSeguroSeleccionado(checked);
-  };
->>>>>>> main
 
   if (!isVisible) return null;
 

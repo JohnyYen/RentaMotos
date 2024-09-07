@@ -1,0 +1,63 @@
+{
+    "header": {
+        "motorcycleRent": "Motorcycle Rent"
+    },
+    "client": {
+        "clientListTitle": "Client list",
+        "clientNonCompliant": "Non-compliant list"
+    },
+    "motorcycle": {
+        "motorcycleList": "Motorcycle list",
+        "motorcycleSituation": "Motorcycle situation"
+    },
+    "contract": {
+        "contractList": "List of contracts",
+        "contractMunicipality": "Contracts by municipality",
+        "contractMakeModel": "Contracts by make and model"
+    },
+    "sideBar": {
+        "client": "Customers",
+        "clientList": "Client List",
+        "clientNonCompliant": "Non-compliant list",
+        "motorcycle": "Motorcycle",
+        "motorcycleList": "Motorcycle List",
+        "motorcycleSituation": "Situation",
+        "contract": "Contracts",
+        "contractList": "List of Contracts",
+        "contractMunicipality": "By Municipality",
+        "contractMakeModel": "By Make and Model",
+        "annualIncome": "Annual Income"
+    },
+    "mainContent": {
+        "downloadPDF": "Download PDF",
+        "table": {
+            "serialNumber": "Serial number",
+            "mark": "Mark",
+            "model": "Model",
+            "color": "Color",
+            "kmTraveled": "Km traveled",
+            "actions": "Actions",
+            "name": "Name",
+            "lastName": "Last name",
+            "endContract": "End of contract",
+            "motorcycleDelivery": "Motorcycle delivery",
+            "municipality": "Municipality",
+            "timesRented": "Times rented",
+            "rentalValue": "Rental value",
+            "situation": "Situation",
+            "methodPayment": "Method of payment",
+            "startContract": "Start of contract",
+            "extension": "Extension",
+            "additionalInsurance": "Additional insurance",
+            "totalAmount": "Total amount",
+            "numberMotorcycle": "Number of motorcycle",
+            "totalDaysRented": "Total days rented",
+            "creditCardIncome": "Credit card income",
+            "incomeCheck": "Income by check",
+            "cashIncome": "Cash income",
+            "daysRented": "Days rented",
+            "extensionDays": "Extension days",
+            "totalCash": "Total cash"
+        }
+    }
+}

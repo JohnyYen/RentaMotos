@@ -1,134 +1,94 @@
-import { Mentions, Typography, Table, Flex, Button } from "antd";
-import { useState } from "react";
+import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
+
+const extractData = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/moto/situation");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        matricula: element.matricula,
+        marca: element.marca,
+        situacion: element.situacion,
+        "Fin de contrato": element.fecha_entrega,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
 
 const SituacionMoto = () => {
-  const dataSource = [
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      modelo: "458feg",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      modelo: "458feg",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key:  "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-    {
-      key: "1",
-      fecha: "20/08/2024",
-      matricula: "perra123",
-      marca: "yamaha",
-      situacion: "Alquilada",
-      "Fin de contrato": "30/08/2024",
-    },
-  ];
-
   const date = new Date();
   const day = date.getDay();
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
 
+  const [dataSource, setDataSource] = useState([]);
+  const [t] = useTranslation("global");
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
+
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Situacion de Motos</Typography.Title>
+      <Typography.Title level={3}>{t("motorcycle.motorcycleSituation")}</Typography.Title>
       <Flex align="center">
-        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
-        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+        <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
+          Fecha actual:
+        </Typography.Text>
+        <Mentions
+          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          readOnly
+          variant="borderless"
+          defaultValue={currentDate}
+        />
       </Flex>
       <Table
-       scroll={{
-        x: 920,
-      }}
+        scroll={{
+          x: 920,
+        }}
         pagination={{
-          pageSize: 6,
+          pageSize: 5,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
           {
-            title: "Matricula",
+            title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
             fixed: "left",
-            width: "8rem"
+            width: "8rem",
           },
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
           },
           {
-            title: "Situacion",
+            title: t("mainContent.table.situation"),
             dataIndex: "situacion",
             key: "situacion",
           },
           {
-            title: "Fin de contrato",
+            title: t("mainContent.table.endContract"),
             dataIndex: "Fin de contrato",
             key: "Fin de contrato",
           },
         ]}
       ></Table>
-      
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };

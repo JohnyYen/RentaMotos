@@ -11,9 +11,14 @@
   border: none;
 }
 
-.ant-btn:hover {
-  border: none;
-  background-color: rgb(39, 39, 192) !important;
+.popup-language {
+  margin-top: 0.5rem;
+  background-color: darkblue;
+  border-radius: 5px;
+}
+
+.popup-language span {
+  color: white;
 }
 
 .content {
@@ -62,7 +67,6 @@
   font-weight: 500;
 }
 
-
 .ant-menu-item-selected {
   background-color: darkblue !important;
 }
@@ -76,6 +80,10 @@
 .actionTable {
   background-color: darkblue;
   color: white;
+}
+
+.actionTable:hover {
+  background-color: rgb(39, 39, 192) !important;
 }
 
 /*Pantalla de loguin*/
