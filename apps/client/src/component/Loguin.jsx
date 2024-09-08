@@ -1,12 +1,10 @@
 import { Button, Divider, Form, Input, message, Modal } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import "../App.css";
+import "./NuevoUsuario";
 import axios from "axios";
-import NuevoCliente from "./NuevoUsuario";
-import { BrowserRouter, Link, Navigate } from "react-router-dom";
-import AppRoutes from "../components/AppRoutes";
-import UserAdmin from "../pages/UserPages/UserAdmin";
 import { useState } from "react";
+import ModalCreateClient from "../components/ModalCreateClient";
 
 function Loguin() {
   const [abrirModal, setabrirModal] = useState(false);
@@ -54,12 +52,14 @@ function Loguin() {
             Aceptar
           </Button>
           <div>
-            <Button onClick={Registrar} type="link">
+            <Button onClick={() => setabrirModal(true)} type="link">
               Registrarse
             </Button>
             {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
           </div>
         </div>
+
+        <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
       </div>
     );
   };
