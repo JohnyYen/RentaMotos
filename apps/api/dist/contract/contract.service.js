@@ -29,6 +29,10 @@ let ContractService = class ContractService {
         const res = await this.conn.query('SELECT contratoxmarcamodelo()');
         return res.rows;
     }
+    async getCotnractByCliente(id) {
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`);
+        return res.rows;
+    }
     async getContractByMun() {
         const res = await this.conn.query('select * from cont_mun');
         return res.rows;
@@ -49,6 +53,7 @@ let ContractService = class ContractService {
         await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
     }
     updateContract(contract, idCliente, matricula) {
+        this.conn.query(`UPDATE Contrato SET formapago = ${contract.formaPago}, seguro = ${contract.seguro}, diasprorroga = ${contract.diasProrroga} WHERE idcliente = ${idCliente} AND matricula = ${matricula}`);
     }
     deleteContract(idCliente, matricula) {
         this.conn.query(`DELETE FROM Contrato where idcliente = '${idCliente} and matricula = '${matricula}'`);

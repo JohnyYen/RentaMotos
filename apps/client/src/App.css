@@ -97,13 +97,27 @@
   transform: translate(-50%, -50%);
   width: 50vw;
   height: 50vh;
-  background-color: rgb(2, 2, 86);
-  background-size: cover;
-  z-index: 100;
   border-radius: 10%;
+
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
 }
 
-.Registr {
+.userInput{
+  margin-left: 1.5rem;
+}
+
+.Registro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   padding: 0px 16px 16px 16px;
   margin-bottom: 20px;
 }
@@ -113,17 +127,63 @@
   font-size: 50px;
 }
 
+.inputLoguin {
+  height: 2.5rem;
+  width: 15rem;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inputLoguin::placeholder{
+  color: #202020;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.labelLoguin{
+  color: floralwhite;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
 .Alternativa {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   justify-content: center;
   align-items: center;
   margin-top: 250px;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
 
+.buttonLoguin{
+  background-color: #2975b7;
+  transition: all .5s ease;
+}
+
+.buttonLoguin:hover{
+  background-color: #06325d;
+}
+
+.linkLoguin{
+  color: beige;
+  background-color: transparent;
+  transition: all .5s ease;
+  border-style: none;
+}
+
+.linkLoguin:hover{
+  border: none;
+  color:#202020;
 }
 
 /*Pantall de eliminar usuario*/
-
-
 .Eliminar {
   display: flex;
   position: fixed;
@@ -140,7 +200,6 @@
   border-radius: 9%;
 }
 
-
 .Mensaje {
   position: absolute;
   top: 30px;
@@ -153,9 +212,7 @@
   font-size: 120%;
 }
 
-
 .Botones {
-
   position: fixed;
   align-items: center;
   display: flex;
@@ -187,8 +244,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #06325d;
-  background-size: cover;
   padding: 20px;
   width: 600px;
   height: 160px;
@@ -313,41 +368,6 @@
 .actionTable {
   background-color: darkblue;
   color: white;
-}
-
-/*Pantalla de loguin*/
-.loguin {
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 50vh;
-  background-color: rgb(2, 2, 86);
-  background-size: cover;
-  z-index: 100;
-  border-radius: 10%;
-}
-
-.Registr {
-  padding: 0px 16px 16px 16px;
-  margin-bottom: 20px;
-}
-
-.iconoUsuario {
-  color: rgb(253, 255, 254);
-  font-size: 50px;
-}
-
-.Alternativa {
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  margin-top: 250px;
-
 }
 
 /*Pantall de eliminar usuario*/
@@ -522,21 +542,47 @@
 /*Pantalla de nuevo usuario*/
 
 .pantalla {
-
   display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #06325d;
-  background-size: cover;
-  padding: 20px;
-  width: 600px;
-  height: 400px;
+  width: 50%;
+  padding: 0rem 3rem;
+  height:90%;
   border-radius: 9%;
+  flex-wrap: nowrap;
 
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+
+}
+
+.inputLoguin{
+  width: fit-content;
+}
+
+.sexItem{
+  width: 30px;
+}
+
+.selectItem{
+  color: #202020;
+  font-size: 17px;
+}
+
+.selectItem::placeholder{
+  color: #202020;
 }
 
 .CreaUsuario {
@@ -544,35 +590,49 @@
   font-size: 60px;
 }
 
-.panelImputIzquierdo {
+#left-div, #rigth-div{
   display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  transform: translate(-50%, -5%);
-
+  flex-direction: column;
+  padding: 1rem;
 }
 
-
-.panelImputDerecho {
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  transform: translate(110%, -50%);
+#left-div label, #rigth-div label{
+  font-weight: 600;
+  font-variant: small-caps;
 }
 
+#left-div input, #rigth-div input, #rigth-div select{
+  border-radius: 5px;
+  background: wheat;
+  color: #363636;
+  font-size: large;
+  transition: all 0.5s ease;
+  border: solid 3px wheat;
+}
 
+#left-div input:hover, #rigth-div input:hover, #rigth-div select:hover{
+  border-color: indigo;
+}
+
+.panelImputIzquierdo form{
+  display: flex;
+  padding: 1rem;
+  margin-top: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.panelImputIzquierdo form input, .panelImputIzquierdo form select{
+  margin-bottom: 10px;
+  width: fit-content;
+
+}
 
 .panelBotones {
-
-
-  position: fixed;
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 40%;
-
 }
 
 .B1 {
@@ -593,41 +653,70 @@
 
 /*Pantalla nueva moto*/
 
-
-
 .pantallamoto {
-
   display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #06325d;
-  background-size: cover;
-  padding: 20px;
-  width: 400px;
-  height: 450px;
+  width: 30%;
+  padding: 0rem 5rem;
+  height: 70%;
   border-radius: 9%;
-
 }
 
+.panelCentral{
+  height: 60%;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rem;
+  margin-top: 3rem;
+}
+
+.formMoto{
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  width: fit-content;
+}
+
+.formMoto input, .formMoto select{
+  width: fit-content;
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 3px #202020;
+}
+
+.formMoto label{
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.formMoto select{
+  padding-right: 0.5rem;
+  text-align: left;
+}
 
 .Creamoto {
   color: rgb(253, 255, 254);
   font-size: 60px;
 }
 
-.panelBotonesmoto {
-
-
-  position: fixed;
+.panelBotonesmoto{
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-top: 79%;
-
+  position: relative;
+  top: 30%;
 }
 
 .Bm1 {
@@ -664,11 +753,38 @@
   border-radius: 9%;
 }
 
+#nuevo-contrato-form{
+  display: flex;
+  flex-direction: row;
+}
+
+#nuevo-contrato-form div{
+  margin: 2rem;
+} 
+
+#nuevo-contrato-form #left-div input, #nuevo-contrato-form #rigth-div input, #nuevo-contrato-form #rigth-div select{
+  margin-bottom: 1rem;
+}
+
+.checkbox{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: left;
+  width: 100%;
+}
+
+#forma-pago{
+  margin-bottom: 0;
+}
+
+#seguro{
+  margin-left: 1rem;
+}
 
 
 .pantallacontrato {
   color: rgb(253, 255, 254);
-  font-size: 60px;
 }
 
 .panelIzquierdo {
@@ -735,4 +851,174 @@
   width: 150px;
   left: 40%;
 
+}
+
+/* Pantallas de Modificaciones */
+
+/*Moto*/
+
+.model {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: center;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+
+.modify-container {
+  
+  width: 40rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.modify-container form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.modify-container form input, select{
+  width: fit-content;
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 2px #202020;
+}
+
+.button{
+  width: 5rem;
+  padding: 10px;
+  background-color: #2975b7;
+  transition: all .8s ease;
+}
+
+.button:hover{
+  background-color: #06325d;
+}
+
+.modify-container div{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+
+/*Cliente*/
+
+.modify-container-cliente{
+  width: fit-content;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.modify-container-cliente form{
+  display: flex;
+  flex-direction: row;
+}
+
+.modify-container-cliente div{
+  margin-top: 15px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2rem;
+}
+
+.modify-container-cliente form input, .modify-container-cliente form select{
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 2px #202020;
+  width: 80%;
+}
+
+/*Contrato*/
+#contrato-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+#contrato-container form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 1rem;
+  margin-left: 25%;
+}
+
+#contrato-container #rigth-div{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+#checkbox{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+#checkbox input{
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  height: 1rem;
+  width: 1rem;
 }

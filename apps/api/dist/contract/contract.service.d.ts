@@ -4,6 +4,7 @@ export declare class ContractService {
     constructor(conn: any);
     getAllContract(): Promise<any>;
     getContractFilter(): Promise<any>;
+    getCotnractByCliente(id: string): Promise<any>;
     getContractByMun(): Promise<any>;
     getPDFContract(): Promise<Buffer>;
     getPDFContractXModelo(): Promise<Buffer>;

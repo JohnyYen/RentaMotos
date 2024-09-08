@@ -1,10 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import { Layout } from "antd";
 import SideBarAdmin from "../../components/SideBarAdmin";
 import CustomHeader from "../../components/CustomHeader";
-import MainContent from "../../components/MainContent";
-
+import AppRouter from "../../components/AppRoutes.admin";
 const { Sider, Header, Content } = Layout;
 
 const UserAdmin = () => {
@@ -16,8 +14,7 @@ const UserAdmin = () => {
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
-        className="sider"
-      >
+        className="sider">
         <SideBarAdmin />
       </Sider>
       <Layout>
@@ -25,7 +22,7 @@ const UserAdmin = () => {
           <CustomHeader />
         </Header>
         <Content className="content">
-          <MainContent />
+          <AppRouter/>
         </Content>
       </Layout>
     </Layout>

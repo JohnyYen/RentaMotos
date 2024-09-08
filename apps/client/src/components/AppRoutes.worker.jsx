@@ -9,11 +9,10 @@ import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
-import UserClient from "../pages/UserPages/UserClient"
-const AppRoutes = ({ dateToday }) => {
+const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/listadoClientes" element={<ListadoClientes dateToday={dateToday} />}></Route>
+      <Route path="listadoClientes" element={<ListadoClientes/>}/>
       <Route path="/incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="/listadoMoto" element={<ListMoto />}></Route>
       <Route path="/situacionMotos" element={<SituacionMoto />}></Route>

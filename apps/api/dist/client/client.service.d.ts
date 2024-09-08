@@ -3,6 +3,7 @@ export declare class ClientService {
     private conn;
     constructor(conn: any);
     getAllClients(): Promise<any>;
+    getClient(id: string): Promise<any>;
     getAllClientByPDF(): Promise<Buffer>;
     deleteClient(id: string): Promise<void>;
     createClient(client: ClientDto): Promise<void>;

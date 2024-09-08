@@ -30,6 +30,9 @@ let ClientController = class ClientController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
+    async getClient(id) {
+        return await this.clientService.getClient(id);
+    }
     async getBadClients() {
         return await this.clientService.getAllBadClients();
     }
@@ -64,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClientsByPDF", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClient", null);
 __decorate([
     (0, common_1.Get)("/bad"),
     __metadata("design:type", Function),

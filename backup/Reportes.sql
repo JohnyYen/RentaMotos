@@ -92,13 +92,21 @@ delete from contrato where fechafirma = '2023-02-01';
 -- 	return count;
 -- END;
 -- $$ LANGUAGE plpgsql
+select * from contrato
+
 select ('2024-05-10'::date - '2024-01-10'::date) * 750
 -- Reporte 1
 select * from cliente inner join contrato on Cliente.idcliente = contrato.idcliente
-create or replace view cliente_view as select Cliente.Municipio, Cliente.nombre, Cliente.idCliente, count(*), sum(((fechafin - fechainicio) * 750) + (diasprorroga * 300)) from
-(Cliente inner join Contrato on Cliente.idcliente = Contrato.idCliente)
+create or replace view cliente_view as select Cliente.Municipio, Cliente.idCliente, Cliente.nombre, count(Contrato.matricula) as cant_alquileres,
+case when count(Contrato.matricula) <> 0 then sum(((fechafin - fechainicio) * 750) + (diasprorroga * 300)) 
+else 0 end as valor_total from
+(Cliente left join Contrato on Cliente.idcliente = Contrato.idCliente)
 Group by Cliente.municipio, nombre, Cliente.idcliente
 order by Cliente.Municipio asc
+
+drop view cliente_view
+
+select * from cliente_view
 
 select Cliente.nombre, idcliente, countContratos(idcliente) as cant_contratos,
 							sum(calculateImporte(idcliente, 750, 300)) as valor_alquileres
@@ -137,9 +145,18 @@ as tabl inner join Moto on tabl.matricula = Moto.matricula);
 -- create or replace function deleteContratosCliente() returns trigger as
 -- $$
 -- begin
--- 	delete from contrato where contrato.idcliente = NEW.idcliente;
+-- 	delete from contrato where contrato.idcliente = OLD.idcliente;
 -- end
 -- $$
 -- language 'plpgsql';
 
 -- create trigger tg_deleteContratosCliente after delete on cliente for each row execute function deleteContratosCliente()
+-- drop trigger tg_deleteContratosCliente
+
+
+select * from contrato
+
+create or replace view contrato_cliente_view as select Contrato.matricula, Contrato.fechainicio, Contrato.fechafin,
+Contrato.formapago, Contrato.seguro, Contrato.diasprorroga from Contrato
+
+drop view contrato_cliente_view;
