@@ -6,7 +6,11 @@ import { UserWorkerDto } from './dto/userWorker.dto';
 @Controller('api/user')
 export class UserController {
     constructor(private readonly userService : UserService){}
-    
+
+    @Get()
+    async getUser(){
+        return await this.userService.getUser();
+    }
     @Post('/client')
     createUserClient(@Body() body : UserClientDto){
         this.userService.createUserClient(body);

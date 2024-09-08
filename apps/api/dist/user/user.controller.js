@@ -21,6 +21,9 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
+    async getUser() {
+        return await this.userService.getUser();
+    }
     createUserClient(body) {
         this.userService.createUserClient(body);
     }
@@ -35,6 +38,12 @@ let UserController = class UserController {
     }
 };
 exports.UserController = UserController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getUser", null);
 __decorate([
     (0, common_1.Post)('/client'),
     __param(0, (0, common_1.Body)()),

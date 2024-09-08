@@ -4,6 +4,7 @@ import "../App.css";
 import "./NuevoUsuario";
 import axios from "axios";
 import { useState } from "react";
+import ModalCreateClient from "../components/ModalCreateClient";
 
 function Loguin() {
   const [abrirModal, setabrirModal] = useState(false);
@@ -51,12 +52,14 @@ function Loguin() {
             Aceptar
           </Button>
           <div>
-            <Button onClick={Registrar} type="link">
+            <Button onClick={() => setabrirModal(true)} type="link">
               Registrarse
             </Button>
             {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
           </div>
         </div>
+
+        <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
       </div>
     );
   };

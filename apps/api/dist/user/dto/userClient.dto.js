@@ -19,10 +19,6 @@ __decorate([
     __metadata("design:type", String)
 ], UserClientDto.prototype, "user_name", void 0);
 __decorate([
-    (0, class_validator_1.IsStrongPassword)(),
-    __metadata("design:type", String)
-], UserClientDto.prototype, "password", void 0);
-__decorate([
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], UserClientDto.prototype, "email", void 0);

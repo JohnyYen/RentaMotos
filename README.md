@@ -6,6 +6,7 @@ y el front en http://localhost:5173 (Señores es copiar la dirrecion despues de 
 # Rutas API BACKEND
 ## Cliente
 http://localhost:3000/api/client GET
+http://localhost:3000/api/client/:mun GET
 http://localhost:3000/api/client/pdf GET
 http://localhost:3000/api/client/bad GET
 http://localhost:3000/api/client POST
@@ -14,6 +15,7 @@ http://localhost:3000/api/client/:id PATCH
 
 ## Contrato
 http://localhost:3000/api/contract GET
+http://localhost:3000/api/contract/worker/:mun GET
 http://localhost:3000/api/contract/pdf GET
 http://localhost:3000/api/contract/mun GET
 http://localhost:3000/api/contract/marcxmodel GET
@@ -58,3 +60,7 @@ http://localhost:3000/api/mun GET
 
 ## Situation
 http://localhost:3000/api/situation GET
+
+## Pagos
+http://localhost:3000/api/pagos GET
+http://localhost:3000/api/pagos/:mun GET

@@ -75,7 +75,7 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
-  const [Row, setRow] = useState(null)
+  const [Row, setRow] = useState(undefined)
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);

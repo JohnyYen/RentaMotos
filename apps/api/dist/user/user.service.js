@@ -20,12 +20,16 @@ let UserService = class UserService {
     constructor(conn) {
         this.conn = conn;
     }
+    async getUser() {
+        const res = await this.conn.query('SELECT * FROM usuario');
+        return res.rows;
+    }
     async createUserClient(userClient) {
         try {
             await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, email, tipo_usuario ,id_cliente) VALUES ('${userClient.user_name}', '${userClient.password}', '${userClient.email}', 2 ,'${userClient.id}')`);
         }
         catch (error) {
-            throw new errorHandler_1.ErrorHandler(error).returnError();
+            console.log(error);
         }
     }
     async createUserWorker(userWorker) {

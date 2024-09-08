@@ -12,9 +12,10 @@ import { UserModule } from './user/user.module';
 import { MunModule } from './mun/mun.module';
 import {ConfigModule} from '@nestjs/config'
 import { SituationModule } from './situation/situation.module';
+import { PagosModule } from './pagos/pagos.module';
 
 @Module({
-  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule, SituationModule],
+  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule, SituationModule, PagosModule],
   controllers: [AppController],
   providers: [AppService],
 })

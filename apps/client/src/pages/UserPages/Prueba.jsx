@@ -14,7 +14,7 @@ const Prueba = () => {
             Click Me
         </button>
 
-        <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)}/>
+        <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
     </>
   )
 }

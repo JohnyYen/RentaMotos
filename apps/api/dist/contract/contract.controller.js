@@ -30,8 +30,8 @@ let ContractController = class ContractController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
-    async getContractByCliente(id) {
-        return await this.contractService.getCotnractByCliente(id);
+    async getContractsMunWorker(mun) {
+        return await this.contractService.getContractMun(mun);
     }
     async getContractByMun() {
         return await this.contractService.getContractByMun();
@@ -52,6 +52,9 @@ let ContractController = class ContractController {
         res.setHeader('Content-Disposition', 'attachment; filename=ContractsXModeloXMarca.pdf');
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
+    }
+    async getContractByCliente(id) {
+        return await this.contractService.getCotnractByCliente(id);
     }
     deleteContract(idCliente, matricula) {
         this.contractService.deleteContract(idCliente, matricula);
@@ -78,12 +81,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDF", null);
 __decorate([
-    (0, common_1.Get)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)('/worker/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ContractController.prototype, "getContractByCliente", null);
+], ContractController.prototype, "getContractsMunWorker", null);
 __decorate([
     (0, common_1.Get)('/mun'),
     __metadata("design:type", Function),
@@ -110,6 +113,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDFMarc", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getContractByCliente", null);
 __decorate([
     (0, common_1.Delete)('/:idCliente/:matricula'),
     __param(0, (0, common_1.Param)("idCliente")),

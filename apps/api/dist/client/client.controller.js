@@ -23,6 +23,9 @@ let ClientController = class ClientController {
     async getClients() {
         return await this.clientService.getAllClients();
     }
+    async getClientesByMun(mun) {
+        return await this.clientService.getClientByMun(mun);
+    }
     async getClientsByPDF(res) {
         const buffer = await this.clientService.getAllClientByPDF();
         res.setHeader('Content-Type', 'application/pdf');
@@ -60,6 +63,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClients", null);
+__decorate([
+    (0, common_1.Get)('/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClientesByMun", null);
 __decorate([
     (0, common_1.Get)('/pdf'),
     __param(0, (0, common_1.Res)()),

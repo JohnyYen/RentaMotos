@@ -12,6 +12,11 @@ export class ClientController {
         return await this.clientService.getAllClients();
     }
 
+    @Get('/:mun')
+    async getClientesByMun(@Param('mun') mun:string){
+        return await this.clientService.getClientByMun(mun);
+    }
+
     @Get('/pdf')
     async getClientsByPDF(@Res() res) {
         const buffer = await this.clientService.getAllClientByPDF();

@@ -17,14 +17,38 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
     const [secondName, setSecondtName] = useState('')
     const [sex, setSex] = useState('')
     const [edad, setEdad] = useState(16)
-    const [mun, setMun] = useState('ghg')
+    const [mun, setMun] = useState('')
     const [numCont, setNumCont] = useState('')
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
-    const handlePetition = () => {
-        console.log(sex);
+    const handlePetition = async () => {
+        const user = {
+            user_name: userName,
+            password: password,
+            email: email,
+            id: ci
+        };
+
+        const client = {
+            idCliente: ci,
+            nombre: name,
+            segNombre: secondName,
+            primApellido: lastName,
+            segApellido: secondLastName,
+            edad: edad,
+            municipio: mun,
+            sexo: sex,
+            numCont: numCont
+        }
+        
+        let response = await axios.post('http://localhost:3000/api/client',client);
+        if(response === 201){
+            response = await axios.post('http://localhost:3000/api/user/client', user);
+            console.log(response.status);
+        }
+
     }
     const margin = 15;
   return (
@@ -34,7 +58,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
             <Col span={25}>
                 <Flex vertical={true}>
                     <Input onChange={(e) => setName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su nombre'/>
-                    <Input onChange={(e) => setCi(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su CI'/>
+                    <Input minLength={11} maxLength={11} onChange={(e) => setCi(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su CI'/>
                     <Input onChange={(e) => setSecondtName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su segundo nombre'/>
                     <Input onChange={(e) => setLastName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su apellido'/>
                     <Input onChange={(e) => setSecondLastName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su segundo apellido'/>
@@ -52,7 +76,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     <Input onChange={(e) => setEmail(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su email'/>
                     <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
                     <Input onChange={(e) => setNumCont(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su numero de contacto'/>
-                    <InputNumber onChange={(e) => setEdad(e.target.value)} style={{marginBottom:margin, width:60}} placeholder='Edad' min={16}/>
+                    <InputNumber onChange={(value) => setEdad(value)} style={{marginBottom:margin, width:60}} placeholder='Edad' min={16}/>
                     <Select onChange={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
                         {
                             dataSource.map((item, i) => (

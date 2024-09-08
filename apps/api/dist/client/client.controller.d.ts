@@ -4,6 +4,7 @@ export declare class ClientController {
     private clientService;
     constructor(clientService: ClientService);
     getClients(): Promise<any>;
+    getClientesByMun(mun: string): Promise<any>;
     getClientsByPDF(res: any): Promise<void>;
     getClient(id: string): Promise<any>;
     getBadClients(): Promise<any>;

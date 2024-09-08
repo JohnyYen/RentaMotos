@@ -13,7 +13,6 @@ if(response.status === 200)
 console.log(dataSource);
 const ModalCreateContract = ({isVisible, setVisible, moto, user}) => {
   const margin = 15;
-
   const [matricula, setMatricula] = useState('');
   const [ci, setCI] = useState('');
   const [dateFirm, setDateFirm] = useState(new Date());

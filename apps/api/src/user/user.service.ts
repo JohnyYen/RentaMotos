@@ -8,12 +8,17 @@ import { ErrorHandler } from '../libs/errorHandler';
 export class UserService {
     constructor(@Inject(PG_CONNECTION) private conn : any){}
 
+    async getUser(){
+        const res = await this.conn.query('SELECT * FROM usuario');
+        return res.rows;
+    }
     async createUserClient(userClient : UserClientDto){
         try{
             await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, email, tipo_usuario ,id_cliente) VALUES ('${userClient.user_name}', '${userClient.password}', '${userClient.email}', 2 ,'${userClient.id}')`)
         }
         catch(error){
-           throw new ErrorHandler(error).returnError(); 
+           //throw new ErrorHandler(error).returnError(); 
+           console.log(error);
         }
     }
 

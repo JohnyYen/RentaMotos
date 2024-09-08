@@ -18,6 +18,12 @@ export class ContractService {
         return res.rows;
     }
 
+    async getContractMun(mun:string){
+        console.log(mun);
+        const res = await this.conn.query(`SELECT * FROM cont_mun_view WHERE municipio = '${mun}'`)
+        return res.rows;
+    }
+
     async getCotnractByCliente(id : string){
         const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`)
         return res.rows;
