@@ -23,8 +23,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
   const [seguro, setSeguro] = useState(false);
 
   const handlePetition = async () =>{
-
-    const res = await axios.post('http://localhost:3000/api/contract/', {
+    const contract = {
       idCliente: toString(client?.idcliente),
       matricula: row?.matricula,
       beginDate: dateBegin,
@@ -33,7 +32,10 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
       formapago:formaPago,
       seguro: seguro,
       diasProrroga: 0,
-    })
+    }
+   
+    console.log(contract);
+    const res = await axios.post('http://localhost:3000/api/contract/', contract)
 
     console.log(res.status);
   }

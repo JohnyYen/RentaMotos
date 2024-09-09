@@ -60,7 +60,7 @@ let ContractController = class ContractController {
         this.contractService.deleteContract(idCliente, matricula);
     }
     createContract(contract) {
-        this.contractService.createContract(contract);
+        console.log(contract);
     }
     updateContract(idCliente, matricula, contract) {
         this.contractService.updateContract(contract, idCliente, matricula);
