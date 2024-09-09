@@ -1,12 +1,14 @@
 import { Modal, Tag , Descriptions, Flex, Divider} from 'antd'
+import { useTranslation } from "react-i18next";
 import FormItemLabel from 'antd/es/form/FormItemLabel'
 import React from 'react'
 
 const Profile = ({isOpen, setOpen}) => {
+    const [t] = useTranslation("global");
 
     const margin = 10;
   return (
-    <Modal title={"Perfil"} centered={true} open={isOpen} cancelText="Volver"  okButtonProps={null} onCancel={setOpen}>
+    <Modal title={t("profile.profile")} centered={true} open={isOpen} cancelText="Volver"  okButtonProps={null} onCancel={setOpen}>
         
 
         <Flex style={{marginBottom: margin}}>
@@ -14,29 +16,29 @@ const Profile = ({isOpen, setOpen}) => {
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
-            <Tag>Nombre: </Tag>
+            <Tag>{t("profile.name")}: </Tag>
         </Flex  >
 
         <Flex style={{marginBottom: margin}}>
-            <Tag>Segundo Nombre: </Tag>
+            <Tag>{t("profile.secondName")}: </Tag>
         </Flex>
 
         <Flex style={{marginBottom: margin}}>  
-            <Tag>Primer Apellido: </Tag>
+            <Tag>{t("profile.lastName")}: </Tag>
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
-            <Tag>Segundo Apellido: </Tag>
+            <Tag>{t("profile.secondLastName")}: </Tag>
         </Flex>
         
         
         <Flex style={{marginBottom: margin}}>
-            <Tag>Nombre de Usuario: </Tag>
+            <Tag>{t("profile.username")}: </Tag>
             <FormItemLabel label={"hola"}/>
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
-            <Tag>Contraseña: </Tag>
+            <Tag>{t("profile.password")}: </Tag>
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
@@ -44,19 +46,19 @@ const Profile = ({isOpen, setOpen}) => {
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
-        <Tag>Municipio: </Tag>
+        <Tag>{t("profile.municipality")}: </Tag>
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
-            <Tag>Edad: </Tag>
+            <Tag>{t("profile.age")}: </Tag>
         </Flex>
             
         <Flex style={{marginBottom: margin}}>
-            <Tag>Sexo: </Tag>
+            <Tag>{t("profile.sex")}: </Tag>
         </Flex>
 
         <Flex style={{marginBottom: margin}}>
-            <Tag>Número de Contacto: </Tag>
+            <Tag>{t("profile.contactNumber")}: </Tag>
         </Flex>
         
     </Modal>

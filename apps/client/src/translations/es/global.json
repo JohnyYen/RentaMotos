@@ -30,6 +30,7 @@
     },
     "mainContent": {
         "downloadPDF": "Descargar PDF",
+        "currentDate": "Fecha actual",
         "table": {
             "serialNumber": "Matricula",
             "mark": "Marca",
@@ -57,7 +58,34 @@
             "cashIncome": "Ingresos por efectivo",
             "daysRented": "Dias alquilados",
             "extensionDays": "Días de prórroga",
-            "totalCash": "Total efectivo"
+            "totalCash": "Total efectivo",
+            "delete": "Eliminar",
+            "modify": "Modificar",
+            "rent": "Rentar"
         }
+    },
+    "login": {
+        "username": "usuario",
+        "password": "Contraseña",
+        "accept": "Aceptar",
+        "register": "Registrarse"
+    },
+    "profile": {
+        "profile": "Perfil",
+        "name": "Nombre",
+        "middleName": "Segundo Nombre",
+        "lastName": "Primer Apellido",
+        "secondLastName": "Segundo Apellido",
+        "username": "Nombre de Usuario",
+        "password": "Contraseña",
+        "email": "Email",
+        "municipality": "Municipio",
+        "age": "Edad",
+        "sex": "Sexo",
+        "contactNumber": "Número de contacto" 
+    },
+    "modal": {
+        "modifyClient": "Modificar Cliente",
+        "modifyContract": "Modificar Contrato"
     }
 }

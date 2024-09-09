@@ -64,7 +64,7 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListMoto = () => {
+const ListMotoClient = () => {
   const date = new Date();
   const day = date.getDay();
   const month = date.getMonth();
@@ -98,7 +98,7 @@ const ListMoto = () => {
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+        {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -152,7 +152,7 @@ const ListMoto = () => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">
-                  Rentar
+                {t("mainContent.table.rent")}
                 </Button>
               </Flex>
             ),
@@ -166,4 +166,4 @@ const ListMoto = () => {
       )
 };
 
-export default ListMoto;
+export default ListMotoClient;

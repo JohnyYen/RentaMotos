@@ -4,10 +4,12 @@ import "../App.css";
 import "./NuevoUsuario";
 import axios from "axios";
 import { useState } from "react";
-import ModalCreateClient from "../components/ModalCreateClient";
+import ModalCreateClient from "../components/ModalClient.jsx";
+import { useTranslation } from "react-i18next";
 
 function Loguin() {
   const [abrirModal, setabrirModal] = useState(false);
+  const [t] = useTranslation("global");
 
   const Modal = (isOpen, closeModal) => {
     if (!isOpen) return null;
@@ -32,14 +34,14 @@ function Loguin() {
         <div className="Registro">
           <Form className="miLoguin">
             <Form.Item
-              label={<span style={{ color: "white" }}>Usuario</span>}
+              label={<span style={{ color: "white" }}>{t("login.username")}</span>}
               name={"miUsuario"}
             >
               <Input placeholder="Ingrese su usuario" />
             </Form.Item>
 
             <Form.Item
-              label={<span style={{ color: "white" }}>Contraseña</span>}
+              label={<span style={{ color: "white" }}>{t("login.password")}</span>}
               name={"micontraseña"}
             >
               <Input placeholder="Ingrese su contraseña" />
@@ -49,11 +51,11 @@ function Loguin() {
 
         <div className="Alternativa">
           <Button type="primary" htmlType="submit" block>
-            Aceptar
+            {t("login.accept")}
           </Button>
           <div>
             <Button onClick={() => setabrirModal(true)} type="link">
-              Registrarse
+            {t("login.register")}
             </Button>
             {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
           </div>

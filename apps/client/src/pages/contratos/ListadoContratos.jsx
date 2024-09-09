@@ -82,67 +82,67 @@ const ListadoContratos = () => {
         dataSource={dataSource}
         columns={[
           {
-            title: "Nombre",
+            title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
             fixed: "left",
             width: "8rem",
           },
           {
-            title: "Matricula",
+            title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
           },
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
           },
           {
-            title: "modelo",
+            title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
           },
           {
-            title: "Forma de pago",
+            title: t("mainContent.table.methodPayment"),
             dataIndex: "forma de pago",
             key: "forma de pago",
           },
           {
-            title: "Fecha de inicio",
+            title: t("mainContent.table.startContract"),
             dataIndex: "fecha de inicio",
             key: "Fecha de inicio",
           },
           {
-            title: "Fecha de fin",
+            title: t("mainContent.table.endContract"),
             dataIndex: "fecha de fin",
             key: "fecha de fin",
           },
           {
-            title: "Prórroga",
+            title: t("mainContent.table.extension"),
             dataIndex: "prorroga",
             key: "prorroga",
           },
           {
-            title: "Seguro adicional",
+            title: t("mainContent.table.additionalInsurance"),
             dataIndex: "seguro adicional",
             key: "seguro adicional",
           },
           {
-            title: "Importe total",
+            title: t("mainContent.table.totalAmount"),
             dataIndex: "importe total",
             key: "importe total",
           },
           {
-            title: "Acciones",
+            title: t("mainContent.table.actions"),
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">
-                  Modificar
+                  {t("mainContent.table.modify")}
                 </Button>
                 <Button className="actionTable" type="primary">
-                  Eliminar
+                  {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

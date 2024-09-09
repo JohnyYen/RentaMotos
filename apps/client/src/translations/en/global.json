@@ -4,7 +4,7 @@
     },
     "client": {
         "clientListTitle": "Client list",
-        "clientNonCompliant": "Non-compliant list"
+        "clientNonCompliant": "Non-compliant list",
     },
     "motorcycle": {
         "motorcycleList": "Motorcycle list",
@@ -26,10 +26,13 @@
         "contractList": "List of Contracts",
         "contractMunicipality": "By Municipality",
         "contractMakeModel": "By Make and Model",
-        "annualIncome": "Annual Income"
+        "annualIncome": "Annual Income",
+        "createContract": "Create Contract",
+        "myContracts": "My Contracts"
     },
     "mainContent": {
         "downloadPDF": "Download PDF",
+        "currentDate": "Current date",
         "table": {
             "serialNumber": "Serial number",
             "mark": "Mark",
@@ -57,7 +60,34 @@
             "cashIncome": "Cash income",
             "daysRented": "Days rented",
             "extensionDays": "Extension days",
-            "totalCash": "Total cash"
+            "totalCash": "Total cash",
+            "delete": "Delete",
+            "modify": "Modify",
+            "rent": "Rent"
         }
+    },
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "accept": "Accept",
+        "register": "Register"
+    },
+    "profile": {
+        "profile": "Profile",
+        "name": "Name",
+        "middleName": "Middle Name",
+        "lastName": "Last Name",
+        "secondLastName": "Second Last Name",
+        "username": "Username",
+        "password": "Password",
+        "email": "Email",
+        "municipality": "Municipality",
+        "age": "Age",
+        "sex": "Sex",
+        "contactNumber": "Contact Number" 
+    },
+    "modal": {
+        "modifyClient": "Modify Client",
+        "modifyContract": "Modify Contract"
     }
 }

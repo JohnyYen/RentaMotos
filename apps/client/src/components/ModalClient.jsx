@@ -1,5 +1,6 @@
 import { Input, InputNumber, Modal, Select } from 'antd'
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ModalClient = ({isOpen, setOpen}) => {
 
@@ -10,9 +11,10 @@ const ModalClient = ({isOpen, setOpen}) => {
     const [lastName, setLastName] = useState("");
     const [secondLast, setSecondLast] = useState("");
     const [numCont, setNumCont] = useState("");
+    const [t] = useTranslation("global");
 
   return (
-    <Modal title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen}>
+    <Modal title={t("modal.modifyClient")} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen}>
 
         <InputNumber onChange={(e) => setEdad(e.target.value)}/>
 

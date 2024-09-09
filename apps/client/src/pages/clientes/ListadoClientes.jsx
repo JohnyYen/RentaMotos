@@ -93,7 +93,7 @@ const ListadoClientes = ({ dateToday }) => {
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -146,10 +146,10 @@ const ListadoClientes = ({ dateToday }) => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">
-                  Modificar
+                  {t("mainContent.table.modify")}
                 </Button>
                 <Button className="actionTable" type="primary">
-                  Eliminar
+                {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

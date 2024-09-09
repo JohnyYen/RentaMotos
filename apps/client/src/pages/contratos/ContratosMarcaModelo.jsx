@@ -100,7 +100,7 @@ const ContratosMarcaModelo = () => {
       </Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+        {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -120,7 +120,7 @@ const ContratosMarcaModelo = () => {
         dataSource={dataSource}
         columns={[
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
             fixed: "left",
@@ -128,7 +128,7 @@ const ContratosMarcaModelo = () => {
             onFilter: (value, record) => record.marca.indexOf(value) === 0,
           },
           {
-            title: "Modelo",
+            title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
             fixed: "left",
@@ -136,32 +136,32 @@ const ContratosMarcaModelo = () => {
             onFilter: (value, record) => record.modelo.indexOf(value) === 0,
           },
           {
-            title: "Cantidad de motos",
+            title: t("mainContent.table.numberMotorcycle"),
             dataIndex: "cantidad de motos",
             key: "cantidad de motos",
           },
           {
-            title: "Dias totales alquilados",
+            title: t("mainContent.totalDaysRented"),
             dataIndex: "dias totales alquilados",
             key: "dias totales alquilados",
           },
           {
-            title: "Ingresos tarjeta de crédito",
+            title: t("mainContent.table.creditCardIncome"),
             dataIndex: "ingresos tarjeta de crédito",
             key: "ingresos tarjeta de crédito",
           },
           {
-            title: "Ingresos por cheques",
+            title: t("mainContent.table.incomeCheck"),
             dataIndex: "ingresos por cheques",
             key: "ingresos por cheques",
           },
           {
-            title: "Ingresos por efectivo",
+            title: t("mainContent.table.cashIncome"),
             dataIndex: "ingresos por efectivo",
             key: "ingresos por efectivo",
           },
           {
-            title: "Ingresos totales",
+            title: t("mainContent.table.totalAmount"),
             dataIndex: "ingresos totales",
             key: "ingresos totales",
           },
