@@ -1,7 +1,8 @@
 import { FolderOutlined } from '@ant-design/icons';
 import { Checkbox, Col, DatePicker, Input, Modal, Row, Select, Typography } from 'antd'
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { GlobalContext, useRow } from '../context/GlobalContext';
 
 const response = await axios.get('http://localhost:3000/api/formaPago');
 
@@ -10,8 +11,11 @@ let dataSource = [];
 if(response.status === 200)
   dataSource = response.data;
 
-console.log(dataSource);
 const ModalCreateContract = ({isVisible, setVisible, moto, user}) => {
+
+  const {row} = useContext(GlobalContext);
+  console.log(row);
+
   const margin = 15;
   const [matricula, setMatricula] = useState('');
   const [ci, setCI] = useState('');
@@ -28,7 +32,7 @@ const ModalCreateContract = ({isVisible, setVisible, moto, user}) => {
     <Modal centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
         <Row gutter={16}>
           <Col span={12}>
-            <Input onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin, marginTop: 10}} placeholder='Matricula de la Moto'/>
+            <Input value={row?.matricula} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin, marginTop: 10}} placeholder='Matricula de la Moto'/>
 
             <Input onChange={(e) => setCI(e.target.value)} style={{marginBottom:margin}}  placeholder='CI Cliente'/>
 

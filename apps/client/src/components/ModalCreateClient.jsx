@@ -44,7 +44,8 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
         }
         
         let response = await axios.post('http://localhost:3000/api/client',client);
-        if(response === 201){
+        console.log(response.status);
+        if(response.status === 201){
             response = await axios.post('http://localhost:3000/api/user/client', user);
             console.log(response.status);
         }

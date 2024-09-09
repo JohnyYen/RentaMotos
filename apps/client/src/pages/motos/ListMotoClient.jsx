@@ -1,10 +1,10 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from "axios";
-import NuevoContrato from "../../component/NuevoContrato"; 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalCreateContract from "../../components/ModalCreateContract";
+import { GlobalContext, useRow } from "../../context/GlobalContext";
 
 const extractData = async () => {
 
@@ -75,7 +75,14 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
-  const [Row, setRow] = useState(undefined)
+
+  const {setRow, row} = useContext(GlobalContext);
+
+  const handleRow = (record) => {
+    setRow(record);
+    //console.log(row);
+  }
+
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
@@ -97,7 +104,7 @@ const ListMoto = () => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
-      <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)} row={Row}/>
+      <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           Fecha actual:
@@ -153,9 +160,10 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button onClick={() => {setVisible(!visible); setRow(record)}} className="actionTable" type="primary">
+                <Button onClick={() => {handleRow(record);setVisible(!visible);}} className="actionTable" type="primary">
                   Rentar
                 </Button>
+               
               </Flex>
             ),
             fixed: "right",
