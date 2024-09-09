@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MotorcycleService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
-const pdfKit_1 = require("../libs/pdfKit");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
+const pdfKit_1 = require("../libs/pdfKit");
 let MotorcycleService = class MotorcycleService {
     constructor(conn) {
         this.conn = conn;
@@ -25,21 +25,16 @@ let MotorcycleService = class MotorcycleService {
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
-    async getPDF(res) {
-        const stream = res.writeHead(200, {
-            "Content-Type": "aplication/pdf",
-            "Content-Disposition": "attachment; filename=employements.pdf",
-        });
-        const motors = await this.getAllMotorcycle();
-        (0, pdfKit_1.default)(Object.keys(motors[0]), (0, jsonFormatter_1.arrayFormatter)(motors), (data) => stream.write(data), () => stream.end);
+    async getPDF() {
+        const moto = await this.getAllMotorcycle();
+        return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
+    }
+    async getPDFSituation() {
+        const moto = await this.getSituationMoto();
+        return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
     async deleteMotorcycle(id) {
-        try {
-            await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
-        }
-        catch (error) {
-            console.log('Ocurrio un error');
-        }
+        await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
     }
     async createMotorcycle(moto) {
         await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);

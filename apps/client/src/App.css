@@ -1,7 +1,319 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.header {
+  /* position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  height: 5rem;
+}
+
+.header-button {
+  margin-top: 0.5rem;
+  border: none;
+}
+
+.popup-language {
+  margin-top: 0.5rem;
+  background-color: darkblue;
+  border-radius: 5px;
+}
+
+.popup-language span {
+  color: white;
+}
+
+.content {
+  padding: 0 1rem;
+}
+
+.ant-btn-download {
+  position: fixed;
+  right: 2rem;
+  bottom: 4.5rem;
+  width: 9rem;
+  background-color: darkblue;
+}
+
+.ant-btn-download:hover {
+  background-color: rgb(39, 39, 192) !important;
+}
+
+.sider {
+  position: sticky !important;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  height: 100vh;
+}
+
+.cycling-icon {
+  height: 4rem;
+  width: 4rem;
+  color: white;
+}
+
+/* .sider-btn {
+  position: fixed;
+  font-size: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  border: none;
+  background-color: darkblue;
+} */
+
+.sider-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+.ant-menu-item-selected {
+  background-color: darkblue !important;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.actionTable {
+  background-color: darkblue;
+  color: white;
+}
+
+.actionTable:hover {
+  background-color: rgb(39, 39, 192) !important;
+}
+
+/*Pantalla de loguin*/
+.loguin {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 50vh;
+  border-radius: 10%;
+
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.userInput{
+  margin-left: 1.5rem;
+}
+
+.Registro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0px 16px 16px 16px;
+  margin-bottom: 20px;
+}
+
+.iconoUsuario {
+  color: rgb(253, 255, 254);
+  font-size: 50px;
+}
+
+.inputLoguin {
+  height: 2.5rem;
+  width: 15rem;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inputLoguin::placeholder{
+  color: #202020;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.labelLoguin{
+  color: floralwhite;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.Alternativa {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
+
+.buttonLoguin{
+  background-color: #2975b7;
+  transition: all .5s ease;
+}
+
+.buttonLoguin:hover{
+  background-color: #06325d;
+}
+
+.linkLoguin{
+  color: beige;
+  background-color: transparent;
+  transition: all .5s ease;
+  border-style: none;
+}
+
+.linkLoguin:hover{
+  border: none;
+  color:#202020;
+}
+
+/*Pantall de eliminar usuario*/
+.Eliminar {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+.Mensaje {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+.Botones {
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B1 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar moto*/
+
+.Eliminar1 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje1 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones1 {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B11 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B21 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar contrato*/
+
+
+
+.Eliminar2 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje2 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
   text-align: center;
 }
 
@@ -11,32 +323,703 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cycling-icon {
+  height: 4rem;
+  width: 4rem;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* .sider-btn {
+  position: fixed;
+  font-size: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  border: none;
+  background-color: darkblue;
+} */
+
+.sider-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 500;
 }
 
-.card {
-  padding: 2em;
+
+.ant-menu-item-selected {
+  background-color: darkblue !important;
 }
 
-.read-the-docs {
-  color: #888;
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.actionTable {
+  background-color: darkblue;
+  color: white;
+}
+
+/*Pantall de eliminar usuario*/
+
+
+.Eliminar {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B1 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar moto*/
+
+.Eliminar1 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje1 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones1 {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B11 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B21 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar contrato*/
+
+
+
+.Eliminar2 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje2 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones2 {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B12 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B22 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+
+/*Pantalla de nuevo usuario*/
+
+.pantalla {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  padding: 0rem 3rem;
+  height:90%;
+  border-radius: 9%;
+  flex-wrap: nowrap;
+
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+
+}
+
+.inputLoguin{
+  width: fit-content;
+}
+
+.sexItem{
+  width: 30px;
+}
+
+.selectItem{
+  color: #202020;
+  font-size: 17px;
+}
+
+.selectItem::placeholder{
+  color: #202020;
+}
+
+.CreaUsuario {
+  color: rgb(253, 255, 254);
+  font-size: 60px;
+}
+
+#left-div, #rigth-div{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+#left-div label, #rigth-div label{
+  font-weight: 600;
+  font-variant: small-caps;
+}
+
+#left-div input, #rigth-div input, #rigth-div select{
+  border-radius: 5px;
+  background: wheat;
+  color: #363636;
+  font-size: large;
+  transition: all 0.5s ease;
+  border: solid 3px wheat;
+}
+
+#left-div input:hover, #rigth-div input:hover, #rigth-div select:hover{
+  border-color: indigo;
+}
+
+.panelImputIzquierdo form{
+  display: flex;
+  padding: 1rem;
+  margin-top: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.panelImputIzquierdo form input, .panelImputIzquierdo form select{
+  margin-bottom: 10px;
+  width: fit-content;
+
+}
+
+.panelBotones {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.B1 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: -50%;
+
+}
+
+.B2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+
+}
+
+/*Pantalla nueva moto*/
+
+.pantallamoto {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  width: 30%;
+  padding: 0rem 5rem;
+  height: 70%;
+  border-radius: 9%;
+}
+
+.panelCentral{
+  height: 60%;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rem;
+  margin-top: 3rem;
+}
+
+.formMoto{
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  width: fit-content;
+}
+
+.formMoto input, .formMoto select{
+  width: fit-content;
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 3px #202020;
+}
+
+.formMoto label{
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.formMoto select{
+  padding-right: 0.5rem;
+  text-align: left;
+}
+
+.Creamoto {
+  color: rgb(253, 255, 254);
+  font-size: 60px;
+}
+
+.panelBotonesmoto{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 30%;
+}
+
+.Bm1 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: -40%;
+
+}
+
+.Bm2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 40%;
+
+}
+
+/*Pantalla nuevo contrato*/
+
+.pantallacontrato {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 700px;
+  height: 500px;
+  border-radius: 9%;
+}
+
+#nuevo-contrato-form{
+  display: flex;
+  flex-direction: row;
+}
+
+#nuevo-contrato-form div{
+  margin: 2rem;
+} 
+
+#nuevo-contrato-form #left-div input, #nuevo-contrato-form #rigth-div input, #nuevo-contrato-form #rigth-div select{
+  margin-bottom: 1rem;
+}
+
+.checkbox{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: left;
+  width: 100%;
+}
+
+#forma-pago{
+  margin-bottom: 0;
+}
+
+#seguro{
+  margin-left: 1rem;
+}
+
+
+.pantallacontrato {
+  color: rgb(253, 255, 254);
+}
+
+.panelIzquierdo {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-80%, -30%);
+
+}
+
+
+.panelDerecho {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(60%, -190%);
+}
+
+
+.panelDermini {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-10%, 70%);
+}
+
+.panelCentral {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(5%, 80%);
+
+}
+
+
+.panel-central h2 {
+  margin-bottom: 10px;
+}
+
+.panelBotonescontrato {
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50%;
+
+}
+
+.Bc1 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: -40%;
+
+}
+
+.Bc2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 40%;
+
+}
+
+/* Pantallas de Modificaciones */
+
+/*Moto*/
+
+.model {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: center;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+
+.modify-container {
+  
+  width: 40rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.modify-container form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.modify-container form input, select{
+  width: fit-content;
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 2px #202020;
+}
+
+.button{
+  width: 5rem;
+  padding: 10px;
+  background-color: #2975b7;
+  transition: all .8s ease;
+}
+
+.button:hover{
+  background-color: #06325d;
+}
+
+.modify-container div{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+
+/*Cliente*/
+
+.modify-container-cliente{
+  width: fit-content;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+.modify-container-cliente form{
+  display: flex;
+  flex-direction: row;
+}
+
+.modify-container-cliente div{
+  margin-top: 15px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2rem;
+}
+
+.modify-container-cliente form input, .modify-container-cliente form select{
+  background: wheat;
+  border-radius: 5px;
+  font-size: larger;
+  color: #363636;
+  margin-bottom: 0.5rem;
+  border: solid 2px #202020;
+  width: 80%;
+}
+
+/*Contrato*/
+#contrato-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  border-radius: 9%;
+  background: hsla(216, 91%, 35%, 1);
+
+  background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -moz-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+}
+
+#contrato-container form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 1rem;
+  margin-left: 25%;
+}
+
+#contrato-container #rigth-div{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+#checkbox{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+#checkbox input{
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  height: 1rem;
+  width: 1rem;
 }

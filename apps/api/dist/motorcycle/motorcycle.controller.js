@@ -16,7 +16,6 @@ exports.MotorcycleController = void 0;
 const common_1 = require("@nestjs/common");
 const motorcycle_service_1 = require("./motorcycle.service");
 const motorcycle_dto_1 = require("./dto/motorcycle.dto");
-const motorcyclePatch_dto_1 = require("./dto/motorcyclePatch.dto");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -25,10 +24,21 @@ let MotorcycleController = class MotorcycleController {
         return this.motoService.getAllMotorcycle();
     }
     async getAllMotoInPDF(res) {
-        await this.motoService.getPDF(res);
+        const buffer = await this.motoService.getPDF();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ReporteMoto.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     getSituationMoto() {
         return this.motoService.getSituationMoto();
+    }
+    async getPDFSituation(res) {
+        const buffer = await this.motoService.getPDFSituation();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=SituacionMoto.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     createMoto(body) {
         this.motoService.createMotorcycle(body);
@@ -43,6 +53,7 @@ let MotorcycleController = class MotorcycleController {
 exports.MotorcycleController = MotorcycleController;
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.HttpCode)(200),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -60,6 +71,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getSituationMoto", null);
+__decorate([
+    (0, common_1.Get)('/situation/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "getPDFSituation", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -79,7 +97,7 @@ __decorate([
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, motorcyclePatch_dto_1.MotorcyclePatchDto]),
+    __metadata("design:paramtypes", [String, motorcycle_dto_1.MotorcycleDto]),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "updateMoto", null);
 exports.MotorcycleController = MotorcycleController = __decorate([

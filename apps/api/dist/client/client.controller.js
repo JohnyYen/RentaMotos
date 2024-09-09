@@ -16,7 +16,6 @@ exports.ClientController = void 0;
 const common_1 = require("@nestjs/common");
 const client_service_1 = require("./client.service");
 const client_dto_1 = require("./dto/client.dto");
-const clientPatch_dto_1 = require("./dto/clientPatch.dto");
 let ClientController = class ClientController {
     constructor(clientService) {
         this.clientService = clientService;
@@ -24,11 +23,28 @@ let ClientController = class ClientController {
     async getClients() {
         return await this.clientService.getAllClients();
     }
+    async getClientesByMun(mun) {
+        return await this.clientService.getClientByMun(mun);
+    }
+    async getClientsByPDF(res) {
+        const buffer = await this.clientService.getAllClientByPDF();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Clients.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
     async getBadClients() {
         return await this.clientService.getAllBadClients();
     }
-    getClientsByPDF() {
-        this.clientService.getAllClientByPDF();
+    async getClient(id) {
+        return await this.clientService.getClient(id);
+    }
+    async getBadClientsByPDF(res) {
+        const buffer = await this.clientService.getPDFBadClients();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=BadClients.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
     }
     createClient(clientDto) {
         this.clientService.createClient(clientDto);
@@ -48,17 +64,39 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClients", null);
 __decorate([
+    (0, common_1.Get)('/mun/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClientesByMun", null);
+__decorate([
+    (0, common_1.Get)('/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClientsByPDF", null);
+__decorate([
     (0, common_1.Get)("/bad"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClients", null);
 __decorate([
-    (0, common_1.Get)('/pdf'),
+    (0, common_1.Get)('/sample/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ClientController.prototype, "getClientsByPDF", null);
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClient", null);
+__decorate([
+    (0, common_1.Get)('/bad/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getBadClientsByPDF", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -78,7 +116,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, clientPatch_dto_1.ClientPatchDto]),
+    __metadata("design:paramtypes", [String, client_dto_1.ClientDto]),
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "updateClient", null);
 exports.ClientController = ClientController = __decorate([

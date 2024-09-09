@@ -15,15 +15,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
+const pdfKit_1 = require("../libs/pdfKit");
+const jsonFormatter_1 = require("../libs/jsonFormatter");
 let ClientService = class ClientService {
     constructor(conn) {
         this.conn = conn;
     }
     async getAllClients() {
-        const res = await this.conn.query('SELECT * FROM client_view');
+        const res = await this.conn.query('SELECT * FROM cliente_view');
         return res.rows;
     }
-    getAllClientByPDF() {
+    async getClientByMun(mun) {
+        const res = await this.conn.query(`SELECT * FROM cliente_view WHERE municipio = '${mun}'`);
+        return res.rows;
+    }
+    async getClient(id) {
+        const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
+        console.log(res.rows);
+        return res.rows;
+    }
+    async getAllClientByPDF() {
+        const client = await this.getAllClients();
+        return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
     async deleteClient(id) {
         this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
@@ -32,11 +45,15 @@ let ClientService = class ClientService {
         this.conn.query(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numcont}')`);
     }
     async updateClient(client, id) {
-        this.conn.query(`UPDATE cliente SET edad = ${client.edad}, nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${client.idCliente}'`);
+        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = ${client.municipio} ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${id}'`);
     }
     async getAllBadClients() {
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
+    }
+    async getPDFBadClients() {
+        const client = await this.getAllBadClients();
+        return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
 };
 exports.ClientService = ClientService;

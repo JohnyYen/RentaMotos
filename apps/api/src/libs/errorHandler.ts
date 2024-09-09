@@ -7,7 +7,6 @@ export class ErrorHandler {
         const code = this.error.code;
         if(code === '23505')
             return new BadRequestException('Ya este Usuario existe, revise los datos por favor');
-
         
     }
 }

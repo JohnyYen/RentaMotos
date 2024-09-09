@@ -15,29 +15,29 @@ class MotorcycleDto {
 }
 exports.MotorcycleDto = MotorcycleDto;
 __decorate([
-    (0, class_validator_1.IsString)({ message: "The matricula atributes can be a String" }),
+    (0, class_validator_1.IsString)({ message: "The matricula atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "matricula", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: "The color atributes can be a String" }),
+    (0, class_validator_1.IsString)({ message: "The color atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "color", void 0);
 __decorate([
-    (0, class_validator_1.IsInt)({ message: "The cantKm atributes can be a Integer" }),
+    (0, class_validator_1.IsInt)({ message: "The cantKm atribute can be a Integer" }),
     (0, class_validator_1.Max)(0, { message: "The cantKm can be zero" }),
     (0, class_validator_1.Min)(0, { message: "The cantKm can be zero" }),
     __metadata("design:type", Number)
 ], MotorcycleDto.prototype, "cantKm", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: "The marca atributes can be a String" }),
+    (0, class_validator_1.IsString)({ message: "The marca atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "marca", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: "The modelo atributes can be a String" }),
+    (0, class_validator_1.IsString)({ message: "The modelo atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "modelo", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: "The situacion atributes can be a String" }),
+    (0, class_validator_1.IsString)({ message: "The situacion atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "situacion", void 0);
 //# sourceMappingURL=motorcycle.dto.js.map
