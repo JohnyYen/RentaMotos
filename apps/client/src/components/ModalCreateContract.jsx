@@ -24,7 +24,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
   const handlePetition = async () =>{
 
-    console.log(typeof());
+    console.log();
     console.log(client?.idcliente);
     // const res = await axios.post('http://localhost:3000/api/contract/', {
     //   idCliente: toString(client?.idcliente),
