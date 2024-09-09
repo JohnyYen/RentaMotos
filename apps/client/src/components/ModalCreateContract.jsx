@@ -11,38 +11,49 @@ let dataSource = [];
 if(response.status === 200)
   dataSource = response.data;
 
-const ModalCreateContract = ({isVisible, setVisible, moto, user}) => {
+const ModalCreateContract = ({isVisible, setVisible}) => {
 
-  const {row} = useContext(GlobalContext);
-  console.log(row);
+  const {row, client} = useContext(GlobalContext);
 
   const margin = 15;
-  const [matricula, setMatricula] = useState('');
-  const [ci, setCI] = useState('');
   const [dateFirm, setDateFirm] = useState(new Date());
   const [dateEnd, setDateEnd] = useState(new Date());
   const [dateBegin, setDateBegin] = useState(new Date());
   const [formaPago, setFormaPago] = useState('');
   const [seguro, setSeguro] = useState(false);
 
-  const handlePetition = () =>{
-    console.log([matricula, ci, dateBegin, dateEnd, dateFirm, formaPago, seguro]);
+  const handlePetition = async () =>{
+
+    console.log(typeof());
+    console.log(client?.idcliente);
+    // const res = await axios.post('http://localhost:3000/api/contract/', {
+    //   idCliente: toString(client?.idcliente),
+    //   matricula: row?.matricula,
+    //   beginDate: dateBegin,
+    //   endDate: dateEnd,
+    //   firmaDate: dateFirm,
+    //   formapago:formaPago,
+    //   seguro: seguro,
+    //   diasProrroga: 0,
+    // })
+
+    console.log(res.status);
   }
   return (
     <Modal centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
         <Row gutter={16}>
           <Col span={12}>
-            <Input value={row?.matricula} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin, marginTop: 10}} placeholder='Matricula de la Moto'/>
+            {/* <Input value={row?.matricula} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin, marginTop: 10}} placeholder='Matricula de la Moto'/>
 
-            <Input onChange={(e) => setCI(e.target.value)} style={{marginBottom:margin}}  placeholder='CI Cliente'/>
+            <Input value={client?.idcliente} onChange={(e) => setCI(e.target.value)} style={{marginBottom:margin}}  placeholder='CI Cliente'/> */}
 
-            <DatePicker onChange={(e) => setDateFirm(e.target.value)} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
+            <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
 
-            <DatePicker onChange={(e) => setDateBegin(e.target.value)} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
+            <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
           </Col>
 
           <Col span={12}>
-            <DatePicker onChange={(e) => setDateEnd(e.date)} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
+            <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
 
             <Select onSelect={(value, _) => setFormaPago(value)} style={{marginBottom:margin, width: 150}}  placeholder="Forma de Pago"> 
               {dataSource.map((item, i) => (

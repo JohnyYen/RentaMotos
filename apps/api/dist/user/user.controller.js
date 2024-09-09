@@ -30,8 +30,8 @@ let UserController = class UserController {
     createUserWorker(body) {
         this.userService.createUserWorker(body);
     }
-    async validateUser(userName, email, password) {
-        return await this.userService.validationUser(userName, email, password);
+    async validateUser(userName, password) {
+        return await this.userService.validationUser(userName, password);
     }
     async deleteUser(userName) {
         this.userService.deleteUser(userName);
@@ -61,10 +61,9 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)('userName')),
-    __param(1, (0, common_1.Body)('email')),
-    __param(2, (0, common_1.Body)('password')),
+    __param(1, (0, common_1.Body)('password')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "validateUser", null);
 __decorate([

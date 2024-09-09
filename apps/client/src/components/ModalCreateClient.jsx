@@ -1,6 +1,8 @@
 import { Col, Flex, Input, InputNumber, Modal, Row, Select } from 'antd'
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { GlobalContext } from '../context/GlobalContext';
+import { useNavigate } from 'react-router-dom';
 
 const response = await axios.get('http://localhost:3000/api/mun')
 let dataSource = [];
@@ -22,6 +24,10 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+
+    const {setUser, setClient} = useContext(GlobalContext);
+
+    const navigate = useNavigate();
 
     const handlePetition = async () => {
         const user = {
@@ -47,7 +53,11 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
         console.log(response.status);
         if(response.status === 201){
             response = await axios.post('http://localhost:3000/api/user/client', user);
-            console.log(response.status);
+            if(response.status === 201){
+                setClient(client);
+                setUser(user);
+                navigate('/client');
+            }
         }
 
     }

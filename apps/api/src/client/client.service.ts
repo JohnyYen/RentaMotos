@@ -20,7 +20,8 @@ export class ClientService {
     }
 
     async getClient(id : string){
-        const res = await this.conn.query(`SELECT * FROM cliente where idcliente = ${id}`);
+        const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
+        console.log(res.rows);
         return res.rows;
     }
     async getAllClientByPDF() {

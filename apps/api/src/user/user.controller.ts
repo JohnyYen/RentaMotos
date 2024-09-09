@@ -22,8 +22,8 @@ export class UserController {
     }
 
     @Post()
-    async validateUser(@Body('userName') userName : string, @Body('email') email : string, @Body('password') password : string){
-        return await this.userService.validationUser(userName, email, password);
+    async validateUser(@Body('userName') userName : string, @Body('password') password : string){
+        return await this.userService.validationUser(userName, password);
         //console.log(await this.userService.validationUser(userName, email, password));
     }
 

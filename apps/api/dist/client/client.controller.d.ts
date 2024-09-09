@@ -6,8 +6,8 @@ export declare class ClientController {
     getClients(): Promise<any>;
     getClientesByMun(mun: string): Promise<any>;
     getClientsByPDF(res: any): Promise<void>;
-    getClient(id: string): Promise<any>;
     getBadClients(): Promise<any>;
+    getClient(id: string): Promise<any>;
     getBadClientsByPDF(res: any): Promise<void>;
     createClient(clientDto: ClientDto): void;
     deleteClient(id: string): void;
