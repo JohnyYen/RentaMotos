@@ -8,13 +8,13 @@ export class ContractDto {
     public matricula : string;
 
   
-    public beginDate : Date;
+    public beginDate : string;
 
    
-    public endDate : Date;
+    public endDate : string;
 
   
-    public firmaDate : Date;
+    public firmaDate : string;
 
    
     public formaPago : string;

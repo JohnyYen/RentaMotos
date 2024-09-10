@@ -50,6 +50,7 @@ export class ClientController {
     
     @Post()
     createClient(@Body() clientDto : ClientDto){
+        console.log(clientDto);
         this.clientService.createClient(clientDto);
     }
 

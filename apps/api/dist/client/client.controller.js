@@ -47,6 +47,7 @@ let ClientController = class ClientController {
         res.send(buffer);
     }
     createClient(clientDto) {
+        console.log(clientDto);
         this.clientService.createClient(clientDto);
     }
     deleteClient(id) {

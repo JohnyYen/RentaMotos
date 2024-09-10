@@ -25,6 +25,7 @@ let UserController = class UserController {
         return await this.userService.getUser();
     }
     createUserClient(body) {
+        console.log(body);
         this.userService.createUserClient(body);
     }
     createUserWorker(body) {

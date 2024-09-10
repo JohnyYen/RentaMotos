@@ -60,7 +60,7 @@ let ContractController = class ContractController {
         this.contractService.deleteContract(idCliente, matricula);
     }
     createContract(contract) {
-        console.log(contract);
+        this.contractService.createContract(contract);
     }
     updateContract(idCliente, matricula, contract) {
         this.contractService.updateContract(contract, idCliente, matricula);
@@ -130,7 +130,7 @@ __decorate([
 ], ContractController.prototype, "deleteContract", null);
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)("contract")),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)

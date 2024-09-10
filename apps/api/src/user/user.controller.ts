@@ -13,6 +13,7 @@ export class UserController {
     }
     @Post('/client')
     createUserClient(@Body() body : UserClientDto){
+        console.log(body);
         this.userService.createUserClient(body);
     }
 

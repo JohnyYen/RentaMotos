@@ -50,7 +50,8 @@ export class ContractService {
 
 
     async createContract(contract : ContractDto){
-        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
+        console.log(new Date(contract.beginDate.toString()));
+        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
     }
 
     updateContract(contract : ContractDto, idCliente : string, matricula : string){

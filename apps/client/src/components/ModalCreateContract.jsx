@@ -16,28 +16,31 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
   const {row, client} = useContext(GlobalContext);
 
   const margin = 15;
-  const [dateFirm, setDateFirm] = useState(new Date());
-  const [dateEnd, setDateEnd] = useState(new Date());
-  const [dateBegin, setDateBegin] = useState(new Date());
+  const [dateFirm, setDateFirm] = useState(null);
+  const [dateEnd, setDateEnd] = useState(null);
+  const [dateBegin, setDateBegin] = useState(null);
   const [formaPago, setFormaPago] = useState('');
   const [seguro, setSeguro] = useState(false);
 
   const handlePetition = async () =>{
+
+    // console.log(typeof(dateBegin));
+    // console.log(dateBegin);
     const contract = {
-      idCliente: toString(client?.idcliente),
+      idCliente: client ? client.idcliente : '03121067683',
       matricula: row?.matricula,
       beginDate: dateBegin,
       endDate: dateEnd,
       firmaDate: dateFirm,
-      formapago:formaPago,
+      formaPago: formaPago,
       seguro: seguro,
-      diasProrroga: 0,
+      diasProrroga: 0
     }
    
-    console.log(contract);
+    //console.log(typeof(contract.idCliente));
     const res = await axios.post('http://localhost:3000/api/contract/', contract)
 
-    console.log(res.status);
+    //console.log(res.status);
   }
   return (
     <Modal centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
@@ -47,13 +50,13 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
             <Input value={client?.idcliente} onChange={(e) => setCI(e.target.value)} style={{marginBottom:margin}}  placeholder='CI Cliente'/> */}
 
-            <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
+            <DatePicker format={'DD/MM/YYYY'} onChange={(value,_) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
 
-            <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
+            <DatePicker format={'DD/MM/YYYY'} onChange={(value,_) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
           </Col>
 
           <Col span={12}>
-            <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
+            <DatePicker format={'DD/MM/YYYY'} onChange={(value,_) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
 
             <Select onSelect={(value, _) => setFormaPago(value)} style={{marginBottom:margin, width: 150}}  placeholder="Forma de Pago"> 
               {dataSource.map((item, i) => (
