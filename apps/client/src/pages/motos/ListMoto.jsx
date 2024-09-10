@@ -2,9 +2,11 @@ import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from "axios";
 import { DownloadOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalModMoto from '../../components/ModalModMoto'
+import {GlobalContext} from '../../context/GlobalContext'
+
 
 const extractData = async () => {
   let dataSource = [];
@@ -74,6 +76,8 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+  const [visible, setVisible] = useState(false);
+  const {setRow} = useContext(GlobalContext);
 
   useEffect(() => {
     extractData().then((result) => {
@@ -96,6 +100,7 @@ const ListMoto = () => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
+      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           Fecha actual:
@@ -151,7 +156,7 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
                   Modificar
                 </Button>
                 <Button className="actionTable" type="primary">

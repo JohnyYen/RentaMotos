@@ -13,8 +13,12 @@ export class MotorcycleService {
         return await res.rows;
     }
 
-    async getPDF(){
+    async getMotoClient(){
+        const res = await this.conn.query("SELECT * FROM moto_view WHERE situacion = 'Disponible'");
+        return res.rows;
+    }
 
+    async getPDF(){
         const moto = await this.getAllMotorcycle();
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }

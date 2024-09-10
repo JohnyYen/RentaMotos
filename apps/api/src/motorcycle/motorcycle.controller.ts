@@ -22,6 +22,10 @@ export class MotorcycleController {
        res.send(buffer);
     }
 
+    @Get('/client')
+    async getMotoClient(){
+        return await this.motoService.getMotoClient();
+    }
     @Get('/situation')
     getSituationMoto(){
         return this.motoService.getSituationMoto();

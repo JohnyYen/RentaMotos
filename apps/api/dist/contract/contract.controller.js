@@ -130,7 +130,7 @@ __decorate([
 ], ContractController.prototype, "deleteContract", null);
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)("contract")),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)
@@ -139,6 +139,7 @@ __decorate([
     (0, common_1.Patch)('/:idClient/:matricula'),
     __param(0, (0, common_1.Param)("idCliente")),
     __param(1, (0, common_1.Param)("matricula")),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)

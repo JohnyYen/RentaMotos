@@ -24,18 +24,17 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
   const handlePetition = async () =>{
 
-    console.log();
-    console.log(client?.idcliente);
-    // const res = await axios.post('http://localhost:3000/api/contract/', {
-    //   idCliente: toString(client?.idcliente),
-    //   matricula: row?.matricula,
-    //   beginDate: dateBegin,
-    //   endDate: dateEnd,
-    //   firmaDate: dateFirm,
-    //   formapago:formaPago,
-    //   seguro: seguro,
-    //   diasProrroga: 0,
-    // })
+    const contract = {
+      idCliente: client ? client.idcliente : '03121067683',
+      matricula: row?.matricula,
+      beginDate: dateBegin,
+      endDate: dateEnd,
+      firmaDate: dateFirm,
+      formaPago:formaPago,
+      seguro: seguro,
+      diasProrroga: 0,
+    }
+    const res = await axios.post('http://localhost:3000/api/contract/', contract);
 
     console.log(res.status);
   }

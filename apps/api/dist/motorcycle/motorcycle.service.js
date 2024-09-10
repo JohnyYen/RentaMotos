@@ -25,6 +25,10 @@ let MotorcycleService = class MotorcycleService {
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
+    async getMotoClient() {
+        const res = await this.conn.query("SELECT * FROM moto_view WHERE situacion = 'Disponible'");
+        return res.rows;
+    }
     async getPDF() {
         const moto = await this.getAllMotorcycle();
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));

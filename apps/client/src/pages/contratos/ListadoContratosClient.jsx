@@ -1,14 +1,16 @@
 import { Space, Typography, Table, Flex, Button } from "antd";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { GlobalContext } from "../../context/GlobalContext";
 
-const extractData = async () => {
+const extractData = async (idcliente) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/contract");
+    response = await axios.get(`http://localhost:3000/api/contract/${idcliente}`);
+    console.log
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -58,9 +60,9 @@ const downloadPDF = async (url) => {
 const ListadoContratos = () => {
   const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
-
+  const {client} = useContext(GlobalContext);
   useEffect(() => {
-    extractData().then((result) => {
+    extractData(client.idcliente).then((result) => {
       setDataSource(result);
     });
   }, []);

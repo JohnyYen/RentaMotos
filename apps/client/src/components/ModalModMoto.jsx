@@ -22,7 +22,14 @@ const ModalModMoto = ({isOpen, setOpen}) => {
     <Modal title={"Modificar Moto"}  open={isOpen} centered={true} onCancel={setOpen} onClose={setOpen} onOk={handlePetition}>
       <Flex vertical={true}>
         <Select style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder='Color'>
-          
+          <Option>Rojo</Option>
+          <Option>Azul</Option>
+          <Option>Negro</Option>
+          <Option>Blanco</Option>
+          <Option>Rojo-Negro</Option>
+          <Option>Azul-Negro</Option>
+          <Option>Rojo-Blanco</Option>
+          <Option>Blanco-Negro</Option>
         </Select>
 
         <InputNumber style={{marginBottom:margin}} onChange={(e) => setCantKm(e.target.value)} placeholder='CantKm'/>
