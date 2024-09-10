@@ -19,8 +19,20 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
+    "@nestjs/config": "^3.2.3",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/mapped-types": "^2.0.5",
     "antd": "^5.19.0",
+    "axios": "^1.7.5",
     "boxicons": "^2.1.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "dotenv": "^16.4.5",
+    "i18next": "^23.14.0",
+    "passport-jwt": "^4.0.1",
+    "pdfkit-table": "^0.1.99",
+    "pg": "^8.12.0",
+    "react-i18next": "^15.0.1",
     "react-router-dom": "^6.26.1"
   }
 }

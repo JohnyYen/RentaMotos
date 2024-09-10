@@ -1,0 +1,116 @@
+{
+    "header": {
+        "motorcycleRent": "Motorcycle Rent"
+    },
+    "client": {
+        "clientListTitle": "Client list",
+        "clientNonCompliant": "Non-compliant list"
+    },
+    "motorcycle": {
+        "motorcycleList": "Motorcycle list",
+        "motorcycleSituation": "Motorcycle situation"
+    },
+    "contract": {
+        "contractList": "List of contracts",
+        "contractMunicipality": "Contracts by municipality",
+        "contractMakeModel": "Contracts by make and model"
+    },
+    "sideBar": {
+        "client": "Customers",
+        "clientList": "Client List",
+        "clientNonCompliant": "Non-compliant list",
+        "motorcycle": "Motorcycle",
+        "motorcycleList": "Motorcycle List",
+        "motorcycleSituation": "Situation",
+        "contract": "Contracts",
+        "contractList": "List of Contracts",
+        "contractMunicipality": "By Municipality",
+        "contractMakeModel": "By Make and Model",
+        "annualIncome": "Annual Income",
+        "createContract": "Create Contract",
+        "myContracts": "My Contracts"
+    },
+    "mainContent": {
+        "downloadPDF": "Download PDF",
+        "currentDate": "Current date",
+        "table": {
+            "clientID": "Client ID",
+            "serialNumber": "Serial number",
+            "mark": "Mark",
+            "model": "Model",
+            "color": "Color",
+            "colors": {
+                "red": "Red",
+                "black": "Black",
+                "blue": "Blue",
+                "green": "Green",
+                "yellow": "Yellow",
+                "grey": "Grey",
+                "orange": "Orange",
+                "purple": "Purple",
+                "neon": "Neon",
+                "silver": "Silver",
+                "gold": "Gold"
+            },
+            "kmTraveled": "Km traveled",
+            "actions": "Actions",
+            "name": "Name",
+            "lastName": "Last name",
+            "endContract": "End of contract",
+            "signatureDate": "Signature Date",
+            "motorcycleDelivery": "Motorcycle delivery",
+            "municipality": "Municipality",
+            "timesRented": "Times rented",
+            "rentalValue": "Rental value",
+            "situation": "Situation",
+            "situations": {
+                "workshop": "Workshop",
+                "available": "Available",
+                "rented": "Rented"
+            },
+            "methodPayment": "Method of payment",
+            "startContract": "Start of contract",
+            "extension": "Extension",
+            "additionalInsurance": "Additional insurance",
+            "totalAmount": "Total amount",
+            "numberMotorcycle": "Number of motorcycle",
+            "totalDaysRented": "Total days rented",
+            "creditCardIncome": "Credit card income",
+            "incomeCheck": "Income by check",
+            "cashIncome": "Cash income",
+            "daysRented": "Days rented",
+            "extensionDays": "Extension days",
+            "totalCash": "Total cash",
+            "delete": "Delete",
+            "modify": "Modify",
+            "rent": "Rent"
+        }
+    },
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "accept": "Accept",
+        "register": "Register",
+        "cancel": "Cancel"
+    },
+    "profile": {
+        "profile": "Profile",
+        "name": "Name",
+        "middleName": "Middle Name",
+        "lastName": "Last Name",
+        "secondLastName": "Second Last Name",
+        "username": "Username",
+        "password": "Password",
+        "email": "Email",
+        "municipality": "Municipality",
+        "age": "Age",
+        "sex": "Sex",
+        "contactNumber": "Contact Number" 
+    },
+    "modal": {
+        "modifyClient": "Modify Client",
+        "modifyContract": "Modify Contract",
+        "modifyMotorcycle": "Modify Motorcycle",
+        "insurance": "Insurance"
+    }
+}

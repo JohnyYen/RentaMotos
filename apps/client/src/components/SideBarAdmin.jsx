@@ -7,11 +7,14 @@ import {
 import { Menu, Flex } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "../App.css";
 import "boxicons";
+//import axios from 'axios';
 
-const SideBar = () => {
+const SideBarAdmin = () => {
   const navigate = useNavigate();
+  const [t] = useTranslation("global"); 
 
   return (
     <>
@@ -30,62 +33,62 @@ const SideBar = () => {
         defaultOpenKeys={["/clientes"]}
         mode="inline"
         onClick={(item) => {
-          navigate(item.key);
+          navigate(`/admin/${item.key}`);
         }}
         items={[
           {
-            label: "Clientes",
+            label: t("sideBar.client"),
             icon: <UserOutlined />,
             key: "/clientes",
             children: [
               {
-                label: "Listado Clientes",
-                key: "/listadoClientes",
+                label: t("sideBar.clientList"),
+                key: "listadoClientes",
               },
               {
-                label: "Incumplidores",
-                key: "/incumplidoresClientes",
+                label: t("sideBar.clientNonCompliant"),
+                key: "incumplidoresClientes",
               },
             ],
           },
           {
-            label: "Motos",
+            label: t("sideBar.motorcycle"),
             icon: <CarOutlined />,
             key: "/motos",
             children: [
               {
-                label: "Listado Motos",
-                key: "/listadoMoto",
+                label: t("sideBar.motorcycleList"),
+                key: "listadoMoto",
               },
               {
-                label: "Situacion Motos",
-                key: "/situacionMotos",
+                label: t("sideBar.motorcycleSituation"),
+                key: "situacionMotos",
               },
             ],
           },
           {
-            label: "Contratos",
+            label: t("sideBar.contract"),
             icon: <FileDoneOutlined />,
             key: "/contratos",
             children: [
               {
-                label: "Listado Contratos",
-                key: "/listadoContratos",
+                label: t("sideBar.contractList"),
+                key: "listadoContratos",
               },
               {
-                label: "Por marca y modelo",
-                key: "/contratoMarcaModelo",
+                label: t("sideBar.contractMakeModel"),
+                key: "contratoMarcaModelo",
               },
               {
-                label: "Por municipio",
-                key: "/contratoMunicipio",
+                label: t("sideBar.contractMunicipality"),
+                key: "contratoMunicipio",
               },
             ],
           },
           {
-            label: "Ingresos del año",
+            label: t("sideBar.annualIncome"),
             icon: <DollarOutlined />,
-            key: "/ingresosAño",
+            key: "ingresosAño",
           },
         ]}
       ></Menu>
@@ -93,4 +96,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default SideBarAdmin;

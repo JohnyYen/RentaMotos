@@ -1,33 +1,35 @@
-import React from "react";
-import { useState } from "react";
+import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
-import SideBar from "./components/SideBar.jsx";
-import CustomHeader from "./components/CustomHeader.jsx";
-import MainContent from "./components/MainContent.jsx";
-import { Layout, Button } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import UserAdmin from "./pages/UserPages/UserAdmin";
+import Loguin from "./component/Loguin";
+import UserClient from "./pages/UserPages/UserClient";
+import UserWorker from "./pages/UserPages/UserWorker";
+import ModalCreateContract from "./components/ModalCreateContract";
+import Prueba from "./pages/UserPages/Prueba";
+import GlobalProvider from "./context/GlobalContext";
 
-const { Sider, Header, Content } = Layout;
 
+
+{/* <Route path="/" element={<Loguin/>}/>
+      <Route path="/admin" element={<UserAdmin/>}>
+        <Route path="listadoClientes" element={<ListadoClientes/>}/>
+      </Route>
+      <Route path="/client" element={<UserClient/>}/> */}
 
 function App() {
-  const [collapsed, setCollapsed] = useState(false);
-
+ 
   return (
-    <Layout className="App">
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="sider">
-        <SideBar />
-        {/* <Button type="primary" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed(!collapsed)} className="sider-btn"></Button> */}
-      </Sider>
-      <Layout>
-        <Header className="header">
-          <CustomHeader />
-        </Header>
-        <Content className="content">
-          <MainContent></MainContent>
-        </Content>
-      </Layout>
-    </Layout>
+    <>
+        <GlobalProvider>
+          <Routes>
+            <Route path="/prueba" element={<Prueba/>}/>
+            <Route path="/" element={<Loguin/>} />
+            <Route path="/admin/*" element={<UserAdmin/>}/>
+            <Route path="/client/*" element={<UserClient/>}/>
+            <Route path="/worker/*" element={<UserWorker/>}/>
+          </Routes>
+        </GlobalProvider>
+    </>
   );
 }
 

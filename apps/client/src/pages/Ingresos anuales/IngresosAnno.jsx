@@ -1,27 +1,45 @@
-import { Space, Typography, Table, Flex } from "antd";
-import { useState } from "react";
+import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { useState, useEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
 
-const IngresosAnno = () => {
+const IngresosAnno = ({ extractData }) => {
+  const date = new Date();
+  const day = date.getDay();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
+  
+  const [dataSource, setDataSource] = useState([]);
+  const [t] = useTranslation("global");
+
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    })
+  }, [])
+
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Ingresos del año</Typography.Title>
+      <Typography.Title level={3}>{t("sideBar.annualIncome")}</Typography.Title>
+      <Flex align="center">
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>{t("mainContent.currentDate")}:</Typography.Text>
+        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+      </Flex>
       <Table
       scroll={{
         x: 1200,
       }}
         pagination={{
           pageSize: 5,
+          position: ["bottomLeft"],
         }}
+        dataSource={dataSource}
         columns={[
           {
-            title: "Fecha actual",
-            dataIndex: "fecha actual",
-            key: "fecha actual",
-            fixed: "left",
-            width: "7rem"
-          },
-          {
-            title: "Ingreso anual",
+            title: t("mainContent."),
             dataIndex: "ingreso anual",
             key: "ingreso anual",
             fixed: "left"
@@ -88,6 +106,8 @@ const IngresosAnno = () => {
           },
         ]}
       ></Table>
+      
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
     </Flex>
   );
 };
