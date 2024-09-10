@@ -32,20 +32,40 @@
         "downloadPDF": "Descargar PDF",
         "currentDate": "Fecha actual",
         "table": {
+            "clientID": "ID Cliente",
             "serialNumber": "Matricula",
             "mark": "Marca",
             "model": "Modelo",
             "color": "Color",
+            "colors": {
+                "red": "Rojo",
+                "black": "Negro",
+                "blue": "Azul",
+                "green": "Verde",
+                "yellow": "Amarillo",
+                "grey": "Gris",
+                "orange": "Naranja",
+                "purple": "Morado",
+                "neon": "Neón",
+                "silver": "Plateado",
+                "gold": "Dorado"
+            },
             "kmTraveled": "Km recorrids",
             "actions": "Acciones",
             "name": "Nombre",
             "lastName": "Apellidos",
             "endContract": "Fin de contrato",
             "motorcycleDelivery": "Entrega de moto",
+            "signatureDate": "Fecha de Firma",
             "municipality": "Municipio",
             "timesRented": "Veces alquiladas",
             "rentalValue": "Valor alquileres",
             "situation": "Situación",
+            "situations": {
+                "workshop": "Taller",
+                "available": "Disponible",
+                "rented": "Alquilada"
+            },
             "methodPayment": "Forma de pago",
             "startContract": "Inicio de contrato",
             "extension": "Prórroga",
@@ -68,7 +88,8 @@
         "username": "usuario",
         "password": "Contraseña",
         "accept": "Aceptar",
-        "register": "Registrarse"
+        "register": "Registrarse",
+        "cancel": "Cancelar"
     },
     "profile": {
         "profile": "Perfil",
@@ -86,6 +107,8 @@
     },
     "modal": {
         "modifyClient": "Modificar Cliente",
-        "modifyContract": "Modificar Contrato"
+        "modifyContract": "Modificar Contrato",
+        "modifyMotorcycle": "Modificar Moto",
+        "insurance": "Insurance"
     }
 }

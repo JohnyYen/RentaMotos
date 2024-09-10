@@ -23,7 +23,7 @@ const ModalContract = ({isOpen, setOpen}) => {
             <Option>Hola</Option>
         </Select>
 
-        <Checkbox onChange={(e) => setSeguro(e.target.value)}>Seguro</Checkbox>
+        <Checkbox onChange={(e) => setSeguro(e.target.value)}>{t("modal.insurance")}</Checkbox>
 
         <InputNumber onChange={(e) => setDiasProrroga(e.target.value)}/>
 
