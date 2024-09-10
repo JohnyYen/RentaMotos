@@ -22,9 +22,9 @@ export class ContractController {
         res.send(buffer);
     }
 
-    @Get('/:id')
-    async getContractByCliente(@Param('id') id:string){
-        return await this.contractService.getCotnractByCliente(id);
+    @Get('/worker/:mun')
+    async getContractsMunWorker(@Param('mun') mun : string){
+        return await this.contractService.getContractMun(mun);
     }
 
     
@@ -58,6 +58,11 @@ export class ContractController {
         res.setHeader('Content-Length', buffer.length);
  
         res.send(buffer);
+    }
+
+    @Get('/:id')
+    async getContractByCliente(@Param('id') id:string){
+        return await this.contractService.getCotnractByCliente(id);
     }
 
     @Delete('/:idCliente/:matricula')

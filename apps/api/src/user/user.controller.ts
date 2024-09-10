@@ -6,7 +6,11 @@ import { UserWorkerDto } from './dto/userWorker.dto';
 @Controller('api/user')
 export class UserController {
     constructor(private readonly userService : UserService){}
-    
+
+    @Get()
+    async getUser(){
+        return await this.userService.getUser();
+    }
     @Post('/client')
     createUserClient(@Body() body : UserClientDto){
         this.userService.createUserClient(body);
@@ -18,8 +22,8 @@ export class UserController {
     }
 
     @Post()
-    async validateUser(@Body('userName') userName : string, @Body('email') email : string, @Body('password') password : string){
-        return await this.userService.validationUser(userName, email, password);
+    async validateUser(@Body('userName') userName : string, @Body('password') password : string){
+        return await this.userService.validationUser(userName, password);
         //console.log(await this.userService.validationUser(userName, email, password));
     }
 

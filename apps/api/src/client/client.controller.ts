@@ -12,6 +12,11 @@ export class ClientController {
         return await this.clientService.getAllClients();
     }
 
+    @Get('/mun/:mun')
+    async getClientesByMun(@Param('mun') mun:string){
+        return await this.clientService.getClientByMun(mun);
+    }
+
     @Get('/pdf')
     async getClientsByPDF(@Res() res) {
         const buffer = await this.clientService.getAllClientByPDF();
@@ -23,15 +28,15 @@ export class ClientController {
         res.send(buffer);
     }
 
-    @Get('/:id')
-    async getClient(@Param('id') id : string){
-        return await this.clientService.getClient(id);
-    }
     @Get("/bad")
     async getBadClients() {
         return await this.clientService.getAllBadClients();
     }
-
+    
+    @Get('/sample/:id')
+    async getClient(@Param('id') id : string){
+        return await this.clientService.getClient(id);
+    }
     @Get('/bad/pdf')
     async getBadClientsByPDF(@Res() res) {
         const buffer = await this.clientService.getPDFBadClients();

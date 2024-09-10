@@ -29,6 +29,11 @@ let ContractService = class ContractService {
         const res = await this.conn.query('SELECT contratoxmarcamodelo()');
         return res.rows;
     }
+    async getContractMun(mun) {
+        console.log(mun);
+        const res = await this.conn.query(`SELECT * FROM cont_mun_view WHERE municipio = '${mun}'`);
+        return res.rows;
+    }
     async getCotnractByCliente(id) {
         const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`);
         return res.rows;

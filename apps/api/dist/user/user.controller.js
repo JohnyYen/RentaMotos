@@ -21,20 +21,29 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
+    async getUser() {
+        return await this.userService.getUser();
+    }
     createUserClient(body) {
         this.userService.createUserClient(body);
     }
     createUserWorker(body) {
         this.userService.createUserWorker(body);
     }
-    async validateUser(userName, email, password) {
-        return await this.userService.validationUser(userName, email, password);
+    async validateUser(userName, password) {
+        return await this.userService.validationUser(userName, password);
     }
     async deleteUser(userName) {
         this.userService.deleteUser(userName);
     }
 };
 exports.UserController = UserController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getUser", null);
 __decorate([
     (0, common_1.Post)('/client'),
     __param(0, (0, common_1.Body)()),
@@ -52,10 +61,9 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)('userName')),
-    __param(1, (0, common_1.Body)('email')),
-    __param(2, (0, common_1.Body)('password')),
+    __param(1, (0, common_1.Body)('password')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "validateUser", null);
 __decorate([

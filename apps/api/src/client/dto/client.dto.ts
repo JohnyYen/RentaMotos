@@ -26,6 +26,5 @@ export class ClientDto{
     @IsString()
     public sexo : string;
 
-    @IsString()
     public numcont : string;
 }

@@ -1,12 +1,13 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from "axios";
-import { DownloadOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalCreateContract from "../../components/ModalCreateContract";
+import { GlobalContext, useRow } from "../../context/GlobalContext";
 
 const extractData = async () => {
+
   let dataSource = [];
   let response = null;
   try {
@@ -70,10 +71,17 @@ const ListMotoClient = () => {
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
-
+  const [visible, setVisible] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+
+  const {setRow, row} = useContext(GlobalContext);
+
+  const handleRow = (record) => {
+    setRow(record);
+    //console.log(row);
+  }
 
   useEffect(() => {
     extractData().then((result) => {
@@ -96,6 +104,7 @@ const ListMotoClient = () => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
+      <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
         {t("mainContent.currentDate")}:
@@ -151,9 +160,10 @@ const ListMotoClient = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => {handleRow(record);setVisible(!visible);}} className="actionTable" type="primary">
                 {t("mainContent.table.rent")}
                 </Button>
+               
               </Flex>
             ),
             fixed: "right",
