@@ -1,7 +1,256 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.header {
+  /* position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  height: 5rem;
+}
+
+.header-button {
+  margin-top: 0.5rem;
+  border: none;
+}
+
+.ant-btn:hover {
+  border: none;
+  background-color: rgb(39, 39, 192) !important;
+}
+
+.content {
+  padding: 0 1rem;
+}
+
+.ant-btn-download {
+  position: fixed;
+  right: 2rem;
+  bottom: 4.5rem;
+  width: 9rem;
+  background-color: darkblue;
+}
+
+.ant-btn-download:hover {
+  background-color: rgb(39, 39, 192) !important;
+}
+
+.sider {
+  position: sticky !important;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  height: 100vh;
+}
+
+.cycling-icon {
+  height: 4rem;
+  width: 4rem;
+  color: white;
+}
+
+/* .sider-btn {
+  position: fixed;
+  font-size: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  border: none;
+  background-color: darkblue;
+} */
+
+.sider-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+
+.ant-menu-item-selected {
+  background-color: darkblue !important;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.actionTable {
+  background-color: darkblue;
+  color: white;
+}
+
+/*Pantalla de loguin*/
+.loguin {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 50vh;
+  background-color: rgb(2, 2, 86);
+  background-size: cover;
+  z-index: 100;
+  border-radius: 10%;
+}
+
+.Registr {
+  padding: 0px 16px 16px 16px;
+  margin-bottom: 20px;
+}
+
+.iconoUsuario {
+  color: rgb(253, 255, 254);
+  font-size: 50px;
+}
+
+.Alternativa {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+
+}
+
+/*Pantall de eliminar usuario*/
+
+
+.Eliminar {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 500px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B1 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar moto*/
+
+.Eliminar1 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 500px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje1 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones1 {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B11 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B21 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar contrato*/
+
+
+
+.Eliminar2 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 500px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje2 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
   text-align: center;
 }
 
@@ -11,40 +260,57 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cycling-icon {
+  height: 4rem;
+  width: 4rem;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* .sider-btn {
+  position: fixed;
+  font-size: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  border: none;
+  background-color: darkblue;
+} */
+
+.sider-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 500;
 }
 
-.card {
-  padding: 2em;
+
+.ant-menu-item-selected {
+  background-color: darkblue !important;
 }
 
-.read-the-docs {
-  color: #888;
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.actionTable {
+  background-color: darkblue;
+  color: white;
 }
 
 /*Pantalla de loguin*/
-.loguin{
-  display:flex;
- position: fixed;
+.loguin {
+  display: flex;
+  position: fixed;
   justify-content: center;
   align-items: center;
   top: 50%;
@@ -53,273 +319,33 @@
   width: 50vw;
   height: 50vh;
   background-color: rgb(2, 2, 86);
-  background-size: cover ;
+  background-size: cover;
   z-index: 100;
   border-radius: 10%;
 }
 
-.Registr{
-  padding: 0px 16px  16px  16px;
+.Registr {
+  padding: 0px 16px 16px 16px;
   margin-bottom: 20px;
 }
 
-.iconoUsuario{
+.iconoUsuario {
   color: rgb(253, 255, 254);
-  font-size:50px;
+  font-size: 50px;
 }
 
-.Alternativa{
+.Alternativa {
   position: fixed;
   justify-content: center;
   align-items: center;
   margin-top: 250px;
- 
+
 }
 
-/*Pantall de eliminar #0*/
+/*Pantall de eliminar usuario*/
 
 
-.Eliminar{
-  display:flex;
- position: fixed;
-  justify-content: center;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #06325d;
-  background-size: cover ;
-  padding: 20px;
-  width: 600px;
-  height: 160px;
-  border-radius: 9%;
-}
-
-
-.Mensaje{
-  position: absolute;
-  top: 30px;
-  left: 50%;
-   margin-top: 10px;
-    color: white; 
-    text-align: center;
-    margin-bottom: 20px;
-     transform: translateX(-50%);
-     font-size: 120%;
-}
-
-
-.Botones{
-
-  position: fixed;
-  align-items: center;
-   display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-}
-
-.B1{
-   background-color: #2975b7;
-    color: white;
-     width: 250px ;
-    left:-50%;
-  }
-
-     .B2{
-      background-color: #2975b7;
-       color: white;
-        width: 150px;
-        left:50%; }
-
-        /*Pantall de eliminar #1*/
-
-        .Eliminar1{
-          display:flex;
-         position: fixed;
-          justify-content: center;
-          align-items: center;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: #06325d;
-          background-size: cover ;
-          padding: 20px;
-          width: 600px;
-          height: 160px;
-          border-radius: 9%;
-        }
-        
-        
-        .Mensaje1{
-          position: absolute;
-          top: 30px;
-          left: 50%;
-           margin-top: 10px;
-            color: white; 
-            text-align: center;
-            margin-bottom: 20px;
-             transform: translateX(-50%);
-             font-size: 120%;
-        }
-        
-        
-        .Botones1{
-        
-          position: fixed;
-          align-items: center;
-           display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-        }
-        
-        .B11{
-           background-color: #2975b7;
-            color: white;
-             width: 250px ;
-            left:-50%;
-          }
-        
-             .B21{
-              background-color: #2975b7;
-               color: white;
-                width: 150px;
-                left:50%; }
-
-        /*Pantall de eliminar #2*/
-
-
-
-        .Eliminar2{
-          display:flex;
-         position: fixed;
-          justify-content: center;
-          align-items: center;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: #06325d;
-          background-size: cover ;
-          padding: 20px;
-          width: 600px;
-          height: 160px;
-          border-radius: 9%;
-        }
-        
-        
-        .Mensaje2{
-          position: absolute;
-          top: 30px;
-          left: 50%;
-           margin-top: 10px;
-            color: white; 
-            text-align: center;
-            margin-bottom: 20px;
-             transform: translateX(-50%);
-             font-size: 120%;
-        }
-        
-        
-        .Botones2{
-        
-          position: fixed;
-          align-items: center;
-           display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-        }
-        
-        .B12{
-           background-color: #2975b7;
-            color: white;
-             width: 250px ;
-            left:-50%;
-          }
-        
-             .B22{
-              background-color: #2975b7;
-               color: white;
-                width: 150px;
-                left:50%; }
-
-
-        /*Pantalla de nuevo usuario*/
-
-        .pantalla{
-
-          display:flex;
-          position: fixed;
-           justify-content: center;
-           align-items: center;
-           top: 50%;
-           left: 50%;
-           transform: translate(-50%, -50%);
-           background-color: #06325d;
-           background-size: cover ;
-           padding: 20px;
-           width: 600px;
-           height: 400px;
-           border-radius: 9%;
-        
-        }
-        
-        .CreaUsuario{
-          color: rgb(253, 255, 254);
-          font-size:60px; 
-        }
-        
-        .panelImputIzquierdo{
-          display:flex;
-          position: fixed;
-           justify-content: center;
-           align-items: center;
-          transform: translate(-50%, -5%);
-        
-        }
-        
-        
-        .panelImputDerecho{
-          display:flex;
-          position: fixed;
-           justify-content: center;
-           align-items: center;
-          transform: translate(110%, -50%);
-        }
-        
-        
-        
-        .panelBotones{
-        
-        
-          position: fixed;
-          align-items: center;
-           display: flex;
-            justify-content: space-between;
-            margin-top: 40%;
-          
-        }
-        
-        .B1{
-          background-color: #2975b7;
-           color: white;
-            width: 150px ;
-           left:-50%;
-           
-         }
-        
-            .B2{
-             background-color: #2975b7;
-              color: white;
-               width: 150px;
-               left:50%; 
-            
-             }
-
- /*Pantalla nueva moto*/
-
-
-
- .pantallamoto{
-
+.Eliminar {
   display:flex;
   position: fixed;
    justify-content: center;
@@ -330,132 +356,422 @@
    background-color: #06325d;
    background-size: cover ;
    padding: 20px;
-   width: 400px;
-   height: 450px;
+   width: 500px;
+   height: 160px;
    border-radius: 9%;
-
 }
 
 
-.Creamoto{
-  color: rgb(253, 255, 254);
-  font-size:60px; 
-}
-
-.panelBotonesmoto{
-
-
-position: fixed;
-align-items: center;
-display: flex;
-justify-content: space-between;
-margin-top: 79%;
-
-}
-
-.Bm1{
-background-color: #2975b7;
-color: white;
-width: 150px ;
-left:-40%;
-
-}
-
-.Bm2{
- background-color: #2975b7;
+.Mensaje {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
   color: white;
-   width: 150px;
-   left:40%; 
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
 
+
+.Botones {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B1 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar moto*/
+
+.Eliminar1 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje1 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones1 {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B11 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B21 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+/*Pantall de eliminar contrato*/
+
+
+
+.Eliminar2 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 160px;
+  border-radius: 9%;
+}
+
+
+.Mensaje2 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  transform: translateX(-50%);
+  font-size: 120%;
+}
+
+
+.Botones2 {
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.B12 {
+  background-color: #2975b7;
+  color: white;
+  width: 250px;
+  left: -50%;
+}
+
+.B22 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+}
+
+
+/*Pantalla de nuevo usuario*/
+
+
+
+.Mod{
+  display:flex;
+  position: fixed;
+   justify-content:center;
+   align-items: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ 
+   padding: 20px;
+   width: 800px;
+   height: 400px;
  }
 
-  /*Pantalla nuevo contrato*/
+.pantalla {
 
-  .pantallacontrato{
-    display:flex;
-    position: fixed;
-     justify-content: center;
-     align-items: center;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     background-color: #06325d;
-     background-size: cover ;
-     padding: 20px;
-     width: 700px;
-     height: 500px;
-     border-radius: 9%;
-   }
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 600px;
+  height: 400px;
+  border-radius: 9%;
 
-
-
-   .pantallacontrato{
-    color: rgb(253, 255, 254);
-    font-size:60px; 
-   }
-
-   .panelIzquierdo{
-    display:flex;
-    position: fixed;
-     justify-content: center;
-     align-items: center;
-    transform: translate(-80%, -30%);
-  
-  }
-  
-  
-  .panelDerecho{
-    display:flex;
-    position: fixed;
-     justify-content: center;
-     align-items: center;
-    transform: translate(60%, -190%);
-  }
-  
-
-.panelDermini{
-display:flex;
-position: fixed;
- justify-content: center;
- align-items: center;
-transform: translate(-10%, 70%);
 }
 
-.panelCentral{
-display:flex;
-    position: fixed;
-     justify-content: center;
-     align-items: center;
-    transform: translate(5%, 80%);
-    
+.CreaUsuario {
+  color: rgb(253, 255, 254);
+  font-size: 60px;
+}
+
+.panelImputIzquierdo {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -5%);
+
+}
+
+
+.panelImputDerecho {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(110%, -50%);
+}
+
+
+
+.panelBotones {
+
+
+  position: fixed;
+  align-items: center;
+   display: flex;
+    justify-content: space-between;
+    margin-top: 30%;
+    transform: translate(-50%, -50%);
+
+}
+
+.B1 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: -50%;
+
+}
+
+.B2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 50%;
+
+}
+
+/*Pantalla nueva moto*/
+
+.Modimoto{
+  display:flex;
+      position: fixed;
+       justify-content: center;
+       align-items: center;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+     
+      
+       width: 300px;
+       height: 300px;
+   
+   
+  }
+
+.pantallamoto {
+
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 400px;
+  height: 450px;
+  border-radius: 9%;
+
+}
+
+
+.Creamoto {
+  color: rgb(253, 255, 254);
+  font-size: 60px;
+}
+
+.panelBotonesmoto {
+
+
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40%;
+  transform: translate(-50%, -50%);
+
+}
+
+.Bm1 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: -40%;
+
+}
+
+.Bm2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 40%;
+
+}
+
+/*Pantalla nuevo contrato*/
+
+.Modi{
+  display:flex;
+  position: fixed;
+   justify-content:center;
+   align-items: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ 
+   padding: 20px;
+   width: 800px;
+   height: 400px;
+ }
+
+.pantallacontrato {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #06325d;
+  background-size: cover;
+  padding: 20px;
+  width: 700px;
+  height: 500px;
+  border-radius: 9%;
+}
+
+
+
+.pantallacontrato {
+  color: rgb(253, 255, 254);
+  font-size: 60px;
+}
+
+.panelIzquierdo {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-80%, -30%);
+
+}
+
+
+.panelDerecho {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(60%, -190%);
+}
+
+
+.panelDermini {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-10%, 70%);
+}
+
+.panelCentral {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  transform: translate(5%, 80%);
+
 }
 
 
 .panel-central h2 {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-   .panelBotonescontrato{
-    position: fixed;
-    align-items: center;
-     display: flex;
-      justify-content: space-between;
-      margin-top: 50%;
-    
-  }
-  
-  .Bc1{
-    background-color: #2975b7;
-     color: white;
-      width: 150px ;
-     left:-40%;
-     
-   }
-  
-      .Bc2{
-       background-color: #2975b7;
-        color: white;
-         width: 150px;
-         left:40%; 
-      
-       }
+.panelBotonescontrato {
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+   margin-top: 30%;
+    transform: translate(-50%, -50%);
+
+}
+
+.Bc1 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: -40%;
+
+}
+
+.Bc2 {
+  background-color: #2975b7;
+  color: white;
+  width: 150px;
+  left: 40%;
+
+}
