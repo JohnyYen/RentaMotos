@@ -5,28 +5,6 @@ import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
-const extractData = async () => {
-  let dataSource = [];
-  let response = null;
-  try {
-    response = await axios.get("http://localhost:3000/api/client");
-
-    if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
-        key: index,
-        municipio: element.municipio,
-        nombre: element.nombre,
-        ci: element.idcliente,
-        "veces alquiladas": element.count,
-        "valor alquileres": element.sum,
-      }));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataSource;
-};
-
 const downloadPDF = async (url) => {
   try {
     const response = await axios({
@@ -64,7 +42,7 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ dateToday }) => {
+const ListadoClientes = ({ extractData }) => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
@@ -72,7 +50,7 @@ const ListadoClientes = ({ dateToday }) => {
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
-    });
+    }, []);
 
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
@@ -93,7 +71,7 @@ const ListadoClientes = ({ dateToday }) => {
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -146,10 +124,10 @@ const ListadoClientes = ({ dateToday }) => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button className="actionTable" type="primary">
-                  Modificar
+                  {t("mainContent.table.modify")}
                 </Button>
                 <Button className="actionTable" type="primary">
-                  Eliminar
+                {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

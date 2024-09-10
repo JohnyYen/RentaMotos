@@ -46,7 +46,7 @@ const Incumplidores = () => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientNonCompliant")}</Typography.Title>
       <Flex align="center">
-        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>{t("mainContent.currentDate")}:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>
       <Table

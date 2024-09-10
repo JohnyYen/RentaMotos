@@ -46,7 +46,7 @@ const SituacionMoto = () => {
       <Typography.Title level={3}>{t("motorcycle.motorcycleSituation")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+        {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}

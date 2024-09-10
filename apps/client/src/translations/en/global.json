@@ -26,25 +26,48 @@
         "contractList": "List of Contracts",
         "contractMunicipality": "By Municipality",
         "contractMakeModel": "By Make and Model",
-        "annualIncome": "Annual Income"
+        "annualIncome": "Annual Income",
+        "createContract": "Create Contract",
+        "myContracts": "My Contracts"
     },
     "mainContent": {
         "downloadPDF": "Download PDF",
+        "currentDate": "Current date",
         "table": {
+            "clientID": "Client ID",
             "serialNumber": "Serial number",
             "mark": "Mark",
             "model": "Model",
             "color": "Color",
+            "colors": {
+                "red": "Red",
+                "black": "Black",
+                "blue": "Blue",
+                "green": "Green",
+                "yellow": "Yellow",
+                "grey": "Grey",
+                "orange": "Orange",
+                "purple": "Purple",
+                "neon": "Neon",
+                "silver": "Silver",
+                "gold": "Gold"
+            },
             "kmTraveled": "Km traveled",
             "actions": "Actions",
             "name": "Name",
             "lastName": "Last name",
             "endContract": "End of contract",
+            "signatureDate": "Signature Date",
             "motorcycleDelivery": "Motorcycle delivery",
             "municipality": "Municipality",
             "timesRented": "Times rented",
             "rentalValue": "Rental value",
             "situation": "Situation",
+            "situations": {
+                "workshop": "Workshop",
+                "available": "Available",
+                "rented": "Rented"
+            },
             "methodPayment": "Method of payment",
             "startContract": "Start of contract",
             "extension": "Extension",
@@ -57,7 +80,37 @@
             "cashIncome": "Cash income",
             "daysRented": "Days rented",
             "extensionDays": "Extension days",
-            "totalCash": "Total cash"
+            "totalCash": "Total cash",
+            "delete": "Delete",
+            "modify": "Modify",
+            "rent": "Rent"
         }
+    },
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "accept": "Accept",
+        "register": "Register",
+        "cancel": "Cancel"
+    },
+    "profile": {
+        "profile": "Profile",
+        "name": "Name",
+        "middleName": "Middle Name",
+        "lastName": "Last Name",
+        "secondLastName": "Second Last Name",
+        "username": "Username",
+        "password": "Password",
+        "email": "Email",
+        "municipality": "Municipality",
+        "age": "Age",
+        "sex": "Sex",
+        "contactNumber": "Contact Number" 
+    },
+    "modal": {
+        "modifyClient": "Modify Client",
+        "modifyContract": "Modify Contract",
+        "modifyMotorcycle": "Modify Motorcycle",
+        "insurance": "Insurance"
     }
 }

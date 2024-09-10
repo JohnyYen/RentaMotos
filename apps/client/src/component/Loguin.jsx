@@ -7,10 +7,12 @@ import { useContext, useState } from "react";
 import ModalCreateClient from "../components/ModalCreateClient";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
+import { useTranslation } from "react-i18next";
 
 function Loguin() {
   const [abrirModal, setabrirModal] = useState(false);
   const navigate = useNavigate();
+  const [t] = useTranslation("global");
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -41,10 +43,60 @@ function Loguin() {
         }
       }
 
-      if(tipoUsuario === 'Trabajador')
+      if(tipoUsuario === 'Trabajador'){
+        setUser(response.data);
         navigate('/worker');
+      }
+        
     }
-  }
+
+    return (
+      <div className="loguin">
+        <div
+          style={{
+            position: "fixed",
+            top: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <UserOutlined className="iconoUsuario" />
+        </div>
+
+        <div className="Registro">
+          <Form className="miLoguin">
+            <Form.Item
+              label={<span style={{ color: "white" }}>{t("login.username")}</span>}
+              name={"miUsuario"}
+            >
+              <Input placeholder="Ingrese su usuario" />
+            </Form.Item>
+
+            <Form.Item
+              label={<span style={{ color: "white" }}>{t("login.password")}</span>}
+              name={"micontraseña"}
+            >
+              <Input placeholder="Ingrese su contraseña" />
+            </Form.Item>
+          </Form>
+        </div>
+
+        <div className="Alternativa">
+          <Button type="primary" htmlType="submit" block>
+            {t("login.accept")}
+          </Button>
+          <div>
+            <Button onClick={() => setabrirModal(true)} type="link">
+            {t("login.register")}
+            </Button>
+            {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
+          </div>
+        </div>
+
+        <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
+      </div>
+    );
+  };
 
   return (
     <div className="loguin">

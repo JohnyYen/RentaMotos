@@ -8,12 +8,14 @@ import {
   import { Menu, Flex } from "antd";
   import { useState } from "react";
   import { useNavigate } from "react-router-dom";
+  import { useTranslation } from "react-i18next";
   import "../App.css";
   import "boxicons";
   
   const SideBarClient = () => {
     const navigate = useNavigate();
-  
+    const [t] = useTranslation("global");
+
     return (
       <>
         <Flex align="center" justify="center">
@@ -35,17 +37,17 @@ import {
           }}
           items={[
             {
-              label: "Crear contrato",
+              label: t("sideBar.clientList"),
               icon: <FileAddOutlined />,
               key: "crearContrato",
             },
             {
-                label: "Mis contratos",
+                label: t("sideBar.myContracts"),
                 icon: <FileDoneOutlined />,
                 key: "contratosCliente",
             },
             {
-              label: "Listado motos",
+              label: t("sideBar.motorcycleList"),
               icon: <CarOutlined />,
               key: "motosCliente",
             },

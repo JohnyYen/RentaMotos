@@ -101,9 +101,10 @@ const ListMoto = () => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
       <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
-      <Flex align="center">
+      <Flex align="center" justify="space-between">
+        <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -111,6 +112,8 @@ const ListMoto = () => {
           variant="borderless"
           defaultValue={currentDate}
         />
+        </Flex>
+        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
         scroll={{
@@ -160,7 +163,7 @@ const ListMoto = () => {
                   Modificar
                 </Button>
                 <Button className="actionTable" type="primary">
-                  Eliminar
+                {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

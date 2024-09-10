@@ -35,7 +35,7 @@ let ContractService = class ContractService {
         return res.rows;
     }
     async getCotnractByCliente(id) {
-        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`);
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = '${id}'`);
         return res.rows;
     }
     async getContractByMun() {

@@ -9,17 +9,96 @@ import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
+import axios from "axios";
+
+const extractDataClient = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/client/mun/:mun");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        municipio: element.municipio,
+        nombre: element.nombre,
+        ci: element.idcliente,
+        "veces alquiladas": element.count,
+        "valor alquileres": element.sum,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
+const extractDataContract = async () => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get("http://localhost:3000/api/contract");
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        nombre: element.nombre,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        "fecha de fin": element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro ? "✔" : "❌",
+        "importe total": element.importe,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
+const extractDataIncome = async () => {
+  let dataSource = [];
+  try {
+   const response = axios.get("http://localhost:3000/api/pagos");
+   if(response.status === 200){
+    console.log(response.data);
+    
+    // dataSource = response.data.map((element, index) => ({
+    //   key: index,
+    //   "ingreso anual": element. ,
+    //   "ingreso enero": element. ,
+    //   "ingreso febrero": element. ,
+    //   "ingreso marzo": element. ,
+    //   "ingreso abril": element. ,
+    //   "ingreso mayo": element. ,
+    //   "ingreso junio": element. ,
+    //   "ingreso julio": element. ,
+    //   "ingreso septiembre": element. ,
+    //   "ingreso octubre": element. ,
+    //   "ingreso noviembre": element. ,
+    //   "ingreso diciembre": element. 
+    // }))
+   }  
+  } catch (error) {
+    
+  }
+};
+
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes/>}/>
+      <Route path="listadoClientes" element={<ListadoClientes extractData={extractDataClient} />}/>
       <Route path="incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
       <Route path="situacionMotos" element={<SituacionMoto />}></Route>
       <Route path="contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
-      <Route path="listadoContratos" element={<ListadoContratos />}></Route>
+      <Route path="listadoContratos" element={<ListadoContratos extractData={extractDataContract} />}></Route>
       <Route path="contratoMunicipio" element={<ContratosMunicipio />}></Route>
-      <Route path="ingresosAño" element={<IngresosAnno />}></Route>
+      <Route path="ingresosAño" element={<IngresosAnno extractData={extractDataIncome} />}></Route>
       <Route path="crearContrato" element></Route>
       <Route path="contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="motosCliente" element={<ListMoto />}></Route>

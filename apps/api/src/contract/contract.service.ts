@@ -25,7 +25,7 @@ export class ContractService {
     }
 
     async getCotnractByCliente(id : string){
-        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`)
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = '${id}'`)
         return res.rows;
     }
     async getContractByMun(){

@@ -42,11 +42,11 @@ const SideBarAdmin = () => {
             key: "/clientes",
             children: [
               {
-                label: "Listado Clientes",
+                label: t("sideBar.clientList"),
                 key: "listadoClientes",
               },
               {
-                label: "Incumplidores",
+                label: t("sideBar.clientNonCompliant"),
                 key: "incumplidoresClientes",
               },
             ],
@@ -57,11 +57,11 @@ const SideBarAdmin = () => {
             key: "/motos",
             children: [
               {
-                label: "Listado Motos",
+                label: t("sideBar.motorcycleList"),
                 key: "listadoMoto",
               },
               {
-                label: "Situacion Motos",
+                label: t("sideBar.motorcycleSituation"),
                 key: "situacionMotos",
               },
             ],
@@ -72,15 +72,15 @@ const SideBarAdmin = () => {
             key: "/contratos",
             children: [
               {
-                label: "Listado Contratos",
+                label: t("sideBar.contractList"),
                 key: "listadoContratos",
               },
               {
-                label: "Por marca y modelo",
+                label: t("sideBar.contractMakeModel"),
                 key: "contratoMarcaModelo",
               },
               {
-                label: "Por municipio",
+                label: t("sideBar.contractMunicipality"),
                 key: "contratoMunicipio",
               },
             ],

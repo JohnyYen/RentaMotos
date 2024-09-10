@@ -37,18 +37,18 @@ import {
           }}
           items={[
             {
-              label: "Listado Clientes",
+              label: t("sideBar.clientList"),
               key: "listadoClientes",
               icon: <UserOutlined />,
             },
             {
               
-              label: "Listado Motos",
+              label: t("sideBar.motorcycleList"),
               key: "listadoMoto",
               icon: <CarOutlined />,
             },
             {
-              label: "Listado Contratos",
+              label: t("sideBar.contractList"),
               key: "listadoContratos",
               icon: <FileDoneOutlined />,
             },

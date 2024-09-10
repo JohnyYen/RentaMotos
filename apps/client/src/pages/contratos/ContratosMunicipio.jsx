@@ -70,7 +70,7 @@ const ContratosMunicipio = () => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("contract.contractMunicipality")}</Typography.Title>
       <Flex align="center">
-        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>{t("mainContent.currentDate")}:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>
       <Table
@@ -84,7 +84,7 @@ const ContratosMunicipio = () => {
         dataSource={dataSource}
         columns={[
           {
-            title: "Municipio",
+            title: t("mainContent.table.municipality"),
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
@@ -92,32 +92,32 @@ const ContratosMunicipio = () => {
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
           },
           {
-            title: "Modelo",
+            title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
           },
           {
-            title: "Días alquilados",
+            title: t("mainContent.table.daysRented"),
             dataIndex: "días alquilados",
             key: "días alquilados",
           },
           {
-            title: "Días de prórroga",
+            title: t("mainContent.table.extensionDays"),
             dataIndex: "días de prórroga",
             key: "días de prórroga",
           },
           {
-            title: "Total efectivo",
+            title: t("mainContent.table.totalCash"),
             dataIndex: "total efectivo",
             key: "total efectivo",
           },
           {
-            title: "Valor total",
+            title: t("mainContent.table.totalAmount"),
             dataIndex: "valor total",
             key: "valor total",
           },

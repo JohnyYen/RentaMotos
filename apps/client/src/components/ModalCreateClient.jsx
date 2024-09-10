@@ -59,7 +59,6 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                 navigate('/client');
             }
         }
-
     }
     const margin = 15;
   return (
