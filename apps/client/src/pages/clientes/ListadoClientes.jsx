@@ -5,28 +5,6 @@ import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
-const extractData = async () => {
-  let dataSource = [];
-  let response = null;
-  try {
-    response = await axios.get("http://localhost:3000/api/client");
-
-    if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
-        key: index,
-        municipio: element.municipio,
-        nombre: element.nombre,
-        ci: element.idcliente,
-        "veces alquiladas": element.count,
-        "valor alquileres": element.sum,
-      }));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataSource;
-};
-
 const downloadPDF = async (url) => {
   try {
     const response = await axios({
@@ -64,7 +42,7 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ dateToday }) => {
+const ListadoClientes = ({ extractData }) => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");

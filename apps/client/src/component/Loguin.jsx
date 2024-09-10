@@ -43,8 +43,11 @@ function Loguin() {
         }
       }
 
-      if(tipoUsuario === 'Trabajador')
+      if(tipoUsuario === 'Trabajador'){
+        setUser(response.data);
         navigate('/worker');
+      }
+        
     }
 
     return (

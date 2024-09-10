@@ -4,14 +4,22 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
-const IngresosAnno = () => {
+const IngresosAnno = ({ extractData }) => {
   const date = new Date();
   const day = date.getDay();
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
   
+  const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
+
+
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    })
+  }, [])
 
   return (
     <Flex vertical="true">
@@ -28,6 +36,7 @@ const IngresosAnno = () => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
+        dataSource={dataSource}
         columns={[
           {
             title: t("mainContent."),

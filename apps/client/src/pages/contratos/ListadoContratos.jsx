@@ -4,33 +4,6 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
-const extractData = async () => {
-  let dataSource = [];
-  let response = null;
-  try {
-    response = await axios.get("http://localhost:3000/api/contract");
-
-    if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
-        key: index,
-        nombre: element.nombre,
-        matricula: element.matricula,
-        marca: element.marca,
-        modelo: element.modelo,
-        "forma de pago": element.formapago,
-        "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
-        prorroga: element.diasprorroga,
-        "seguro adicional": element.seguro,
-        "importe total": element.importe,
-      }));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataSource;
-};
-
 const downloadPDF = async (url) => {
   try {
     const response = await axios({
@@ -54,7 +27,7 @@ const downloadPDF = async (url) => {
   }
 };
 
-const ListadoContratos = () => {
+const ListadoContratos = ({ extractData }) => {
   const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
 
