@@ -4,7 +4,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalCreateContract from "../../components/ModalCreateContract";
-import { GlobalContext, useRow } from "../../context/GlobalContext";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const extractData = async () => {
 

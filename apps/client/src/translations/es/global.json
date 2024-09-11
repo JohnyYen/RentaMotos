@@ -26,11 +26,13 @@
         "contractList": "Listado contratos",
         "contractMunicipality": "Por Municipio",
         "contractMakeModel": "Por Marca y Modelo",
-        "annualIncome": "Ingresos Anuales"
+        "annualIncome": "Ingresos Anuales",
+        "myContracts": "Mis contratos"
     },
     "mainContent": {
         "downloadPDF": "Descargar PDF",
         "currentDate": "Fecha actual",
+        "createMotorcycle": "Agregar moto",
         "table": {
             "clientID": "ID Cliente",
             "serialNumber": "Matricula",
@@ -81,7 +83,22 @@
             "totalCash": "Total efectivo",
             "delete": "Eliminar",
             "modify": "Modificar",
-            "rent": "Rentar"
+            "rent": "Rentar",
+            "annualIncome": "Ingresos Anuales",
+            "income": {
+                "january": "Ingreso enero",
+                "february": "Ingreso febrero",
+                "march": "Ingreso marzo",
+                "april": "Ingreso abril",
+                "may": "Ingreso mayo",
+                "june": "Ingreso junio",
+                "july": "Ingreso julio",
+                "august": "Ingreso agosto",
+                "september": "Ingreso septiembre",
+                "october": "Ingreso octubre",
+                "november": "Ingreso noviembre",
+                "december": "Ingreso diciembre"
+            }
         }
     },
     "login": {
