@@ -2,12 +2,14 @@ import {
   CarOutlined,
   DollarOutlined,
   FileDoneOutlined,
+  MediumWorkmarkOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Flex } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { PiHardHat } from "react-icons/pi";
 import "../App.css";
 import "boxicons";
 //import axios from 'axios';
@@ -90,6 +92,11 @@ const SideBarAdmin = () => {
             icon: <DollarOutlined />,
             key: "ingresosAño",
           },
+          {
+            label: "Trabajadores",
+            icon: <PiHardHat />,
+            key: "listadoTrabajadores"
+          }
         ]}
       ></Menu>
     </>

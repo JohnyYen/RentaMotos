@@ -33,6 +33,7 @@
     "mainContent": {
         "downloadPDF": "Download PDF",
         "currentDate": "Current date",
+        "createMotorcycle": "Add motorcycle",
         "table": {
             "clientID": "Client ID",
             "serialNumber": "Serial number",
@@ -83,7 +84,22 @@
             "totalCash": "Total cash",
             "delete": "Delete",
             "modify": "Modify",
-            "rent": "Rent"
+            "rent": "Rent",
+            "annualIncome": "Annual Income",
+            "income": {
+                "january": "January income",
+                "february": "February income",
+                "march": "March income",
+                "april": "April income",
+                "may": "May income",
+                "june": "June income",
+                "july": "July income",
+                "august": "August income",
+                "september": "September income",
+                "october": "October income",
+                "november": "November income",
+                "december": "December income"
+            }
         }
     },
     "login": {

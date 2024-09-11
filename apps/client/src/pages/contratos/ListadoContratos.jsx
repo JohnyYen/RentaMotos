@@ -28,14 +28,7 @@ const downloadPDF = async (url) => {
 };
 
 const ListadoContratos = ({ extractData }) => {
-  const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
-
-  useEffect(() => {
-    extractData().then((result) => {
-      setDataSource(result);
-    });
-  }, []);
 
   const onClick = async () => {
     await downloadPDF("http://localhost:3000/api/contract/pdf");
@@ -52,7 +45,7 @@ const ListadoContratos = ({ extractData }) => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
-        dataSource={dataSource}
+        dataSource={extractData}
         columns={[
           {
             title: t("mainContent.table.name"),

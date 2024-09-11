@@ -1,17 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext"; 
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ListMoto from "../pages/motos/ListMoto";
 import ListadoClientes from "../pages/clientes/ListadoClientes";
 import ListadoContratos from "../pages/contratos/ListadoContratos";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
+import { Result } from "antd";
 
-const extractDataClient = async () => {
+const extractDataClient = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/client/mun/:mun");
-
+    response = await axios.get(`http://localhost:3000/api/client/mun/${user.municipio}`);
+    console.log(response);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
@@ -28,8 +29,7 @@ const extractDataClient = async () => {
   return dataSource;
 };
 
-const extractDataContract = async () => {
-  const [user] = useContext(GlobalContext);
+const extractDataContract = async (user) => {
   let dataSource = [];
   let response = null;
   try {
@@ -56,8 +56,7 @@ const extractDataContract = async () => {
   return dataSource;
 };
 
-const extractDataIncome = async () => {
-  const [user] = useContext(GlobalContext);
+const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
    const response = axios.get(`http://localhost:3000/api/pagos/${user.municipio}`);
@@ -86,13 +85,33 @@ const extractDataIncome = async () => {
 };
 
 const AppRouter = () => {
+  const { user } = useContext(GlobalContext);
+  const [dataClient, setDataClient] = useState();
+  const [dataContract, setDataContract] = useState();
+  const [dataIncome, setDataIncome] = useState();
+  console.log(user);
+
+  useEffect(() => {
+    extractDataClient(user).then((result) => {
+      setDataClient(result);
+    })
+
+    extractDataContract(user).then((result) => {
+      setDataContract(result);
+    })
+
+    extractDataIncome(user).then((result) => {
+      setDataIncome(result);
+    })
+  }, [])
+
 
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes extractData={extractDataClient} />}/>
+      <Route path="listadoClientes" element={<ListadoClientes extractData={dataClient} />}/>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
-      <Route path="listadoContratos" element={<ListadoContratos extractData={extractDataContract} />}></Route>
-      <Route path="ingresosAño" element={<IngresosAnno extractData={extractDataIncome} />} />
+      <Route path="listadoContratos" element={<ListadoContratos extractData={dataContract} />}></Route>
+      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />} />
     </Routes>
   );
 };

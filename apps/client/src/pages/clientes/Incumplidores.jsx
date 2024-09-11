@@ -13,7 +13,7 @@ const extractData = async () => {
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        nombre: element.nombre,
+        nombre: element.nomvre,
         apellidos: element.prim_apellido + ' ' + element.seg_apellido,
         "fin de contrato": element.fecha_fin,
         "entrega de moto": element.fecha_entrega,

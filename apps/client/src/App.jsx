@@ -4,7 +4,6 @@ import UserAdmin from "./pages/UserPages/UserAdmin";
 import Loguin from "./component/Loguin";
 import UserClient from "./pages/UserPages/UserClient";
 import UserWorker from "./pages/UserPages/UserWorker";
-import ModalCreateContract from "./components/ModalCreateContract";
 import Prueba from "./pages/UserPages/Prueba";
 import GlobalProvider from "./context/GlobalContext";
 

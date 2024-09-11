@@ -42,16 +42,11 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ extractData }) => {
-  const [dataSource, setDataSource] = useState([]);
+const ListadoClientes = ({ extractData, dateToday }) => {
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
   useEffect(() => {
-    extractData().then((result) => {
-      setDataSource(result);
-    }, []);
-
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
         {
@@ -88,7 +83,7 @@ const ListadoClientes = ({ extractData }) => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
-        dataSource={dataSource}
+        dataSource={extractData}
         columns={[
           {
             title: t("mainContent.table.municipality"),

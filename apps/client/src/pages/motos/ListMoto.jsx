@@ -108,7 +108,7 @@ const ListMoto = () => {
           defaultValue={currentDate}
         />
         </Flex>
-        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
+        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">{t("mainContent.createMotorcycle")}</Button>
       </Flex>
       <Table
         scroll={{

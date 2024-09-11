@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 import ListMoto from "../pages/motos/ListMoto";
 import ListadoClientes from "../pages/clientes/ListadoClientes";
 import Incumplidores from "../pages/clientes/Incumplidores";
@@ -10,12 +12,13 @@ import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
 import axios from "axios";
+import ListadoTrabajadores from "../pages/trabajadores/ListadoTrabajadores";
 
 const extractDataClient = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/client/mun/:mun");
+    response = await axios.get("http://localhost:3000/api/client");
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -64,8 +67,8 @@ const extractDataIncome = async () => {
   let dataSource = [];
   try {
    const response = axios.get("http://localhost:3000/api/pagos");
+   console.log(response);
    if(response.status === 200){
-    console.log(response.data);
     
     // dataSource = response.data.map((element, index) => ({
     //   key: index,
@@ -89,19 +92,40 @@ const extractDataIncome = async () => {
 };
 
 const AppRouter = () => {
+  const { user } = useContext(GlobalContext);
+  const [dataClient, setDataClient] = useState();
+  const [dataContract, setDataContract] = useState();
+  const [dataIncome, setDataIncome] = useState();
+  console.log(user);
+
+  useEffect(() => {
+    extractDataClient(user).then((result) => {
+      setDataClient(result);
+    })
+
+    extractDataContract(user).then((result) => {
+      setDataContract(result);
+    })
+
+    extractDataIncome(user).then((result) => {
+      setDataIncome(result);
+    })
+  }, [])
+
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes extractData={extractDataClient} />}/>
+      <Route path="listadoClientes" element={<ListadoClientes extractData={dataClient} />}/>
       <Route path="incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
       <Route path="situacionMotos" element={<SituacionMoto />}></Route>
       <Route path="contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
-      <Route path="listadoContratos" element={<ListadoContratos extractData={extractDataContract} />}></Route>
+      <Route path="listadoContratos" element={<ListadoContratos extractData={dataContract} />}></Route>
       <Route path="contratoMunicipio" element={<ContratosMunicipio />}></Route>
-      <Route path="ingresosAño" element={<IngresosAnno extractData={extractDataIncome} />}></Route>
+      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />}></Route>
       <Route path="crearContrato" element></Route>
       <Route path="contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="motosCliente" element={<ListMoto />}></Route>
+      <Route path="listadoTrabajadores" element={<ListadoTrabajadores />} ></Route>
     </Routes>
   );
 };
