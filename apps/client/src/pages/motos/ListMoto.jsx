@@ -4,7 +4,8 @@ import axios from "axios";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalEliminarMoto from "../../components/ModalEliminarMoto"
+
 
 const extractData = async () => {
   let dataSource = [];
@@ -74,6 +75,8 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [motoToDelete, setMotoToDelete] = useState(null);
 
   useEffect(() => {
     extractData().then((result) => {
@@ -92,6 +95,19 @@ const ListMoto = () => {
   const onClick = async () => {
     await downloadPDF("http://localhost:3000/api/moto/pdf");
   };
+
+  const handleDeleteMoto = (matricula) => {
+    setMotoToDelete(matricula);
+    setDeleteModalVisible(true);
+  };
+
+  const handleDeleteSuccess = () => {
+    extractData().then((result) => {
+      setDataSource(result);
+      setDeleteModalVisible(false);
+    });
+  };
+
 
   return (
     <Flex vertical="true">
@@ -157,7 +173,7 @@ const ListMoto = () => {
                 <Button className="actionTable" type="primary">
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => handleDeleteMoto(record.matricula)}>
                 {t("mainContent.table.delete")}
                 </Button>
               </Flex>
@@ -176,6 +192,14 @@ const ListMoto = () => {
       >
        {t("mainContent.downloadPDF")}
       </Button>
+
+      <ModalEliminarMoto 
+        isVisible={deleteModalVisible} 
+        setVisible={setDeleteModalVisible} 
+        idmoto={motoToDelete}
+        onDelete={handleDeleteSuccess}
+      />
+
     </Flex>
 
       )

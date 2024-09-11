@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 
-const EliminarMoto = ({ idmoto }) => {
+const EliminarMoto = ({ idmoto, onDelete }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const EliminarMotoOpenModal = () => {
@@ -32,7 +32,7 @@ const EliminarMoto = ({ idmoto }) => {
 
   return (
     <div className="EliminarElemento">
-      <Button onClick={EliminarMotoOpenModal}>Eliminar Moto</Button>
+      
 
       <Modal className="Eliminar"
         title="¿Desea eliminar esta moto?"
