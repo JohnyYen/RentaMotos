@@ -36,7 +36,7 @@ export class UserService {
     }
 
     async getWorkers(){
-        const res = await this.conn('SELECT * FROM worker_view');
+        const res = await this.conn.query('SELECT * FROM worker_view');
         return res.rows;
     }
     async validationUser(userName : string, contrasenia : string){

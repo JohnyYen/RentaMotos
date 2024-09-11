@@ -85,6 +85,8 @@ const extractDataIncome = async (user) => {
   }
 };
 
+
+
 const AppRouter = () => {
   const { user } = useContext(GlobalContext);
   const [dataClient, setDataClient] = useState();

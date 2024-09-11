@@ -8,7 +8,7 @@ import ModalCreateWorker from "../../components/ModalCreateWorker";
 
 
 
-const ListadoTrabajadores = () => {
+const ListadoTrabajadores = ({extractData}) => {
 
   const [visible, setVisible] = useState(false);
   const [t] = useTranslation("global");
@@ -20,7 +20,7 @@ const ListadoTrabajadores = () => {
       <Flex align="center" justify="flex-end">
         <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Agregar trabajador</Button>
       </Flex>
-      <Table
+      <Table dataSource={dataSource}
         scroll={{
           x: 650,
         }}
