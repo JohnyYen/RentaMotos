@@ -54,6 +54,7 @@ export class MotorcycleController {
 
     @Patch('/:id')
     updateMoto(@Param("id") id : string, @Body() update : MotorcycleDto){
+        //console.log(id);
         this.motoService.updateMotorcycle(update, id);
     }
 }

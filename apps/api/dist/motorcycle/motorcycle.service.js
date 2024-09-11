@@ -44,7 +44,7 @@ let MotorcycleService = class MotorcycleService {
         await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
     }
     async updateMotorcycle(moto, id) {
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
+        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
     }
     async getSituationMoto() {
         const res = await this.conn.query('SELECT * FROM SituacionMoto()');

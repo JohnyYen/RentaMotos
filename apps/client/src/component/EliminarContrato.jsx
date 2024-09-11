@@ -60,7 +60,7 @@ const Desactivar =() =>{
 
     return (
   
-
+        <Modal>
         <div className="Mensaje2" >
           ¿Seguro que desea eliminar este contrato?
         </div>

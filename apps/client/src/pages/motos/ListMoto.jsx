@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalModMoto from '../../components/ModalModMoto'
 import {GlobalContext} from '../../context/GlobalContext'
+import ModalCreateMoto from "../../components/ModalCreateMoto";
 
 
 const extractData = async () => {
@@ -21,7 +22,7 @@ const extractData = async () => {
         marca: element.marca,
         modelo: element.modelo,
         color: element.color,
-        "Km recorridos": element.cantkm,
+        kmRecorridos: element.cantkm,
       }));
     }
   } catch (error) {
@@ -77,6 +78,7 @@ const ListMoto = () => {
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const {setRow} = useContext(GlobalContext);
 
   useEffect(() => {
@@ -101,6 +103,7 @@ const ListMoto = () => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
       <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)}/>
       <Flex align="center" justify="space-between">
         <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
@@ -113,7 +116,7 @@ const ListMoto = () => {
           defaultValue={currentDate}
         />
         </Flex>
-        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
+        <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
         scroll={{
@@ -151,7 +154,7 @@ const ListMoto = () => {
           },
           {
             title: t("mainContent.table.kmTraveled"),
-            dataIndex: "Km recorridos",
+            dataIndex: "kmRecorridos",
             key: "Km recorridos",
           },
           {

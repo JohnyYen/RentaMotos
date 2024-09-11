@@ -74,8 +74,8 @@ export class ContractController {
     createContract(@Body() contract : ContractDto){
         this.contractService.createContract(contract);
     }
-    @Patch('/:idClient/:matricula')
-    updateContract(@Param("idCliente") idCliente : string, @Param("matricula") matricula : string, @Body() contract : ContractDto){
-        this.contractService.updateContract(contract, idCliente, matricula);
+    @Patch('/:matricula')
+    updateContract(@Param("matricula") matricula : string, @Body() contract : ContractDto){
+        this.contractService.updateContract(contract, matricula);
     }
 }

@@ -41,7 +41,7 @@ export class MotorcycleService {
     }
 
     async updateMotorcycle (moto : MotorcycleDto, id : string){
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
+        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
     }
 
     async getSituationMoto(){

@@ -39,7 +39,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
     console.log(res.status);
   }
   return (
-    <Modal centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
+    <Modal  destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
         <Row gutter={16}>
           <Col span={12}>
             {/* <Input value={row?.matricula} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin, marginTop: 10}} placeholder='Matricula de la Moto'/>

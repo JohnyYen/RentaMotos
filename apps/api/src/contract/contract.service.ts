@@ -14,7 +14,7 @@ export class ContractService {
     }
 
     async getContractFilter(){
-        const res = await this.conn.query('SELECT contratoxmarcamodelo()')
+        const res = await this.conn.query('select * from contratoxmarca_modelo')
         return res.rows;
     }
 
@@ -54,8 +54,8 @@ export class ContractService {
         await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
     }
 
-    updateContract(contract : ContractDto, idCliente : string, matricula : string){
-        this.conn.query(`UPDATE Contrato SET formapago = ${contract.formaPago}, seguro = ${contract.seguro}, diasprorroga = ${contract.diasProrroga} WHERE idcliente = ${idCliente} AND matricula = ${matricula}`);
+    updateContract(contract : ContractDto, matricula : string){
+        this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
     }
 
     deleteContract(idCliente : string, matricula : string){
