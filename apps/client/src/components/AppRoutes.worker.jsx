@@ -59,9 +59,11 @@ const extractDataContract = async (user) => {
 const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
-   const response = axios.get(`http://localhost:3000/api/pagos/${user.municipio}`);
+   const response = await axios.get(`http://localhost:3000/api/pagos/${user.municipio}`);
+   console.log(response.data);
+   
    if(response.status === 200){
-    console.log(response.data);
+    
     
     // dataSource = response.data.map((element, index) => ({
     //   key: index,

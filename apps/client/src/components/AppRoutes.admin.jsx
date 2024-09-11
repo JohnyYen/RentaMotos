@@ -66,7 +66,7 @@ const extractDataContract = async () => {
 const extractDataIncome = async () => {
   let dataSource = [];
   try {
-   const response = axios.get("http://localhost:3000/api/pagos");
+   const response = await axios.get("http://localhost:3000/api/pagos");
    console.log(response);
    if(response.status === 200){
     
@@ -87,7 +87,7 @@ const extractDataIncome = async () => {
     // }))
    }  
   } catch (error) {
-    
+    console.log(error);
   }
 };
 

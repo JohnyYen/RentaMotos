@@ -141,7 +141,7 @@ const ContratosMarcaModelo = () => {
             key: "cantidad de motos",
           },
           {
-            title: t("mainContent.totalDaysRented"),
+            title: t("mainContent.table.totalDaysRented"),
             dataIndex: "dias totales alquilados",
             key: "dias totales alquilados",
           },

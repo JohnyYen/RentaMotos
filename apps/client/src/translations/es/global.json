@@ -33,6 +33,7 @@
         "downloadPDF": "Descargar PDF",
         "currentDate": "Fecha actual",
         "createMotorcycle": "Agregar moto",
+        "createContract": "Crear contrato",
         "table": {
             "clientID": "ID Cliente",
             "serialNumber": "Matricula",
@@ -52,7 +53,7 @@
                 "silver": "Plateado",
                 "gold": "Dorado"
             },
-            "kmTraveled": "Km recorrids",
+            "kmTraveled": "Km recorridos",
             "actions": "Acciones",
             "name": "Nombre",
             "lastName": "Apellidos",

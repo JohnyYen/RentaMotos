@@ -18,6 +18,7 @@ const extractData = async () => {
         matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
+        situacion: element.situacion,
         color: element.color,
         "Km recorridos": element.cantkm,
       }));
@@ -138,6 +139,11 @@ const ListMoto = () => {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+          },
+          {
+            title: t("mainContent.table.situation"),
+            dataIndex: "situacion",
+            key: "situacion",
           },
           {
             title: t("mainContent.table.color"),

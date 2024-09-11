@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import EliminarContrato from "../../component/EliminarContrato";
 
 const downloadPDF = async (url) => {
   try {
@@ -108,7 +109,7 @@ const ListadoContratos = ({ extractData }) => {
                   {t("mainContent.table.modify")}
                 </Button>
                 <Button className="actionTable" type="primary">
-                  {t("mainContent.table.delete")}
+                  {t("mainContent.table.delete")}                
                 </Button>
               </Flex>
             ),
