@@ -1,9 +1,11 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import ModalModClient from "../../components/ModalModClient";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const downloadPDF = async (url) => {
   try {
@@ -43,9 +45,14 @@ const extractDataFilter = async () => {
 };
 
 const ListadoClientes = ({ extractData }) => {
+
+  const {setRow} = useContext(GlobalContext);
+
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     extractData().then((result) => {
@@ -69,6 +76,7 @@ const ListadoClientes = ({ extractData }) => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
+      <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           {t("mainContent.currentDate")}:
@@ -123,7 +131,7 @@ const ListadoClientes = ({ extractData }) => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
                   {t("mainContent.table.modify")}
                 </Button>
                 <Button className="actionTable" type="primary">

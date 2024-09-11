@@ -1,6 +1,7 @@
 import { Flex, Input, InputNumber, Modal, Select } from 'antd'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
+import { GlobalContext } from '../context/GlobalContext';
 
 const response = await axios.get('http://localhost:3000/api/mun');
 let dataSource = [];
@@ -9,6 +10,7 @@ if(response.status === 200)
 
 const ModalModClient = ({isOpen, setOpen}) => {
 
+    const {row} = useContext(GlobalContext);
     const [edad, setEdad] = useState(0);
     const [Municipio, setMunicipio] = useState("");
     const [name, setName] = useState("");
@@ -17,9 +19,27 @@ const ModalModClient = ({isOpen, setOpen}) => {
     const [secondLast, setSecondLast] = useState("");
     const [numCont, setNumCont] = useState("");
 
+    const handlePetition = async () => {
+
+      console.log(row);
+
+      // const client = {
+      //   idCliente: row?.idcliente,
+      //   nombre: name,
+      //   segNombre: secondName,
+      //   primApellido: lastName,
+      //   segApellido: secondLast,
+      //   edad: edad,
+      //   municipio: Municipio,
+      //   sexo: sexo,
+      //   numCont:numCont
+      // }
+
+      //const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
+    }
     const margin = 15;
   return (
-    <Modal  destroyOnClose={true} title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen}>
+    <Modal  destroyOnClose={true} title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen} onOk={handlePetition}>
 
         <Flex vertical={true}>
 
