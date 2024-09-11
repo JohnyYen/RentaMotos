@@ -1,77 +1,53 @@
-import{ Button, useState ,Modal }from "antd";
-import "../App.css";
+
+import React, { useState, useEffect } from "react";
+import { Button, Modal } from "antd";
 import axios from 'axios';
 
-const EliminarMoto = (idmoto) => {
-  const [abrirModal, setabrirModal]= useState (false);
-  
-<<<<<<< HEAD
-}
-const Desactivar =() =>{
-  setVisible(false)};
 
-  const Emoto = async(idmoto) =>{
 
-    try{
-    const apiUrl = `http://localhost:3000/api/moto/${idmoto} `;
-    const response = await axios.delete(apiUrl);
-    alert('Elemento eliminado con éxito:', response.data);
-  }catch(error){alert('Error al eliminar el elemento:', error);}
+const EliminarMoto = ({ idmoto }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const EliminarMotoOpenModal = () => {
+    setModalVisible(true);
   };
-  
 
-<<<<<<< HEAD
-const EliminarMoto = () => {
-=======
->>>>>>> main
-    return (
-      <div>
-      <Modal visible={visible}>
-  
-    <div className="Eliminar1">
-=======
-  const Modal =(isOpen, closeModal) =>{
-    if(!isOpen) return null;
-    
-      return(    <div className="Eliminar1">
->>>>>>> 624c6d72aa96f741ef2b5f24673da529581d2ed9
-    
-        <div className="Mensaje1" >
-          ¿Seguro que desea eliminar esta moto?
-        </div>
-  
-        <div  className="Botones1"  >
-          <Button className="B11" type="primary" htmlType="submit" block >Cancelar
-          </Button>
-  
-          <Button onClick = {Emoto(idmoto)} className="B21"
-            type="primary" htmlType="submit" block
-  
-          >
-            Aceptar
-          </Button>
-        </div>
-    
-    
-    </div> )};
-
-  const Emoto = async(idmoto) =>{
-
-    try{
-    const apiUrl = `http://localhost:3000/api/moto?${idmoto} `
-    ;
-    const response = await axios.delete(apiUrl);
-    alert('Elemento eliminado con éxito:', response.data);
-  }catch(error){alert('Error al eliminar el elemento:', error);}
+  const EliminarMotoCloseModal = () => {
+    setModalVisible(false);
   };
-  
 
-    return (
+  const handleConfirmDeleteMoto = async () => {
+    try {
+      const apiUrl = `http://localhost:3000/api/moto/${idmoto} `;
+      const response = await axios.delete(apiUrl);
+      alert('Elemento eliminado con éxito:', response.data);
+    } catch (error) {
+      alert('Error al eliminar el elemento:', error.message || String(error));
+    } finally {
+      setModalVisible(false);
+    }
+  };
 
-      <div className="Loguin">
-      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
+
+
+  return (
+    <div className="EliminarElemento">
+      <Button onClick={EliminarMotoOpenModal}>Eliminar Moto</Button>
+
+      <Modal className="Eliminar"
+        title="¿Desea eliminar esta moto?"
+        visible={modalVisible}
+        onOk={handleConfirmDeleteMoto}
+        onCancel={EliminarMotoCloseModal}
+        okText="Eliminar"
+        cancelText="Cancelar"
+        
+      >
+        <p className="Mensaje">¿Está seguro que desea eliminar esta moto?</p>
+      </Modal>
     </div>
-    );
-  };
-  
-  export default  EliminarMoto;
+  );
+};
+
+export default EliminarMoto;
+

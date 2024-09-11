@@ -4,6 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import ModalEliminarUsuario from "../../components/ModalEliminarUsuario"
 
 const downloadPDF = async (url) => {
   try {
@@ -45,6 +46,10 @@ const extractDataFilter = async () => {
 const ListadoClientes = ({ extractData, dateToday }) => {
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
+  const [dataSource, setDataSource] = useState([]);
+
 
   useEffect(() => {
     extractDataFilter().then(result => {
@@ -60,6 +65,14 @@ const ListadoClientes = ({ extractData, dateToday }) => {
   const onClick = async () => {
     await downloadPDF('http://localhost:3000/api/client/pdf');
   };
+
+   const handleDeleteSuccess = () => { 
+    extractData().then((result) => {
+      setDataSource(result);
+      setDeleteModalVisible(false);
+    });
+  };
+
 
   return (
     <Flex vertical="true">
@@ -121,7 +134,7 @@ const ListadoClientes = ({ extractData, dateToday }) => {
                 <Button className="actionTable" type="primary">
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => handleDeleteUser(record.username)}>
                 {t("mainContent.table.delete")}
                 </Button>
               </Flex>
@@ -140,6 +153,14 @@ const ListadoClientes = ({ extractData, dateToday }) => {
       >
         {t("mainContent.downloadPDF")}
       </Button>
+      
+      <ModalEliminarUsuario 
+        isVisible={deleteModalVisible} 
+        setVisible={setDeleteModalVisible} 
+        username={userToDelete}
+        onDelete={handleDeleteSuccess}
+      />
+
     </Flex>
   );
 };

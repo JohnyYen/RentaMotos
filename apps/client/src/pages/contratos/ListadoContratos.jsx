@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import ModalEliminarContrato from "../../components/ModalEliminarContrato"
 
 const downloadPDF = async (url) => {
   try {
@@ -28,11 +29,33 @@ const downloadPDF = async (url) => {
 };
 
 const ListadoContratos = ({ extractData }) => {
+  const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [contractToDelete, setContractToDelete] = useState(null);
+  useEffect(() => {
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  }, []);
 
   const onClick = async () => {
     await downloadPDF("http://localhost:3000/api/contract/pdf");
   };
+
+
+  const handleDeleteContract = (idcliente, matricula) => {
+    setContractToDelete({ idcliente, matricula });
+    setDeleteModalVisible(true);
+  };
+
+  const handleDeleteSuccess = () => {
+    // Actualizar la fuente de datos tras una eliminación correcta
+    extractData().then((result) => {
+      setDataSource(result);
+    });
+  };
+
 
   return (
     <Flex vertical="true">
@@ -107,7 +130,7 @@ const ListadoContratos = ({ extractData }) => {
                 <Button className="actionTable" type="primary">
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => handleDeleteContract(record.idcliente, record.matricula)}>
                   {t("mainContent.table.delete")}
                 </Button>
               </Flex>
@@ -126,6 +149,16 @@ const ListadoContratos = ({ extractData }) => {
       >
         {t("mainContent.downloadPDF")}
       </Button>
+
+
+      <ModalEliminarContrato 
+        isVisible={deleteModalVisible} 
+        setVisible={setDeleteModalVisible} 
+        idcliente={contractToDelete?.idcliente}
+        matricula={contractToDelete?.matricula}
+        onDelete={handleDeleteSuccess}
+      />
+
     </Flex>
   );
 };
