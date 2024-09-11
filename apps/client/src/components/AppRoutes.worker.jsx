@@ -61,6 +61,7 @@ const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
    const response = axios.get(`http://localhost:3000/api/pagos/${user.mun}`);
+   console.log(response.data);
    if(response.status === 200){
     
     

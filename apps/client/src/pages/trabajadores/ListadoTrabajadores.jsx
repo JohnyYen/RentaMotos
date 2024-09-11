@@ -4,9 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import ModalCreateWorker from "../../components/ModalCreateWorker";
-
-
+import ModalCreateWorker from "../../components/ModalCreateWorker"
 
 const ListadoTrabajadores = () => {
 
