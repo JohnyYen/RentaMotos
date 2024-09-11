@@ -15,7 +15,7 @@
     "apps/*"
   ],
   "devDependencies": {
-    "turbo": "^2.0.4"
+    "turbo": "^2.1.1"
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
