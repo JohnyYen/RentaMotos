@@ -11,15 +11,7 @@ const IngresosAnno = ({ extractData }) => {
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
   
-  const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
-
-
-  useEffect(() => {
-    extractData().then((result) => {
-      setDataSource(result);
-    })
-  }, [])
 
   return (
     <Flex vertical="true">
@@ -36,71 +28,71 @@ const IngresosAnno = ({ extractData }) => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
-        dataSource={dataSource}
+        dataSource={extractData}
         columns={[
           {
-            title: t("mainContent."),
+            title: t("mainContent.table.annualIncome"),
             dataIndex: "ingreso anual",
             key: "ingreso anual",
             fixed: "left"
           },
           {
-            title: "Ingreso enero",
+            title: t("mainContent.table.income.january"),
             dataIndex: "ingreso enero",
             key: "ingreso enero",
           },
           {
-            title: "Ingreso febrero",
+            title: t("mainContent.table.income.february"),
             dataIndex: "ingreso febrero",
             key: "ingreso febrero",
           },
           {
-            title: "Ingreso marzo",
+            title: t("mainContent.table.income.march"),
             dataIndex: "ingreso marzo",
             key: "ingreso marzo",
           },
           {
-            title: "Ingreso abril",
+            title: t("mainContent.table.income.april"),
             dataIndex: "ingreso abril",
             key: "ingreso abril",
           },
           {
-            title: "Ingreso mayo",
+            title: t("mainContent.table.income.may"),
             dataIndex: "ingreso mayo",
             key: "ingreso mayo",
           },
           {
-            title: "Ingreso junio",
+            title: t("mainContent.table.income.june"),
             dataIndex: "ingreso junio",
             key: "ingreso junio",
           },
           {
-            title: "Ingreso julio",
+            title: t("mainContent.table.income.july"),
             dataIndex: "ingreso julio",
             key: "ingreso julio",
           },
           {
-            title: "Ingreso agosto",
+            title: t("mainContent.table.income.august"),
             dataIndex: "ingreso agosto",
             key: "ingreso agosto",
           },
           {
-            title: "Ingreso septiembre",
+            title: t("mainContent.table.income.september"),
             dataIndex: "ingreso septiembre",
             key: "ingreso septiembre",
           },
           {
-            title: "Ingreso octubre",
+            title: t("mainContent.table.income.october"),
             dataIndex: "ingreso octubre",
             key: "ingreso octubre",
           },
           {
-            title: "Ingreso noviembre",
+            title: t("mainContent.table.income.november"),
             dataIndex: "ingreso noviembre",
             key: "ingreso noviembre",
           },
           {
-            title: "Ingreso diciembre",
+            title: t("mainContent.table.income.december"),
             dataIndex: "ingreso diciembre",
             key: "ingreso diciembre",
           },

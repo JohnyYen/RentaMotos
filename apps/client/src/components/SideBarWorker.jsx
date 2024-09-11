@@ -33,7 +33,7 @@ import {
           defaultOpenKeys={["/clientes"]}
           mode="inline"
           onClick={(item) => {
-            navigate(`/admin/${item.key}`);
+            navigate(`/worker/${item.key}`);
           }}
           items={[
             {
