@@ -21,16 +21,15 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
             mun: mun
         }
 
-        //console.log(worker);
         const res = await axios.post('http://localhost:3000/api/user/worker', worker);
 
-        console.log(res)
+       // console.log(res)
     }
   return (
     <Modal centered={true} title='Crear Trabajador' open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}>
          <Input onChange={(e) => setName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su nombre'/>
          <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
-        <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
+            <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
             {
                 dataSource.map((item, i) => (
                    <Option key={i}  value={item.nommun}>{item.nommun}</Option>

@@ -30,7 +30,6 @@ let ContractService = class ContractService {
         return res.rows;
     }
     async getContractMun(mun) {
-        console.log(mun);
         const res = await this.conn.query(`SELECT * FROM cont_mun_view WHERE municipio = '${mun}'`);
         return res.rows;
     }
@@ -48,6 +47,10 @@ let ContractService = class ContractService {
     }
     async getPDFContractXModelo() {
         const contract = await this.getContractFilter();
+        return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
+    }
+    async getPDFContractWorkerMun(mun) {
+        const contract = await this.getContractMun(mun);
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async getPDFContractByMun() {

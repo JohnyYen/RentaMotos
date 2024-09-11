@@ -33,6 +33,13 @@ let ContractController = class ContractController {
     async getContractsMunWorker(mun) {
         return await this.contractService.getContractMun(mun);
     }
+    async getPDFContractWorkerMun(mun, res) {
+        const buffer = await this.contractService.getPDFContractWorkerMun(mun);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ContractsWorker.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
     async getContractByMun() {
         return await this.contractService.getContractByMun();
     }
@@ -87,6 +94,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractsMunWorker", null);
+__decorate([
+    (0, common_1.Get)('/worker/pdf/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getPDFContractWorkerMun", null);
 __decorate([
     (0, common_1.Get)('/mun'),
     __metadata("design:type", Function),

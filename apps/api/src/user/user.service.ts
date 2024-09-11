@@ -24,7 +24,7 @@ export class UserService {
 
     async createUserWorker(userWorker : UserWorkerDto){
         try{
-            await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, tipo_usuario) VALUES ('${userWorker.user_name}', '${userWorker.password}', 3)`);
+            await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, tipo_usuario, mun) VALUES ('${userWorker.user_name}', '${userWorker.password}', 3, '${userWorker.mun}')`);
         }
         catch(error){
             throw new ErrorHandler(error).returnError(); 

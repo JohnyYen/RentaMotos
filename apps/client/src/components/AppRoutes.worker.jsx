@@ -20,8 +20,8 @@ const extractDataClient = async (user) => {
         municipio: element.municipio,
         nombre: element.nombre,
         ci: element.idcliente,
-        "veces alquiladas": element.count,
-        "valor alquileres": element.sum,
+        "veces alquiladas": element.cant_alquileres,
+        "valor alquileres": element.valor_total,
       }));
     }
   } catch (error) {
@@ -60,7 +60,7 @@ const extractDataContract = async (user) => {
 const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
-   const response = axios.get(`http://localhost:3000/api/pagos/${user.mun}`);
+   //const response = axios.get(`http://localhost:3000/api/pagos/${user.mun}`);
    if(response.status === 200){
     console.log(response.data);
     
@@ -85,6 +85,29 @@ const extractDataIncome = async (user) => {
   }
 };
 
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    const urlObject = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = urlObject;
+    link.download = 'Clientes.pdf';
+    link.click();
+    
+    // Limpiar el objeto URL creado
+    URL.revokeObjectURL(urlObject);
+  } catch (error) {
+    console.error('Error al descargar el archivo:', error);
+  }
+};
 
 
 const AppRouter = () => {
@@ -92,7 +115,6 @@ const AppRouter = () => {
   const [dataClient, setDataClient] = useState();
   const [dataContract, setDataContract] = useState();
   const [dataIncome, setDataIncome] = useState();
-  console.log(user);
 
   useEffect(() => {
     extractDataClient(user).then((result) => {
@@ -111,9 +133,9 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes extractData={dataClient} />}/>
+      <Route path="listadoClientes" element={<ListadoClientes  extractData={dataClient} />}/>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
-      <Route path="listadoContratos" element={<ListadoContratos extractData={dataContract} />}></Route>
+      <Route path="listadoContratos"  element={<ListadoContratos  url={`http://localhost:3000/api/contract/pdf/${user?.mun}`} extractData={dataContract} />}></Route>
       <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />} />
     </Routes>
   );

@@ -9,6 +9,7 @@ export declare class ContractService {
     getContractByMun(): Promise<any>;
     getPDFContract(): Promise<Buffer>;
     getPDFContractXModelo(): Promise<Buffer>;
+    getPDFContractWorkerMun(mun: string): Promise<Buffer>;
     getPDFContractByMun(): Promise<Buffer>;
     createContract(contract: ContractDto): Promise<void>;
     updateContract(contract: ContractDto, matricula: string): void;

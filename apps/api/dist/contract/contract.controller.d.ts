@@ -6,6 +6,7 @@ export declare class ContractController {
     getContract(): Promise<any>;
     getContractInPDF(res: any): Promise<void>;
     getContractsMunWorker(mun: string): Promise<any>;
+    getPDFContractWorkerMun(mun: string, res: any): Promise<void>;
     getContractByMun(): Promise<any>;
     getContractInPDFMun(res: any): Promise<void>;
     getFilterContract(): Promise<any>;

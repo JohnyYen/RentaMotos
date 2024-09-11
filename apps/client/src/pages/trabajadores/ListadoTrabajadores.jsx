@@ -20,7 +20,7 @@ const ListadoTrabajadores = ({extractData}) => {
       <Flex align="center" justify="flex-end">
         <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Agregar trabajador</Button>
       </Flex>
-      <Table dataSource={dataSource}
+      <Table
         scroll={{
           x: 650,
         }}
