@@ -11,6 +11,7 @@ import axios from "axios";
 const extractDataClient = async (user) => {
   let dataSource = [];
   let response = null;
+  console.log(user.mun);
   try {
     response = await axios.get(`http://localhost:3000/api/client/mun/${user.mun}`);
     console.log(response.data);
@@ -93,7 +94,6 @@ const AppRouter = () => {
   const [dataClient, setDataClient] = useState();
   const [dataContract, setDataContract] = useState();
   const [dataIncome, setDataIncome] = useState();
-  console.log(user);
 
   useEffect(() => {
     extractDataClient(user).then((result) => {
