@@ -67,28 +67,29 @@ const extractDataIncome = async () => {
   let dataSource = [];
   try {
    const response = await axios.get("http://localhost:3000/api/pagos");
-   console.log(response);
+
    if(response.status === 200){
     
-    // dataSource = response.data.map((element, index) => ({
-    //   key: index,
-    //   "ingreso anual": element. ,
-    //   "ingreso enero": element. ,
-    //   "ingreso febrero": element. ,
-    //   "ingreso marzo": element. ,
-    //   "ingreso abril": element. ,
-    //   "ingreso mayo": element. ,
-    //   "ingreso junio": element. ,
-    //   "ingreso julio": element. ,
-    //   "ingreso septiembre": element. ,
-    //   "ingreso octubre": element. ,
-    //   "ingreso noviembre": element. ,
-    //   "ingreso diciembre": element. 
-    // }))
+    dataSource = response.data.map((element, index) => ({
+      key: index,
+      "ingreso anual": element.total_ventas,
+      "ingreso enero": element.enero,
+      "ingreso febrero": element.febrero,
+      "ingreso marzo": element.marzo,
+      "ingreso abril": element.abril,
+      "ingreso mayo": element.mayo,
+      "ingreso junio": element.junio,
+      "ingreso julio": element.julio,
+      "ingreso septiembre": element.septiembre,
+      "ingreso octubre": element.octubre,
+      "ingreso noviembre": element.noviembre,
+      "ingreso diciembre": element.diciembre 
+    }))
    }  
   } catch (error) {
     console.log(error);
   }
+  return dataSource;
 };
 
 const AppRouter = () => {
