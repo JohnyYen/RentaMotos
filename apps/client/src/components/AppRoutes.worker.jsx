@@ -13,7 +13,7 @@ const extractDataClient = async (user) => {
   let response = null;
   try {
     response = await axios.get(`http://localhost:3000/api/client/mun/${user.mun}`);
-    console.log(response);
+    console.log(response.data);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
@@ -61,7 +61,7 @@ const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
    const response = axios.get(`http://localhost:3000/api/pagos/${user.mun}`);
-   console.log(response.data);
+
    if(response.status === 200){
     
     
