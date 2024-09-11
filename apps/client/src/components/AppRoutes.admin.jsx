@@ -12,6 +12,7 @@ import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import UserAdmin from "../pages/UserPages/UserAdmin";
 import Loguin from "../component/Loguin";
 import axios from "axios";
+import ListadoTrabajadores from "../pages/trabajadores/ListadoTrabajadores";
 
 const extractDataClient = async () => {
   let dataSource = [];
@@ -124,6 +125,7 @@ const AppRouter = () => {
       <Route path="crearContrato" element></Route>
       <Route path="contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="motosCliente" element={<ListMoto />}></Route>
+      <Route path="listadoTrabajadores" element={<ListadoTrabajadores />} ></Route>
     </Routes>
   );
 };
