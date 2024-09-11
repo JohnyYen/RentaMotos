@@ -30,13 +30,14 @@ const downloadPDF = async (url) => {
   }
 };
 
-const ListadoContratos = ({ extractData }) => {
+const ListadoContratos = ({ extractData , url}) => {
   const [t] = useTranslation("global");
   const {setRow} = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/contract/pdf");
+    console.log(url);
+    await downloadPDF(url);
   };
 
   return (

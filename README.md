@@ -8,6 +8,7 @@ y el front en http://localhost:5173 (Señores es copiar la dirrecion despues de 
 http://localhost:3000/api/client GET
 http://localhost:3000/api/client/mun/:mun GET NEW
 http://localhost:3000/api/client/pdf GET
+http://localhost:3000/api/client/worker/pdf/:mun GET NEW
 http://localhost:3000/api/client/bad GET
 http://localhost:3000/api/client POST
 http://localhost:3000/api/client/:id DELETE
@@ -17,6 +18,7 @@ http://localhost:3000/api/client/:id PATCH
 http://localhost:3000/api/contract GET
 http://localhost:3000/api/contract/worker/:mun GET NEW
 http://localhost:3000/api/contract/pdf GET
+http://localhost:3000/api/contract/worker/pdf/:mun GET NEW
 http://localhost:3000/api/contract/mun GET
 http://localhost:3000/api/contract/marcxmodel GET
 http://localhost:3000/api/contract POST
@@ -35,6 +37,7 @@ http://localhost:3000/api/moto/:id PATCH
 http://localhost:3000/api/user POST
 http://localhost:3000/api/user/client POST
 http://localhost:3000/api/user/worker POST
+http://localhost:3000/api/user/worker GET
 http://localhost:3000/api/user/:userName Delete
 
 ## Forma Pago

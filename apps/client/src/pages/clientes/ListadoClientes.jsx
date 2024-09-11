@@ -44,13 +44,18 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ extractData, dateToday }) => {
+const ListadoClientes = ({ extractData }) => {
+
+  const {setRow} = useContext(GlobalContext)
+
+  const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+   
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
         {
@@ -77,7 +82,7 @@ const ListadoClientes = ({ extractData, dateToday }) => {
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={dateToday}
+          defaultValue={new Date().toUTCString()}
         />
       </Flex>
       <Table

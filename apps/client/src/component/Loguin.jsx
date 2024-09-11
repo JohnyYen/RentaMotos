@@ -25,14 +25,9 @@ function Loguin() {
       password: password
     });
 
-    console.log(response.data);
-
     if(response.status === 201){
       const tipoUsuario = response.data.tipo_usuario;
       
-      console.log(response.data);
-      console.log(tipoUsuario);
-
       if(tipoUsuario === 'Admin')
         navigate('/admin');
 

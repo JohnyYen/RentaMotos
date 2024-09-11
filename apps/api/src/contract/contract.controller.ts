@@ -27,6 +27,18 @@ export class ContractController {
         return await this.contractService.getContractMun(mun);
     }
 
+    @Get('/worker/pdf/:mun')
+    async getPDFContractWorkerMun(@Param('mun') mun : string , @Res() res){
+        const buffer = await this.contractService.getPDFContractWorkerMun(mun);
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ContractsWorker.pdf');
+        res.setHeader('Content-Length', buffer.length);
+ 
+        res.send(buffer);
+    }
+
+
     
     @Get('/mun')
     async getContractByMun(){

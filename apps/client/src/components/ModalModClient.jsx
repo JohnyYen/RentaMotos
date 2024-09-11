@@ -21,21 +21,25 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
     const handlePetition = async () => {
 
-      console.log(row);
+      //console.log(row);
 
-      // const client = {
-      //   idCliente: row?.idcliente,
-      //   nombre: name,
-      //   segNombre: secondName,
-      //   primApellido: lastName,
-      //   segApellido: secondLast,
-      //   edad: edad,
-      //   municipio: Municipio,
-      //   sexo: sexo,
-      //   numCont:numCont
-      // }
+      const client = {
+        idCliente: row?.ci,
+        nombre: name,
+        segNombre: secondName,
+        primApellido: lastName,
+        segApellido: secondLast,
+        edad: edad,
+        municipio: Municipio,
+        sexo: 'F',
+        numCont:numCont
+      }
 
-      //const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
+      console.log(client);
+
+      const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
+
+      window.location.reload();
     }
     const margin = 15;
   return (
@@ -59,7 +63,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
             ))}
           </Select>
           
-          <InputNumber min={16} max={50} style={{marginBottom:margin, width:150}} onChange={(e) => setEdad(e.target.value)} placeholder='Edad'/>
+          <InputNumber min={16} max={50} style={{marginBottom:margin, width:150}} onChange={(value) => setEdad(value)} placeholder='Edad'/>
 
         </Flex>
     </Modal>
