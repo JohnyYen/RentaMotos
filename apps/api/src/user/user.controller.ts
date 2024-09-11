@@ -16,6 +16,11 @@ export class UserController {
         this.userService.createUserClient(body);
     }
 
+    @Get('/worker')
+    async getWorkers(){
+        return this.userService.getWorkers();
+    }
+    
     @Post('/worker')
     createUserWorker(@Body() body : UserWorkerDto){
         this.userService.createUserWorker(body);

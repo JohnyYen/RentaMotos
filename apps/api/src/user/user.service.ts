@@ -35,6 +35,10 @@ export class UserService {
         await this.conn.query(`DELETE FROM usuario WHERE nombre_usuario = '${userName}'`);
     }
 
+    async getWorkers(){
+        const res = await this.conn('SELECT * FROM worker_view');
+        return res.rows;
+    }
     async validationUser(userName : string, contrasenia : string){
         const res = await this.conn.query(`SELECT * FROM usuario_view WHERE (nombre_usuario = '${userName}' OR email = '${userName}') AND contrasenia = '${contrasenia}';`)
         return res.rows[0];
