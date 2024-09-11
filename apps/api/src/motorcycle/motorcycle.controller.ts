@@ -22,6 +22,10 @@ export class MotorcycleController {
        res.send(buffer);
     }
 
+    @Get('/client')
+    async getMotoClient(){
+        return await this.motoService.getMotoClient();
+    }
     @Get('/situation')
     getSituationMoto(){
         return this.motoService.getSituationMoto();
@@ -50,6 +54,7 @@ export class MotorcycleController {
 
     @Patch('/:id')
     updateMoto(@Param("id") id : string, @Body() update : MotorcycleDto){
+        //console.log(id);
         this.motoService.updateMotorcycle(update, id);
     }
 }

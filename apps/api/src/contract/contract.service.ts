@@ -14,7 +14,7 @@ export class ContractService {
     }
 
     async getContractFilter(){
-        const res = await this.conn.query('SELECT contratoxmarcamodelo()')
+        const res = await this.conn.query('select * from contratoxmarca_modelo')
         return res.rows;
     }
 
@@ -25,7 +25,7 @@ export class ContractService {
     }
 
     async getCotnractByCliente(id : string){
-        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`)
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = '${id}'`)
         return res.rows;
     }
     async getContractByMun(){
@@ -50,11 +50,12 @@ export class ContractService {
 
 
     async createContract(contract : ContractDto){
-        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
+        console.log(contract);
+        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
     }
 
-    updateContract(contract : ContractDto, idCliente : string, matricula : string){
-        this.conn.query(`UPDATE Contrato SET formapago = ${contract.formaPago}, seguro = ${contract.seguro}, diasprorroga = ${contract.diasProrroga} WHERE idcliente = ${idCliente} AND matricula = ${matricula}`);
+    updateContract(contract : ContractDto, matricula : string){
+        this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
     }
 
     deleteContract(idCliente : string, matricula : string){

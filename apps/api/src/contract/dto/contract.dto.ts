@@ -1,20 +1,21 @@
 import { IsBoolean, IsDate, IsInt, IsString, Min, min } from "class-validator";
 
 export class ContractDto {
+    
     @IsString()
     public idCliente : string;
 
     @IsString()
     public matricula : string;
 
-    @IsDate()
-    public beginDate : Date;
+    @IsString()
+    public beginDate : string;
 
-    @IsDate()
-    public endDate : Date;
+    @IsString()
+    public endDate : string;
 
-    @IsDate()
-    public firmaDate : Date;
+    @IsString()
+    public firmaDate : string;
 
     @IsString()
     public formaPago : string;

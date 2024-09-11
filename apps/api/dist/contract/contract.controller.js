@@ -62,8 +62,8 @@ let ContractController = class ContractController {
     createContract(contract) {
         this.contractService.createContract(contract);
     }
-    updateContract(idCliente, matricula, contract) {
-        this.contractService.updateContract(contract, idCliente, matricula);
+    updateContract(matricula, contract) {
+        this.contractService.updateContract(contract, matricula);
     }
 };
 exports.ContractController = ContractController;
@@ -130,17 +130,17 @@ __decorate([
 ], ContractController.prototype, "deleteContract", null);
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)("contract")),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "createContract", null);
 __decorate([
-    (0, common_1.Patch)('/:idClient/:matricula'),
-    __param(0, (0, common_1.Param)("idCliente")),
-    __param(1, (0, common_1.Param)("matricula")),
+    (0, common_1.Patch)('/:matricula'),
+    __param(0, (0, common_1.Param)("matricula")),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, contract_dto_1.ContractDto]),
+    __metadata("design:paramtypes", [String, contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "updateContract", null);
 exports.ContractController = ContractController = __decorate([

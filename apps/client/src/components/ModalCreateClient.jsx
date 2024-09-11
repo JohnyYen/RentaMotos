@@ -62,7 +62,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
     }
     const margin = 15;
   return (
-    <Modal width={800} title={"Crear un Nuevo Usuario"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}>
+    <Modal  destroyOnClose={true} width={800} title={"Crear un Nuevo Usuario"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}>
 
         <Row gutter={24}justify={'space-between'}>
             <Col span={25}>

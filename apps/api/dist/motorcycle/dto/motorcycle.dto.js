@@ -24,7 +24,6 @@ __decorate([
 ], MotorcycleDto.prototype, "color", void 0);
 __decorate([
     (0, class_validator_1.IsInt)({ message: "The cantKm atribute can be a Integer" }),
-    (0, class_validator_1.Max)(0, { message: "The cantKm can be zero" }),
     (0, class_validator_1.Min)(0, { message: "The cantKm can be zero" }),
     __metadata("design:type", Number)
 ], MotorcycleDto.prototype, "cantKm", void 0);

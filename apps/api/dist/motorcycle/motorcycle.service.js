@@ -25,6 +25,10 @@ let MotorcycleService = class MotorcycleService {
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
+    async getMotoClient() {
+        const res = await this.conn.query("SELECT * FROM moto_view WHERE situacion = 'Disponible'");
+        return res.rows;
+    }
     async getPDF() {
         const moto = await this.getAllMotorcycle();
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
@@ -40,7 +44,7 @@ let MotorcycleService = class MotorcycleService {
         await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
     }
     async updateMotorcycle(moto, id) {
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
+        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
     }
     async getSituationMoto() {
         const res = await this.conn.query('SELECT * FROM SituacionMoto()');

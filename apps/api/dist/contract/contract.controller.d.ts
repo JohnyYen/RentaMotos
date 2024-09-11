@@ -13,5 +13,5 @@ export declare class ContractController {
     getContractByCliente(id: string): Promise<any>;
     deleteContract(idCliente: string, matricula: string): void;
     createContract(contract: ContractDto): void;
-    updateContract(idCliente: string, matricula: string, contract: ContractDto): void;
+    updateContract(matricula: string, contract: ContractDto): void;
 }

@@ -2,9 +2,12 @@ import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from "axios";
 import { DownloadOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalModMoto from '../../components/ModalModMoto'
+import {GlobalContext} from '../../context/GlobalContext'
+import ModalCreateMoto from "../../components/ModalCreateMoto";
+
 
 const extractData = async () => {
   let dataSource = [];
@@ -20,7 +23,7 @@ const extractData = async () => {
         modelo: element.modelo,
         situacion: element.situacion,
         color: element.color,
-        "Km recorridos": element.cantkm,
+        kmRecorridos: element.cantkm,
       }));
     }
   } catch (error) {
@@ -75,6 +78,9 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const {setRow} = useContext(GlobalContext);
 
   useEffect(() => {
     extractData().then((result) => {
@@ -97,6 +103,8 @@ const ListMoto = () => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
+      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)}/>
       <Flex align="center" justify="space-between">
         <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
@@ -109,7 +117,7 @@ const ListMoto = () => {
           defaultValue={currentDate}
         />
         </Flex>
-        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">{t("mainContent.createMotorcycle")}</Button>
+        <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
         scroll={{
@@ -152,7 +160,7 @@ const ListMoto = () => {
           },
           {
             title: t("mainContent.table.kmTraveled"),
-            dataIndex: "Km recorridos",
+            dataIndex: "kmRecorridos",
             key: "Km recorridos",
           },
           {
@@ -160,8 +168,8 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
-                  {t("mainContent.table.modify")}
+                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
+                  Modificar
                 </Button>
                 <Button className="actionTable" type="primary">
                 {t("mainContent.table.delete")}

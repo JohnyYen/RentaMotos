@@ -14,7 +14,7 @@ const ModalContract = ({isOpen, setOpen}) => {
     const [t] = useTranslation("global");
 
   return (
-    <Modal title={t("modal.modifyContract")} open={isOpen} onCancel={setOpen} onClose={setOpen}>
+    <Modal  destroyOnClose={true} title={t("modal.modifyContract")} open={isOpen} onCancel={setOpen} onClose={setOpen}>
         <Input onChange={(e) => setCi(e.target.value)}/>
 
         <Input onChange={(e) => setMatricula(e.target.value)}/>

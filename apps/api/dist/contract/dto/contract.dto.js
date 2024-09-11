@@ -23,16 +23,16 @@ __decorate([
     __metadata("design:type", String)
 ], ContractDto.prototype, "matricula", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], ContractDto.prototype, "beginDate", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], ContractDto.prototype, "endDate", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], ContractDto.prototype, "firmaDate", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),

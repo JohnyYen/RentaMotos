@@ -13,8 +13,12 @@ export class MotorcycleService {
         return await res.rows;
     }
 
-    async getPDF(){
+    async getMotoClient(){
+        const res = await this.conn.query("SELECT * FROM moto_view WHERE situacion = 'Disponible'");
+        return res.rows;
+    }
 
+    async getPDF(){
         const moto = await this.getAllMotorcycle();
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
@@ -37,7 +41,7 @@ export class MotorcycleService {
     }
 
     async updateMotorcycle (moto : MotorcycleDto, id : string){
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
+        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
     }
 
     async getSituationMoto(){

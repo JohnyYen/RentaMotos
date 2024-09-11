@@ -19,7 +19,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
     const margin = 15;
   return (
-    <Modal title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen}>
+    <Modal  destroyOnClose={true} title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen}>
 
         <Flex vertical={true}>
 

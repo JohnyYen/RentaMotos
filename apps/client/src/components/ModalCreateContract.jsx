@@ -24,23 +24,22 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
   const handlePetition = async () =>{
 
-    console.log();
-    console.log(client?.idcliente);
-    // const res = await axios.post('http://localhost:3000/api/contract/', {
-    //   idCliente: toString(client?.idcliente),
-    //   matricula: row?.matricula,
-    //   beginDate: dateBegin,
-    //   endDate: dateEnd,
-    //   firmaDate: dateFirm,
-    //   formapago:formaPago,
-    //   seguro: seguro,
-    //   diasProrroga: 0,
-    // })
+    const contract = {
+      idCliente: client ? client.idcliente : '03121067683',
+      matricula: row?.matricula,
+      beginDate: dateBegin,
+      endDate: dateEnd,
+      firmaDate: dateFirm,
+      formaPago:formaPago,
+      seguro: seguro,
+      diasProrroga: 0,
+    }
+    const res = await axios.post('http://localhost:3000/api/contract/', contract);
 
     console.log(res.status);
   }
   return (
-    <Modal centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
+    <Modal  destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>
         <Row gutter={16}>
           <Col span={12}>
             {/* <Input value={row?.matricula} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin, marginTop: 10}} placeholder='Matricula de la Moto'/>
