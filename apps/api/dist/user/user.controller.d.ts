@@ -6,6 +6,7 @@ export declare class UserController {
     constructor(userService: UserService);
     getUser(): Promise<any>;
     createUserClient(body: UserClientDto): void;
+    getWorkers(): Promise<any>;
     createUserWorker(body: UserWorkerDto): void;
     validateUser(userName: string, password: string): Promise<any>;
     deleteUser(userName: string): Promise<void>;

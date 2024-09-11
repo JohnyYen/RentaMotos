@@ -87,7 +87,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
                     <Input onChange={(e) => setNumCont(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su numero de contacto'/>
                     <InputNumber onChange={(value) => setEdad(value)} style={{marginBottom:margin, width:60}} placeholder='Edad' min={16}/>
-                    <Select onChange={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
+                    <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
                         {
                             dataSource.map((item, i) => (
                                 <Option key={i}  value={item.nommun}>{item.nommun}</Option>

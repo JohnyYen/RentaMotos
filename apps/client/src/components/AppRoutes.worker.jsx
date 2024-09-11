@@ -6,12 +6,13 @@ import ListadoClientes from "../pages/clientes/ListadoClientes";
 import ListadoContratos from "../pages/contratos/ListadoContratos";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import { Result } from "antd";
+import axios from "axios";
 
 const extractDataClient = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/client/mun/${user.municipio}`);
+    response = await axios.get(`http://localhost:3000/api/client/mun/${user.mun}`);
     console.log(response);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -33,7 +34,7 @@ const extractDataContract = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/contract/worker/${user.municipio}`);
+    response = await axios.get(`http://localhost:3000/api/contract/worker/${user.mun}`);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -59,7 +60,7 @@ const extractDataContract = async (user) => {
 const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
-   const response = axios.get(`http://localhost:3000/api/pagos/${user.municipio}`);
+   const response = axios.get(`http://localhost:3000/api/pagos/${user.mun}`);
    if(response.status === 200){
     console.log(response.data);
     

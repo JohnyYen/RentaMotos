@@ -18,8 +18,4 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserWorkerDto.prototype, "user_name", void 0);
-__decorate([
-    (0, class_validator_1.IsStrongPassword)(),
-    __metadata("design:type", String)
-], UserWorkerDto.prototype, "password", void 0);
 //# sourceMappingURL=userWorker.dto.js.map
