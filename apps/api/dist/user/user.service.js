@@ -44,7 +44,7 @@ let UserService = class UserService {
         await this.conn.query(`DELETE FROM usuario WHERE nombre_usuario = '${userName}'`);
     }
     async getWorkers() {
-        const res = await this.conn('SELECT * FROM worker_view');
+        const res = await this.conn.query('SELECT * FROM worker_view');
         return res.rows;
     }
     async validationUser(userName, contrasenia) {

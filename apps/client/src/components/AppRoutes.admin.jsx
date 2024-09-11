@@ -92,11 +92,43 @@ const extractDataIncome = async () => {
   return dataSource;
 };
 
+const extractDataWorker = async () => {
+  let dataSource = [];
+  try {
+   const response = axios.get("http://localhost:3000/api/user/worker");
+   console.log(response);
+   if(response.status === 200){
+    
+    // dataSource = response.data.map((element, index) => ({
+    //   key: index,
+    //   "ingreso anual": element. ,
+    //   "ingreso enero": element. ,
+    //   "ingreso febrero": element. ,
+    //   "ingreso marzo": element. ,
+    //   "ingreso abril": element. ,
+    //   "ingreso mayo": element. ,
+    //   "ingreso junio": element. ,
+    //   "ingreso julio": element. ,
+    //   "ingreso septiembre": element. ,
+    //   "ingreso octubre": element. ,
+    //   "ingreso noviembre": element. ,
+    //   "ingreso diciembre": element. 
+    // }))
+   }  
+  } catch (error) {
+    
+  }
+
+  return dataSource;
+};
+
+
 const AppRouter = () => {
   const { user } = useContext(GlobalContext);
   const [dataClient, setDataClient] = useState();
   const [dataContract, setDataContract] = useState();
   const [dataIncome, setDataIncome] = useState();
+  const [dataWorker, setDataWorker] = useState();
   console.log(user);
 
   useEffect(() => {
@@ -110,6 +142,10 @@ const AppRouter = () => {
 
     extractDataIncome(user).then((result) => {
       setDataIncome(result);
+    })
+
+    extractDataWorker().then((result) => {
+      setDataWorker(result);
     })
   }, [])
 
@@ -126,7 +162,7 @@ const AppRouter = () => {
       <Route path="crearContrato" element></Route>
       <Route path="contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="motosCliente" element={<ListMoto />}></Route>
-      <Route path="listadoTrabajadores" element={<ListadoTrabajadores />} ></Route>
+      <Route path="listadoTrabajadores" element={<ListadoTrabajadores extractData={dataWorker} />} ></Route>
     </Routes>
   );
 };
