@@ -26,8 +26,8 @@ const extractDataClient = async () => {
         municipio: element.municipio,
         nombre: element.nombre,
         ci: element.idcliente,
-        "veces alquiladas": element.count,
-        "valor alquileres": element.sum,
+        "veces alquiladas": element.cant_alquileres,
+        "valor alquileres": element.valor_total,
       }));
     }
   } catch (error) {

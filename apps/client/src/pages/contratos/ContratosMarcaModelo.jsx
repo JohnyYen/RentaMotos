@@ -10,19 +10,18 @@ const extractData = async () => {
   try {
     response = await axios.get("http://localhost:3000/api/contract/marcxmodel");
 
+    console.log(response.data);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        nombre: element.nombre,
-        matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
-        "forma de pago": element.formapago,
-        "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
-        prorroga: element.diasprorroga,
-        "seguro adicional": element.seguro,
-        "importe total": element.importe,
+        'cantidad de motos': element.cant_moto,
+        'dias totales alquilados':element.diasalquilados,
+        'ingresos tarjeta de crédito':element.valor_tarjeta_credito,
+        'ingresos por cheques':element.valor_cheque,
+        'ingresos por efectivo': element.valor_efectivo,
+        'ingresos totales':element.ingreso_marca,
       }));
     }
   } catch (error) {
