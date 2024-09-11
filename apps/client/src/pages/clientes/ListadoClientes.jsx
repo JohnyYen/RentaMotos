@@ -55,10 +55,7 @@ const ListadoClientes = ({ extractData }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    extractData().then((result) => {
-      setDataSource(result);
-    }, []);
-
+   
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
         {
@@ -85,7 +82,7 @@ const ListadoClientes = ({ extractData }) => {
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={dateToday}
+          defaultValue={new Date().toUTCString()}
         />
       </Flex>
       <Table
@@ -96,7 +93,7 @@ const ListadoClientes = ({ extractData }) => {
           pageSize: 5,
           position: ["bottomLeft"],
         }}
-        dataSource={dataSource}
+        dataSource={extractData}
         columns={[
           {
             title: t("mainContent.table.municipality"),

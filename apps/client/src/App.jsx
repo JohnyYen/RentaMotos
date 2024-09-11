@@ -6,6 +6,7 @@ import UserClient from "./pages/UserPages/UserClient";
 import UserWorker from "./pages/UserPages/UserWorker";
 import Prueba from "./pages/UserPages/Prueba";
 import GlobalProvider from "./context/GlobalContext";
+import { Suspense } from "react";
 
 
 
@@ -22,7 +23,7 @@ function App() {
         <GlobalProvider>
           <Routes>
             <Route path="/prueba" element={<Prueba/>}/>
-            <Route path="/" element={<Loguin/>} />
+            <Route loa path="/" element={<Loguin/>} />
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/client/*" element={<UserClient/>}/>
             <Route path="/worker/*" element={<UserWorker/>}/>

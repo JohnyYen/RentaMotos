@@ -46,6 +46,13 @@ let ClientController = class ClientController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
+    async getPDF(mun, res) {
+        const buffer = await this.clientService.getAllClientPDFWorkerMun(mun);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ClientsWorker.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
     createClient(clientDto) {
         this.clientService.createClient(clientDto);
     }
@@ -97,6 +104,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClientsByPDF", null);
+__decorate([
+    (0, common_1.Get)('/worker/pdf/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getPDF", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
