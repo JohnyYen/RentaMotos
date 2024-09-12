@@ -18,7 +18,7 @@ function Loguin() {
   const [password, setPassword] = useState('');
 
   const {setUser, setClient} = useContext(GlobalContext);
-  const Registrar = async (values) => {
+  const Registrar = async () => {
     
     const response = await axios.post('http://localhost:3000/api/user', {
       userName: userName,
