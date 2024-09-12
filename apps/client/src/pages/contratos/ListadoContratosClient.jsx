@@ -39,7 +39,7 @@ const ListadoContratos = () => {
   const [t] = useTranslation("global");
   const {client} = useContext(GlobalContext);
   useEffect(() => {
-    extractData(client.idcliente).then((result) => {
+    extractData(client ? client.idcliente : '03121067683').then((result) => {
       setDataSource(result);
     });
   }, []);

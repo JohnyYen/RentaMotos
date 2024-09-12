@@ -44,7 +44,7 @@ export class ClientController {
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename=BadClients.pdf');
         res.setHeader('Content-Length', buffer.length);
- 
+        
         res.send(buffer);
     }
 

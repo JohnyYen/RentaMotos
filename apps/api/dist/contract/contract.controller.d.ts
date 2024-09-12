@@ -12,7 +12,7 @@ export declare class ContractController {
     getFilterContract(): Promise<any>;
     getContractInPDFMarc(res: any): Promise<void>;
     getContractByCliente(id: string): Promise<any>;
-    deleteContract(idCliente: string, matricula: string): void;
+    deleteContract(matricula: string): void;
     createContract(contract: ContractDto): void;
     updateContract(matricula: string, contract: ContractDto): void;
 }
