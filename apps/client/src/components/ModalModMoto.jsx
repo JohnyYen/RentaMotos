@@ -37,9 +37,14 @@ const ModalModMoto = ({isOpen, setOpen}) => {
     window.location.reload();
   }
   return (
-    <Modal  okButtonProps={{htmlType:'submit'}} destroyOnClose={true} title={"Modificar Moto"}  open={isOpen} centered={true} onCancel={setOpen} onClose={setOpen} onOk={() => handlePetition()}>
-      <Form  for labelCol={{span: 12}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
-        <Form.Item label="Color:" name={"color"} rules={[{required:true, message:'El campo de color no debe estar vacio'}]}>
+    <Modal  okButtonProps={{autoFocus:true, htmlType:'submit'}} destroyOnClose={true} title={"Modificar Moto"}  open={isOpen}
+     centered={true} onCancel={setOpen} onClose={setOpen} onOk={() => handlePetition()}
+     modalRender={(dom) => (
+      <Form name='form' form={form} labelCol={{span: 12}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,modifier:'public'}} layout='vertical'>
+          {dom}
+      </Form>)}>
+
+      <Form.Item label="Color:" name={"color"} rules={[{required:true, message:'El campo de color no debe estar vacio'}]}>
           <Select style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder={row?.color}>
               <Select.Option value='Rojo'>Rojo</Select.Option>
               <Select.Option value='Azul'>Azul</Select.Option>
@@ -63,10 +68,7 @@ const ModalModMoto = ({isOpen, setOpen}) => {
             ))}
         </Select>
         </Form.Item>
-        
-       
-
-      </Form>
+      
     </Modal>
   )
 }
