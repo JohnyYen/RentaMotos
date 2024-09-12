@@ -1,0 +1,530 @@
+[33mcommit cb1e06eec957129771ea51756a2edc41de69df57[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mapi[m[33m, [m[1;31morigin/api[m[33m)[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 18:05:30 2024 -0400
+
+    asas
+
+[33mcommit 5e6ad7b6ea83e5948fd0a49d8087f70028b50f9e[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 17:05:55 2024 -0400
+
+    sds
+
+[33mcommit 5f6dd9d3e4d0874537d6f7edb5b00899db340694[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 16:14:47 2024 -0400
+
+    Actualizadas las tablas
+
+[33mcommit a7580d60b10d9ab95401fbcc3c0814f0a636f030[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 15:54:40 2024 -0400
+
+    Agregada Modal Worker
+
+[33mcommit 082e890ebe1f4a24c3cd9c0e39c83406a53c31ad[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 15:39:59 2024 -0400
+
+    sdsd
+
+[33mcommit eca3b0307b4e459490c0fb74dd55e8ee26c6da27[m
+Merge: dd86900 8d6a316
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 14:51:16 2024 -0400
+
+    Termiando el commit
+
+[33mcommit dd869005d48d70e2d3cf55c19fb647c3a2bf73c0[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 14:46:47 2024 -0400
+
+    Preparandose para el merge
+
+[33mcommit 8d6a3167cb4d4f332f2954bc25f0bd94cf86e8f2[m[33m ([m[1;32mfernan[m[33m)[m
+Merge: 0f7a889 fb5031e
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 14:46:32 2024 -0400
+
+    sdsd
+
+[33mcommit 34d4563ff2b5358519d8218c8bde934a4dfbd17d[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 14:29:16 2024 -0400
+
+    Casi listo el proyecto
+
+[33mcommit 70a6939a496dd4e143c71515fb551202e66ccc20[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Wed Sep 11 12:25:16 2024 -0400
+
+    Listo las funcionalidades de modificar y crear moto y contrato y crear clientes
+
+[33mcommit fb5031ef3454465793f93782c80e4d834554e370[m[33m ([m[1;31morigin/devFerna[m[33m)[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Wed Sep 11 09:43:01 2024 -0400
+
+    Pagina de listado de trabajadores y consulta
+
+[33mcommit c307d7bf1a0d6ff0c06cd1a50a0bdce84fef6a89[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Wed Sep 11 08:48:49 2024 -0400
+
+    Cambios en worker
+
+[33mcommit c0686caa4befad327df47484214920bcfac6333d[m
+Merge: 79b3086 0f7a889
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Sep 10 19:27:15 2024 -0400
+
+    Listo el merge
+
+[33mcommit 79b3086f6efc42bffa702d9ae91bcacef2b9d0ba[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Sep 10 19:21:40 2024 -0400
+
+    dsds
+
+[33mcommit a196a077c0b22ec806af8ebf528a4a0359582f04[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Tue Sep 10 19:03:27 2024 -0400
+
+    Agregado .env
+
+[33mcommit 0f7a889282f7d1672560d99467abd3ea9530dc41[m
+Merge: 8f9ba6c 2bd6682
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Sep 10 18:37:11 2024 -0400
+
+    dsd
+
+[33mcommit 8f9ba6c97170565e72632670b18fe75b5facff45[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Sep 10 18:30:58 2024 -0400
+
+    asas
+
+[33mcommit 40003bd8eb238082b2aa398110cd84a30375f5eb[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Sep 10 18:16:35 2024 -0400
+
+    Preparandose para el pull con devFernan
+
+[33mcommit 2bd668247068b0ed332423b17975822925938dce[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Tue Sep 10 16:05:26 2024 -0400
+
+    Agregadas las funcionalidades a WorkerPage
+
+[33mcommit ae1a11e46c1e5870acaf600a17a76b44e00608d8[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Tue Sep 10 14:22:25 2024 -0400
+
+    Agregar modificaciones api
+
+[33mcommit ae549a1bc8bcf28608a3fd072b8b81fc700af5a1[m
+Merge: 07d8bf9 d5b5eeb
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 9 21:21:02 2024 -0400
+
+    Cambios del johny agregados
+
+[33mcommit 07d8bf90199a67e0cae65396fe0cd566d99928eb[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 9 20:51:27 2024 -0400
+
+    Todas las paginas traducidas
+
+[33mcommit ca187ffed33541afe98cf601197249576a94d1a9[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 9 19:54:36 2024 -0400
+
+    Mas traducciones
+
+[33mcommit d5b5eebf7142450a724c3c42713c032e092ec7d8[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Sep 9 19:52:16 2024 -0400
+
+    Actualizado, Revisar los que tienen NEW
+
+[33mcommit cb5bfa17370960426c964ed9c18a0d49e82b677a[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Sep 9 12:36:06 2024 -0400
+
+    Listo la navegacion del loguin
+
+[33mcommit bd7a2d602bb0a1a00f256b2c6c5870baa1b4f461[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sun Sep 8 23:50:22 2024 -0400
+
+    asasa
+
+[33mcommit 681cdea208f17149ce8f2129c3068a6e363fc61e[m
+Merge: 7682210 3ffd60d
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Sep 8 18:04:12 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 768221067fe16a2c6ff8cd7e29555dc4152a3fa3[m
+Merge: 92d1292 0f1af76
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Sep 8 18:02:47 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 92d12924a6c0f0582dec0a5dbdfba3369caf47a8[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Sep 8 18:01:50 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 3ffd60dda4f56fbe51ccd8dc607a99889a3c9b8a[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Sep 8 17:59:07 2024 -0400
+
+    Paginas de worker agregadas
+
+[33mcommit 8d595afdad302b7c0a33125713417571ace8bc02[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sun Sep 8 17:56:09 2024 -0400
+
+    Consultas actualizadas
+
+[33mcommit 4fff9f82a9b4e813b72550ccc7a6eea96c30009c[m
+Merge: 2a9eb89 0f1af76
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sat Sep 7 19:35:23 2024 -0400
+
+    Pull al main
+
+[33mcommit 2a9eb894a2b81d33666c6a73ec43717e90ee555b[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sat Sep 7 19:16:59 2024 -0400
+
+    Cambios de idioma, boton crear moto y reporte ingresos
+
+[33mcommit cc0d272d3f0e9f686beb8ab3a589d4aaca1bcb6c[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 16:42:58 2024 -0400
+
+    Terminando las pantallas modales para su incorporación
+
+[33mcommit 15064cde4bc7bfa15d4d5904f2566183dbb625fc[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 10:49:15 2024 -0400
+
+    Creada la pantalla modal de crear contratos
+
+[33mcommit db10a325d9e1112215a127b93a412d8ecea7ddf5[m[33m ([m[1;32mmain[m[33m)[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 10:13:26 2024 -0400
+
+    sdsd
+
+[33mcommit 0f1af76f8c86f3435629f70daaadeb765197d15d[m
+Author: Johny A. Pedraza Romero <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 09:59:10 2024 -0400
+
+    Delete .env
+
+[33mcommit d8b8f133313fac273a9979f79afde0b35b0f6d29[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 09:42:33 2024 -0400
+
+    Enrutado completamente
+
+[33mcommit 2d5fc4c84688ce0458397920cbd57fc22dbe1836[m
+Merge: 0d3ff05 624c6d7
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 09:01:45 2024 -0400
+
+    sdsds
+
+[33mcommit 0d3ff057997ce8f8b76c8859b8f40fc45e96a1b4[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 08:45:31 2024 -0400
+
+    Ya enlazadas las pantallas, hecho el profile del cliente, al igual que el boton flotante
+
+[33mcommit bc11371173b52aad7e7822ab33f296a6f3e09485[m
+Merge: 3bfc442 25b433f
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 08:36:26 2024 -0400
+
+    Enlazada las pantallas
+
+[33mcommit 3bfc4427a122527bdaa1edd66f4869ddcfa65a6e[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 08:35:48 2024 -0400
+
+    Preparandose para el merge con api
+
+[33mcommit 25b433f9aeb7101e81602c7ef13a3491f6a7aae0[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 08:35:04 2024 -0400
+
+    Enrutado completamente
+
+[33mcommit 4c8b162920c8443a95484c66fa7f09a472296349[m
+Merge: 414c4a4 10f8b96
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 07:46:32 2024 -0400
+
+    Listo el merge front and back
+
+[33mcommit 414c4a4bf9d12efaaaff1282785a023652ca7a73[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 07:44:18 2024 -0400
+
+    dsdsd
+
+[33mcommit 10f8b96c13f40797c78cc3a9ca6c52eabf158e13[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 07:43:41 2024 -0400
+
+    asdas
+
+[33mcommit 3290f51f6bbf67f86846650ac031b2cee04c6397[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Sep 7 07:42:33 2024 -0400
+
+    dsds
+
+[33mcommit f541d9d154af651b045850d2b82e975623fa4ff6[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Sep 2 22:37:37 2024 -0400
+
+    Hecho la pantalla modal del perfil
+
+[33mcommit de78b42937090918dd0a5c1b0dc0d3a4b314c1d6[m
+Merge: 34c2b02 f71554b
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Sep 2 20:25:52 2024 -0400
+
+    Pantallas modales de Modificar Hechas
+
+[33mcommit 34c2b020c2a681c6291dc693ade3d937b66a8e6d[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Sep 2 20:25:03 2024 -0400
+
+    Listo el merge con las pantallas modales
+
+[33mcommit f71554bc4930bf7bb6956cfa77ed4bb4bbbf3190[m[33m ([m[1;32mtest[m[33m)[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Sep 2 20:24:10 2024 -0400
+
+    Pantalla Modal con Ant Design
+
+[33mcommit 624c6d72aa96f741ef2b5f24673da529581d2ed9[m
+Merge: 4938163 e5b2244
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 2 12:49:50 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 4938163b1d96b7b88b46dc19049569247d581a57[m
+Merge: 6e40167 5bbcada
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 2 12:44:53 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 6e401679139189dd6b3d371e7224933196f55dee[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 2 12:43:59 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit e5b2244c78d3f81b042c38e16027a1ae612932ac[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Sep 2 12:39:56 2024 -0400
+
+    Sistema multidioma
+
+[33mcommit 022b90ca66f020c561955afba4fae14240f20ea2[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sun Sep 1 16:57:14 2024 -0400
+
+    Hechas todas las pantallas de modificaciones
+
+[33mcommit 875d3dabe9f29c7835c1848e391c8910f18c5912[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Aug 31 21:51:58 2024 -0400
+
+    sdsd
+
+[33mcommit cdc1e1411953d99d662d43e52b74802946ded355[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Aug 31 12:21:12 2024 -0400
+
+    dfgg
+
+[33mcommit 7c68e911048e187192c0f547d68a7a3859de08b0[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sat Aug 31 08:05:03 2024 -0400
+
+    sasas
+
+[33mcommit 5bbcadae304dc451d10e8b1595102135cda78219[m
+Author: Gab-LRL <149244493+Gab-LRL@users.noreply.github.com>
+Date:   Sat Aug 31 02:42:14 2024 -0400
+
+    .
+
+[33mcommit f6a047050e2ddc4960d0148e3cbd0ba64151f5d6[m
+Author: Gab-LRL <149244493+Gab-LRL@users.noreply.github.com>
+Date:   Sat Aug 31 02:32:49 2024 -0400
+
+    ya son emergentes
+
+[33mcommit b249755016027fff333b5ee477d68fb1eec03087[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Fri Aug 30 22:39:57 2024 -0400
+
+    sdsdsd
+
+[33mcommit 47516bacf38e0af2b08f845c7aed8c6f620304bf[m
+Author: Gab-LRL <149244493+Gab-LRL@users.noreply.github.com>
+Date:   Fri Aug 30 20:01:31 2024 -0400
+
+    Ser emergente
+
+[33mcommit 2c81746ee5e35b34ae07bbe1d07847b1b6b2c364[m
+Author: Gab-LRL <149244493+Gab-LRL@users.noreply.github.com>
+Date:   Wed Aug 28 14:50:17 2024 -0400
+
+    .
+
+[33mcommit 22c7f0eafc1a72d4421a3f043a87f9f7bdf4f360[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Aug 27 13:28:29 2024 -0400
+
+    sdsd
+
+[33mcommit 07d7d435a37682f041df1345c61f104ef69247b6[m
+Merge: 0bec451 1a2efee
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Aug 27 08:02:05 2024 -0400
+
+    Merge para actualizar las variables de entorno
+
+[33mcommit 0bec451a72402fd23ab711e2b332251ebf4cb3e8[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Tue Aug 27 08:01:29 2024 -0400
+
+    sdsd
+
+[33mcommit 9625ebd8c9f0c8b88e98b7bc6b7a8a771e1e9ffa[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Aug 26 16:03:32 2024 -0400
+
+    Contraseña BD guardada
+
+[33mcommit bb56bea0db125e9752e1de42c58a66e2c96e776d[m
+Merge: c4f00be 1a2efee
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Aug 26 15:54:46 2024 -0400
+
+    Commit antes de pull al main
+
+[33mcommit c4f00be69e88a6cd450893375fcaa3de36bae091[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Aug 26 15:53:37 2024 -0400
+
+    Algunas tablas rellenadas
+
+[33mcommit 1a2efeef8696c6eed66a896d65e4354c871f8f51[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 15:45:16 2024 -0400
+
+    Variables de entorno para la configuracion en cada PC
+
+[33mcommit ca6510fc958dd120f980c556043a121070b3d111[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 15:44:31 2024 -0400
+
+    sdsds
+
+[33mcommit b0f3e996f62b6ef0f093e87c343bede630b431e5[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Aug 26 11:16:46 2024 -0400
+
+    Commit despues del pull
+
+[33mcommit ba3aeedb32625151cdacea9416328835ea2c3d87[m
+Merge: efc4b2c f8ff2dc
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Aug 26 11:00:32 2024 -0400
+
+    Commit antes del pull al main
+
+[33mcommit efc4b2c533572aab86cdc4860ea5fdf7c1719291[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Mon Aug 26 10:58:47 2024 -0400
+
+    Commit antes del pull al main
+
+[33mcommit f8ff2dc90450e4616a8a0800cc68085a50605175[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 10:38:26 2024 -0400
+
+    Listo sin Partial Type
+
+[33mcommit 29b3dc289af679206f9354b91f69369824ad2beb[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 10:31:09 2024 -0400
+
+    ghggjg
+
+[33mcommit e9f1df57f6781f5cd73d885b33c3084cb8ce22a8[m
+Merge: cb4b974 d525774
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 09:31:20 2024 -0400
+
+    Merge con main
+
+[33mcommit cb4b97472e9da7ab2f6f6f222c3eabcb30fe6df0[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 09:30:58 2024 -0400
+
+    dsdsds
+
+[33mcommit d525774e02e6225aa0a456ed70949d22b2044263[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Mon Aug 26 09:30:35 2024 -0400
+
+    sdsds
+
+[33mcommit 36a12a848ac17a2fe301b7855d88cca0d245fd7a[m
+Merge: 25ecde3 a389eee
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sun Aug 25 15:37:27 2024 -0400
+
+    dsds
+
+[33mcommit 25ecde3bcbe578a8bc904fd938f8f174d54a01b7[m
+Author: JohnyYen <126342433+JohnyYen@users.noreply.github.com>
+Date:   Sun Aug 25 15:36:36 2024 -0400
+
+    Que divertido
+
+[33mcommit a389eeea3dc1f45ee073b3c5535e032f2af6d9b4[m
+Merge: 2cdfc0f 000570a
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Aug 25 15:25:11 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 2cdfc0f333386bf4e161046dea99ffae77d622e2[m
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Aug 25 15:24:24 2024 -0400
+
+    Commit antes del merge
+
+[33mcommit 000570a3d6d42aaa9ae4c8bcb01bf7db66ee9273[m
+Merge: 59466bb 09d8f2c
+Author: Fernando Bernal <bernalsuarezfernando@gmail.com>
+Date:   Sun Aug 25 15:15:59 2024 -0400
+
+    Commit antes de pull al main
