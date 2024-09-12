@@ -1,5 +1,5 @@
-import { Button, Divider, Form, Input, message, Modal } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Divider, Flex, Form, Input, message, Modal } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "../App.css";
 import "./NuevoUsuario";
 import axios from "axios";
@@ -18,7 +18,7 @@ function Loguin() {
   const [password, setPassword] = useState('');
 
   const {setUser, setClient} = useContext(GlobalContext);
-  const Registrar = async () => {
+  const Registrar = async (values) => {
     
     const response = await axios.post('http://localhost:3000/api/user', {
       userName: userName,
@@ -61,34 +61,35 @@ function Loguin() {
           <UserOutlined className="iconoUsuario" />
         </div>
 
-        <div className="Registro">
-          <Form className="miLoguin">
+        <div>
+          <Form labelCol={{span: 8}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} onFinish={Registrar} >
             <Form.Item
-              label={<span style={{ color: "white" }}>{t("login.username")}</span>}
-              name={"miUsuario"}
-            >
-              <Input placeholder="Ingrese su usuario" />
+              label={t("login.username")}
+              name={"user"}
+              rules={[{required:true, message:'Por favor introduce el usuario'}]}
+>
+              <Input onChange={(e) => setUserName(e.target.value)} placeholder="Ingrese su usuario" />
             </Form.Item>
 
             <Form.Item
-              label={<span style={{ color: "white" }}>{t("login.password")}</span>}
-              name={"micontraseña"}
-            >
-              <Input placeholder="Ingrese su contraseña" />
+              label={t("login.password")}
+              name={"password"}
+              rules={[{required:true, message:'Por favor introduce la contraseña'}]}>
+              <Input onChange={(e) => setPassword(e.target.password)} placeholder="Ingrese su contraseña" />
+            </Form.Item>
+
+            <Form.Item>
+              <Button type="default" htmlType="submit">
+              {t("login.accept")}
+              </Button>
+            </Form.Item>
+         
+            <Form.Item>
+              <Button onClick={() => setabrirModal(true)} type="link">
+              {t("login.register")}
+              </Button>
             </Form.Item>
           </Form>
-        </div>
-
-        <div className="Alternativa">
-          <Button type="primary" htmlType="submit" block>
-            {t("login.accept")}
-          </Button>
-          <div>
-            <Button onClick={() => setabrirModal(true)} type="link">
-            {t("login.register")}
-            </Button>
-            {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
-          </div>
         </div>
 
         <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
@@ -98,50 +99,52 @@ function Loguin() {
 
   return (
     <div className="loguin">
-      <div
-        style={{
-          position: "fixed",
-          top: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <UserOutlined className="iconoUsuario" />
-      </div>
+       <div className="divForm">
+        <Form className="formAnt"
+          name="login"
+          initialValues={{
+            remember: true,
+          }}
+          style={{
+            maxWidth: 360,
+          }}
+          onFinish={Registrar}
+        >
+        <Form.Item
+          name="username"
+          rules={[{required: true,message: 'Please input your Username!',},
+          ]}>
+          <Input onChange={(e) => setUserName(e.target.value)} prefix={<UserOutlined />} placeholder="Username" />
+        </Form.Item>
 
-      <div className="Registro">
-        <Form className="miLoguin">
-          <Form.Item
-            label={<span style={{ color: "white" }}>Usuario</span>}
-            name={"miUsuario"}
-          >
-            <Input onChange={(e) => setUserName(e.target.value)} placeholder="Ingrese su usuario o contraseña" />
-          </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[{required: true,message: 'Please input your Password!',},]}>
 
-          <Form.Item
-            label={<span style={{ color: "white" }}>Contraseña</span>}
-            name={"micontraseña"}
-          >
-            <Input onChange={(e) => setPassword(e.target.value)} placeholder="Ingrese su contraseña" />
-          </Form.Item>
-        </Form>
-      </div>
+          <Input onChange={(e) => setPassword(e.target.value)} prefix={<LockOutlined />} type="password" placeholder="Password" />
 
-      <div className="Alternativa">
-        <Button type="primary" htmlType="submit" onClick={Registrar}>
-          Aceptar
-        </Button>
-        <div>
-          <Button onClick={() => setabrirModal(true)} type="link">
-            Registrarse
+        </Form.Item>
+        <Form.Item>
+          <Flex justify="space-between" align="center">
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+            <a style={{color:'whitesmoke'}}>Forgot password</a>
+          </Flex>
+        </Form.Item>
+
+        <Form.Item>
+          <Button block type="default" htmlType="submit">
+            Log in
           </Button>
-          {/* <NuevoCliente visible={visibleNuevoCliente} /> */}
-        </div>
-      </div>
+          or <a onClick={() => setabrirModal(true)} style={{color:'whitesmoke'}}>Register now!</a>
+        </Form.Item>
+      </Form>
 
+       </div>
       <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
     </div>
-  )
+  );
   };
 
 
