@@ -116,12 +116,11 @@ const extractDataWorker = async () => {
     // }))
    }  
   } catch (error) {
-    
+    console.log(error);
   }
-
+  
   return dataSource;
 };
-
 
 const AppRouter = () => {
   const { user } = useContext(GlobalContext);
@@ -151,12 +150,12 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes extractData={dataClient} />}/>
+      <Route path="listadoClientes" element={<ListadoClientes extractData={dataClient} url={'http://localhost:3000/api/client/pdf'} />}/>
       <Route path="incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
       <Route path="situacionMotos" element={<SituacionMoto />}></Route>
       <Route path="contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
-      <Route path="listadoContratos" element={<ListadoContratos extractData={dataContract} />}></Route>
+      <Route path="listadoContratos" element={<ListadoContratos extractData={dataContract} url={'http://localhost:3000/api/contract/pdf'} />}></Route>
       <Route path="contratoMunicipio" element={<ContratosMunicipio />}></Route>
       <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />}></Route>
       <Route path="crearContrato" element></Route>

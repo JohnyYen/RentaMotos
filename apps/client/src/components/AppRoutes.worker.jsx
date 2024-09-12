@@ -7,13 +7,14 @@ import ListadoContratos from "../pages/contratos/ListadoContratos";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import { Result } from "antd";
 import axios from "axios";
+import { use } from "i18next";
 
 const extractDataClient = async (user) => {
   let dataSource = [];
   let response = null;
-  console.log(user.mun);
+  console.log(user);
   try {
-    response = await axios.get(`http://localhost:3000/api/client/mun/${user.mun}`);
+    response = await axios.get(`http://localhost:3000/api/client/mun/${user?.mun}`);
     console.log(response.data);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -35,7 +36,7 @@ const extractDataContract = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/contract/worker/${user.mun}`);
+    response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -61,56 +62,32 @@ const extractDataContract = async (user) => {
 const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
-   const response = await axios.get(`http://localhost:3000/api/pagos/${user.mun}`);
-
+   const response = await axios.get(`http://localhost:3000/api/pagos/${user?.mun}`);
+    console.log(response);
    if(response.status === 200){
     
-    
-    // dataSource = response.data.map((element, index) => ({
-    //   key: index,
-    //   "ingreso anual": element. ,
-    //   "ingreso enero": element. ,
-    //   "ingreso febrero": element. ,
-    //   "ingreso marzo": element. ,
-    //   "ingreso abril": element. ,
-    //   "ingreso mayo": element. ,
-    //   "ingreso junio": element. ,
-    //   "ingreso julio": element. ,
-    //   "ingreso septiembre": element. ,
-    //   "ingreso octubre": element. ,
-    //   "ingreso noviembre": element. ,
-    //   "ingreso diciembre": element. 
-    // }))
+    dataSource = response.data.map((element, index) => ({
+      key: index,
+      "ingreso anual": element.total_ventas,
+      "ingreso enero": element.enero,
+      "ingreso febrero": element.febrero,
+      "ingreso marzo": element.marzo,
+      "ingreso abril": element.abril,
+      "ingreso mayo": element.mayo,
+      "ingreso junio": element.junio,
+      "ingreso julio": element.julio,
+      "ingreso septiembre": element.septiembre,
+      "ingreso octubre": element.octubre,
+      "ingreso noviembre": element.noviembre,
+      "ingreso diciembre": element.diciembre 
+    }))
+
    }  
   } catch (error) {
-    
+    console.log(error);  
   }
+  return dataSource;
 };
-
-const downloadPDF = async (url) => {
-  try {
-    const response = await axios({
-      url,
-      method: 'GET',
-      responseType: 'blob',
-      headers: {
-        'Content-Type': 'application/pdf',
-      },
-    });
-
-    const urlObject = URL.createObjectURL(response.data);
-    const link = document.createElement('a');
-    link.href = urlObject;
-    link.download = 'Clientes.pdf';
-    link.click();
-    
-    // Limpiar el objeto URL creado
-    URL.revokeObjectURL(urlObject);
-  } catch (error) {
-    console.error('Error al descargar el archivo:', error);
-  }
-};
-
 
 const AppRouter = () => {
   const { user } = useContext(GlobalContext);
@@ -132,12 +109,11 @@ const AppRouter = () => {
     })
   }, [])
 
-
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes  extractData={dataClient} />}/>
+      <Route path="listadoClientes" element={<ListadoClientes  extractData={dataClient} url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
-      <Route path="listadoContratos"  element={<ListadoContratos  url={`http://localhost:3000/api/contract/pdf/${user?.mun}`} extractData={dataContract} />}></Route>
+      <Route path="listadoContratos"  element={<ListadoContratos  extractData={dataContract} url={`http://localhost:3000/api/contract/worker/pdf/${user?.mun}`} />}></Route>
       <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />} />
     </Routes>
   );

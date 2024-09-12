@@ -10,7 +10,7 @@ const extractData = async (idcliente) => {
   let response = null;
   try {
     response = await axios.get(`http://localhost:3000/api/contract/${idcliente}`);
-    console.log
+    console.log(response);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({

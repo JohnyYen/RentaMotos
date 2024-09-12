@@ -6,21 +6,25 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import ModalCreateWorker from "../../components/ModalCreateWorker"
 
-const extractData = async () => {
+const extractDataWorker = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/moto");
+    response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
+        nombre: element.nombre,
         matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
-        situacion: element.situacion,
-        color: element.color,
-        kmRecorridos: element.cantkm,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        "fecha de fin": element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro  ? "✔" : "❌",
+        "importe total": element.importe,
       }));
     }
   } catch (error) {
@@ -33,6 +37,13 @@ const ListadoTrabajadores = () => {
 
   const [visible, setVisible] = useState(false);
   const [t] = useTranslation("global");
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    extractDataWorker().then(result => {
+      setDataSource(result);
+    })
+  }, [])
 
   return (
     <Flex vertical="true">
@@ -41,7 +52,8 @@ const ListadoTrabajadores = () => {
       <Flex align="center" justify="flex-end"> 
         <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Agregar trabajador</Button>
       </Flex>
-      <Table
+      <Table 
+      dataSource={dataSource}
         scroll={{
           x: 650,
         }}

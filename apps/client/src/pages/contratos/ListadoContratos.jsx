@@ -36,7 +36,6 @@ const ListadoContratos = ({ extractData , url}) => {
   const [visible, setVisible] = useState(false);
 
   const onClick = async () => {
-    console.log(url);
     await downloadPDF(url);
   };
 
