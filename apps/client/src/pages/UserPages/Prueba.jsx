@@ -13,8 +13,9 @@ const Prueba = () => {
         <button onClick={() => {setVisible(!visible);}}>
             Click Me
         </button>
-
-        <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
+        {/* <ModalModMoto isOpen={visible} setVisible={() => setVisible(!visible)}/> */}
+        {/* <ModalCreateMoto isVisible={visible} setVisible={() => setVisible(!visible)}/> */}
+        <ModalCreateClient isVisible={visible} setVisible={() => setVisible(!visible)}/>
     </>
   )
 }
