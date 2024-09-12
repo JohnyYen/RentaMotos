@@ -3,6 +3,7 @@ import { PG_CONNECTION } from 'src/constants';
 import { ContractDto } from './dto/contract.dto';
 import generatePDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
+import { ErrorHandler } from 'src/libs/errorHandler';
 
 @Injectable()
 export class ContractService {
@@ -54,8 +55,12 @@ export class ContractService {
 
 
     async createContract(contract : ContractDto){
-        console.log(contract);
-        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
+        try{
+            await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
+        }
+        catch(error){
+            return new ErrorHandler(error).returnError();
+        }
     }
 
     updateContract(contract : ContractDto, matricula : string){

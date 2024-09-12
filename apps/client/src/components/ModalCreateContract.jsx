@@ -1,5 +1,5 @@
 import { FolderOutlined } from '@ant-design/icons';
-import { Checkbox, Col, DatePicker, Form, Modal, Row, Select, Typography } from 'antd'
+import { Checkbox, Col, DatePicker, Form, message, Modal, Row, Select, Typography } from 'antd'
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { GlobalContext, useRow } from '../context/GlobalContext';
@@ -36,12 +36,19 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
       diasProrroga: 0,
     }
     
-    if(dateBegin && dateEnd && dateFirm && formaPago && seguro){
+    console.log(contract);
+    if(dateBegin && dateEnd && dateFirm && formaPago){
+     try {
       const res = await axios.post('http://localhost:3000/api/contract/', contract);
-
+      
       message.success('Creado con exito')
-
       window.location.reload();
+     } catch (error) {
+      console.log(error);
+      message.error(error.message);
+     }
+
+     
     }
   }
   return (

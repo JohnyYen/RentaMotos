@@ -51,7 +51,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
             numCont: numCont
         }
         
-        if(idCliente && name && secondName && lastName && secondLastName && edad && mun && sex && numCont){
+        if(ci && name && secondName && lastName && secondLastName && edad && mun && sex && numCont){
             let response = await axios.post('http://localhost:3000/api/client',client);
             console.log(response.status);
             if(response.status === 201){
@@ -103,7 +103,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     <Form.Item label='Segundo Apellido:' name="segundo_apellido" rules={[{required: true,message: 'Introduce tu segundo apellido!',},]}>
                         <Input onChange={(e) => setSecondLastName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su segundo apellido'/>
                     </Form.Item>
-                    
+
                     <Form.Item label='Nombre de Usuario:' name="user_name" rules={[{required: true,message: 'Introduce tu matricula!',},]}>
                         <Input onChange={(e) => setUserName(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su nombre de usuario'/>
                     </Form.Item>
@@ -132,7 +132,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                         <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
                             {
                                 dataSource.map((item, i) => (
-                                    <Option key={i}  value={item.nommun}>{item.nommun}</Option>
+                                    <Select.Option key={i}  value={item.nommun}>{item.nommun}</Select.Option>
                                 ))
                             }
                         </Select>
@@ -140,8 +140,8 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
 
                     <Form.Item label='Sexo:' name="sexo" rules={[{required: true,message: 'Introduce tu matricula!',},]}>
                         <Select onChange={(value) => setSex(value)} style={{marginBottom:margin}} placeholder="Sexo">
-                            <Option value='F'>F</Option>
-                            <Option value='M'>M</Option>
+                            <Select.Option value='F'>F</Select.Option>
+                            <Select.Option value='M'>M</Select.Option>
                         </Select>
                     </Form.Item>
                 </Flex>

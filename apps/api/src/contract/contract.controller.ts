@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { ContractService } from './contract.service';
 import { ContractDto } from './dto/contract.dto';
+import { ErrorHandler } from 'src/libs/errorHandler';
 
 @Controller('api/contract')
 export class ContractController {
@@ -85,6 +86,7 @@ export class ContractController {
     @Post()
     createContract(@Body() contract : ContractDto){
         this.contractService.createContract(contract);
+        
     }
     @Patch('/:matricula')
     updateContract(@Param("matricula") matricula : string, @Body() contract : ContractDto){

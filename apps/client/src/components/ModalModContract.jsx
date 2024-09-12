@@ -43,7 +43,11 @@ const ModalModContract = ({isOpen, setOpen}) => {
       if(date && formaPago && seguro && diasProrroga){
         const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
 
-        window.location.reload();
+        if(res.status === 500){
+          
+        }
+        else
+          window.location.reload();
       }
     }
   return (

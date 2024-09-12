@@ -14,6 +14,15 @@ import Loguin from "../component/Loguin";
 import axios from "axios";
 import ListadoTrabajadores from "../pages/trabajadores/ListadoTrabajadores";
 
+const dateToday = () => {
+  const newDate = new Date();
+  const day = newDate.getDay();
+  const month = newDate.getMonth();
+  const year = newDate.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
+  return currentDate;
+};
+
 const extractDataClient = async () => {
   let dataSource = [];
   let response = null;

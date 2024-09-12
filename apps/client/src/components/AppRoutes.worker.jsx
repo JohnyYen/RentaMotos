@@ -8,6 +8,16 @@ import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
 import { Result } from "antd";
 import axios from "axios";
 
+
+const dateToday = () => {
+  const newDate = new Date();
+  const day = newDate.getDay();
+  const month = newDate.getMonth();
+  const year = newDate.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
+  return currentDate;
+};
+
 const extractDataClient = async (user) => {
   let dataSource = [];
   let response = null;

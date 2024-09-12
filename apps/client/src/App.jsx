@@ -8,20 +8,21 @@ import Prueba from "./pages/UserPages/Prueba";
 import GlobalProvider from "./context/GlobalContext";
 import { Suspense } from "react";
 import { message } from "antd";
+import axios from "axios";
 
 
 
 message.config({
-  duration: 30, // Duración en segundos
+  duration: 20, // Duración en segundos
   maxCount: 1, // Máximo de mensajes mostrados
 });
 
-{/* <Route path="/" element={<Loguin/>}/>
-      <Route path="/admin" element={<UserAdmin/>}>
-        <Route path="listadoClientes" element={<ListadoClientes/>}/>
-      </Route>
-      <Route path="/client" element={<UserClient/>}/> */}
-
+window.addEventListener('error', async (e) => {
+  if(e.error instanceof Error){
+    const resp = await axios.get('http://localhost:3000/api/server');
+    message.loading(resp.statusText);
+  }
+})
 function App() {
  
   return (

@@ -28,24 +28,34 @@ function Loguin() {
     if(response.status === 201){
       const tipoUsuario = response.data.tipo_usuario;
       
-      if(tipoUsuario === 'Admin')
+      if(tipoUsuario === 'Admin'){
+        message.success('Logueado con Exito')
         navigate('/admin');
+      }
 
       if(tipoUsuario === 'Cliente'){
         const idClient = response.data.id_cliente;
         const res = await axios.get(`http://localhost:3000/api/client/sample/${idClient}`);
         if(res.status === 200){
+          message.success('Logueado con Exito')
           setUser(response.data);
           setClient(res.data[0]);
+          localStorage.setItem('clientData', JSON.stringify(res.data[0]));
           navigate('/client');
         }
       }
 
       if(tipoUsuario === 'Trabajador'){
+        message.success('Logueado con Exito')
         setUser(response.data);
         navigate('/worker');
       }
+
+      //Guardar la referencia a los usuarios y clientes en caso de que se refresque la pantalla
+      localStorage.setItem('userData', JSON.stringify(response.data));
         
+      if(!tipoUsuario)
+        message.info('Este usuario no existe');
     }
 
     return (
