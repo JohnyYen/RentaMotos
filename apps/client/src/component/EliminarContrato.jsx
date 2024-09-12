@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 
-import React, { useState, useEffect } from "react";
-import { Button, Modal } from "antd";
-=======
-import{ Button,message,Modal, Typography}from "antd";
+import { Button, message, Modal, Typography} from "antd";
 import "../App.css";
->>>>>>> 10f7a4a81cfe59fab08ba3842d9529b45ab4e7f9
 import axios from 'axios';
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 
