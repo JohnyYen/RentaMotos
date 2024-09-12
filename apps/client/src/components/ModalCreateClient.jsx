@@ -1,4 +1,4 @@
-import { Col, Flex, Input, InputNumber, Modal, Row, Select } from 'antd'
+import { Col, Flex, Input, InputNumber, message, Modal, Row, Select } from 'antd'
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
@@ -54,6 +54,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
         if(response.status === 201){
             response = await axios.post('http://localhost:3000/api/user/client', user);
             if(response.status === 201){
+                message.success('Creado con exito')
                 setClient(client);
                 setUser(user);
                 navigate('/client');

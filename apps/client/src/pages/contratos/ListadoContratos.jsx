@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import ModalModContract from "../../components/ModalModContract";
 import { GlobalContext } from "../../context/GlobalContext";
+import EliminarContrato from "../../component/EliminarContrato";
 
 const downloadPDF = async (url) => {
   try {
@@ -33,6 +34,7 @@ const ListadoContratos = ({ extractData , url}) => {
   const [t] = useTranslation("global");
   const {setRow} = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const onClick = async () => {
     console.log(url);
@@ -42,6 +44,7 @@ const ListadoContratos = ({ extractData , url}) => {
   return (
     <Flex vertical="true">
       <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
       <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
       <Table
         scroll={{
@@ -113,7 +116,7 @@ const ListadoContratos = ({ extractData , url}) => {
                 <Button className="actionTable" type="primary" onClick={() => {setVisible(true); setRow(record)}}>
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => {setOpen(true); setRow(record)}} className="actionTable" type="primary">
                   {t("mainContent.table.delete")}
                 </Button>
               </Flex>

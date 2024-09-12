@@ -36,7 +36,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
     }
     const res = await axios.post('http://localhost:3000/api/contract/', contract);
 
-    console.log(res.status);
+    message.success('Creado con exito')
+
+    window.location.reload();
   }
   return (
     <Modal  destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}>

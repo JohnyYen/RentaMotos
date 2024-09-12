@@ -7,8 +7,14 @@ import UserWorker from "./pages/UserPages/UserWorker";
 import Prueba from "./pages/UserPages/Prueba";
 import GlobalProvider from "./context/GlobalContext";
 import { Suspense } from "react";
+import { message } from "antd";
 
 
+
+message.config({
+  duration: 30, // Duración en segundos
+  maxCount: 1, // Máximo de mensajes mostrados
+});
 
 {/* <Route path="/" element={<Loguin/>}/>
       <Route path="/admin" element={<UserAdmin/>}>

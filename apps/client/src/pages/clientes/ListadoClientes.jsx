@@ -6,6 +6,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import ModalModClient from "../../components/ModalModClient";
 import { GlobalContext } from "../../context/GlobalContext";
+import EliminarUsuario from "../../component/EliminarUsuario";
 
 const downloadPDF = async (url) => {
   try {
@@ -53,6 +54,7 @@ const ListadoClientes = ({ extractData }) => {
   const [t] = useTranslation("global");
 
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
    
@@ -74,6 +76,7 @@ const ListadoClientes = ({ extractData }) => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
       <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           {t("mainContent.currentDate")}:
@@ -131,7 +134,7 @@ const ListadoClientes = ({ extractData }) => {
                 <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
                 {t("mainContent.table.delete")}
                 </Button>
               </Flex>

@@ -23,7 +23,10 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
 
         const res = await axios.post('http://localhost:3000/api/user/worker', worker);
 
-       // console.log(res)
+        if(resp.status === 201)
+          message.success('Creado con exito')
+
+        window.location.reload();
     }
   return (
     <Modal centered={true} title='Crear Trabajador' open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}>

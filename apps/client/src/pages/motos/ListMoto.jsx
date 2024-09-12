@@ -1,4 +1,4 @@
-import { Mentions, Typography, Table, Flex, Button } from "antd";
+import { Mentions, Typography, Table, Flex, Button, message } from "antd";
 import "../../App.css";
 import axios from "axios";
 import { DownloadOutlined } from "@ant-design/icons";
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import ModalModMoto from '../../components/ModalModMoto'
 import {GlobalContext} from '../../context/GlobalContext'
 import ModalCreateMoto from "../../components/ModalCreateMoto";
+import EliminarMoto from "../../component/EliminarMoto";
 
 
 const extractData = async () => {
@@ -79,8 +80,11 @@ const ListMoto = () => {
   const [t] = useTranslation("global");
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+  const [visualize, setVisualize] = useState(false);
   const {setRow} = useContext(GlobalContext);
 
+
+  message.success('Hola');
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
@@ -104,6 +108,7 @@ const ListMoto = () => {
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
       <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
       <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)}/>
+      <EliminarMoto isOpen={visualize} setOpen={() => setVisualize(!visualize)} />
       <Flex align="center" justify="space-between">
         <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
@@ -165,7 +170,7 @@ const ListMoto = () => {
                 <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
                   Modificar
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}}>
                 {t("mainContent.table.delete")}
                 </Button>
               </Flex>

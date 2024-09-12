@@ -53,10 +53,11 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
         // console.log(moto);
 
         const resp = await axios.post('http://localhost:3000/api/moto', moto);
-        window.location.reload();
 
         if(resp.status === 201)
-            console.log(resp);
+            message.success('Creado con exito')
+
+        window.location.reload();
     }
   return (
     <Modal  destroyOnClose={true} title={"Crear una nueva moto"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}>

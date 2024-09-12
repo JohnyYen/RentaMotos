@@ -1,4 +1,4 @@
-import { Flex, Input, InputNumber, Modal, Select } from 'antd'
+import { Flex, Input, InputNumber, message, Modal, Select } from 'antd'
 import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { GlobalContext } from '../context/GlobalContext';
@@ -39,6 +39,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
       const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
 
+      message.success('Creado con exito');
       window.location.reload();
     }
     const margin = 15;

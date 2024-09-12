@@ -63,8 +63,8 @@ let ContractController = class ContractController {
     async getContractByCliente(id) {
         return await this.contractService.getCotnractByCliente(id);
     }
-    deleteContract(idCliente, matricula) {
-        this.contractService.deleteContract(idCliente, matricula);
+    deleteContract(matricula) {
+        this.contractService.deleteContract(matricula);
     }
     createContract(contract) {
         this.contractService.createContract(contract);
@@ -136,11 +136,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractByCliente", null);
 __decorate([
-    (0, common_1.Delete)('/:idCliente/:matricula'),
-    __param(0, (0, common_1.Param)("idCliente")),
-    __param(1, (0, common_1.Param)("matricula")),
+    (0, common_1.Delete)('/:matricula'),
+    __param(0, (0, common_1.Param)("matricula")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "deleteContract", null);
 __decorate([

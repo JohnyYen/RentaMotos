@@ -64,8 +64,8 @@ let ContractService = class ContractService {
     updateContract(contract, matricula) {
         this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
     }
-    deleteContract(idCliente, matricula) {
-        this.conn.query(`DELETE FROM Contrato where idcliente = '${idCliente} and matricula = '${matricula}'`);
+    deleteContract(matricula) {
+        this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
     }
 };
 exports.ContractService = ContractService;

@@ -77,9 +77,9 @@ export class ContractController {
         return await this.contractService.getCotnractByCliente(id);
     }
 
-    @Delete('/:idCliente/:matricula')
-    deleteContract(@Param("idCliente") idCliente : string, @Param("matricula") matricula : string){
-        this.contractService.deleteContract(idCliente, matricula);
+    @Delete('/:matricula')
+    deleteContract(@Param("matricula") matricula : string){
+        this.contractService.deleteContract(matricula);
     }
 
     @Post()

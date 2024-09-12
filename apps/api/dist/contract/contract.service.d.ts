@@ -13,5 +13,5 @@ export declare class ContractService {
     getPDFContractByMun(): Promise<Buffer>;
     createContract(contract: ContractDto): Promise<void>;
     updateContract(contract: ContractDto, matricula: string): void;
-    deleteContract(idCliente: string, matricula: string): void;
+    deleteContract(matricula: string): void;
 }

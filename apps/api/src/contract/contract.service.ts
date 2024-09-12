@@ -62,7 +62,7 @@ export class ContractService {
         this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
     }
 
-    deleteContract(idCliente : string, matricula : string){
-        this.conn.query(`DELETE FROM Contrato where idcliente = '${idCliente} and matricula = '${matricula}'`)
+    deleteContract(matricula : string){
+        this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
     }
 }
