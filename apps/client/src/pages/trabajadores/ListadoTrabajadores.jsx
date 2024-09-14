@@ -10,21 +10,14 @@ const extractDataWorker = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
-
+    response = await axios.get('http://localhost:3000/api/user/worker');
+    console.log(response);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        nombre: element.nombre,
-        matricula: element.matricula,
-        marca: element.marca,
-        modelo: element.modelo,
-        "forma de pago": element.formapago,
-        "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
-        prorroga: element.diasprorroga,
-        "seguro adicional": element.seguro  ? "✔" : "❌",
-        "importe total": element.importe,
+        usuario: element.nombre_usuario,
+        'contraseña': element.contrasenia,
+        municipio: element.mun
       }));
     }
   } catch (error) {

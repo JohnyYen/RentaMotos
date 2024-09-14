@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { GlobalContext } from "../../context/GlobalContext";
 
-const extractData = async (idcliente) => {
+const extractData = async (client) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/contract/${idcliente}`);
-    console.log(response);
+    response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`);
+    console.log(response.data);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -37,9 +37,10 @@ const extractData = async (idcliente) => {
 const ListadoContratos = () => {
   const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
-  const {client} = useContext(GlobalContext);
+  const { client } = useContext(GlobalContext);
+
   useEffect(() => {
-    extractData(client ? client.idcliente : '03121067683').then((result) => {
+    extractData(client).then((result) => {
       setDataSource(result);
     });
   }, []);
