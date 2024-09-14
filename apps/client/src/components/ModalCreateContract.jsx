@@ -65,11 +65,31 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
             <Input value={client?.idcliente} onChange={(e) => setCI(e.target.value)} style={{marginBottom:margin}}  placeholder='CI Cliente'/> */}
 
-            <Form.Item label='Fecha de Firma:' name="dateFirma" rules={[{required: true,message: 'Introduce la fecha de la firma!',},]}>
+            <Form.Item label='Fecha de Firma:' name="dateFirma" rules={[{required: true,message: 'Introduce la fecha de la firma!',},
+              {validator: (rule, value, callback) => {
+                if(rule && value){
+                  console.log(value)
+                  console.log(dateBegin);
+                  if(dateBegin && value > dateBegin)
+                    callback(new Error('La firma debe ser antes que el inicio del alquiler'));
+                  if(dateEnd && value > dateEnd)
+                    callback(new Error('La firma debe ser antes que el fin del alquiler'));
+                }
+              }}
+            ]}>
               <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
             </Form.Item>
 
-            <Form.Item label='Fecha de Inicio:' name="dateBegin" rules={[{required: true,message: 'Introduce la fecha de Inicio!',},]}>
+            <Form.Item label='Fecha de Inicio:' name="dateBegin" rules={[{required: true,message: 'Introduce la fecha de Inicio!',},
+              {validator:(rule, value, callback) => {
+                if(rule && value){
+                  if(dateFirm && dateFirm > value)
+                    callback(new Error('La firma debe ser antes que el inicio del alquiler'));
+                  if(dateEnd && value > dateEnd)
+                    callback(new Error('El inicio del alquiler debe ser antes que el fin del alquiler'));
+                }
+              }}
+            ]}>
               <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
             </Form.Item>
 

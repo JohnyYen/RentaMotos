@@ -55,25 +55,31 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
         <Flex vertical={true}>
 
-          <Form.Item label='Nombre:' name="name" rules={[{required: true,message: 'Introduce el nombre!',},]}>
+          <Form.Item label='Nombre:' name="name" rules={[{required: true,message: 'Introduce el nombre!',},
+            {min:2, max:20, message:"El nombre debe de tener maximo 20 caracteres"}
+          ]}>
             <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder='Nuevo nombre'/>
           </Form.Item>
 
-          <Form.Item label='Segundo Nombre:' name="secondName" rules={[{required: true,message: 'Introduce el segundo nombre!',},]}>
+          <Form.Item label='Segundo Nombre:' name="secondName" rules={[{min: 2, max:20,message: 'El segundo nombre debe tener maximo 20 caracteres',},]}>
             <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder='Nuevo segundo nombre'/>  
           </Form.Item>
 
 
-          <Form.Item label='Apellido:' name="primApellido" rules={[{required: true,message: 'Introduce el primer Apellido!',},]}>
+          <Form.Item label='Apellido:' name="primApellido" rules={[{required: true,message: 'Introduce el primer Apellido!',},
+            {min:4, max:25, message:"El apellido debe tener maximo 25 caracteres"},
+          ]}>
            <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder='Nuevo primer apellido'/>        
           </Form.Item>
 
 
-          <Form.Item label='Segundo Apellido:' name="segApellido" rules={[{required: true,message: 'Introduce el Segundo Apellido!',},]}>
+          <Form.Item label='Segundo Apellido:' name="segApellido" rules={[{min: 4, max:25 ,message: 'El apellido debe tener 25 caracteres!',},]}>
             <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondLast(e.target.value)} placeholder='Nuevo segundo apellido'/>    
           </Form.Item>
 
-          <Form.Item label='Numero Contacto:' name="numCont" rules={[{required: true,message: 'Introduce el numero de contacto!',},]}>
+          <Form.Item label='Numero Contacto:' name="numCont" rules={[{required: true,message: 'Introduce el numero de contacto!',},
+            {min:8, max:8, message: "El numero de contacto debe de tener 8 digitos"}
+          ]}>
             <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setNumCont(e.target.value)} placeholder='Nuevo numero contacto'/>   
           </Form.Item>
 

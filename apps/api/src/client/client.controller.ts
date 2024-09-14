@@ -73,4 +73,9 @@ export class ClientController {
     updateClient(@Param('id') id : string, @Body() client : ClientDto){
         this.clientService.updateClient(client, id);
     }
+
+    @Post('/validate/phone')
+    async validateNumber(@Body() body){
+        return this.clientService.validatePhoneNumber(body.phoneNumber);
+    }
 }

@@ -13,4 +13,5 @@ export declare class ClientController {
     createClient(clientDto: ClientDto): void;
     deleteClient(id: string): void;
     updateClient(id: string, client: ClientDto): void;
+    validateNumber(body: any): Promise<boolean>;
 }

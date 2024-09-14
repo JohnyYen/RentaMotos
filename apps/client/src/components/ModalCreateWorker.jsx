@@ -39,11 +39,31 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
       </Form>
   )}
     >
-        <Form.Item label='Nombre de Usuario:' name="userName" rules={[{required: true,message: 'Introduce el nombre de Usuario!',},]}>
+        <Form.Item label='Nombre de Usuario:' name="userName" rules={[{required: true,message: 'Introduce el nombre de Usuario!',},
+          {validator:(rule, value, callback) => {
+            if(rule && value){
+              const res =  axios.post('http://localhost:3000/api/user/validate', {info : value});
+              res.then((response) => {
+                if(response.data)
+                  callback(new Error('Este usuario ya existe'));
+              })
+            }
+          }}
+        ]}>
           <Input onChange={(e) => setName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su nombre'/>
         </Form.Item>
 
-        <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce la Contraseña!',},]}>
+        <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce la Contraseña!',},
+          {validator:(rule, value, callback) => {
+            if(rule && value){
+              const res =  axios.post('http://localhost:3000/api/user/validate', {info : value});
+              res.then((response) => {
+                if(response.data)
+                  callback(new Error('Este usuario ya existe'));
+              })
+            }
+          }},
+        ]}>
           <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
         </Form.Item>
 

@@ -68,7 +68,9 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
           {dom}
         </Form>
       )}>
-       <Form.Item label='Matricula:' name="matricula" rules={[{required: true,message: 'Introduce tu matricula!',},]}>
+       <Form.Item label='Matricula:' name="matricula" rules={[{required: true,message: 'Introduce tu matricula!',},
+        {max:8, message:"Debe tener 8 caracteres"}
+       ]}>
             <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder='Ingrese la matricula'/>
            </Form.Item>
 

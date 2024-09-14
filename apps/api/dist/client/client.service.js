@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
 const pdfKit_1 = require("../libs/pdfKit");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
+const errorHandler_1 = require("../libs/errorHandler");
 let ClientService = class ClientService {
     constructor(conn) {
         this.conn = conn;
@@ -41,6 +42,15 @@ let ClientService = class ClientService {
     async getAllClientPDFWorkerMun(mun) {
         const client = await this.getClientByMun(mun);
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
+    }
+    async validatePhoneNumber(num) {
+        try {
+            const res = await this.conn.query(`SELECT * FROM cliente WHERE numcont = '${num}'`);
+            return res.rows.length !== 0;
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error);
+        }
     }
     async deleteClient(id) {
         this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
