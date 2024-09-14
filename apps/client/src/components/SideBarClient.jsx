@@ -37,11 +37,6 @@ import {
           }}
           items={[
             {
-              label: t("sideBar.clientList"),
-              icon: <FileAddOutlined />,
-              key: "crearContrato",
-            },
-            {
                 label: t("sideBar.myContracts"),
                 icon: <FileDoneOutlined />,
                 key: "contratosCliente",

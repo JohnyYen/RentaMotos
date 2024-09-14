@@ -114,7 +114,7 @@ const ListMotoClient = () => {
           readOnly
           variant="borderless"
           defaultValue={currentDate}
-        />
+        ></Mentions>
       </Flex>
       <Table
         scroll={{

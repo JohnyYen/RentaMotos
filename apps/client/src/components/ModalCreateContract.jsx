@@ -26,7 +26,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
   const handlePetition = async () =>{
 
     const contract = {
-      idCliente: client ? client.idcliente : '03121067683',
+      idCliente: client.idcliente,
       matricula: row?.matricula,
       beginDate: dateBegin,
       endDate: dateEnd,
@@ -36,7 +36,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
       diasProrroga: 0,
     }
     
-    console.log(contract);
+    console.log(client);
     if(dateBegin && dateEnd && dateFirm && formaPago){
      try {
       const res = await axios.post('http://localhost:3000/api/contract/', contract);

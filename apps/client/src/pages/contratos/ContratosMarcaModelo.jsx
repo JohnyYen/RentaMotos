@@ -9,19 +9,20 @@ const extractData = async () => {
   let response = null;
   try {
     response = await axios.get("http://localhost:3000/api/contract/marcxmodel");
-
     console.log(response.data);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
         marca: element.marca,
         modelo: element.modelo,
-        'cantidad de motos': element.cant_moto,
-        'dias totales alquilados':element.diasalquilados,
-        'ingresos tarjeta de crédito':element.valor_tarjeta_credito,
-        'ingresos por cheques':element.valor_cheque,
-        'ingresos por efectivo': element.valor_efectivo,
-        'ingresos totales':element.ingreso_marca,
+        "cantidad de motos": element.cant_moto,
+        "dias totales alquilados": element.diasalquilados,
+        "ingresos tarjeta de crédito": element.valor_tarjeta_credito,
+        "ingresos por cheques": element.valor_cheque,
+        "ingresos por efectivo": element.valor_efectivo,
+        "ingresos totales": element.ingreso_marca,
+        "seguro adicional": element.seguro,
+        "importe total": element.importe,
       }));
     }
   } catch (error) {
@@ -34,6 +35,7 @@ const extractDataFilterMarca = async () => {
   let dataFilter = [];
   try {
     const response = await axios.get("http://localhost:3000/api/marc");
+
     if (response.status === 200) {
       dataFilter = response.data;
     }
@@ -140,7 +142,7 @@ const ContratosMarcaModelo = () => {
             key: "cantidad de motos",
           },
           {
-            title: t("mainContent.totalDaysRented"),
+            title: t("mainContent.table.totalDaysRented"),
             dataIndex: "dias totales alquilados",
             key: "dias totales alquilados",
           },

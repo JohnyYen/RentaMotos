@@ -38,7 +38,8 @@ export class UserController {
     }
 
     @Delete('/:userName')
-    async deleteUser(@Param('userName') userName : string){
+    async deleteUser(@Param() userName : string){
+        console.log(userName);
         this.userService.deleteUser(userName);
     }
 }

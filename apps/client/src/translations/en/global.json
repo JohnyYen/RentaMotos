@@ -27,13 +27,13 @@
         "contractMunicipality": "By Municipality",
         "contractMakeModel": "By Make and Model",
         "annualIncome": "Annual Income",
-        "createContract": "Create Contract",
         "myContracts": "My Contracts"
     },
     "mainContent": {
         "downloadPDF": "Download PDF",
         "currentDate": "Current date",
         "createMotorcycle": "Add motorcycle",
+        "createContract": "Crear contrato",
         "table": {
             "clientID": "Client ID",
             "serialNumber": "Serial number",

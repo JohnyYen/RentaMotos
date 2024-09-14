@@ -45,11 +45,10 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ extractData }) => {
+const ListadoClientes = ({ extractData, url }) => {
 
   const {setRow} = useContext(GlobalContext)
 
-  const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
@@ -69,7 +68,7 @@ const ListadoClientes = ({ extractData }) => {
   }, []);
 
   const onClick = async () => {
-    await downloadPDF('http://localhost:3000/api/client/pdf');
+    await downloadPDF(url);
   };
 
   return (
@@ -82,7 +81,7 @@ const ListadoClientes = ({ extractData }) => {
           {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "20rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
           defaultValue={new Date().toUTCString()}

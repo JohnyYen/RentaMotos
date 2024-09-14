@@ -3,9 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import EliminarContrato from "../../component/EliminarContrato";
 import ModalModContract from "../../components/ModalModContract";
 import { GlobalContext } from "../../context/GlobalContext";
-import EliminarContrato from "../../component/EliminarContrato";
 
 const downloadPDF = async (url) => {
   try {
@@ -37,7 +37,6 @@ const ListadoContratos = ({ extractData , url}) => {
   const [open, setOpen] = useState(false);
 
   const onClick = async () => {
-    console.log(url);
     await downloadPDF(url);
   };
 
