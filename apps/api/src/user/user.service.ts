@@ -24,7 +24,7 @@ export class UserService {
 
     async createUserWorker(userWorker : UserWorkerDto){
         try{
-            await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, tipo_usuario) VALUES ('${userWorker.user_name}', '${userWorker.password}', 3)`);
+            await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, tipo_usuario, mun) VALUES ('${userWorker.user_name}', '${userWorker.password}', 3, '${userWorker.mun}')`);
         }
         catch(error){
             throw new ErrorHandler(error).returnError(); 
@@ -35,6 +35,10 @@ export class UserService {
         await this.conn.query(`DELETE FROM usuario WHERE nombre_usuario = '${userName}'`);
     }
 
+    async getWorkers(){
+        const res = await this.conn.query('SELECT * FROM worker_view');
+        return res.rows;
+    }
     async validationUser(userName : string, contrasenia : string){
         const res = await this.conn.query(`SELECT * FROM usuario_view WHERE (nombre_usuario = '${userName}' OR email = '${userName}') AND contrasenia = '${contrasenia}';`)
         return res.rows[0];

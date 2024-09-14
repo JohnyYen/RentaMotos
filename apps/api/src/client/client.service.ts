@@ -29,6 +29,11 @@ export class ClientService {
         return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
     }
 
+    async getAllClientPDFWorkerMun(mun:string) {
+        const client = await this.getClientByMun(mun);
+        return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
+    }
+
     async deleteClient(id : string){
         this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
     }
@@ -39,7 +44,7 @@ export class ClientService {
 
     async updateClient(client : ClientDto, id : string){
 
-        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = ${client.municipio} ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${id}'`)
+        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${id}'`)
     }
 
     async getAllBadClients(){

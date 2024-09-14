@@ -3,6 +3,7 @@ import { PG_CONNECTION } from 'src/constants';
 import { ContractDto } from './dto/contract.dto';
 import generatePDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
+import { ErrorHandler } from 'src/libs/errorHandler';
 
 @Injectable()
 export class ContractService {
@@ -14,18 +15,17 @@ export class ContractService {
     }
 
     async getContractFilter(){
-        const res = await this.conn.query('SELECT contratoxmarcamodelo()')
+        const res = await this.conn.query('select * from contratoxmarca_modelo')
         return res.rows;
     }
 
     async getContractMun(mun:string){
-        console.log(mun);
         const res = await this.conn.query(`SELECT * FROM cont_mun_view WHERE municipio = '${mun}'`)
         return res.rows;
     }
 
     async getCotnractByCliente(id : string){
-        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`)
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = '${id}'`)
         return res.rows;
     }
     async getContractByMun(){
@@ -43,6 +43,11 @@ export class ContractService {
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
     }
 
+    async getPDFContractWorkerMun(mun:string){
+        const contract = await this.getContractMun(mun);
+        return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
+    }
+
     async getPDFContractByMun(){
         const contract = await this.getContractByMun();
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
@@ -50,14 +55,19 @@ export class ContractService {
 
 
     async createContract(contract : ContractDto){
-        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
+        try{
+            await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
+        }
+        catch(error){
+            return new ErrorHandler(error).returnError();
+        }
     }
 
-    updateContract(contract : ContractDto, idCliente : string, matricula : string){
-        this.conn.query(`UPDATE Contrato SET formapago = ${contract.formaPago}, seguro = ${contract.seguro}, diasprorroga = ${contract.diasProrroga} WHERE idcliente = ${idCliente} AND matricula = ${matricula}`);
+    updateContract(contract : ContractDto, matricula : string){
+        this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
     }
 
-    deleteContract(idCliente : string, matricula : string){
-        this.conn.query(`DELETE FROM Contrato where idcliente = '${idCliente} and matricula = '${matricula}'`)
+    deleteContract(matricula : string){
+        this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
     }
 }

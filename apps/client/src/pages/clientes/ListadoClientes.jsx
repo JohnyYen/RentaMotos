@@ -1,9 +1,12 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import ModalModClient from "../../components/ModalModClient";
+import { GlobalContext } from "../../context/GlobalContext";
+import EliminarUsuario from "../../component/EliminarUsuario";
 
 const downloadPDF = async (url) => {
   try {
@@ -42,11 +45,18 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ extractData, dateToday }) => {
+const ListadoClientes = ({ extractData, url }) => {
+
+  const {setRow} = useContext(GlobalContext)
+
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
+  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
+   
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
         {
@@ -58,21 +68,23 @@ const ListadoClientes = ({ extractData, dateToday }) => {
   }, []);
 
   const onClick = async () => {
-    await downloadPDF('http://localhost:3000/api/client/pdf');
+    await downloadPDF(url);
   };
 
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
+      <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "20rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={dateToday}
+          defaultValue={new Date().toUTCString()}
         />
       </Flex>
       <Table
@@ -118,10 +130,10 @@ const ListadoClientes = ({ extractData, dateToday }) => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
                 {t("mainContent.table.delete")}
                 </Button>
               </Flex>

@@ -9,6 +9,7 @@ export declare class ClientController {
     getBadClients(): Promise<any>;
     getClient(id: string): Promise<any>;
     getBadClientsByPDF(res: any): Promise<void>;
+    getPDF(mun: string, res: any): Promise<void>;
     createClient(clientDto: ClientDto): void;
     deleteClient(id: string): void;
     updateClient(id: string, client: ClientDto): void;

@@ -21,8 +21,8 @@ const CustomHeader = () => {
     <Flex align="center" justify="space-between">
       <Typography.Title style={{color: "white"}} level={2}>{t("header.motorcycleRent")}</Typography.Title>
       <Flex align="center" justify="center">
-          <Button className="header-button" type="link" iconPosition="end" icon={<LoginOutlined style={{fontSize: "1.2rem"}}/>}>
-            <Link to='/login'>Sign in</Link></Button>
+          <Button onClick={() => {localStorage.removeItem('userData'); localStorage.removeItem('clientData');}} className="header-button" type="link" iconPosition="end" icon={<LoginOutlined style={{fontSize: "1.2rem"}}/>}>
+            <Link to='/'>Log Out</Link></Button>
             <Select className="popup-language"
             variant="Filled"
             size="small"

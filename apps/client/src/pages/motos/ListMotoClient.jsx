@@ -11,7 +11,7 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/moto");
+    response = await axios.get("http://localhost:3000/api/moto/client");
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -114,7 +114,7 @@ const ListMotoClient = () => {
           readOnly
           variant="borderless"
           defaultValue={currentDate}
-        />
+        ></Mentions>
       </Flex>
       <Table
         scroll={{

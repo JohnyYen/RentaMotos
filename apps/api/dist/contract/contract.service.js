@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
 const pdfKit_1 = require("../libs/pdfKit");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
+const errorHandler_1 = require("../libs/errorHandler");
 let ContractService = class ContractService {
     constructor(conn) {
         this.conn = conn;
@@ -26,16 +27,15 @@ let ContractService = class ContractService {
         return res.rows;
     }
     async getContractFilter() {
-        const res = await this.conn.query('SELECT contratoxmarcamodelo()');
+        const res = await this.conn.query('select * from contratoxmarca_modelo');
         return res.rows;
     }
     async getContractMun(mun) {
-        console.log(mun);
         const res = await this.conn.query(`SELECT * FROM cont_mun_view WHERE municipio = '${mun}'`);
         return res.rows;
     }
     async getCotnractByCliente(id) {
-        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = ${id}`);
+        const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = '${id}'`);
         return res.rows;
     }
     async getContractByMun() {
@@ -50,18 +50,27 @@ let ContractService = class ContractService {
         const contract = await this.getContractFilter();
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
+    async getPDFContractWorkerMun(mun) {
+        const contract = await this.getContractMun(mun);
+        return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
+    }
     async getPDFContractByMun() {
         const contract = await this.getContractByMun();
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async createContract(contract) {
-        await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', ${contract.beginDate}, ${contract.endDate}, ${contract.firmaDate}, '${contract.formaPago}', ${contract.seguro}), ${contract.diasProrroga}`);
+        try {
+            await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
+        }
+        catch (error) {
+            return new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
-    updateContract(contract, idCliente, matricula) {
-        this.conn.query(`UPDATE Contrato SET formapago = ${contract.formaPago}, seguro = ${contract.seguro}, diasprorroga = ${contract.diasProrroga} WHERE idcliente = ${idCliente} AND matricula = ${matricula}`);
+    updateContract(contract, matricula) {
+        this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
     }
-    deleteContract(idCliente, matricula) {
-        this.conn.query(`DELETE FROM Contrato where idcliente = '${idCliente} and matricula = '${matricula}'`);
+    deleteContract(matricula) {
+        this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
     }
 };
 exports.ContractService = ContractService;

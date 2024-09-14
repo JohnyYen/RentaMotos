@@ -8,6 +8,7 @@ const Profile = ({isOpen, setOpen}) => {
     const [t] = useTranslation("global");
 
     const {user, client} = useContext(GlobalContext);
+    console.log(client);
 
     const margin = 10;
   return (

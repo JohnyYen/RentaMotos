@@ -16,7 +16,7 @@ const extractData = async () => {
         matricula: element.matricula,
         marca: element.marca,
         situacion: element.situacion,
-        "Fin de contrato": element.fecha_entrega,
+        "Fin de contrato": element.fecha_entrega ? element.fecha_entrega : 'SIN ALQUILAR',
       }));
     }
   } catch (error) {

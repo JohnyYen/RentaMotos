@@ -31,6 +31,7 @@ const SideBarAdmin = () => {
       <Menu
         theme="dark"
         className="sider-menu"
+        inlineCollapsed={false}
         defaultSelectedKeys={["/listadoClientes"]}
         defaultOpenKeys={["/clientes"]}
         mode="inline"

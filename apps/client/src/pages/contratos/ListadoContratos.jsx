@@ -1,8 +1,11 @@
 import { Space, Typography, Table, Flex, Button } from "antd";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import EliminarContrato from "../../component/EliminarContrato";
+import ModalModContract from "../../components/ModalModContract";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const downloadPDF = async (url) => {
   try {
@@ -27,15 +30,20 @@ const downloadPDF = async (url) => {
   }
 };
 
-const ListadoContratos = ({ extractData }) => {
+const ListadoContratos = ({ extractData , url}) => {
   const [t] = useTranslation("global");
+  const {setRow} = useContext(GlobalContext);
+  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/contract/pdf");
+    await downloadPDF(url);
   };
 
   return (
     <Flex vertical="true">
+      <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
       <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
       <Table
         scroll={{
@@ -104,10 +112,10 @@ const ListadoContratos = ({ extractData }) => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => {setVisible(true); setRow(record)}}>
                   {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
+                <Button onClick={() => {setOpen(true); setRow(record)}} className="actionTable" type="primary">
                   {t("mainContent.table.delete")}
                 </Button>
               </Flex>

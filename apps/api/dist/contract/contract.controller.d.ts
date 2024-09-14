@@ -6,12 +6,13 @@ export declare class ContractController {
     getContract(): Promise<any>;
     getContractInPDF(res: any): Promise<void>;
     getContractsMunWorker(mun: string): Promise<any>;
+    getPDFContractWorkerMun(mun: string, res: any): Promise<void>;
     getContractByMun(): Promise<any>;
     getContractInPDFMun(res: any): Promise<void>;
     getFilterContract(): Promise<any>;
     getContractInPDFMarc(res: any): Promise<void>;
     getContractByCliente(id: string): Promise<any>;
-    deleteContract(idCliente: string, matricula: string): void;
+    deleteContract(matricula: string): void;
     createContract(contract: ContractDto): void;
-    updateContract(idCliente: string, matricula: string, contract: ContractDto): void;
+    updateContract(matricula: string, contract: ContractDto): void;
 }

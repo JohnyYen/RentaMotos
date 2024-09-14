@@ -44,8 +44,19 @@ export class ClientController {
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename=BadClients.pdf');
         res.setHeader('Content-Length', buffer.length);
- 
+        
         res.send(buffer);
+    }
+
+    @Get('/worker/pdf/:mun')
+    async getPDF(@Param('mun') mun:string, @Res() res){
+        const buffer = await this.clientService.getAllClientPDFWorkerMun(mun);
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ClientsWorker.pdf');
+        res.setHeader('Content-Length', buffer.length);
+ 
+        res.send(buffer);   
     }
     
     @Post()

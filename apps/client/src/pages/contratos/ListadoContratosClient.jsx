@@ -1,14 +1,16 @@
 import { Space, Typography, Table, Flex, Button } from "antd";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { GlobalContext } from "../../context/GlobalContext";
 
-const extractData = async () => {
+const extractData = async (client) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/contract");
+    response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`);
+    console.log(response.data);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -32,46 +34,31 @@ const extractData = async () => {
   return dataSource;
 };
 
-const downloadPDF = async (url) => {
-  try {
-    const response = await axios({
-      url,
-      method: 'GET',
-      responseType: 'blob',
-      headers: {
-        'Content-Type': 'application/pdf',
-      },
-    });
-    
-    const urlObject = URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = urlObject;
-    link.download = 'ReporteContratos.pdf';
-    link.click();
-    
-    URL.revokeObjectURL(urlObject);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const ListadoContratos = () => {
   const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
+  const { client } = useContext(GlobalContext);
 
   useEffect(() => {
-    extractData().then((result) => {
+    extractData(client).then((result) => {
       setDataSource(result);
     });
   }, []);
 
-  const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/contract/pdf");
-  };
-
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
+      <Typography.Title level={3}>
+        {t("contract.contractList")}
+      </Typography.Title>
+      <Flex align="center" justify="flex-end">
+        <Button
+          className="actionTable"
+          style={{ marginBottom: "1rem", marginRight: "1rem" }}
+          type="primary"
+        >
+          {t("mainContent.createContract")}
+        </Button>
+      </Flex>
       <Table
         scroll={{
           x: 1200,
@@ -133,7 +120,7 @@ const ListadoContratos = () => {
             title: t("mainContent.table.totalAmount"),
             dataIndex: "importe total",
             key: "importe total",
-          }
+          },
         ]}
       ></Table>
     </Flex>

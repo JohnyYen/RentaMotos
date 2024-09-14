@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { ContractService } from './contract.service';
 import { ContractDto } from './dto/contract.dto';
+import { ErrorHandler } from 'src/libs/errorHandler';
 
 @Controller('api/contract')
 export class ContractController {
@@ -26,6 +27,18 @@ export class ContractController {
     async getContractsMunWorker(@Param('mun') mun : string){
         return await this.contractService.getContractMun(mun);
     }
+
+    @Get('/worker/pdf/:mun')
+    async getPDFContractWorkerMun(@Param('mun') mun : string , @Res() res){
+        const buffer = await this.contractService.getPDFContractWorkerMun(mun);
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=ContractsWorker.pdf');
+        res.setHeader('Content-Length', buffer.length);
+ 
+        res.send(buffer);
+    }
+
 
     
     @Get('/mun')
@@ -65,17 +78,18 @@ export class ContractController {
         return await this.contractService.getCotnractByCliente(id);
     }
 
-    @Delete('/:idCliente/:matricula')
-    deleteContract(@Param("idCliente") idCliente : string, @Param("matricula") matricula : string){
-        this.contractService.deleteContract(idCliente, matricula);
+    @Delete('/:matricula')
+    deleteContract(@Param("matricula") matricula : string){
+        this.contractService.deleteContract(matricula);
     }
 
     @Post()
-    createContract(@Body("contract") contract : ContractDto){
+    createContract(@Body() contract : ContractDto){
         this.contractService.createContract(contract);
+        
     }
-    @Patch('/:idClient/:matricula')
-    updateContract(@Param("idCliente") idCliente : string, @Param("matricula") matricula : string, contract : ContractDto){
-        this.contractService.updateContract(contract, idCliente, matricula);
+    @Patch('/:matricula')
+    updateContract(@Param("matricula") matricula : string, @Body() contract : ContractDto){
+        this.contractService.updateContract(contract, matricula);
     }
 }
