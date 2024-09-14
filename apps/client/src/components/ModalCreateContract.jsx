@@ -42,7 +42,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
       const res = await axios.post('http://localhost:3000/api/contract/', contract);
       
       message.success('Creado con exito')
-      window.location.reload();
+      //window.location.reload();
      } catch (error) {
       console.log(error);
       message.error(error.message);

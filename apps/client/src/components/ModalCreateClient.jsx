@@ -175,7 +175,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     </Form.Item>
 
                     <Form.Item label='Edad:' name="edad" rules={[{required: true,message: 'Introduce tu edad!',},
-                        {min:16, message: "El minimo de Edad debe ser 16"}
+                        
                     ]}>
                         <InputNumber onChange={(value) => setEdad(value)} style={{marginBottom:margin, width:60}} placeholder='Edad' min={16}/>
                     </Form.Item>
