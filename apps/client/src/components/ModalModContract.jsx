@@ -1,4 +1,4 @@
-import { Checkbox, Col, DatePicker, Flex, Form, Input, InputNumber, Modal, Row, Select, Tag, Typography } from 'antd'
+import { Checkbox, Col, DatePicker, Flex, Form, Input, InputNumber, message, Modal, Row, Select, Tag, Typography } from 'antd'
 import { Option } from 'antd/es/mentions';
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
@@ -34,7 +34,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
       const contract = {
         idCliente:row?.nombre,
         matricula:row?.matricula,
-        beginDate:row ? row['fecha de inicio'],
+        beginDate:row ? row['fecha de inicio'] : null,
         endDate: date,
         firmaDate: '2024-03-04',
         formaPago: formaPago,
@@ -43,10 +43,11 @@ const ModalModContract = ({isOpen, setOpen}) => {
       }
 
       if(date && formaPago && seguro && diasProrroga){
-        const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
+        console.log(contract);
+        //const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
 
         if(res.status === 500){
-          
+          message.info('Hola');
         }
         else
           window.location.reload();

@@ -17,9 +17,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
   const {row, client} = useContext(GlobalContext);
 
   const margin = 15;
-  const [dateFirm, setDateFirm] = useState(new Date());
-  const [dateEnd, setDateEnd] = useState(new Date());
-  const [dateBegin, setDateBegin] = useState(new Date());
+  const [dateFirm, setDateFirm] = useState('');
+  const [dateEnd, setDateEnd] = useState(null);
+  const [dateBegin, setDateBegin] = useState('');
   const [formaPago, setFormaPago] = useState('');
   const [seguro, setSeguro] = useState(false);
 
@@ -42,7 +42,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
       const res = await axios.post('http://localhost:3000/api/contract/', contract);
       
       message.success('Creado con exito')
-      //window.location.reload();
+      window.location.reload();
      } catch (error) {
       console.log(error);
       message.error(error.message);
@@ -68,11 +68,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
             <Form.Item label='Fecha de Firma:' name="dateFirma" rules={[{required: true,message: 'Introduce la fecha de la firma!',},
               {validator: (rule, value, callback) => {
                 if(rule && value){
-                  console.log(value)
-                  console.log(dateBegin);
-                  if(dateBegin && value > dateBegin)
+                  if(dateBegin && value.format('DD/MM/YYYY') > dateBegin)
                     callback(new Error('La firma debe ser antes que el inicio del alquiler'));
-                  if(dateEnd && value > dateEnd)
+                  if(dateEnd && value.format('DD/MM/YYYY') > dateEnd)
                     callback(new Error('La firma debe ser antes que el fin del alquiler'));
                 }
               }}
@@ -83,9 +81,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
             <Form.Item label='Fecha de Inicio:' name="dateBegin" rules={[{required: true,message: 'Introduce la fecha de Inicio!',},
               {validator:(rule, value, callback) => {
                 if(rule && value){
-                  if(dateFirm && dateFirm > value)
+                  if(dateFirm && dateFirm > value.format('DD/MM/YYYY'))
                     callback(new Error('La firma debe ser antes que el inicio del alquiler'));
-                  if(dateEnd && value > dateEnd)
+                  if(dateEnd && value.format('DD/MM/YYYY') > dateEnd)
                     callback(new Error('El inicio del alquiler debe ser antes que el fin del alquiler'));
                 }
               }}
@@ -97,7 +95,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
           <Col span={12}>
               
-              <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce tu Fecha de Fin!',},]}>
+              <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce tu Fecha de Fin!',},
+                {validator}
+              ]}>
                 <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
               </Form.Item>
   
