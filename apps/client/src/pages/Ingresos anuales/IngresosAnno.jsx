@@ -99,7 +99,7 @@ const IngresosAnno = ({ extractData }) => {
         ]}
       ></Table>
       
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
+      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">{t("mainContent.downloadPDF")}</Button>
     </Flex>
   );
 };

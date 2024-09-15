@@ -40,10 +40,10 @@ const ListadoTrabajadores = () => {
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>Listado Trabajadores</Typography.Title>
+      <Typography.Title level={3}>{t("worker.workerList")}</Typography.Title>
       <ModalCreateWorker isOpen={visible} setOpen={() => setVisible(!visible)}/>
       <Flex align="center" justify="flex-end"> 
-        <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Agregar trabajador</Button>
+        <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">{t("worker.addWorker")}</Button>
       </Flex>
       <Table 
       dataSource={dataSource}

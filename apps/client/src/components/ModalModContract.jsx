@@ -3,6 +3,7 @@ import { Option } from 'antd/es/mentions';
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
+import { useTranslation } from 'react-i18next';
 
 const response = await axios.get('http://localhost:3000/api/formaPago')
 let dataSource = [];
@@ -22,6 +23,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
     //console.log(a);
     const [diasProrroga, setDiasProrroga] = useState(0);
     const [date, setDate] = useState('');
+    const [t] = useTranslation("global");
 
     const handleSeguro = (value) =>{
       seguro = value;
@@ -51,7 +53,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
       }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={"Modificar Contrato"} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
+    <Modal okButtonProps={{htmlType:'submit'}} afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={t("modal.modifyContract")} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
      modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
@@ -63,26 +65,26 @@ const ModalModContract = ({isOpen, setOpen}) => {
 
           <Input onChange={(e) => setMatricula(e.target.value)} placeholder=''/> */}
 
-          <Form.Item label='Forma Pago:' name="formaPago" rules={[{required: true,message: 'Introduce la Forma de Pago!',},]}>
-          <Select style={{marginBottom:margin}} onSelect={(e) => setFormaPago(e)} placeholder={row ? row['forma de pago'] : 'Forma de pago'}>
+          <Form.Item label={t("modal.methodPayment")} name="formaPago" rules={[{required: true,message: t("messageError.emptyMethodPayment"),},]}>
+          <Select style={{marginBottom:margin}} onSelect={(e) => setFormaPago(e)} placeholder={row ? row['forma de pago'] : t("modal.methodPayment")}>
               {dataSource.map((item, i) => (
                 <Select.Option key={i} value={item.formapago}>{item.formapago}</Select.Option>
               ))}
           </Select>
           </Form.Item>
 
-          <Form.Item label='Seguro:' name="seguro" rules={[]}> 
-          <Checkbox defaultChecked={seguro} title='Seguro' style={{marginBottom:margin}} onChange={(e) => setSeguro(e.target.checked)}>Seguro</Checkbox>
+          <Form.Item label={t("modal.insurance") + ":"} name="seguro" rules={[]}> 
+          <Checkbox defaultChecked={seguro} title='Seguro' style={{marginBottom:margin}} onChange={(e) => setSeguro(e.target.checked)}>{t("modal.insurance")}</Checkbox>
             
           </Form.Item>
 
-          <Form.Item label='Dias Proroga:' name="diasProrroga" rules={[{required: true,message: 'Introduce los dias Prorroga!',},]}>
-            <InputNumber style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : 'Prorroga'}/>
+          <Form.Item label={t("modal.extensionDays") + ":"} name="diasProrroga" rules={[{required: true,message: t("messageError.emptyExtensionDays"),},]}>
+            <InputNumber style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : t("modal.extensionDays")}/>
             
           </Form.Item>
 
-          <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce la fecha de Fin!',},]}>
-            <DatePicker format={'DD/MM/YYYY'} placeholder='Fecha Fin' style={{marginBottom:margin}} onChange={(date, dateString) => setDate(dateString)}/>
+          <Form.Item label={t("modal.endDate") + ":"} name="dateEnd" rules={[{required: true,message: t("messageError.emptyEndDate"),},]}>
+            <DatePicker format={'DD/MM/YYYY'} placeholder={t("modal.endDate")} style={{marginBottom:margin}} onChange={(date, dateString) => setDate(dateString)}/>
           </Form.Item>
 
 

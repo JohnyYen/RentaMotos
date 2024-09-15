@@ -29,29 +29,6 @@ const extractData = async () => {
   return dataSource;
 };
 
-const downloadPDF = async (url) => {
-  try {
-    const response = await axios({
-      url,
-      method: "GET",
-      responseType: "blob",
-      headers: {
-        "Content-Type": "application/pdf",
-      },
-    });
-
-    const urlObject = URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement("a");
-    link.href = urlObject;
-    link.download = "ReporteMoto.pdf";
-    link.click();
-
-    URL.revokeObjectURL(urlObject);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
@@ -96,10 +73,6 @@ const ListMotoClient = () => {
       )));
     });
   }, []);
-
-  const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/moto/pdf");
-  };
 
   return (
     <Flex vertical="true">

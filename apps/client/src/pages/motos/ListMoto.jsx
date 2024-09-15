@@ -174,7 +174,7 @@ const ListMoto = () => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
-                  Modificar
+                  {t("mainContent.table.modify")}
                 </Button>
                 <Button className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}}>
                 {t("mainContent.table.delete")}
