@@ -16,6 +16,11 @@ export class UserController {
         this.userService.createUserClient(body);
     }
 
+    @Post('/validate')
+    async validateCreateUser(@Body() body){
+        return await this.userService.validateUserName(body.info);
+    }
+
     @Get('/worker')
     async getWorkers(){
         return this.userService.getWorkers();
@@ -33,7 +38,8 @@ export class UserController {
     }
 
     @Delete('/:userName')
-    async deleteUser(@Param('userName') userName : string){
+    async deleteUser(@Param() userName : string){
+        console.log(userName);
         this.userService.deleteUser(userName);
     }
 }

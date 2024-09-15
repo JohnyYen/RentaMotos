@@ -13,7 +13,7 @@ const EliminarUsuario = ({isOpen, setOpen}) => {
  const {row} = useContext(GlobalContext);
     const ECliente = async() =>{
 
-      console.log(row);
+    console.log(row);
 
     try{
       const apiUrl = `http://localhost:3000/api/client/${row?.ci}`;

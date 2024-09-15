@@ -1,10 +1,12 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
+import EliminarWorker from '../../component/EliminarWorker';
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import ModalCreateWorker from "../../components/ModalCreateWorker"
+import { GlobalContext } from "../../context/GlobalContext";
 
 const extractDataWorker = async (user) => {
   let dataSource = [];
@@ -29,8 +31,11 @@ const extractDataWorker = async (user) => {
 const ListadoTrabajadores = () => {
 
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const [t] = useTranslation("global");
   const [dataSource, setDataSource] = useState([]);
+
+  const {setRow} = useContext(GlobalContext);
 
   useEffect(() => {
     extractDataWorker().then(result => {
@@ -42,6 +47,7 @@ const ListadoTrabajadores = () => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("worker.workerList")}</Typography.Title>
       <ModalCreateWorker isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarWorker isOpen={open} setOpen={() => setOpen(!open)}/>
       <Flex align="center" justify="flex-end"> 
         <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">{t("worker.addWorker")}</Button>
       </Flex>
@@ -75,7 +81,7 @@ const ListadoTrabajadores = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
+                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
                 {t("mainContent.table.delete")}
                 </Button>
               </Flex>

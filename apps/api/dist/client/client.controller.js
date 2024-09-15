@@ -62,6 +62,9 @@ let ClientController = class ClientController {
     updateClient(id, client) {
         this.clientService.updateClient(client, id);
     }
+    async validateNumber(body) {
+        return this.clientService.validatePhoneNumber(body.phoneNumber);
+    }
 };
 exports.ClientController = ClientController;
 __decorate([
@@ -134,6 +137,13 @@ __decorate([
     __metadata("design:paramtypes", [String, client_dto_1.ClientDto]),
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "updateClient", null);
+__decorate([
+    (0, common_1.Post)('/validate/phone'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "validateNumber", null);
 exports.ClientController = ClientController = __decorate([
     (0, common_1.Controller)('api/client'),
     __metadata("design:paramtypes", [client_service_1.ClientService])

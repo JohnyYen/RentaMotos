@@ -70,8 +70,10 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
           {dom}
         </Form>
       )}>
-       <Form.Item label={t("mainContent.table.serialNumber") + ":"} name="matricula" rules={[{required: true,message: t("messageError.emptySerialNumber"),},]}>
-            <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder={t("mainContent.table.serialNumber")}/>
+       <Form.Item label='Matricula:' name="matricula" rules={[{required: true,message: 'Introduce tu matricula!',},
+        {len:8, message:"Debe tener 8 caracteres"}
+       ]}>
+            <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder='Ingrese la matricula'/>
            </Form.Item>
 
             <Form.Item label='Color:' name="color" rules={[{required: true,message: t("messageError.emptyColor"),},]}>

@@ -62,7 +62,9 @@ const ModalModMoto = ({isOpen, setOpen}) => {
           </Select>
         </Form.Item>
 
-       <Form.Item label={t("modal.cantKm") + ":"} name={"cantKm"} rules={[{required:true, message:t("messageError.emptyKm")}]}>
+       <Form.Item label="Cantidad de Kilometros:" name={"cantKm"} rules={[{required:true, message:'El campo de cantKm no debe estar vacio'},
+        {min:row?.kmRecorridos, message: "No puede ser menor a la cantidad actual de Kilometros"}
+       ]}>
         <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>
 

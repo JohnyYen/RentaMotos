@@ -15,7 +15,6 @@ const extractData = async (client) => {
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        nombre: element.nombre,
         matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
@@ -69,13 +68,6 @@ const ListadoContratos = () => {
         }}
         dataSource={dataSource}
         columns={[
-          {
-            title: t("mainContent.table.name"),
-            dataIndex: "nombre",
-            key: "nombre",
-            fixed: "left",
-            width: "8rem",
-          },
           {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
