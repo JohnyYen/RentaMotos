@@ -62,7 +62,7 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
         }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} destroyOnClose={true} title={"Crear una nueva moto"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  destroyOnClose={true} title={"Crear una nueva moto"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
     modalRender={(dom) => (
         <Form  form={form} labelCol={{span: 12}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}

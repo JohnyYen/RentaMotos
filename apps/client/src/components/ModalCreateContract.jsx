@@ -52,7 +52,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
     }
   }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()} destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
@@ -74,7 +74,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
                     callback(new Error('La firma debe ser antes que el fin del alquiler'));
                 }
               }}
-            ]}>
+            ]}
+            dependencies={['dateBegin', 'dateEnd']}
+            >
               <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
             </Form.Item>
 
@@ -87,7 +89,9 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
                     callback(new Error('El inicio del alquiler debe ser antes que el fin del alquiler'));
                 }
               }}
-            ]}>
+            ]}
+            dependencies={['dateFirm', 'dateEnd']}
+            >
               <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
             </Form.Item>
 
@@ -96,8 +100,19 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
           <Col span={12}>
               
               <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce tu Fecha de Fin!',},
-                {validator}
-              ]}>
+                {validator: (rule, value, callback) => {
+                  if(rule && value){
+                    const end = value.format('DD/MM/YYYY');
+                    if(dateFirm && dateFirm > end)
+                      callback(new Error('La firma debe ser antes que el inicio del alquiler'));
+                    if(dateEnd && dateBegin > value.format('DD/MM/YYYY'))
+                      callback(new Error('El inicio del alquiler debe ser antes que el fin del alquiler'));
+
+                  }
+                }}
+              ]}
+              dependencies={['dateBegin', 'dateFirm']}
+              >
                 <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
               </Form.Item>
   
@@ -109,7 +124,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
               </Select>
               </Form.Item>
   
-              <Form.Item label='Seguro:' name="seguro" rules={[]}>
+              <Form.Item name="seguro" rules={[]}>
                 <Typography.Paragraph>Seguro <Checkbox onChange={(e) => setSeguro(e.target.checked)} style={{marginBottom:margin}}/> </Typography.Paragraph>
               </Form.Item>
 

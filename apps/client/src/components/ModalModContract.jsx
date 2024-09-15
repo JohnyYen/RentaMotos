@@ -54,7 +54,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
       }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={"Modificar Contrato"} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={"Modificar Contrato"} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
      modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}

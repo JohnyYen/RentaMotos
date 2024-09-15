@@ -46,11 +46,9 @@ const ListadoContratos = ({ extractData , url}) => {
       <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
       <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
       <Table
-        scroll={{
-          x: 1200,
-        }}
+        style={{width:1200, height:300}}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={extractData}

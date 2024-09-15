@@ -39,7 +39,7 @@ const ModalModMoto = ({isOpen, setOpen}) => {
       
   }
   return (
-    <Modal  okButtonProps={{htmlType:'submit'}} destroyOnClose={true} title={"Modificar Moto"}
+    <Modal afterClose={() => form.resetFields()}  okButtonProps={{htmlType:'submit'}} destroyOnClose={true} title={"Modificar Moto"}
       open={isOpen} centered={true} onCancel={setOpen} onClose={setOpen} onOk={() => handlePetition() }
       modalRender={(dom) => (
         <Form  form={form} labelCol={{span: 12}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>

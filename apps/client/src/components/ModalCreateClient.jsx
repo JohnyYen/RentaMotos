@@ -69,7 +69,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
     }
     const margin = -10;
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} destroyOnClose={true} width={1200} title={"Crear un Nuevo Usuario"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  destroyOnClose={true} width={1200} title={"Crear un Nuevo Usuario"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
     modalRender={(dom) => (
         <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
             {dom}
@@ -158,7 +158,11 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                         <Input onChange={(e) => setEmail(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su email'/>
                     </Form.Item>
 
-                    <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce tu Contraseña!',},]}>
+                    <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce tu Contraseña!',},
+                        {min:5, message: "La contraseña debe tener al menos 5 caracteres"},
+                        {max:8, message: "La contraseña debe tener a lo mas 8 caracteres"},
+                        {pattern:'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,8}$', message: 'La contraseña no es fuerte, use mayusculas, minusculas y digitos'}
+                    ]}>
                         <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
                     </Form.Item>
                 </Flex>

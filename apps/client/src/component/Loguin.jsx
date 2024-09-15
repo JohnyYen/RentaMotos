@@ -73,8 +73,8 @@ banner.addEventListener('mouseout', () => {
 }, [])
 
 
-
-
+  const [form] = Form.useForm();
+  form.resetFields();
 
 
   const [abrirModal, setabrirModal] = useState(false);
@@ -132,14 +132,13 @@ banner.addEventListener('mouseout', () => {
       <div className="loguin">
        <div className="divForm">
         <Form className="formAnt"
+          clearOnDestroy={true}
           name="login"
-          initialValues={{
-            remember: false,
-          }}
           style={{
             maxWidth: 360,
           }}
           onFinish={Registrar}
+          form={form}
         >
         <Form.Item
           name="username"
