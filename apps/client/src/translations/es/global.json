@@ -17,7 +17,7 @@
     },
     "worker":{
         "workerList": "Listado Trabajadores",
-        "addWorker": "Agreagar trabajador"
+        "addWorker": "Agregar trabajador"
     },
     "sideBar": {
         "client": "Clientes",

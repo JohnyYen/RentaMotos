@@ -36,7 +36,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
       const contract = {
         idCliente:row?.nombre,
         matricula:row?.matricula,
-        beginDate:row ? row['fecha de inicio'],
+        beginDate:row ? row['fecha de inicio'] : null,
         endDate: date,
         firmaDate: '2024-03-04',
         formaPago: formaPago,
