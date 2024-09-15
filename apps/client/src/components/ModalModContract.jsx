@@ -84,9 +84,8 @@ const ModalModContract = ({isOpen, setOpen}) => {
                 </Form.Item>
 
               <Form.Item label='Dias Proroga:' name="diasProrroga" rules={[{required: true,message: 'Introduce los dias Prorroga!',},
-                {min:row?.prorroga ,message:"La cantidad de dias no puede ser menor a los dias de prorroga actuales"}
               ]}>
-                <InputNumber style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : 'Prorroga'}/>
+                <InputNumber min={row?.prorroga} style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : 'Prorroga'}/>
                 
               </Form.Item>
 

@@ -47,8 +47,9 @@ const extractDataFilter = async () => {
 
 const ListadoClientes = ({ extractData, url }) => {
 
-  const {setRow} = useContext(GlobalContext)
+  const {setRow, user} = useContext(GlobalContext)
 
+  
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 

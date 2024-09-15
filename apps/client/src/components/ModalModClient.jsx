@@ -36,7 +36,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
         numCont:numCont
       }
 
-      if(name && secondName && lastName && secondLast && edad && Municipio && numCont){
+      if(name && lastName && edad && Municipio && numCont){
         const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
 
         message.success('Creado con exito');
