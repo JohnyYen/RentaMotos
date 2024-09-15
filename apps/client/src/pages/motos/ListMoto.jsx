@@ -125,7 +125,9 @@ const ListMoto = () => {
         <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
-        style={{width:1200, height:300}}
+         scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],

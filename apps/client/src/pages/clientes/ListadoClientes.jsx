@@ -89,7 +89,10 @@ const ListadoClientes = ({ extractData, url }) => {
         />
       </Flex>
       <Table
-        style={{width:1200, height:300}}
+        scroll={{
+          x: 920,
+        }}
+        
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],
