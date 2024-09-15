@@ -47,7 +47,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
     }
     const margin = 0;
   return (
-    <Modal okButtonProps={{htmlType:'submit'}}  destroyOnClose={true} title={t("modal.modifyClient")} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}   destroyOnClose={true} title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen} onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 28}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}

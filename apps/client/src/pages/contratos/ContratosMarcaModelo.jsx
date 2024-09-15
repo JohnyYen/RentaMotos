@@ -111,11 +111,9 @@ const ContratosMarcaModelo = () => {
         />
       </Flex>
       <Table
-        scroll={{
-          x: 920,
-        }}
+        style={{width:1200, height:300}}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}

@@ -125,11 +125,9 @@ const ListMoto = () => {
         <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
-        scroll={{
-          x: 920,
-        }}
+        style={{width:1200, height:300}}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}

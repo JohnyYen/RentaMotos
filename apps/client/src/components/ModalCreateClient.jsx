@@ -53,8 +53,10 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
             sexo: sex,
             numCont: numCont
         }
+
+        console.log(client);
         
-        if(ci && name && secondName && lastName && secondLastName && edad && mun && sex && numCont){
+        if(ci && name && lastName && edad && mun && sex && numCont){
             let response = await axios.post('http://localhost:3000/api/client',client);
             console.log(response.status);
             if(response.status === 201){
@@ -70,7 +72,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
     }
     const margin = -10;
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} destroyOnClose={true} width={1200} title={"Crear un Nuevo Usuario"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  destroyOnClose={true} width={1200} title={"Crear un Nuevo Usuario"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
     modalRender={(dom) => (
         <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
             {dom}
@@ -82,7 +84,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                 <Flex vertical={true}>
                     
                     <Form.Item label='Nombre:' name="nombre" rules={[{required: true,message: 'Introduce tu nombre!',},
-                        {min:4, message: "Su nombre debe tener almenos 2 caracteres"},
+                        {min:4, message: "Su nombre debe tener almenos 4 caracteres"},
                         {max:20, message:"Su nombre debe tener a lo más 20 caracteres"}
                     ]}>
                     <Input onChange={(e) => setName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su nombre'/>
@@ -95,14 +97,14 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     </Form.Item>
 
                     <Form.Item label='Segundo Nombre:' name="segundo_nombre" rules={[{required: false,message: 'Introduce tu segundo nombre!',},
-                       {min:4, message: "Su nombre debe tener almenos 2 caracteres"},
+                       {min:4, message: "Su nombre debe tener almenos 4 caracteres"},
                        {max:20, message:"Su nombre debe tener a lo más 20 caracteres"}
                     ]}>
                         <Input onChange={(e) => setSecondtName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su segundo nombre'/>
                     </Form.Item>
 
                     <Form.Item label='Apellido:' name="apellido" rules={[{required: true,message: 'Introduce tu apellido!',},
-                         {min:4, message: "Su apellido debe tener almenos 2 caracteres"},
+                         {min:4, message: "Su apellido debe tener almenos 4 caracteres"},
                          {max:25, message:"Su apellido debe tener a lo más 20 caracteres"}
                     ]}>
                         <Input onChange={(e) => setLastName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su apellido'/>
@@ -115,7 +117,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                 <Flex vertical={true}>
 
                     <Form.Item label='Segundo Apellido:' name="segundo_apellido" rules={[{required: false,message: 'Introduce tu segundo apellido!',},
-                       {min:4, message: "Su apellido debe tener almenos 2 caracteres"},
+                       {min:4, message: "Su apellido debe tener almenos 4 caracteres"},
                        {max:25, message:"Su apellido debe tener a lo más 20 caracteres"}
                     ]}>
                         <Input onChange={(e) => setSecondLastName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su segundo apellido'/>
@@ -159,8 +161,12 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                         <Input onChange={(e) => setEmail(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su email'/>
                     </Form.Item>
 
-                    <Form.Item label={t("login.password") + ":"} name="password" rules={[{required: true,message: t("messageError.emptyPassword"),},]}>
-                        <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder={t("login.password")}/>
+                    <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce tu Contraseña!',},
+                        {min:5, message: "La contraseña debe tener al menos 5 caracteres"},
+                        {max:8, message: "La contraseña debe tener a lo mas 8 caracteres"},
+                        {pattern:'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,8}$', message: 'La contraseña no es fuerte, use mayusculas, minusculas y digitos'}
+                    ]}>
+                        <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
                     </Form.Item>
                 </Flex>
             </Col>
@@ -173,12 +179,9 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                         <Input onChange={(e) => setNumCont(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su numero de contacto'/>
                     </Form.Item>
 
-                    <Form.Item label='Edad:' name="edad" rules={[{required: true,message: 'Introduce tu edad!',},
-                    {min:18, message: "El minimo de edad es 18"},
-                    {max:70, message: "El máximo de edad es 70"},
-                        
+                    <Form.Item label='Edad:' name="edad" rules={[{required: true,message: 'Introduce tu edad!',},                      
                     ]}>
-                        <InputNumber onChange={(value) => setEdad(value)} style={{marginBottom:margin, width:60}} placeholder='Edad' min={18}/>
+                        <InputNumber min={18} max={70} onChange={(value) => setEdad(value)} style={{marginBottom:margin, width:60}} placeholder='Edad'/>
                     </Form.Item>
 
                     <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>

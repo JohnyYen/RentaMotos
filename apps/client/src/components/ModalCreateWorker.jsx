@@ -35,7 +35,7 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
         }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} centered={true} title={t("modal.createWorker")} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  centered={true} title='Crear Trabajador' open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}

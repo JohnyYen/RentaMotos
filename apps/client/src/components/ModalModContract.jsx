@@ -1,4 +1,4 @@
-import { Checkbox, Col, DatePicker, Flex, Form, Input, InputNumber, Modal, Row, Select, Tag, Typography } from 'antd'
+import { Checkbox, Col, DatePicker, Flex, Form, Input, InputNumber, message, Modal, Row, Select, Tag, Typography } from 'antd'
 import { Option } from 'antd/es/mentions';
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
@@ -45,17 +45,18 @@ const ModalModContract = ({isOpen, setOpen}) => {
       }
 
       if(date && formaPago && seguro && diasProrroga){
-        const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
+        console.log(contract);
+        //const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
 
         if(res.status === 500){
-          
+          message.info('Hola');
         }
         else
           window.location.reload();
       }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={t("modal.modifyContract")} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={"Modificar Contrato"} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
      modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
