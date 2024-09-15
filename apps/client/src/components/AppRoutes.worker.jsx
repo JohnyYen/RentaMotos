@@ -57,7 +57,7 @@ const extractDataContract = async (user) => {
         modelo: element.modelo,
         "forma de pago": element.formapago,
         "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
+        fechaFin: element.fechafin,
         prorroga: element.diasprorroga,
         "seguro adicional": element.seguro  ? "✔" : "❌",
         "importe total": element.importe,
@@ -75,10 +75,10 @@ const extractDataIncome = async (user) => {
    const response = await axios.get(`http://localhost:3000/api/pagos/${user?.mun}`);
    console.log(response);
    if(response.status === 200){
-    
+    console.log(response.data);
     dataSource = response.data.map((element, index) => ({
       key: index,
-      "ingreso anual": element.total_ventas,
+      "ingreso anual":  Number(element.enero) + Number(element.febrero) + Number(element.marzo) + Number(element.abril) + Number(element.mayo) + Number(element.junio) + Number(element.julio) + Number(element.agosto) + Number(element.septiembre) + Number(element.octubre) + Number(element.noviembre) + Number(element.diciembre),
       "ingreso enero": element.enero,
       "ingreso febrero": element.febrero,
       "ingreso marzo": element.marzo,
@@ -86,6 +86,7 @@ const extractDataIncome = async (user) => {
       "ingreso mayo": element.mayo,
       "ingreso junio": element.junio,
       "ingreso julio": element.julio,
+      'ingreso agosto':element.agosto,
       "ingreso septiembre": element.septiembre,
       "ingreso octubre": element.octubre,
       "ingreso noviembre": element.noviembre,

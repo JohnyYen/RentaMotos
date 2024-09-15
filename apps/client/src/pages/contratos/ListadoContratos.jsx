@@ -89,7 +89,7 @@ const ListadoContratos = ({ extractData , url}) => {
           },
           {
             title: t("mainContent.table.endContract"),
-            dataIndex: "fecha de fin",
+            dataIndex: "fechaFin",
             key: "fecha de fin",
           },
           {
