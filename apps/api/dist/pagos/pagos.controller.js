@@ -22,6 +22,20 @@ let PagosController = class PagosController {
     async getAllPagos() {
         return await this.pagosService.getAllPagos();
     }
+    async getAllPagosPDF(res) {
+        const buffer = await this.pagosService.getAllPagosPDF();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Importe.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
+    async getAllPagosPDFMun(res, mun) {
+        const buffer = await this.pagosService.getAllPagosByPDF(mun);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Importe.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
     async getAllPagosByMun(mun) {
         return await this.pagosService.getAllPagosByMun(mun);
     }
@@ -33,6 +47,21 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PagosController.prototype, "getAllPagos", null);
+__decorate([
+    (0, common_1.Get)('/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PagosController.prototype, "getAllPagosPDF", null);
+__decorate([
+    (0, common_1.Get)('/worker/pdf/:mun'),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Param)('mun')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], PagosController.prototype, "getAllPagosPDFMun", null);
 __decorate([
     (0, common_1.Get)('/:mun'),
     __param(0, (0, common_1.Param)('mun')),

@@ -3,4 +3,6 @@ export declare class PagosService {
     constructor(conn: any);
     getAllPagos(): Promise<any>;
     getAllPagosByMun(mun: string): Promise<any>;
+    getAllPagosPDF(): Promise<Buffer>;
+    getAllPagosByPDF(mun: string): Promise<Buffer>;
 }

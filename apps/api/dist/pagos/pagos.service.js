@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PagosService = void 0;
 const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
+const jsonFormatter_1 = require("../libs/jsonFormatter");
+const pdfKit_1 = require("../libs/pdfKit");
 let PagosService = class PagosService {
     constructor(conn) {
         this.conn = conn;
@@ -26,6 +28,14 @@ let PagosService = class PagosService {
     async getAllPagosByMun(mun) {
         const res = await this.conn.query(`SELECT * FROM pagos_mun_view WHERE municipio = '${mun}'`);
         return res.rows;
+    }
+    async getAllPagosPDF() {
+        const list = await this.getAllPagos();
+        return await (0, pdfKit_1.default)(Object.keys(list[0]), (0, jsonFormatter_1.arrayFormatter)(list));
+    }
+    async getAllPagosByPDF(mun) {
+        const list = await this.getAllPagosByMun(mun);
+        return await (0, pdfKit_1.default)(Object.keys(list[0]), (0, jsonFormatter_1.arrayFormatter)(list));
     }
 };
 exports.PagosService = PagosService;
