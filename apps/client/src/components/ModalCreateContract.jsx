@@ -54,7 +54,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
     }
   }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()} destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={"Rentar Moto"} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()} destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={t("modal.rentMotorcycle")} onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
@@ -67,55 +67,55 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
 
             <Input value={client?.idcliente} onChange={(e) => setCI(e.target.value)} style={{marginBottom:margin}}  placeholder='CI Cliente'/> */}
 
-            <Form.Item label='Fecha de Firma:' name="dateFirma" rules={[{required: true,message: 'Introduce la fecha de la firma!',},
+            <Form.Item label={t("modal.signatureDate") + ":"} name="dateFirma" rules={[{required: true,message: t("messageError.emptySignatureDate"),},
               {validator: (rule, value, callback) => {
                 if(rule && value){
                   if(dateBegin && value.format('DD/MM/YYYY') > dateBegin)
-                    callback(new Error('La firma debe ser antes que el inicio del alquiler'));
+                    callback(new Error(t("messageError.signatureDateBeforeStartDate")));
                   if(dateEnd && value.format('DD/MM/YYYY') > dateEnd)
-                    callback(new Error('La firma debe ser antes que el fin del alquiler'));
+                    callback(new Error(t("messageError.signatureDateBeforeEndDate")));
                 }
               }}
             ]}
             dependencies={['dateBegin', 'dateEnd']}
             >
-              <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
+              <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder={t("modal.signatureDate")}/>
             </Form.Item>
 
-            <Form.Item label='Fecha de Inicio:' name="dateBegin" rules={[{required: true,message: 'Introduce la fecha de Inicio!',},
+            <Form.Item label={t("modal.startDate") + ":"} name="dateBegin" rules={[{required: true,message: t("messageError.emptyStartDate"),},
               {validator:(rule, value, callback) => {
                 if(rule && value){
                   if(dateFirm && dateFirm > value.format('DD/MM/YYYY'))
-                    callback(new Error('La firma debe ser antes que el inicio del alquiler'));
+                    callback(new Error(t("messageError.signatureDateBeforeStartDate")));
                   if(dateEnd && value.format('DD/MM/YYYY') > dateEnd)
-                    callback(new Error('El inicio del alquiler debe ser antes que el fin del alquiler'));
+                    callback(new Error(t("messageError.startDateBeforeEndDate")));
                 }
               }}
             ]}
             dependencies={['dateFirm', 'dateEnd']}
             >
-              <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
+              <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder={t("modal.startDate")}/>
             </Form.Item>
 
           </Col>
 
           <Col span={12}>
               
-              <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce tu Fecha de Fin!',},
+              <Form.Item label={t("modal.endDate") + ":"} name="dateEnd" rules={[{required: true,message: t("messageError.emptyEndDate"),},
                 {validator: (rule, value, callback) => {
                   if(rule && value){
                     const end = value.format('DD/MM/YYYY');
                     if(dateFirm && dateFirm > end)
-                      callback(new Error('La firma debe ser antes que el inicio del alquiler'));
+                      callback(new Error(t("messageError.signatureDateBeforeStartDate")));
                     if(dateEnd && dateBegin > value.format('DD/MM/YYYY'))
-                      callback(new Error('El inicio del alquiler debe ser antes que el fin del alquiler'));
+                      callback(new Error(t("messageError.startDateBeforeEndDate")));
 
                   }
                 }}
               ]}
               dependencies={['dateBegin', 'dateFirm']}
               >
-                <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
+                <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder={t("modal.endDate")}/>
               </Form.Item>
   
               <Form.Item label={t("modal.methodPayment") + ":"} name="formaPago" rules={[{required: true,message: t("messageError.methodPayment"),},]}>
@@ -127,7 +127,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
               </Form.Item>
   
               <Form.Item name="seguro" rules={[]}>
-                <Typography.Paragraph>Seguro <Checkbox onChange={(e) => setSeguro(e.target.checked)} style={{marginBottom:margin}}/> </Typography.Paragraph>
+                <Typography.Paragraph>{t("modal.insurance")}<Checkbox onChange={(e) => setSeguro(e.target.checked)} style={{marginBottom:margin}}/> </Typography.Paragraph>
               </Form.Item>
 
             

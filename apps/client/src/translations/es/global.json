@@ -59,7 +59,7 @@
                 "gold": "Dorado",
                 "red-black": "Rojo-Negro",
                 "blue-black": "Azul-Negro",
-                "Red-White": "Rojo-Blanco",
+                "red-white": "Rojo-Blanco",
                 "white-black": "Blanco-Negro"
             },
             "kmTraveled": "Km recorridos",
@@ -115,8 +115,11 @@
         "username": "usuario",
         "password": "Contraseña",
         "accept": "Aceptar",
-        "register": "Registrarse",
-        "cancel": "Cancelar"
+        "register": "o Registrarse ahora!",
+        "cancel": "Cancelar",
+        "rememberMe": "Recordar",
+        "forgotPassword": "Olvidaste la contraseña?",
+        "loginIn": "Iniciar sesión"
     },
     "profile": {
         "profile": "Perfil",
@@ -138,7 +141,12 @@
         "modifyMotorcycle": "Modificar Moto",
         "createWorker": "Crear trabajador",
         "createMotorcycle":"Crear moto",
+        "createUsername": "Crear Usuario",
         "rentMotorcycle": "Rentar Moto",
+        "deleteWorker": "Eliminar Trabajador",
+        "deleteClient": "Eliminar Cliente",
+        "deleteMotorcycle": "Eliminat Moto",
+        "deleteContract": "Eliminar Contrato",
         "insurance": "Seguro",
         "cantKm": "Cantidad de Kilómetros",
         "situation": "Situación",
@@ -164,6 +172,7 @@
         "emptyAge": "Introduce la edad!",
         "emptyUsername": "Introduce el nombre de Usuario!",
         "emptyPassword": "Introduce la Contraseña!",
+        "weakPassword": "La contraseña no es fuerte, use mayusculas, minusculas y digitos",
         "emptySerialNumber": "Introduce la matrícula!",
         "emptyMark": "Introduce la marca!",
         "emptyModel": "Introduce el modelo!",
@@ -171,7 +180,40 @@
         "emptyStartDate": "Introduce la fecha de fin",
         "emptyCI": "Introduce tu CI!",
         "emptyEmail": "Introduce tu Email!",
-        "emptySex": "Introduce tu Sexo!"
+        "emptySex": "Introduce tu Sexo!",
+        "afterEndDate": "La fecha nueva debe ser despues",
+        "minCharName": "El nombre debe de tener minimo 4 caracteres",
+        "maxCharName": "El nombre debe de tener maximo 20 caracteres",
+        "minCharMiddleName": "El segundo nombre debe tener minimo 4 caracteres",
+        "maxCharMiddleName": "El segundo nombre debe tener maximo 20 caracteres" ,
+        "minCharLastName": "El apellido debe tener minimo 4 caracteres",
+        "maxCharLastName": "El apellido debe tener maximo 25 caracteres",
+        "minCharSecondLastName": "Su apellido debe tener al menos 4 caracteres",
+        "maxCharSecondLastName": "Su apellido debe tener a lo más 20 caracteres",
+        "minCharUsername": "Su nombre de usuario debe tener al menos 4 caracteres",
+        "maxCharUsername": "Su nombre de usuario debe tener a lo mas 20 caracteres",
+        "minCharPassword": "La contraseña debe tener al menos 5 caracteres",
+        "maxCharPassword": "La contraseña debe tener a lo mas 8 caracteres",
+        "lengthContactNumber": "El numero de contacto debe de tener 8 digitos",
+        "existUser": "Este usuario ya existe",
+        "existEmail": "Ya existe ese email",
+        "notExistUser": "Este usuario no existe",
+        "extensionGMAIL.COM": "La cadena debe de contener @gmail.com",
+        "lengthSerialNumber": "Debe tener 8 caracteres",
+        "signatureDateBeforeStartDate": "La firma debe ser antes que el inicio del alquiler",
+        "signatureDateBeforeEndDate": "La firma debe ser antes que el fin del alquiler",
+        "startDateBeforeEndDate": "El inicio del alquiler debe ser antes que el fin del alquiler",
+        "lengthID": "El carnet de Identidad debe de tener 11 digitos"
+    },
+    "messageSuccess": {
+        "success": "Creado con éxito",
+        "loginSuccess": "Logueado con Exito",
+        "deleteSucces": "Eliminado exitosamente"
+    },
+    "notification": {
+        "deleteWorker": "¿Estás seguro que deseas eliminar al Trabajador?",
+        "deleteClient": "¿Estás seguro que deseas eliminar al Cliente?",
+        "deleteMotorcycle": "¿Estás seguro que deseas eliminar el moto?",
+        "deleteContract": "¿Estás seguro que deseas eliminar el contrato?"
     } 
-    
 }

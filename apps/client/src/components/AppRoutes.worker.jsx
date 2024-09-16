@@ -125,7 +125,7 @@ const AppRouter = () => {
       <Route path="listadoClientes" element={<ListadoClientes  extractData={dataClient} url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
       <Route path="listadoContratos"  element={<ListadoContratos  extractData={dataContract} url={`http://localhost:3000/api/contract/worker/pdf/${user?.mun}`} />}></Route>
-      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />} />
+      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} url={`http://localhost:3000/api/pagos/pdf/${user?.mun}`} />} />
     </Routes>
   );
 };

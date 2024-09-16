@@ -29,7 +29,7 @@ const downloadPDF = async (url) => {
   }
 };
 
-const IngresosAnno = ({ extractData }) => {
+const IngresosAnno = ({ extractData, url }) => {
   const date = new Date();
   const day = date.getDay();
   const month = date.getMonth();
@@ -39,7 +39,7 @@ const IngresosAnno = ({ extractData }) => {
   const [t] = useTranslation("global");
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/pagos/pdf");
+    await downloadPDF(url);
   };
 
   return (

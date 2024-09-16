@@ -3,8 +3,7 @@ import "../App.css";
 import axios from 'axios';
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-
-
+import { useTranslation } from "react-i18next";
 
 
 
@@ -13,12 +12,14 @@ const EliminarUsuario = ({isOpen, setOpen}) => {
  const {row} = useContext(GlobalContext);
     const ECliente = async() =>{
 
+    // Translation
+    const [t] = useTranslation("global");
     console.log(row);
 
     try{
       const apiUrl = `http://localhost:3000/api/client/${row?.ci}`;
       const response = await axios.delete(apiUrl);
-      message.success('Eliminado con exito');
+      message.success(t("messageSuccess.deleteSuccess"));
     }catch(error){
       message.error(error);
     }
@@ -28,8 +29,8 @@ const EliminarUsuario = ({isOpen, setOpen}) => {
 
 
 return (
-  <Modal title={'Eliminar Cliente'} centered={true} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={ECliente}>
-    <Typography.Title level={3}>¿Estás seguro que deseas eliminar al Cliente?</Typography.Title>
+  <Modal title={t("modal.deleteClient")} centered={true} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={ECliente}>
+    <Typography.Title level={3}>{t("notification.deleteClient")}</Typography.Title>
   </Modal>      
 );
   };
