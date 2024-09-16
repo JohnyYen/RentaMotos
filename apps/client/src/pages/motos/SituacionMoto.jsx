@@ -16,13 +16,39 @@ const extractData = async () => {
         matricula: element.matricula,
         marca: element.marca,
         situacion: element.situacion,
-        "Fin de contrato": element.fecha_entrega ? element.fecha_entrega : 'SIN ALQUILAR',
+        "Fin de contrato": element.fecha_entrega
+          ? element.fecha_entrega
+          : "SIN ALQUILAR",
       }));
     }
   } catch (error) {
     console.log(error);
   }
   return dataSource;
+};
+
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    const urlObject = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = urlObject;
+    link.download = 'Situacion moto.pdf';
+    link.click();
+    
+    // Limpiar el objeto URL creado
+    URL.revokeObjectURL(urlObject);
+  } catch (error) {
+    console.error('Error al descargar el archivo:', error);
+  }
 };
 
 const SituacionMoto = () => {
@@ -41,12 +67,18 @@ const SituacionMoto = () => {
     });
   }, []);
 
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/moto/situation/pdf");
+  };
+
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>{t("motorcycle.motorcycleSituation")}</Typography.Title>
+      <Typography.Title level={3}>
+        {t("motorcycle.motorcycleSituation")}
+      </Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-        {t("mainContent.currentDate")}:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -89,6 +121,15 @@ const SituacionMoto = () => {
           },
         ]}
       ></Table>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

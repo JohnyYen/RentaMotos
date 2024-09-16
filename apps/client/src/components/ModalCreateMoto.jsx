@@ -1,6 +1,7 @@
 import { Flex, Form, Input, message, Modal, Select } from 'antd'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 const margin = 0;
 
@@ -34,6 +35,7 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
     const [modelo, setModelo] = useState('');
     const [situation, setSituation] = useState('');
     const [items, setItem] = useState([]);
+    const [t] = useTranslation("global");
 
     const changeModel = (value) => {
         setMarca(value);
@@ -74,37 +76,37 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
             <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder='Ingrese la matricula'/>
            </Form.Item>
 
-            <Form.Item label='Color:' name="color" rules={[{required: true,message: 'Introduce tu color!',},]}>
+            <Form.Item label='Color:' name="color" rules={[{required: true,message: t("messageError.emptyColor"),},]}>
                 <Select onSelect={(value) => setColor(value)} style={{marginBottom:margin,width: 100}} placeholder="Color">
-                    <Select.Option value='Rojo'>Rojo</Select.Option>
-                    <Select.Option value='Azul'>Azul</Select.Option>
-                    <Select.Option value='Negro'>Negro</Select.Option>
-                    <Select.Option value='Blanco'>Blanco</Select.Option>
-                    <Select.Option value='Rojo-Negro'>Rojo-Negro</Select.Option>
-                    <Select.Option value='Azul-Negro'>Azul-Negro</Select.Option>
-                    <Select.Option value='Rojo-Blanco'>Rojo-Blanco</Select.Option>
-                    <Select.Option value='Blanco-Negro'>Blanco-Negro</Select.Option>
+                    <Select.Option value='Rojo'>{t("mainContent.table.colors.red")}</Select.Option>
+                    <Select.Option value='Azul'>{t("mainContent.table.colors.blue")}</Select.Option>
+                    <Select.Option value='Negro'>{t("mainContent.table.colors.black")}</Select.Option>
+                    <Select.Option value='Blanco'>{t("mainContent.table.colors.white")}</Select.Option>
+                    <Select.Option value='Rojo-Negro'>{t("mainContent.table.colors.red-black")}</Select.Option>
+                    <Select.Option value='Azul-Negro'>{t("mainContent.table.colors.blue-black")}</Select.Option>
+                    <Select.Option value='Rojo-Blanco'>{t("mainContent.table.colors.red-white")}</Select.Option>
+                    <Select.Option value='Blanco-Negro'>{t("mainContent.table.colors.white-black")}</Select.Option>
                 </Select>
             </Form.Item>
 
-           <Form.Item label='Marca:' name="marca" rules={[{required: true,message: 'Introduce tu marca!',},]}>
-            <Select onSelect={(value, _) => changeModel(value)} style={{marginBottom:margin,width: 150}} placeholder="Marca">
+           <Form.Item label={t("mainContent.table.mark") + ":"} name="marca" rules={[{required: true,message: t("messageError.emptyMark"),},]}>
+            <Select onSelect={(value, _) => changeModel(value)} style={{marginBottom:margin,width: 150}} placeholder={t("mainContent.table.mark")}>
                     {marcData.map((item, i) => (
                         <Select.Option key={i} value={item.nommarca}>{item.nommarca}</Select.Option>
                     ))}
                 </Select>
            </Form.Item>
 
-           <Form.Item label='Modelo:' name="modelo" rules={[{required: true,message: 'Introduce tu modelo!',},]}>
-            <Select onChange={(value) => setModelo(value)} style={{marginBottom:margin, width: 200}} placeholder="Modelo">
+           <Form.Item label={t("mainContent.table.model") + ":"} name="modelo" rules={[{required: true,message: t("messageError.emptyModel"),},]}>
+            <Select onChange={(value) => setModelo(value)} style={{marginBottom:margin, width: 200}} placeholder={t("mainContent.table.model")}>
                     {items.map((item, i) => (
                         <Select.Option key={i} value={item.nommodelo}>{item.nommodelo}</Select.Option>
                     ))}
                 </Select>
            </Form.Item>
 
-           <Form.Item label='Situacion:' name="situacion" rules={[{required: true,message: 'Introduce tu situacion!',},]}>
-            <Select onChange={(value) => setSituation(value)} style={{marginBottom:margin, width:150}} placeholder="Situacion">
+           <Form.Item label={t("mainContent.table.situation") + ":"} name="situacion" rules={[{required: true,message: t("messageError.emptySituation"),},]}>
+            <Select onChange={(value) => setSituation(value)} style={{marginBottom:margin, width:150}} placeholder={t("mainContent.table.situation")}>
                     {situationData.map((item, i) => (
                         <Select.Option key={i} value={item.situacion}>{item.situacion}</Select.Option>
                     ))}

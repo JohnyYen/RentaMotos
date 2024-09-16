@@ -25,6 +25,29 @@ const extractData = async () => {
   return dataSource;
 };
 
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    const urlObject = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = urlObject;
+    link.download = 'Incumplidores.pdf';
+    link.click();
+    
+    // Limpiar el objeto URL creado
+    URL.revokeObjectURL(urlObject);
+  } catch (error) {
+    console.error('Error al descargar el archivo:', error);
+  }
+};
 
 const Incumplidores = () => {
   const date = new Date();
@@ -41,6 +64,10 @@ const Incumplidores = () => {
       setDataSource(result);à
     });
   }, []);
+
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/client/bad/pdf");
+  };
 
   return (
     <Flex vertical="true">
@@ -83,6 +110,15 @@ const Incumplidores = () => {
           },
         ]}
       ></Table>
+       <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

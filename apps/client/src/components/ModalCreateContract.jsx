@@ -3,6 +3,7 @@ import { Checkbox, Col, DatePicker, Form, message, Modal, Row, Select, Typograph
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { GlobalContext, useRow } from '../context/GlobalContext';
+import { useTranslation } from 'react-i18next';
 
 const response = await axios.get('http://localhost:3000/api/formaPago');
 
@@ -22,6 +23,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
   const [dateBegin, setDateBegin] = useState('');
   const [formaPago, setFormaPago] = useState('');
   const [seguro, setSeguro] = useState(false);
+  const [t] = useTranslation("global");
 
   const handlePetition = async () =>{
 
@@ -116,8 +118,8 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
                 <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
               </Form.Item>
   
-              <Form.Item label='Forma Pago:' name="formaPago" rules={[{required: true,message: 'Introduce tu Forma Pago!',},]}>
-                <Select onSelect={(value, _) => setFormaPago(value)} style={{marginBottom:margin, width: 150}}  placeholder="Forma de Pago"> 
+              <Form.Item label={t("modal.methodPayment") + ":"} name="formaPago" rules={[{required: true,message: t("messageError.methodPayment"),},]}>
+                <Select onSelect={(value, _) => setFormaPago(value)} style={{marginBottom:margin, width: 150}}  placeholder={t("modal.methodPayment")}> 
                 {dataSource.map((item, i) => (
                   <Select.Option key={i} value={item.formapago}>{item.formaPago}</Select.Option>
                 ))}

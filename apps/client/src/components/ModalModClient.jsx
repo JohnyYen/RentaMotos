@@ -2,6 +2,7 @@ import { Col, Flex, Form, Input, InputNumber, message, Modal, Row, Select } from
 import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { GlobalContext } from '../context/GlobalContext';
+import { useTranslation } from 'react-i18next';
 
 const response = await axios.get('http://localhost:3000/api/mun');
 let dataSource = [];
@@ -19,6 +20,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
     const [lastName, setLastName] = useState("");
     const [secondLast, setSecondLast] = useState("");
     const [numCont, setNumCont] = useState("");
+    const [t] = useTranslation("global");
 
     const handlePetition = async () => {
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const response = await axios.get('http://localhost:3000/api/mun')
 let dataSource = [];
@@ -28,6 +29,8 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
     const [email, setEmail] = useState('')
 
     const {setUser, setClient} = useContext(GlobalContext);
+
+    const  [t] = useTranslation("global");
 
     const navigate = useNavigate();
 
@@ -181,8 +184,8 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                         <InputNumber min={18} max={70} onChange={(value) => setEdad(value)} style={{marginBottom:margin, width:60}} placeholder='Edad'/>
                     </Form.Item>
 
-                    <Form.Item label='Municipio:' name="municipio" rules={[{required: true,message: 'Introduce tu municipio!',},]}>
-                        <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
+                    <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
+                        <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder={t("profile.municipality")}>
                             {
                                 dataSource.map((item, i) => (
                                     <Select.Option key={i}  value={item.nommun}>{item.nommun}</Select.Option>
@@ -204,4 +207,4 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
   )
 }
 
-export default ModalCreateClient
+export default ModalCreateClient;

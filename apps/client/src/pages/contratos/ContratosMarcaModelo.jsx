@@ -58,6 +58,26 @@ const extractDataFilterModelo = async () => {
   return dataFilter;    
 }
 
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: "GET",
+      responseType: "blob",
+    });
+
+    const apiUrl = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = apiUrl;
+    link.download = "Contratos por marca y modelo.pdf";
+    link.click();
+
+    URL.revokeObjectURL(apiUrl);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const ContratosMarcaModelo = () => {
   const date = new Date();
   const day = date.getDay();
@@ -93,6 +113,10 @@ const ContratosMarcaModelo = () => {
       );
     });
   }, []);
+
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/contract/marcxmodel/pdf");
+  }
 
   return (
     <Flex vertical="true">
@@ -168,6 +192,15 @@ const ContratosMarcaModelo = () => {
           },
         ]}
       ></Table>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

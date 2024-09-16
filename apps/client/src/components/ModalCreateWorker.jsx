@@ -1,6 +1,7 @@
 import { Form, Input, Modal, Select } from 'antd'
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'; 
 
 const response = await axios.get('http://localhost:3000/api/mun')
 let dataSource = [];
@@ -14,6 +15,8 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [mun, setMun] = useState('');
+    const [t] = useTranslation("global");
+
     const margin = 0;
     const handlePetition = async () =>{
         const worker = {
@@ -67,8 +70,8 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
           <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
         </Form.Item>
 
-        <Form.Item label='Municipio:' name="municipio" rules={[{required: true,message: 'Introduce el municipio!',},]}>
-          <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder="Municipio">
+        <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
+          <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder={t("profile.municipality")}>
               {
                   dataSource.map((item, i) => (
                     <Option key={i}  value={item.nommun}>{item.nommun}</Option>

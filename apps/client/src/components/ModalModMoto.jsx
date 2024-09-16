@@ -2,6 +2,7 @@ import { Button, Flex, Form, InputNumber, Modal, Select } from 'antd'
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
+import { useTranslation } from 'react-i18next';
 
 const response = await axios.get('http://localhost:3000/api/situation');
 let dataSource;
@@ -17,6 +18,8 @@ const ModalModMoto = ({isOpen, setOpen}) => {
     const [color, setColor] = useState('');
     const [cantKm, setCantKm] = useState(0);
     const [Situacion, setSituacion] = useState('');
+
+    const [t] = useTranslation("global");
 
   const margin = 0;
   const val = row?.kmRecorridos;
@@ -48,16 +51,16 @@ const ModalModMoto = ({isOpen, setOpen}) => {
           {dom}
       </Form>
       )}>   
-      <Form.Item label="Color:" name={"color"} rules={[{required:true, message:'El campo de color no debe estar vacio'}]}>
+      <Form.Item label="Color:" name={"color"} rules={[{required:true, message:t("messageError.emptyColor")}]}>
           <Select style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder={row?.color}>
-              <Select.Option value='Rojo'>Rojo</Select.Option>
-              <Select.Option value='Azul'>Azul</Select.Option>
-              <Select.Option value='Negro'>Negro</Select.Option>
-              <Select.Option value='Blanco'>Blanco</Select.Option>
-              <Select.Option value='Rojo-Negro'>Rojo-Negro</Select.Option>
-              <Select.Option value='Azul-Negro'>Azul-Negro</Select.Option>
-              <Select.Option value='Rojo-Blanco'>Rojo-Blanco</Select.Option>
-              <Select.Option value='Blanco-Negro'>Blanco-Negro</Select.Option>
+              <Select.Option value='Rojo'>{t("mainContent.table.colors.red")}</Select.Option>
+              <Select.Option value='Azul'>{t("mainContent.table.colors.blue")}</Select.Option>
+              <Select.Option value='Negro'>{t("mainContent.table.colors.black")}</Select.Option>
+              <Select.Option value='Blanco'>{t("mainContent.table.colors.white")}</Select.Option>
+              <Select.Option value='Rojo-Negro'>{t("mainContent.table.colors.red-black")}</Select.Option>
+              <Select.Option value='Azul-Negro'>{t("mainContent.table.colors.blue-black")}</Select.Option>
+              <Select.Option value='Rojo-Blanco'>{t("mainContent.table.colors.red-white")}</Select.Option>
+              <Select.Option value='Blanco-Negro'>{t("mainContent.table.colors.white-black")}</Select.Option>
           </Select>
         </Form.Item>
 
@@ -66,8 +69,8 @@ const ModalModMoto = ({isOpen, setOpen}) => {
         <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>
 
-        <Form.Item label="Situacion:" name={"situacion"} rules={[{required:true, message:'El campo de situacion no debe estar vacio'}]}>
-        <Select style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : 'Situacion'}>
+        <Form.Item label={t("modal.situation") + ":"} name={"situacion"} rules={[{required:true, message:("messageError.emptySituation")}]}>
+        <Select style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
             {dataSource.map((item, i) => (
               <Select.Option key={i} value={item.situacion}>{item.situacion}</Select.Option>
             ))}

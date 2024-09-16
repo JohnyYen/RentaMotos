@@ -3,6 +3,7 @@ import { Option } from 'antd/es/mentions';
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
+import { useTranslation } from 'react-i18next';
 import { SyncOutlined, UserOutlined } from '@ant-design/icons';
 import { LuBike } from 'react-icons/lu';
 
@@ -24,6 +25,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
     //console.log(a);
     const [diasProrroga, setDiasProrroga] = useState(0);
     const [date, setDate] = useState('');
+    const [t] = useTranslation("global");
 
     const handleSeguro = (value) =>{
       seguro = value;
