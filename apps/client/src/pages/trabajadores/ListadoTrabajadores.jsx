@@ -53,9 +53,11 @@ const ListadoTrabajadores = () => {
       </Flex>
       <Table 
       dataSource={dataSource}
-        style={{width:1200, height:300}}
+      scroll={{
+        x: 920,
+      }}
         pagination={{
-          pageSize: 4,
+          pageSize: 5,
           position: ["bottomLeft"],
         }}
         columns={[

@@ -52,7 +52,10 @@ const downloadPDF = async (url) => {
 
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: "La lista de Motos esta vacia"
+    });
   }
 };
 
@@ -101,7 +104,12 @@ const ListMoto = () => {
   }, []);
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/moto/pdf");
+    try{
+      await downloadPDF("http://localhost:3000/api/moto/pdf");
+    }
+    catch(error){
+     
+    }
   };
 
   return (
@@ -125,7 +133,9 @@ const ListMoto = () => {
         <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
-        style={{width:1200, height:300}}
+         scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],

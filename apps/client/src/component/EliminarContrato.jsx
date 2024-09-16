@@ -21,7 +21,7 @@ const EliminarContrato = ({isOpen, setOpen}) => {
       message.success('Se ha eliminado correctamente');
     }
     catch(error){
-      message.error(error);
+      message.error(error.text);
     }
 
       window.location.reload();

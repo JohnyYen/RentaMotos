@@ -22,6 +22,8 @@ const ModalModMoto = ({isOpen, setOpen}) => {
     const [t] = useTranslation("global");
 
   const margin = 0;
+  const val = row?.kmRecorridos;
+  console.log(val);
   const handlePetition = async () => {
 
     const moto = {
@@ -63,7 +65,6 @@ const ModalModMoto = ({isOpen, setOpen}) => {
         </Form.Item>
 
        <Form.Item label="Cantidad de Kilometros:" name={"cantKm"} rules={[{required:true, message:'El campo de cantKm no debe estar vacio'},
-        {min:row?.kmRecorridos, message: "No puede ser menor a la cantidad actual de Kilometros"}
        ]}>
         <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>

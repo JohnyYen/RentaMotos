@@ -1,4 +1,4 @@
-import { Space, Typography, Table, Flex, Button } from "antd";
+import { Space, Typography, Table, Flex, Button, notification } from "antd";
 import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -26,7 +26,10 @@ const downloadPDF = async (url) => {
     
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de Contratos esta vacia'
+    });
   }
 };
 
@@ -37,7 +40,7 @@ const ListadoContratos = ({ extractData , url }) => {
   const [open, setOpen] = useState(false);
 
   const onClick = async () => {
-    await downloadPDF(url);
+      await downloadPDF(url);
   };
 
   return (
@@ -46,7 +49,9 @@ const ListadoContratos = ({ extractData , url }) => {
       <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
       <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
       <Table
-        style={{width:1200, height:300}}
+         scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],

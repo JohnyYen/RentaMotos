@@ -110,7 +110,7 @@ const AppRouter = () => {
     extractDataClient(user).then((result) => {
       setDataClient(result);
     })
-
+    console.log(dataClient);
     extractDataContract(user).then((result) => {
       setDataContract(result);
     })

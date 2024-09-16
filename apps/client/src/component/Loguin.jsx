@@ -74,8 +74,6 @@ banner.addEventListener('mouseout', () => {
 
 
   const [form] = Form.useForm();
-  form.resetFields();
-
 
   const [abrirModal, setabrirModal] = useState(false);
   const navigate = useNavigate();
@@ -94,7 +92,7 @@ banner.addEventListener('mouseout', () => {
 
     if(response.status === 201){
       const tipoUsuario = response.data.tipo_usuario;
-      
+      setUser(response.data);
       if(tipoUsuario === 'Admin'){
         message.success('Logueado con Exito')
         navigate('/admin');
@@ -105,7 +103,6 @@ banner.addEventListener('mouseout', () => {
         const res = await axios.get(`http://localhost:3000/api/client/sample/${idClient}`);
         if(res.status === 200){
           message.success('Logueado con Exito')
-          setUser(response.data);
           setClient(res.data[0]);
           localStorage.setItem('clientData', JSON.stringify(res.data[0]));
           navigate('/client');
@@ -114,7 +111,6 @@ banner.addEventListener('mouseout', () => {
 
       if(tipoUsuario === 'Trabajador'){
         message.success('Logueado con Exito')
-        setUser(response.data);
         navigate('/worker');
       }
 

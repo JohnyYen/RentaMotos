@@ -44,18 +44,26 @@ let ContractService = class ContractService {
     }
     async getPDFContract() {
         const contract = await this.getAllContract();
+        if (contract.length === 0)
+            throw new common_1.BadRequestException('La lista de contratos esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async getPDFContractXModelo() {
         const contract = await this.getContractFilter();
+        if (contract.length === 0)
+            throw new common_1.NotAcceptableException('La lista de contratos por marca y modelo esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async getPDFContractWorkerMun(mun) {
         const contract = await this.getContractMun(mun);
+        if (contract.length === 0)
+            throw new common_1.NotAcceptableException('La lista de contratos por municipio esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async getPDFContractByMun() {
         const contract = await this.getContractByMun();
+        if (contract.length === 0)
+            throw new common_1.NotAcceptableException('La lista de contratos por municipio esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async createContract(contract) {

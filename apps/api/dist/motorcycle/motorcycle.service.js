@@ -31,10 +31,14 @@ let MotorcycleService = class MotorcycleService {
     }
     async getPDF() {
         const moto = await this.getAllMotorcycle();
+        if (moto.length === 0)
+            throw new common_1.NotAcceptableException('La lista de motos esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
     async getPDFSituation() {
         const moto = await this.getSituationMoto();
+        if (moto.length === 0)
+            throw new common_1.NotAcceptableException('La lista de la situacion de las motos esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
     async deleteMotorcycle(id) {

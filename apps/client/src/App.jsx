@@ -7,7 +7,7 @@ import UserWorker from "./pages/UserPages/UserWorker";
 import Prueba from "./pages/UserPages/Prueba";
 import GlobalProvider from "./context/GlobalContext";
 import { Suspense } from "react";
-import { message } from "antd";
+import { message, notification } from "antd";
 import axios from "axios";
 
 
@@ -16,6 +16,11 @@ message.config({
   duration: 20, // Duración en segundos
   maxCount: 1, // Máximo de mensajes mostrados
 });
+
+notification.config({
+  pauseOnHover:true,
+  showProgress:true,
+})
 
 window.addEventListener('error', async (e) => {
   if(e.error instanceof Error){

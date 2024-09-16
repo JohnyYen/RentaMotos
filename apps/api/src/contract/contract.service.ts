@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotAcceptableException } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
 import { ContractDto } from './dto/contract.dto';
 import generatePDF from 'src/libs/pdfKit';
@@ -35,21 +35,30 @@ export class ContractService {
 
     async getPDFContract(){
         const contract = await this.getAllContract();
+        if(contract.length === 0)
+            throw new BadRequestException('La lista de contratos esta vacia');
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
     }
 
     async getPDFContractXModelo(){
         const contract = await this.getContractFilter();
+        if(contract.length === 0)
+            throw new NotAcceptableException('La lista de contratos por marca y modelo esta vacia');
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
     }
 
     async getPDFContractWorkerMun(mun:string){
         const contract = await this.getContractMun(mun);
+        if(contract.length === 0)
+            throw new NotAcceptableException('La lista de contratos por municipio esta vacia');
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
     }
 
     async getPDFContractByMun(){
         const contract = await this.getContractByMun();
+
+        if(contract.length === 0)
+            throw new NotAcceptableException('La lista de contratos por municipio esta vacia');
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
     }
 

@@ -18,6 +18,9 @@ http://localhost:3000/api/contract/:id GET obtener todos los contratos de un cli
 - Buscar una forma que cuando ocurra un error 500 desde el Front reiniciar el servidor (MUY OPCIONAL)
 - Evitar tener que refrescar la pantalla cada vez que se modifique, elimine o cree una entidad, solucionar eso (OPCIONAL)
 
+## Rutas PDF Faltantes
+- http://localhost:3000/api/contract/worker/pdf/:mun Obtener PDF de los contratos segun el municipio
+- http://localhost:3000/api/client/worker/pdf/:mun Obtener PDF de los clientes segun el municipio
 
 # Rutas API BACKEND
 ## Cliente

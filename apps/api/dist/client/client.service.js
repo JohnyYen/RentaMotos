@@ -32,15 +32,18 @@ let ClientService = class ClientService {
     }
     async getClient(id) {
         const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
-        console.log(res.rows);
         return res.rows;
     }
     async getAllClientByPDF() {
         const client = await this.getAllClients();
+        if (client.length === 0)
+            throw new common_1.NotAcceptableException('La lista de Clientes esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
     async getAllClientPDFWorkerMun(mun) {
         const client = await this.getClientByMun(mun);
+        if (client.length === 0)
+            throw new common_1.NotAcceptableException('La lista de clientes por municipio esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
     async validatePhoneNumber(num) {
@@ -67,6 +70,8 @@ let ClientService = class ClientService {
     }
     async getPDFBadClients() {
         const client = await this.getAllBadClients();
+        if (client.length === 0)
+            throw new common_1.NotAcceptableException('La lista de Clientes Incumplidores esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
 };
