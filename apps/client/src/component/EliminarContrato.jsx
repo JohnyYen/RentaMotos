@@ -1,39 +1,43 @@
-
-import { Button, message, Modal, Typography} from "antd";
+import { Button, message, Modal, Typography } from "antd";
 import "../App.css";
-import axios from 'axios';
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { useTranslation } from "react-i18next";
 
+const EliminarContrato = ({ isOpen, setOpen }) => {
+  const { row } = useContext(GlobalContext);
 
+  // Translation
+  const [t] = useTranslation("global");
 
-
-const EliminarContrato = ({isOpen, setOpen}) => {
-
-  const {row} = useContext(GlobalContext);
-
-  const Econtrato = async() =>{
-
-
-    try{
+  const Econtrato = async () => {
+    try {
       const apiUrl = `http://localhost:3000/api/contract/${row?.matricula}`;
       const response = await axios.delete(apiUrl);
-      message.success('Se ha eliminado correctamente');
-    }
-    catch(error){
+      message.success(t("messageSuccess.deleteSuccess"));
+    } catch (error) {
       message.error(error.text);
     }
 
-      window.location.reload();
-    };
-
-
-    return (
-      <Modal title={'Eliminar Contrato'} centered={true} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={Econtrato}>
-        <Typography.Title level={3}>¿Estás seguro que deseas eliminar el contrato?</Typography.Title>
-      </Modal>      
-    );
+    window.location.reload();
   };
+
+  return (
+    <Modal
+      title={t("modal.deleteContract")}
+      centered={true}
+      open={isOpen}
+      onClose={setOpen}
+      onCancel={setOpen}
+      onOk={Econtrato}
+    >
+      <Typography.Title level={3}>
+      {t("notification.deleteContract")}
+      </Typography.Title>
+    </Modal>
+  );
+};
 
 //   const EliminarContratoCloseModal = () => {
 //     setModalVisible(false);
@@ -51,8 +55,6 @@ const EliminarContrato = ({isOpen, setOpen}) => {
 //     }
 //   };
 
-
-
 //   return (
 //     <div className="EliminarElemento">
 //       <Button onClick={EliminarContratoOpenModal}>Eliminar Contrato</Button>
@@ -64,7 +66,7 @@ const EliminarContrato = ({isOpen, setOpen}) => {
 //         onCancel={EliminarContratoCloseModal}
 //         okText="Eliminar"
 //         cancelText="Cancelar"
-        
+
 //       >
 //         <p className="Mensaje">¿Está seguro que desea eliminar este contrato?</p>
 //       </Modal>
@@ -73,4 +75,3 @@ const EliminarContrato = ({isOpen, setOpen}) => {
 // };
 
 export default EliminarContrato;
-

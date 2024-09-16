@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import moment from "moment";
 
 const extractData = async () => {
   let dataSource = [];
@@ -55,12 +56,6 @@ const downloadPDF = async (url) => {
 };
 
 const SituacionMoto = () => {
-  const date = new Date();
-  const day = date.getDay();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
-
   const [dataSource, setDataSource] = useState([]);
   const [t] = useTranslation("global");
 
@@ -84,10 +79,10 @@ const SituacionMoto = () => {
           {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={currentDate}
+          defaultValue={moment().format('L')}
         />
       </Flex>
       <Table

@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalCreateContract from "../../components/ModalCreateContract";
 import { GlobalContext } from "../../context/GlobalContext";
+import moment from "moment";
 
 const extractData = async () => {
 
@@ -43,11 +44,6 @@ const extractDataFilter = async () => {
 };
 
 const ListMotoClient = () => {
-  const date = new Date();
-  const day = date.getDay();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
   const [visible, setVisible] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
@@ -82,10 +78,10 @@ const ListMotoClient = () => {
         {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={currentDate}
+          defaultValue={moment().format('L')}
         ></Mentions>
       </Flex>
       <Table

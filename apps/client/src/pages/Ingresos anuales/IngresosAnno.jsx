@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import moment from "moment";
 
 const downloadPDF = async (url) => {
   try {
@@ -32,17 +33,11 @@ const downloadPDF = async (url) => {
   }
 };
 
-const IngresosAnno = ({ extractData }) => {
-  const date = new Date();
-  const day = date.getDay();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
-  
+const IngresosAnno = ({ extractData, url }) => {
   const [t] = useTranslation("global");
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/pagos/pdf");
+    await downloadPDF(url);
   };
 
   return (
@@ -50,7 +45,7 @@ const IngresosAnno = ({ extractData }) => {
       <Typography.Title level={3}>{t("sideBar.annualIncome")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>{t("mainContent.currentDate")}:</Typography.Text>
-        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+        <Mentions style={{width: "8rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={moment().format('L')} />
       </Flex>
       <Table
        scroll={{

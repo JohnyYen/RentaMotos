@@ -1,6 +1,7 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions, notification } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
+import moment from "moment";
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
@@ -88,10 +89,10 @@ const ListadoClientes = ({ extractData, url }) => {
           {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "20rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={new Date().toUTCString()}
+          defaultValue={moment().format('L')}
         />
       </Flex>
       <Table

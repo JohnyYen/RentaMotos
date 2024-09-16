@@ -53,27 +53,27 @@ const NuevoCliente = ({visible, setVisible}) => {
   <form>
     <div id="left-div">
     <label htmlFor="userName">{t("profile.username")}</label>
-      <input onChange={(e) => setUser(e.target.value)} type="text" placeholder="Introduce su nombre de usuario" id="userName" name="userName"/>
+      <input onChange={(e) => setUser(e.target.value)} type="text" placeholder={t("profile.username")} id="userName" name="userName"/>
     
       <label htmlFor="email">{t("profile.email")}</label>
-      <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo Electrónico" name="email" id="email"/>
+      <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder={t("profile.email")} name="email" id="email"/>
 
       <label>{t("profile.name")}</label>
-      <input onChange={(e) => setName(e.target.value)} placeholder="Introduce su nombre"/>
+      <input onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")}/>
 
       <label>{t("profile.lastName")}</label>
-      <input onChange={(e) => setLastName(e.target.value)} placeholder="Introduce su apellido"/>
+      <input onChange={(e) => setLastName(e.target.value)} placeholder={t("profile.lastName")}/>
 
       <label>CI</label>
-      <input onChange={(e) => setCi(e.target.value)} placeholder="Introduce su CI"/>
+      <input onChange={(e) => setCi(e.target.value)} placeholder="CI"/>
     </div>
 
     <div id="rigth-div">
     <label>{t("profile.contactNumber")}</label>
-      <input onChange={(e) => setNumCont(e.target.value)} placeholder="Introduce su numero Contacto"/>
+      <input onChange={(e) => setNumCont(e.target.value)} placeholder={t("profile.contactNumber")}/>
 
       <label>{t("profile.passord")}</label>
-      <input onChange={(e) => setPassword(e.target.value)} placeholder="Introduce su Contraseña"/>
+      <input onChange={(e) => setPassword(e.target.value)} placeholder={t("profile.password")}/>
 
 
       <label>{t("profile.sex")}</label>
@@ -90,13 +90,13 @@ const NuevoCliente = ({visible, setVisible}) => {
       </select>
 
       <label>{t("profile.age")}</label>
-      <input onChange={(e) => setAge(e.target.value)} type="number"  min={16} max={70} placeholder="Edad"/>
+      <input onChange={(e) => setAge(e.target.value)} type="number"  min={16} max={70} placeholder={t("profile.age")}/>
     </div>
   </form>
   </div>
 
   <div className="panelBotones">
-          <Button onClick={setVisible} className="B1" type="primary" size="large" block >Cancelar
+          <Button onClick={setVisible} className="B1" type="primary" size="large" block >{t("login.cancel")}
           </Button>
   
           <Button

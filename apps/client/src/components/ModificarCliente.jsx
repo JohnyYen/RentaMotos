@@ -24,27 +24,27 @@ const ModificarCliente = ({visible, setVisible, client}) => {
             <form>
                 <div id="left-div">
                     <label>{t("profile.age")}</label>
-                    <input onChange={(e) => setEdad(e.target.value)} type="number" placeholder="Edad"/>
+                    <input onChange={(e) => setEdad(e.target.value)} type="number" placeholder={t("profile.age")}/>
 
                     <label>{t("profile.municipality")}</label>
-                    <input onChange={(e) => setMunicipio(e.target.value)} type="text"/>
+                    <input onChange={(e) => setMunicipio(e.target.value)} type="text" placeholder={t("profile.municipality")}/>
 
                     <label>{t("profile.name")}</label>
-                    <input onChange={(e) => setName(e.target.value)} type="text"/>
+                    <input onChange={(e) => setName(e.target.value)} type="text" placeholder={t("profile.name")}/>
 
                     <label>{t("profile.middleName")}</label>
-                    <input onChange={(e) => setSecondName(e.target.value)} type="text"/>
+                    <input onChange={(e) => setSecondName(e.target.value)} type="text" placeholder={t("profile.middleName")}/>
                 </div>
 
                <div id="rigth-div">
                     <label>{t("profile.lastName")}</label>
-                    <input onChange={(e) => setLastName(e.target.value)} type="text"/>
+                    <input onChange={(e) => setLastName(e.target.value)} type="text" placeholder={t("profile.lastName")}/>
 
                     <label>{t("profile.secondLastName")}</label>
-                    <input onChange={(e) => setSecondLast(e.target.value)} type="text"/>
+                    <input onChange={(e) => setSecondLast(e.target.value)} type="text" placeholder={t("profile.secondLastName")}/>
 
                     <label>{t("profile.contactNumber")}</label>
-                    <input onChange={(e) => setNumCont(e.target.value)} type="text"/>
+                    <input onChange={(e) => setNumCont(e.target.value)} type="text" placeholder={t("profile.contactNumber")}/>
                </div>
             </form>
 
