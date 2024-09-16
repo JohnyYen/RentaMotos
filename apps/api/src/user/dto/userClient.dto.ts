@@ -5,7 +5,6 @@ export class UserClientDto {
     @IsString()
     public user_name : string;
 
-    @IsStrongPassword()
     public password : string;
 
     @IsEmail()

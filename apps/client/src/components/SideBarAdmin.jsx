@@ -2,12 +2,14 @@ import {
   CarOutlined,
   DollarOutlined,
   FileDoneOutlined,
+  MediumWorkmarkOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Flex } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { PiHardHat } from "react-icons/pi";
 import "../App.css";
 import "boxicons";
 //import axios from 'axios';
@@ -29,9 +31,8 @@ const SideBarAdmin = () => {
       <Menu
         theme="dark"
         className="sider-menu"
-        defaultSelectedKeys={["/listadoClientes"]}
-        defaultOpenKeys={["/clientes"]}
-        mode="inline"
+        defaultSelectedKeys={["listadoClientes"]}
+        mode="vertical"
         onClick={(item) => {
           navigate(`/admin/${item.key}`);
         }}
@@ -42,11 +43,11 @@ const SideBarAdmin = () => {
             key: "/clientes",
             children: [
               {
-                label: "Listado Clientes",
+                label: t("sideBar.clientList"),
                 key: "listadoClientes",
               },
               {
-                label: "Incumplidores",
+                label: t("sideBar.clientNonCompliant"),
                 key: "incumplidoresClientes",
               },
             ],
@@ -57,11 +58,11 @@ const SideBarAdmin = () => {
             key: "/motos",
             children: [
               {
-                label: "Listado Motos",
+                label: t("sideBar.motorcycleList"),
                 key: "listadoMoto",
               },
               {
-                label: "Situacion Motos",
+                label: t("sideBar.motorcycleSituation"),
                 key: "situacionMotos",
               },
             ],
@@ -72,15 +73,15 @@ const SideBarAdmin = () => {
             key: "/contratos",
             children: [
               {
-                label: "Listado Contratos",
+                label: t("sideBar.contractList"),
                 key: "listadoContratos",
               },
               {
-                label: "Por marca y modelo",
+                label: t("sideBar.contractMakeModel"),
                 key: "contratoMarcaModelo",
               },
               {
-                label: "Por municipio",
+                label: t("sideBar.contractMunicipality"),
                 key: "contratoMunicipio",
               },
             ],
@@ -90,6 +91,11 @@ const SideBarAdmin = () => {
             icon: <DollarOutlined />,
             key: "ingresosAño",
           },
+          {
+            label: "Trabajadores",
+            icon: <PiHardHat />,
+            key: "listadoTrabajadores"
+          }
         ]}
       ></Menu>
     </>

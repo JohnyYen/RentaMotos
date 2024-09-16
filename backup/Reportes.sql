@@ -128,7 +128,11 @@ from ((Cliente inner join Contrato on Cliente.idcliente = Contrato.idcliente)
 as tabl inner join Moto on tabl.matricula = Moto.matricula);
 							
 -- Reporte #7
+<<<<<<< HEAD
+create or replace view cont_mun as select municipio.nommun, moto.marca, moto.modelo, 
+=======
 select CURRENT_DATE, municipio.nommun, moto.marca, moto.modelo, 
+>>>>>>> 2bd668247068b0ed332423b17975822925938dce
 sum(contrato.fechafin - contrato.fechainicio) as diasalquilados, 
 sum(contrato.diasprorroga) as diasprorroga,
 case
@@ -141,6 +145,20 @@ inner join municipio on municipio.nommun = cliente.municipio
 inner join moto on contrato.matricula = moto.matricula
 group by municipio.nommun, moto.marca, moto.modelo, contrato.formapago
 
+<<<<<<< HEAD
+select * from cont_mun
+
+-- Trigger para eliminar todos los contratos de un cliente despues de ser borrado de la lista de clientes
+create or replace function deleteContratosCliente() returns trigger as
+$$
+begin
+	delete from contrato where contrato.idcliente = NEW.idcliente;
+end
+$$
+language 'plpgsql';
+
+create trigger tg_deleteContratosCliente after delete on cliente for each row execute function deleteContratosCliente()
+=======
 -- Reporte #8
 SELECT
     CURRENT_DATE as fecha_actual,
@@ -179,3 +197,4 @@ create or replace view contrato_cliente_view as select Contrato.matricula, Contr
 Contrato.formapago, Contrato.seguro, Contrato.diasprorroga from Contrato
 
 drop view contrato_cliente_view;
+>>>>>>> 2bd668247068b0ed332423b17975822925938dce

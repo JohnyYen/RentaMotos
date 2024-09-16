@@ -1,10 +1,14 @@
-import { Mentions, Typography, Table, Flex, Button } from "antd";
+import { Mentions, Typography, Table, Flex, Button, message } from "antd";
 import "../../App.css";
 import axios from "axios";
 import { DownloadOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalModMoto from '../../components/ModalModMoto'
+import {GlobalContext} from '../../context/GlobalContext'
+import ModalCreateMoto from "../../components/ModalCreateMoto";
+import EliminarMoto from "../../component/EliminarMoto";
+
 
 const extractData = async () => {
   let dataSource = [];
@@ -18,8 +22,9 @@ const extractData = async () => {
         matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
+        situacion: element.situacion,
         color: element.color,
-        "Km recorridos": element.cantkm,
+        kmRecorridos: element.cantkm,
       }));
     }
   } catch (error) {
@@ -47,7 +52,10 @@ const downloadPDF = async (url) => {
 
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: "La lista de Motos esta vacia"
+    });
   }
 };
 
@@ -74,7 +82,13 @@ const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [visualize, setVisualize] = useState(false);
+  const {setRow} = useContext(GlobalContext);
 
+
+  message.success('Hola');
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
@@ -90,16 +104,24 @@ const ListMoto = () => {
   }, []);
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/moto/pdf");
+    try{
+      await downloadPDF("http://localhost:3000/api/moto/pdf");
+    }
+    catch(error){
+     
+    }
   };
 
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
+      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)}/>
+      <EliminarMoto isOpen={visualize} setOpen={() => setVisualize(!visualize)} />
       <Flex align="center" justify="space-between">
         <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -108,14 +130,14 @@ const ListMoto = () => {
           defaultValue={currentDate}
         />
         </Flex>
-        <Button className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
+        <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
       </Flex>
       <Table
-        scroll={{
+         scroll={{
           x: 920,
         }}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
@@ -140,13 +162,18 @@ const ListMoto = () => {
             key: "modelo",
           },
           {
+            title: t("mainContent.table.situation"),
+            dataIndex: "situacion",
+            key: "situacion",
+          },
+          {
             title: t("mainContent.table.color"),
             dataIndex: "color",
             key: "color",
           },
           {
             title: t("mainContent.table.kmTraveled"),
-            dataIndex: "Km recorridos",
+            dataIndex: "kmRecorridos",
             key: "Km recorridos",
           },
           {
@@ -154,11 +181,11 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
-                  Modificar
+                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
+                  {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
-                  Eliminar
+                <Button className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}}>
+                {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

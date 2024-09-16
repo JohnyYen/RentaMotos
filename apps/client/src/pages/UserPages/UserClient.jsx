@@ -31,7 +31,7 @@ const UserClient = () => {
           <AppRouter/>
         </Content>
       </Layout>
-      <FloatButton  style={{width:60, height:50}} icon={<UserOutlined/>} onClick={() => setVisible(true)}/>
+      <FloatButton  shape="circle" type="primary" style={{width:60, height:50, insetInlineEnd: 24}} icon={<UserOutlined/>} onClick={() => setVisible(true)}/>
       <Profile isOpen={visible} setOpen={() => setVisible(!visible)}/>
     </Layout>
   );

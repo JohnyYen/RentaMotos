@@ -1,114 +1,76 @@
-import{ Button,  useState,Modal}from "antd";
+
+import { Button, message, Modal, Typography} from "antd";
 import "../App.css";
 import axios from 'axios';
-
-<<<<<<< HEAD
-const EliminarContrato = () => {
-    return (
-=======
-
-
-
-const EliminarContrato = (idcliente,matricula) => {
-
-
-  const [abrirModal, setabrirModal]= useState (false);
-  
-  const Modal =(isOpen, closeModal) =>{
-    if(!isOpen) return null;
-    
-      return(
-        <div className="Eliminar2">
-    
-            <div className="Mensaje2" >
-              ¿Seguro que desea eliminar este contrato?
-            </div>
-      
-            <div  className="Botones2"  >
-              <Button onClick ={Desactivar} className="B12" type="primary" htmlType="submit" block >Cancelar
-              </Button>
-      
-        
-              <Button onClick = {Econtrato(idcliente,matricula) } className="B22"
-                type="primary" htmlType="submit" block 
-      
-               >
-                Aceptar
-              </Button>
-            </div>
-        
-        
-        </div>  )};
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 
 
 
-<<<<<<< HEAD
-const Activar = () =>{
-  setVisible(true)
->>>>>>> main
-  
-}
-const Desactivar =() =>{
-  setVisible(false)
+const EliminarContrato = ({isOpen, setOpen}) => {
 
-}
-=======
->>>>>>> 624c6d72aa96f741ef2b5f24673da529581d2ed9
+  const {row} = useContext(GlobalContext);
 
-  const Econtrato = async(idcliente,matricula) =>{
+  const Econtrato = async() =>{
+
 
     try{
-<<<<<<< HEAD
-    const apiUrl = `http://localhost:3000/api/contract/${idcliente+"/"+matricula}`;
-=======
-    const apiUrl = `http://localhost:3000/api/contract?idcliente=${idcliente}&matricula=${matricula} `
-    ;
->>>>>>> 624c6d72aa96f741ef2b5f24673da529581d2ed9
-    const response = await axios.delete(apiUrl);
-    alert('Elemento eliminado con éxito:', response.data);
-  }catch(error){alert('Error al eliminar el elemento:', error);}
-  return(Desactivar)};
+      const apiUrl = `http://localhost:3000/api/contract/${row?.matricula}`;
+      const response = await axios.delete(apiUrl);
+      message.success('Se ha eliminado correctamente');
+    }
+    catch(error){
+      message.error(error.text);
+    }
+
+      window.location.reload();
+    };
 
 
     return (
-  
-<<<<<<< HEAD
-
-    <div className="Eliminar2">
-<<<<<<< HEAD
-    
-       <h3 className="Mensaje2">Seguro que deseas eliminar este contrato?</h3>
-=======
-
-        <div className="Mensaje2" >
-          ¿Seguro que desea eliminar este contrato?
-        </div>
->>>>>>> main
-  
-        <div  className="Botones2"  >
-          <Button onClick ={Desactivar} className="B12" type="primary" htmlType="submit" block >Cancelar
-          </Button>
-  
-    
-          <Button onClick = {Econtrato(idcliente,matricula) } className="B22"
-            type="primary" htmlType="submit" block >
-            Aceptar
-          </Button>
-        </div>
-    
-    
-    </div>  
-    </Modal>
-=======
-  
-      <div className="Loguin">
-      <Modal isOpen ={abrirModal} closeModal = {()=>setabrirModal(false)}  />
->>>>>>> 624c6d72aa96f741ef2b5f24673da529581d2ed9
-    </div>
-    
-    
+      <Modal title={'Eliminar Contrato'} centered={true} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={Econtrato}>
+        <Typography.Title level={3}>¿Estás seguro que deseas eliminar el contrato?</Typography.Title>
+      </Modal>      
     );
   };
-  
-  export default  EliminarContrato;
+
+//   const EliminarContratoCloseModal = () => {
+//     setModalVisible(false);
+//   };
+
+//   const handleConfirmDeleteContrato = async () => {
+//     try {
+//       const apiUrl = `http://localhost:3000/api/contract?idcliente=${idcliente}&matricula=${matricula}  `;
+//       const response = await axios.delete(apiUrl);
+//       alert('Elemento eliminado con éxito:', response.data);
+//     } catch (error) {
+//       alert('Error al eliminar el elemento:', error.message || String(error));
+//     } finally {
+//       setModalVisible(false);
+//     }
+//   };
+
+
+
+//   return (
+//     <div className="EliminarElemento">
+//       <Button onClick={EliminarContratoOpenModal}>Eliminar Contrato</Button>
+
+//       <Modal className="Eliminar"
+//         title="¿Desea eliminar este contrato?"
+//         visible={modalVisible}
+//         onOk={handleConfirmDeleteContrato}
+//         onCancel={EliminarContratoCloseModal}
+//         okText="Eliminar"
+//         cancelText="Cancelar"
+        
+//       >
+//         <p className="Mensaje">¿Está seguro que desea eliminar este contrato?</p>
+//       </Modal>
+//     </div>
+//   );
+// };
+
+export default EliminarContrato;
+

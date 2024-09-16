@@ -15,6 +15,10 @@
         "contractMunicipality": "Contracts by municipality",
         "contractMakeModel": "Contracts by make and model"
     },
+    "worker":{
+        "workerList": "Worker List",
+        "addWorker": "Add Worker"
+    },
     "sideBar": {
         "client": "Customers",
         "clientList": "Client List",
@@ -26,25 +30,54 @@
         "contractList": "List of Contracts",
         "contractMunicipality": "By Municipality",
         "contractMakeModel": "By Make and Model",
-        "annualIncome": "Annual Income"
+        "annualIncome": "Annual Income",
+        "myContracts": "My Contracts"
     },
     "mainContent": {
         "downloadPDF": "Download PDF",
+        "currentDate": "Current date",
+        "createMotorcycle": "Add motorcycle",
+        "createContract": "Crear contrato",
         "table": {
+            "clientID": "Client ID",
             "serialNumber": "Serial number",
             "mark": "Mark",
             "model": "Model",
             "color": "Color",
+            "colors": {
+                "red": "Red",
+                "black": "Black",
+                "white": "white",
+                "blue": "Blue",
+                "green": "Green",
+                "yellow": "Yellow",
+                "grey": "Grey",
+                "orange": "Orange",
+                "purple": "Purple",
+                "neon": "Neon",
+                "silver": "Silver",
+                "gold": "Gold",
+                "red-black": "Red-Black",
+                "blue-black": "Blue-Black",
+                "Red-White": "Red-White",
+                "white-black": "White-Black"
+            },
             "kmTraveled": "Km traveled",
             "actions": "Actions",
             "name": "Name",
             "lastName": "Last name",
             "endContract": "End of contract",
+            "signatureDate": "Signature Date",
             "motorcycleDelivery": "Motorcycle delivery",
             "municipality": "Municipality",
             "timesRented": "Times rented",
             "rentalValue": "Rental value",
             "situation": "Situation",
+            "situations": {
+                "workshop": "Workshop",
+                "available": "Available",
+                "rented": "Rented"
+            },
             "methodPayment": "Method of payment",
             "startContract": "Start of contract",
             "extension": "Extension",
@@ -57,7 +90,88 @@
             "cashIncome": "Cash income",
             "daysRented": "Days rented",
             "extensionDays": "Extension days",
-            "totalCash": "Total cash"
+            "totalCash": "Total cash",
+            "delete": "Delete",
+            "modify": "Modify",
+            "rent": "Rent",
+            "annualIncome": "Annual Income",
+            "income": {
+                "january": "January income",
+                "february": "February income",
+                "march": "March income",
+                "april": "April income",
+                "may": "May income",
+                "june": "June income",
+                "july": "July income",
+                "august": "August income",
+                "september": "September income",
+                "october": "October income",
+                "november": "November income",
+                "december": "December income"
+            }
         }
-    }
+    },
+    "login": {
+        "username": "Username",
+        "password": "Password",
+        "accept": "Accept",
+        "register": "Register",
+        "cancel": "Cancel"
+    },
+    "profile": {
+        "profile": "Profile",
+        "name": "Name",
+        "middleName": "Middle Name",
+        "lastName": "Last Name",
+        "secondLastName": "Second Last Name",
+        "username": "Username",
+        "password": "Password",
+        "email": "Email",
+        "municipality": "Municipality",
+        "age": "Age",
+        "sex": "Sex",
+        "contactNumber": "Contact Number" 
+    },
+    "modal": {
+        "modifyClient": "Modify Client",
+        "modifyContract": "Modify Contract",
+        "modifyMotorcycle": "Modify Motorcycle",
+        "createWorker": "Create Worker",
+        "createMotorcycle":"Create Motorcycle",
+        "rentMotorcycle": "Rent Motorcycle",
+        "insurance": "Insurance",
+        "cantKm": "Number of Kilometers",
+        "situation": "Situation",
+        "methodPayment": "Method of payment",
+        "extensionDays": "Extension days",
+        "endDate": "End Date",
+        "startDate": "Start Date",
+        "signatureDate": "Signature Date"
+    },
+    "messageError": {
+        "emptyColor": "The color field must not be empty",
+        "emptyKm": "The kilometers field must not be empty",
+        "emptySituation": "The location field must not be empty",
+        "emptyMethodPayment": "Enter the Payment Method!",
+        "emptyExtensionDays": "Enter the Extension days!",
+        "emptyEndDate": "Enter the End date!",
+        "emptyName": "Enter the name!",
+        "emptySecondName": "Enter middle name!",
+        "emptyLastName": "Enter the first Last Name!",
+        "emptySecondLastName": "Enter the Second Last Name!",
+        "emptyContactNumber": "Enter the contact number!",
+        "emptyMunicipality": "Enter the Municipality!",
+        "emptyAge": "Enter age!",
+        "emptyUsername": "Enter the Username!",
+        "emptyPassword": "Enter the Password!",
+        "emptySerialNumber": "The serial number field must not be empty",
+        "emptyMark": "Enter your mark!",
+        "emptyModel": "Enter your model!",
+        "emptySignatureDate": "Enter the date of the signature!",
+        "emptyStartDate": "Enter the Start Date!",
+        "emptyCI": "Enter your ID!",
+        "emptyEmail": "Enter your email!",
+        "emptySex": "Enter your sex!"
+        
+    } 
 }

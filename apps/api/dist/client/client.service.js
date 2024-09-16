@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
 const pdfKit_1 = require("../libs/pdfKit");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
+const errorHandler_1 = require("../libs/errorHandler");
 let ClientService = class ClientService {
     constructor(conn) {
         this.conn = conn;
@@ -25,13 +26,34 @@ let ClientService = class ClientService {
         const res = await this.conn.query('SELECT * FROM cliente_view');
         return res.rows;
     }
+    async getClientByMun(mun) {
+        const res = await this.conn.query(`SELECT * FROM cliente_view WHERE municipio = '${mun}'`);
+        return res.rows;
+    }
     async getClient(id) {
-        const res = await this.conn.query(`SELECT * FROM cliente where idcliente = ${id}`);
+        const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
         return res.rows;
     }
     async getAllClientByPDF() {
         const client = await this.getAllClients();
+        if (client.length === 0)
+            throw new common_1.NotAcceptableException('La lista de Clientes esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
+    }
+    async getAllClientPDFWorkerMun(mun) {
+        const client = await this.getClientByMun(mun);
+        if (client.length === 0)
+            throw new common_1.NotAcceptableException('La lista de clientes por municipio esta vacia');
+        return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
+    }
+    async validatePhoneNumber(num) {
+        try {
+            const res = await this.conn.query(`SELECT * FROM cliente WHERE numcont = '${num}'`);
+            return res.rows.length !== 0;
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error);
+        }
     }
     async deleteClient(id) {
         this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
@@ -40,7 +62,7 @@ let ClientService = class ClientService {
         this.conn.query(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numcont}')`);
     }
     async updateClient(client, id) {
-        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = ${client.municipio} ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${id}'`);
+        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numcont}'  WHERE idcliente = '${id}'`);
     }
     async getAllBadClients() {
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
@@ -48,6 +70,8 @@ let ClientService = class ClientService {
     }
     async getPDFBadClients() {
         const client = await this.getAllBadClients();
+        if (client.length === 0)
+            throw new common_1.NotAcceptableException('La lista de Clientes Incumplidores esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
 };

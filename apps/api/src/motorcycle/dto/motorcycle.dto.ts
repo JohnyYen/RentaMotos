@@ -9,7 +9,6 @@ export class MotorcycleDto{
     public color : string;
 
     @IsInt({message: "The cantKm atribute can be a Integer"})
-    @Max(0, {message: "The cantKm can be zero"})
     @Min(0, {message: "The cantKm can be zero"})
     public cantKm : number;
 

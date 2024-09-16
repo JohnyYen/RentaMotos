@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ModificarCliente = ({visible, setVisible, client}) => {
 
@@ -9,6 +10,7 @@ const ModificarCliente = ({visible, setVisible, client}) => {
     const [lastName, setLastName] = useState("");
     const [secondLast, setSecondLast] = useState("");
     const [numCont, setNumCont] = useState("");
+    const [t] = useTranslation("global");
 
     if(!visible) return null;
 
@@ -21,34 +23,34 @@ const ModificarCliente = ({visible, setVisible, client}) => {
         <div className='modify-container-cliente'>
             <form>
                 <div id="left-div">
-                    <label>Edad</label>
+                    <label>{t("profile.age")}</label>
                     <input onChange={(e) => setEdad(e.target.value)} type="number" placeholder="Edad"/>
 
-                    <label>Municipio</label>
+                    <label>{t("profile.municipality")}</label>
                     <input onChange={(e) => setMunicipio(e.target.value)} type="text"/>
 
-                    <label>Nombre</label>
+                    <label>{t("profile.name")}</label>
                     <input onChange={(e) => setName(e.target.value)} type="text"/>
 
-                    <label>Segundo Nombre</label>
+                    <label>{t("profile.middleName")}</label>
                     <input onChange={(e) => setSecondName(e.target.value)} type="text"/>
                 </div>
 
                <div id="rigth-div">
-                    <label>Primer Apellido</label>
+                    <label>{t("profile.lastName")}</label>
                     <input onChange={(e) => setLastName(e.target.value)} type="text"/>
 
-                    <label>Segundo Apellido</label>
+                    <label>{t("profile.secondLastName")}</label>
                     <input onChange={(e) => setSecondLast(e.target.value)} type="text"/>
 
-                    <label>Numero Contacto</label>
+                    <label>{t("profile.contactNumber")}</label>
                     <input onChange={(e) => setNumCont(e.target.value)} type="text"/>
                </div>
             </form>
 
             <div>
-                <button onClick={setVisible} className="button">Cancelar</button>
-                <button onClick={handlePetition} className="button">Aceptar</button>
+                <button onClick={setVisible} className="button">{t("login.cancel")}</button>
+                <button onClick={handlePetition} className="button">{t("login.accept")}</button>
             </div>
         </div>
     </div>

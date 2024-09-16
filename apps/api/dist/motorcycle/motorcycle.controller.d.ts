@@ -6,6 +6,7 @@ export declare class MotorcycleController {
     constructor(motoService: MotorcycleService);
     getAllMoto(): Promise<any>;
     getAllMotoInPDF(res: Response): Promise<void>;
+    getMotoClient(): Promise<any>;
     getSituationMoto(): Promise<any>;
     getPDFSituation(res: any): Promise<void>;
     createMoto(body: MotorcycleDto): void;

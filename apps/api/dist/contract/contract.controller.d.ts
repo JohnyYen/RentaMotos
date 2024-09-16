@@ -5,12 +5,14 @@ export declare class ContractController {
     constructor(contractService: ContractService);
     getContract(): Promise<any>;
     getContractInPDF(res: any): Promise<void>;
-    getContractByCliente(id: string): Promise<any>;
+    getContractsMunWorker(mun: string): Promise<any>;
+    getPDFContractWorkerMun(mun: string, res: any): Promise<void>;
     getContractByMun(): Promise<any>;
     getContractInPDFMun(res: any): Promise<void>;
     getFilterContract(): Promise<any>;
     getContractInPDFMarc(res: any): Promise<void>;
-    deleteContract(idCliente: string, matricula: string): void;
+    getContractByCliente(id: string): Promise<any>;
+    deleteContract(matricula: string): void;
     createContract(contract: ContractDto): void;
-    updateContract(idCliente: string, matricula: string, contract: ContractDto): void;
+    updateContract(matricula: string, contract: ContractDto): void;
 }

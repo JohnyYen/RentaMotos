@@ -30,6 +30,9 @@ let MotorcycleController = class MotorcycleController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
+    async getMotoClient() {
+        return await this.motoService.getMotoClient();
+    }
     getSituationMoto() {
         return this.motoService.getSituationMoto();
     }
@@ -65,6 +68,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllMotoInPDF", null);
+__decorate([
+    (0, common_1.Get)('/client'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "getMotoClient", null);
 __decorate([
     (0, common_1.Get)('/situation'),
     __metadata("design:type", Function),

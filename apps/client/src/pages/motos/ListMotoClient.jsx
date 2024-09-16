@@ -1,16 +1,17 @@
 import { Mentions, Typography, Table, Flex, Button } from "antd";
 import "../../App.css";
 import axios from "axios";
-import { DownloadOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// console.log('Hello MotherFucker');
+import ModalCreateContract from "../../components/ModalCreateContract";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const extractData = async () => {
+
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/moto");
+    response = await axios.get("http://localhost:3000/api/moto/client");
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -28,29 +29,6 @@ const extractData = async () => {
   return dataSource;
 };
 
-const downloadPDF = async (url) => {
-  try {
-    const response = await axios({
-      url,
-      method: "GET",
-      responseType: "blob",
-      headers: {
-        "Content-Type": "application/pdf",
-      },
-    });
-
-    const urlObject = URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement("a");
-    link.href = urlObject;
-    link.download = "ReporteMoto.pdf";
-    link.click();
-
-    URL.revokeObjectURL(urlObject);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
@@ -64,16 +42,22 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListMoto = () => {
+const ListMotoClient = () => {
   const date = new Date();
   const day = date.getDay();
   const month = date.getMonth();
   const year = date.getFullYear();
   const currentDate = `${day}/${month}/${year}`;
-
+  const [visible, setVisible] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
+
+  const {setRow, row} = useContext(GlobalContext);
+
+  const handleRow = (record) => {
+    setRow(record);
+  }
 
   useEffect(() => {
     extractData().then((result) => {
@@ -89,30 +73,27 @@ const ListMoto = () => {
     });
   }, []);
 
-  const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/moto/pdf");
-  };
-
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
+      <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+        {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
           defaultValue={currentDate}
-        />
+        ></Mentions>
       </Flex>
       <Table
-        scroll={{
+         scroll={{
           x: 920,
         }}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
@@ -151,9 +132,10 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
-                  Rentar
+                <Button onClick={() => {handleRow(record);setVisible(!visible);}} className="actionTable" type="primary">
+                {t("mainContent.table.rent")}
                 </Button>
+               
               </Flex>
             ),
             fixed: "right",
@@ -166,4 +148,4 @@ const ListMoto = () => {
       )
 };
 
-export default ListMoto;
+export default ListMotoClient;

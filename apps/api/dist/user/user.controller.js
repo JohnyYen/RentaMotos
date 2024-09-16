@@ -21,20 +21,36 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
+    async getUser() {
+        return await this.userService.getUser();
+    }
     createUserClient(body) {
         this.userService.createUserClient(body);
+    }
+    async validateCreateUser(body) {
+        return await this.userService.validateUserName(body.info);
+    }
+    async getWorkers() {
+        return this.userService.getWorkers();
     }
     createUserWorker(body) {
         this.userService.createUserWorker(body);
     }
-    async validateUser(userName, email, password) {
-        return await this.userService.validationUser(userName, email, password);
+    async validateUser(userName, password) {
+        return await this.userService.validationUser(userName, password);
     }
     async deleteUser(userName) {
+        console.log(userName);
         this.userService.deleteUser(userName);
     }
 };
 exports.UserController = UserController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getUser", null);
 __decorate([
     (0, common_1.Post)('/client'),
     __param(0, (0, common_1.Body)()),
@@ -42,6 +58,19 @@ __decorate([
     __metadata("design:paramtypes", [userClient_dto_1.UserClientDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "createUserClient", null);
+__decorate([
+    (0, common_1.Post)('/validate'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "validateCreateUser", null);
+__decorate([
+    (0, common_1.Get)('/worker'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getWorkers", null);
 __decorate([
     (0, common_1.Post)('/worker'),
     __param(0, (0, common_1.Body)()),
@@ -52,15 +81,14 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)('userName')),
-    __param(1, (0, common_1.Body)('email')),
-    __param(2, (0, common_1.Body)('password')),
+    __param(1, (0, common_1.Body)('password')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "validateUser", null);
 __decorate([
     (0, common_1.Delete)('/:userName'),
-    __param(0, (0, common_1.Param)('userName')),
+    __param(0, (0, common_1.Param)("userName")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

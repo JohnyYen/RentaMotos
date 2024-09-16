@@ -20,28 +20,40 @@ let UserService = class UserService {
     constructor(conn) {
         this.conn = conn;
     }
+    async getUser() {
+        const res = await this.conn.query('SELECT * FROM usuario');
+        return res.rows;
+    }
     async createUserClient(userClient) {
         try {
             await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, email, tipo_usuario ,id_cliente) VALUES ('${userClient.user_name}', '${userClient.password}', '${userClient.email}', 2 ,'${userClient.id}')`);
         }
         catch (error) {
-            throw new errorHandler_1.ErrorHandler(error).returnError();
+            console.log(error);
         }
     }
     async createUserWorker(userWorker) {
         try {
-            await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, tipo_usuario) VALUES ('${userWorker.user_name}', '${userWorker.password}', 3)`);
+            await this.conn.query(`INSERT INTO usuario (nombre_usuario, contrasenia, tipo_usuario, mun) VALUES ('${userWorker.user_name}', '${userWorker.password}', 3, '${userWorker.mun}')`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();
         }
     }
+    async validateUserName(info) {
+        const res = await this.conn.query(`SELECT * FROM usuario WHERE (nombre_usuario = '${info}' or email = '${info}')`);
+        return res.rows[0] !== null;
+    }
     async deleteUser(userName) {
         await this.conn.query(`DELETE FROM usuario WHERE nombre_usuario = '${userName}'`);
     }
-    async validationUser(userName, email, contrasenia) {
-        const res = await this.conn.query(`SELECT * FROM usuario_view WHERE (nombre_usuario = '${userName}' OR email = '${email}') AND contrasenia = '${contrasenia}';`);
+    async getWorkers() {
+        const res = await this.conn.query('SELECT * FROM worker_view');
         return res.rows;
+    }
+    async validationUser(userName, contrasenia) {
+        const res = await this.conn.query(`SELECT * FROM usuario_view WHERE (nombre_usuario = '${userName}' OR email = '${userName}') AND contrasenia = '${contrasenia}';`);
+        return res.rows[0];
     }
 };
 exports.UserService = UserService;
