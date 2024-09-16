@@ -46,8 +46,4 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "sexo", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], ClientDto.prototype, "numcont", void 0);
 //# sourceMappingURL=client.dto.js.map

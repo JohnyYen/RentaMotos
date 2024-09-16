@@ -2,7 +2,7 @@ import{ Button}from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import axios from 'axios';
 import { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 
 const NuevoCliente = ({visible, setVisible}) => {
 
@@ -22,6 +22,9 @@ const NuevoCliente = ({visible, setVisible}) => {
 
   //Municipios
   const [munList, setMunList] = useState([]);
+
+  //Translation
+  const [t] = useTranslation("global");
 
   axios.get("http://localhost:3000/api/mun").then((res) => setMunList(res.data)).catch((error) => console.log(error));
 
@@ -49,16 +52,16 @@ const NuevoCliente = ({visible, setVisible}) => {
   <div className="panelImputIzquierdo">
   <form>
     <div id="left-div">
-    <label htmlFor="userName">Nombre de Usuario</label>
+    <label htmlFor="userName">{t("profile.username")}</label>
       <input onChange={(e) => setUser(e.target.value)} type="text" placeholder="Introduce su nombre de usuario" id="userName" name="userName"/>
     
-      <label htmlFor="email">Correo Electrónico</label>
+      <label htmlFor="email">{t("profile.email")}</label>
       <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo Electrónico" name="email" id="email"/>
 
-      <label>Nombre</label>
+      <label>{t("profile.name")}</label>
       <input onChange={(e) => setName(e.target.value)} placeholder="Introduce su nombre"/>
 
-      <label>Primer Apellido</label>
+      <label>{t("profile.lastName")}</label>
       <input onChange={(e) => setLastName(e.target.value)} placeholder="Introduce su apellido"/>
 
       <label>CI</label>
@@ -66,27 +69,27 @@ const NuevoCliente = ({visible, setVisible}) => {
     </div>
 
     <div id="rigth-div">
-    <label>Numero Contacto</label>
+    <label>{t("profile.contactNumber")}</label>
       <input onChange={(e) => setNumCont(e.target.value)} placeholder="Introduce su numero Contacto"/>
 
-      <label>Contraseña</label>
+      <label>{t("profile.passord")}</label>
       <input onChange={(e) => setPassword(e.target.value)} placeholder="Introduce su Contraseña"/>
 
 
-      <label>Sexo</label>
+      <label>{t("profile.sex")}</label>
       <select onChange={(e) => setSex(e.target.value)}>
         <option>F</option>
         <option>M</option>
       </select>
 
-      <label>Municipio</label>
+      <label>{t("profile.municipality")}</label>
       <select onChange={(e) => setMun(e.target.value)}>
         {munList.map((item, i) => (
           <option key={i}>{item}</option>
         ))}
       </select>
 
-      <label>Edad</label>
+      <label>{t("profile.age")}</label>
       <input onChange={(e) => setAge(e.target.value)} type="number"  min={16} max={70} placeholder="Edad"/>
     </div>
   </form>
@@ -101,7 +104,7 @@ const NuevoCliente = ({visible, setVisible}) => {
             {idCliente:ci, nombre:name, segNombre:name, primApellido:lastName, segApellido: lastName, edad:age, municipio:mun, sexo:sex, numcont:numCont}
            )}
             className="B2" type="primary"  size="large" block>
-            Aceptar
+            {t("login.accept")}
           </Button>
   </div>
   

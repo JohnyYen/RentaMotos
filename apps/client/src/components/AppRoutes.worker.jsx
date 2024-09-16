@@ -1,32 +1,133 @@
 import { Route, Routes } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalContext"; 
+import React, { useContext, useEffect, useState } from "react";
 import ListMoto from "../pages/motos/ListMoto";
 import ListadoClientes from "../pages/clientes/ListadoClientes";
-import Incumplidores from "../pages/clientes/Incumplidores";
-import SituacionMoto from "../pages/motos/SituacionMoto";
 import ListadoContratos from "../pages/contratos/ListadoContratos";
-import ContratosMarcaModelo from "../pages/contratos/ContratosMarcaModelo";
-import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
 import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
-import UserAdmin from "../pages/UserPages/UserAdmin";
-import Loguin from "../component/Loguin";
+import { Result } from "antd";
+import axios from "axios";
+import { use } from "i18next";
+
+
+const dateToday = () => {
+  const newDate = new Date();
+  const day = newDate.getDay();
+  const month = newDate.getMonth();
+  const year = newDate.getFullYear();
+  const currentDate = `${day}/${month}/${year}`;
+  return currentDate;
+};
+
+const extractDataClient = async (user) => {
+  let dataSource = [];
+  let response = null;
+  console.log(user);
+  try {
+    response = await axios.get(`http://localhost:3000/api/client/mun/${user?.mun}`);
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        municipio: element.municipio,
+        nombre: element.nombre,
+        ci: element.idcliente,
+        "veces alquiladas": element.cant_alquileres,
+        "valor alquileres": element.valor_total,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
+const extractDataContract = async (user) => {
+  let dataSource = [];
+  let response = null;
+  try {
+    response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        nombre: element.nombre,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        fechaFin: element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro  ? "✔" : "❌",
+        "importe total": element.importe,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
+const extractDataIncome = async (user) => {
+  let dataSource = [];
+  try {
+   const response = await axios.get(`http://localhost:3000/api/pagos/${user?.mun}`);
+   console.log(response);
+   if(response.status === 200){
+    console.log(response.data);
+    dataSource = response.data.map((element, index) => ({
+      key: index,
+      "ingreso anual":  Number(element.enero) + Number(element.febrero) + Number(element.marzo) + Number(element.abril) + Number(element.mayo) + Number(element.junio) + Number(element.julio) + Number(element.agosto) + Number(element.septiembre) + Number(element.octubre) + Number(element.noviembre) + Number(element.diciembre),
+      "ingreso enero": element.enero,
+      "ingreso febrero": element.febrero,
+      "ingreso marzo": element.marzo,
+      "ingreso abril": element.abril,
+      "ingreso mayo": element.mayo,
+      "ingreso junio": element.junio,
+      "ingreso julio": element.julio,
+      'ingreso agosto':element.agosto,
+      "ingreso septiembre": element.septiembre,
+      "ingreso octubre": element.octubre,
+      "ingreso noviembre": element.noviembre,
+      "ingreso diciembre": element.diciembre 
+    }))
+
+   }  
+  } catch (error) {
+    console.log(error);  
+  }
+  return dataSource;
+};
+
 const AppRouter = () => {
+  const { user } = useContext(GlobalContext);
+  const [dataClient, setDataClient] = useState();
+  const [dataContract, setDataContract] = useState();
+  const [dataIncome, setDataIncome] = useState();
+
+  useEffect(() => {
+    extractDataClient(user).then((result) => {
+      setDataClient(result);
+    })
+    console.log(dataClient);
+    extractDataContract(user).then((result) => {
+      setDataContract(result);
+    })
+
+    extractDataIncome(user).then((result) => {
+      setDataIncome(result);
+    })
+  }, [])
+
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes/>}/>
-      <Route path="/incumplidoresClientes" element={<Incumplidores />}></Route>
-      <Route path="/listadoMoto" element={<ListMoto />}></Route>
-      <Route path="/situacionMotos" element={<SituacionMoto />}></Route>
-      <Route path="/contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
-      <Route path="/listadoContratos" element={<ListadoContratos />}></Route>
-      <Route path="contratoMunicipio" element={<ContratosMunicipio />}></Route>
-      <Route path="/ingresosAño" element={<IngresosAnno />}></Route>
-      <Route path="/crearContrato" element></Route>
-      <Route path="/contratosCliente" element={<ListadoContratos />}></Route>
-      <Route path="/motosCliente" element={<ListMoto />}></Route>
-      <Route path="/userAdmin" element={<UserAdmin />}></Route>
-      <Route path="/userClient" element={<UserClient />}></Route>
+      <Route path="listadoClientes" element={<ListadoClientes  extractData={dataClient} url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
+      <Route path="listadoMoto" element={<ListMoto />}></Route>
+      <Route path="listadoContratos"  element={<ListadoContratos  extractData={dataContract} url={`http://localhost:3000/api/contract/worker/pdf/${user?.mun}`} />}></Route>
+      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />} />
     </Routes>
   );
 };
 
-export default AppRoutes;
+export default AppRouter;

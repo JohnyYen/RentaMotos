@@ -1,4 +1,4 @@
-import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { Mentions, Button, Typography, Table, Flex, notification } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -9,18 +9,18 @@ const extractData = async () => {
   let response = null;
   try {
     response = await axios.get("http://localhost:3000/api/contract/marcxmodel");
-
+    console.log(response.data);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        nombre: element.nombre,
-        matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
-        "forma de pago": element.formapago,
-        "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
-        prorroga: element.diasprorroga,
+        "cantidad de motos": element.cant_moto,
+        "dias totales alquilados": element.diasalquilados,
+        "ingresos tarjeta de crédito": element.valor_tarjeta_credito,
+        "ingresos por cheques": element.valor_cheque,
+        "ingresos por efectivo": element.valor_efectivo,
+        "ingresos totales": element.ingreso_marca,
         "seguro adicional": element.seguro,
         "importe total": element.importe,
       }));
@@ -35,6 +35,7 @@ const extractDataFilterMarca = async () => {
   let dataFilter = [];
   try {
     const response = await axios.get("http://localhost:3000/api/marc");
+
     if (response.status === 200) {
       dataFilter = response.data;
     }
@@ -56,6 +57,29 @@ const extractDataFilterModelo = async () => {
   }
   return dataFilter;    
 }
+
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: "GET",
+      responseType: "blob",
+    });
+
+    const apiUrl = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = apiUrl;
+    link.download = "Contratos por marca y modelo.pdf";
+    link.click();
+
+    URL.revokeObjectURL(apiUrl);
+  } catch (error) {
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de contratos por marca y modelo esta vacia'
+    });
+  }
+};
 
 const ContratosMarcaModelo = () => {
   const date = new Date();
@@ -93,6 +117,10 @@ const ContratosMarcaModelo = () => {
     });
   }, []);
 
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/contract/marcxmodel/pdf");
+  }
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>
@@ -100,7 +128,7 @@ const ContratosMarcaModelo = () => {
       </Typography.Title>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+        {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
@@ -114,13 +142,13 @@ const ContratosMarcaModelo = () => {
           x: 920,
         }}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
             fixed: "left",
@@ -128,7 +156,7 @@ const ContratosMarcaModelo = () => {
             onFilter: (value, record) => record.marca.indexOf(value) === 0,
           },
           {
-            title: "Modelo",
+            title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
             fixed: "left",
@@ -136,37 +164,46 @@ const ContratosMarcaModelo = () => {
             onFilter: (value, record) => record.modelo.indexOf(value) === 0,
           },
           {
-            title: "Cantidad de motos",
+            title: t("mainContent.table.numberMotorcycle"),
             dataIndex: "cantidad de motos",
             key: "cantidad de motos",
           },
           {
-            title: "Dias totales alquilados",
+            title: t("mainContent.table.totalDaysRented"),
             dataIndex: "dias totales alquilados",
             key: "dias totales alquilados",
           },
           {
-            title: "Ingresos tarjeta de crédito",
+            title: t("mainContent.table.creditCardIncome"),
             dataIndex: "ingresos tarjeta de crédito",
             key: "ingresos tarjeta de crédito",
           },
           {
-            title: "Ingresos por cheques",
+            title: t("mainContent.table.incomeCheck"),
             dataIndex: "ingresos por cheques",
             key: "ingresos por cheques",
           },
           {
-            title: "Ingresos por efectivo",
+            title: t("mainContent.table.cashIncome"),
             dataIndex: "ingresos por efectivo",
             key: "ingresos por efectivo",
           },
           {
-            title: "Ingresos totales",
+            title: t("mainContent.table.totalAmount"),
             dataIndex: "ingresos totales",
             key: "ingresos totales",
           },
         ]}
       ></Table>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

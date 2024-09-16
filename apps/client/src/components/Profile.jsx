@@ -1,8 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { Modal, Tag , Descriptions, Flex, Divider, Col, Row} from 'antd'
 import FormItemLabel from 'antd/es/form/FormItemLabel'
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
 
 const Profile = ({isOpen, setOpen}) => {
+    const [t] = useTranslation("global");
+
+    const {user, client} = useContext(GlobalContext);
+    console.log(client);
 
     const margin = 10;
   return (
@@ -12,32 +18,38 @@ const Profile = ({isOpen, setOpen}) => {
             <Col span={12}>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Nombre de Usuario: </Tag>
-                    <FormItemLabel label={"hola"}/>
+                    <Tag>{t("profile.username")}: </Tag>
+                    <FormItemLabel label={user?.nombre_usuario}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>CI: </Tag>
+                    <FormItemLabel label={client?.idcliente}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Contraseña: </Tag>
+                    <Tag>{t("profile.password")}: </Tag>
+                    <FormItemLabel label={user?.contrasenia}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Email: </Tag>
+                    <Tag>{t("profile.email")}: </Tag>
+                    <FormItemLabel label={user?.email}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Número de Contacto: </Tag>
+                    <Tag>{t("profile.contactNumber")}: </Tag>
+                    <FormItemLabel label={client?.numcont}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Nombre: </Tag>
+                    <Tag>{t("profile.name")}: </Tag>
+                    <FormItemLabel label={client?.nombre}/>
                 </Flex  >
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Segundo Nombre: </Tag>
+                    <Tag>{t("profile.middleName")}: </Tag>
+                    <FormItemLabel label={client?.segnombre}/>
                 </Flex>
                 
             
@@ -46,23 +58,28 @@ const Profile = ({isOpen, setOpen}) => {
             <Col span={12}>
                 
                 <Flex style={{marginBottom: margin}}>  
-                    <Tag>Primer Apellido: </Tag>
+                    <Tag>{t("profile.lastName")}: </Tag>
+                    <FormItemLabel label={client?.primapellido}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Segundo Apellido: </Tag>
+                    <Tag>{t("profile.secondLastName")}: </Tag>
+                    <FormItemLabel label={client?.segapellido}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Municipio: </Tag>
+                    <Tag>{t("profile.municipality")}: </Tag>
+                    <FormItemLabel label={client?.municipio}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Edad: </Tag>
+                    <Tag>{t("profile.age")}: </Tag>
+                    <FormItemLabel label={client?.edad}/>
                 </Flex>
                     
                 <Flex style={{marginBottom: margin}}>
-                    <Tag>Sexo: </Tag>
+                    <Tag>{t("profile.sex")}: </Tag>
+                    <FormItemLabel label={client?.sexo}/>
                 </Flex>
 
             </Col>
@@ -72,4 +89,4 @@ const Profile = ({isOpen, setOpen}) => {
   )
 }
 
-export default Profile
+export default Profile;

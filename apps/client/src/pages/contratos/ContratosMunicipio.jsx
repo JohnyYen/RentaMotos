@@ -1,4 +1,4 @@
-import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { Mentions, Button, Typography, Table, Flex, notification } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -23,7 +23,10 @@ const extractData = async () => {
       }));
     }
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de contratos por municipio esta vacia'
+    });
   }
   return dataSource;
 };
@@ -39,6 +42,29 @@ const extractDataFilter = async () => {
     console.log(error);
   }
   return dataFilter;
+};
+
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: "GET",
+      responseType: "blob"
+    });
+
+    const apiUrl = URL.createObjectURL(response.data);
+    const link = document.createElement("a");
+    link.href = apiUrl;
+    link.download = "ContratosMunicipio.pdf";
+    link.click();
+
+    URL.revokeObjectURL(apiUrl);
+  } catch (error) {
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de contratos por municipio esta vacia'
+    });
+  }
 };
 
 const ContratosMunicipio = () => {
@@ -66,25 +92,29 @@ const ContratosMunicipio = () => {
     });
   }, []);
 
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/contract/mun/pdf");
+  };
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("contract.contractMunicipality")}</Typography.Title>
       <Flex align="center">
-        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>Fecha actual:</Typography.Text>
+        <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>{t("mainContent.currentDate")}:</Typography.Text>
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>
       <Table
-      scroll={{
-        x: 920,
-      }}
+        scroll={{
+          x: 920,
+        }}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
           {
-            title: "Municipio",
+            title: t("mainContent.table.municipality"),
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
@@ -92,37 +122,46 @@ const ContratosMunicipio = () => {
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
           },
           {
-            title: "Modelo",
+            title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
           },
           {
-            title: "Días alquilados",
+            title: t("mainContent.table.daysRented"),
             dataIndex: "días alquilados",
             key: "días alquilados",
           },
           {
-            title: "Días de prórroga",
+            title: t("mainContent.table.extensionDays"),
             dataIndex: "días de prórroga",
             key: "días de prórroga",
           },
           {
-            title: "Total efectivo",
+            title: t("mainContent.table.totalCash"),
             dataIndex: "total efectivo",
             key: "total efectivo",
           },
           {
-            title: "Valor total",
+            title: t("mainContent.table.totalAmount"),
             dataIndex: "valor total",
             key: "valor total",
           },
         ]}
       ></Table>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

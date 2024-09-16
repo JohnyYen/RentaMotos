@@ -6,6 +6,30 @@
   height: 5rem;
 }
 
+/* main {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.banner {
+background-color: rebeccapurple;
+  position: relative;
+}
+
+.banner #dotsCanvas{
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
+
 .header-button {
   margin-top: 0.5rem;
   border: none;
@@ -23,12 +47,29 @@
 
 .content {
   padding: 0 1rem;
+  background-image: url('../src/assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cover {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url('../src/assets/moto.background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -10000;
 }
 
 .ant-btn-download {
   position: fixed;
   right: 2rem;
-  bottom: 4.5rem;
+  bottom: 2rem;
   width: 9rem;
   background-color: darkblue;
 }
@@ -97,9 +138,11 @@
   transform: translate(-50%, -50%);
   width: 50vw;
   height: 50vh;
-  border-radius: 10%;
+  border-radius: 5%;
 
-  background: hsla(216, 91%, 35%, 1);
+  background: #147bdb;
+
+  /* background: hsla(216, 91%, 35%, 1);
 
   background: linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
 
@@ -107,7 +150,32 @@
 
   background: -webkit-linear-gradient(90deg, hsla(216, 91%, 35%, 1) 0%, hsla(222, 42%, 49%, 1) 50%);
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0848AB", endColorstr="#4968B1", GradientType=1 ); */
+}
+
+.formAnt{
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonGroup{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.divForm{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .userInput{
@@ -744,6 +812,7 @@
   align-items: center;
   top: 50%;
   left: 50%;
+  z-index: 9999;
   transform: translate(-50%, -50%);
   background-color: #06325d;
   background-size: cover;

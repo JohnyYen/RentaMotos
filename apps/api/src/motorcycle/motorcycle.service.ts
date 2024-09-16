@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotAcceptableException } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
@@ -13,14 +13,22 @@ export class MotorcycleService {
         return await res.rows;
     }
 
-    async getPDF(){
+    async getMotoClient(){
+        const res = await this.conn.query("SELECT * FROM moto_view WHERE situacion = 'Disponible'");
+        return res.rows;
+    }
 
+    async getPDF(){
         const moto = await this.getAllMotorcycle();
+        if(moto.length === 0)
+            throw new NotAcceptableException('La lista de motos esta vacia');
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
 
     async getPDFSituation(){
         const moto = await this.getSituationMoto();
+        if(moto.length === 0)
+            throw new NotAcceptableException('La lista de la situacion de las motos esta vacia');
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
 
@@ -37,7 +45,7 @@ export class MotorcycleService {
     }
 
     async updateMotorcycle (moto : MotorcycleDto, id : string){
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}, situacion = '${moto.situacion}'' WHERE matricula = '${id}'`);
+        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
     }
 
     async getSituationMoto(){

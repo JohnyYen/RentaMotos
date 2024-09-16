@@ -1,7 +1,7 @@
 -- FUNCTION: public.clientesincumplidores()
 
 -- DROP FUNCTION IF EXISTS public.clientesincumplidores();
-
+-- Reporte 4
 CREATE OR REPLACE FUNCTION public.clientesincumplidores(
 	)
     RETURNS TABLE(idcliente character varying(11), diasprorroga INTEGER)
@@ -22,7 +22,7 @@ $BODY$;
 -- FUNCTION: public.contratoxmarcamodelo(text, text)
 
 -- DROP FUNCTION IF EXISTS public.contratoxmarcamodelo(text, text);
-
+-- Reporte 5
 CREATE OR REPLACE FUNCTION public.contratoxmarcamodelo(
 	marca character varying(25) ,
 	modelo character varying(25) )
@@ -47,7 +47,7 @@ $BODY$;
 	-- FUNCTION: public.situacionmoto()
 
 -- DROP FUNCTION IF EXISTS public.situacionmoto();
-
+-- Reporte 6
 CREATE OR REPLACE FUNCTION public.situacionmoto(
 	)
    RETURNS TABLE( matricula character varying(8),  situacion character varying(25)  )

@@ -1,5 +1,6 @@
 import{ Button}from "antd";
 import {CarOutlined } from '@ant-design/icons';
+import { useTranslation } from "react-i18next";
 import './App.css';
 import Operation from "antd/es/transfer/operation";
 import axios from 'axios';
@@ -11,7 +12,7 @@ const NuevaMoto = ({isVisible, setVisible}) => {
   const [Color, setColor] = useState("");
   const [marca, setMarca] = useState("");
   const [modelo, setModelo] = useState("");
-
+  const [t] = useTranslation("global");
 
   if(!isVisible) return null;
 
@@ -37,45 +38,44 @@ const NuevaMoto = ({isVisible, setVisible}) => {
         <div className="panelCentral">
         
         <Form  >
-          <Form.Item  label={<span style={{ color: 'white' }}>Matrícula:</span>} name={"matriculamoto"} >
+          <Form.Item  label={<span style={{ color: 'white' }}>{t("mainContent.table.serialNumber")}:</span>} name={"matriculamoto"} >
               <Input placeholder="Ingrese su matrícula"/>
           </Form.Item>
         
         
           <Form.Item label={<span style={{ color: 'white' }}>Color:</span>} name={"colormoto"}>
         <Select  >
-          <Operation value ="1"  >rojo</Operation>
-          <Operation value ="2">negro</Operation>
-          <Operation value ="3">azul</Operation>
-          <Operation value ="4">verde</Operation>
-          <Operation value ="5">amarillo</Operation>
-          <Operation value ="6">gris</Operation>
-          <Operation value ="7">naranja</Operation>
-          <Operation value ="8">morado</Operation>
-          <Operation value ="9">neón</Operation>
-          <Operation value ="10">plateado</Operation>
-          <Operation value ="11">dorado</Operation>
-         
+          <Operation value ="1">{t("mainContent.table.colors.red")}</Operation>
+          <Operation value ="2">{t("mainContent.table.colors.black")}</Operation>
+          <Operation value ="3">{t("mainContent.table.colors.blue")}</Operation>
+          <Operation value ="4">{t("mainContent.table.colors.green")}</Operation>
+          <Operation value ="5">{t("mainContent.table.colors.yellow")}</Operation>
+          <Operation value ="6">{t("mainContent.table.colors.grey")}</Operation>
+          <Operation value ="7">{t("mainContent.table.colors.orange")}</Operation>
+          <Operation value ="8">{t("mainContent.table.colors.purple")}</Operation>
+          <Operation value ="9">{t("mainContent.table.colors.neon")}</Operation>
+          <Operation value ="10">{t("mainContent.table.colors.silver")}</Operation>
+          <Operation value ="11">{t("mainContent.table.colors.gold")}</Operation>
         </Select>
         </Form.Item>
         
         
         
-          <Form.Item label={<span style={{ color: 'white' }}>Marca:</span>} name={"marcaMoto"}>
+          <Form.Item label={<span style={{ color: 'white' }}>{t("mainContent.table.mark")}:</span>} name={"marcaMoto"}>
               <Input placeholder="Ingrese la marca"/>
           </Form.Item>
         
         
-          <Form.Item label={<span style={{ color: 'white' }}>Modelo:</span>} name={"moodelomoto"}>
+          <Form.Item label={<span style={{ color: 'white' }}>{t("mainContent.table.model")}:</span>} name={"moodelomoto"}>
               <Input placeholder="Ingrese el modelo"/>
           </Form.Item>
         
         
-          <Form.Item label={<span style={{ color: 'white' }}>Situación:</span>} name={"situaciónmoto"}>
+          <Form.Item label={<span style={{ color: 'white' }}>{t("mainContent.table.situation")}:</span>} name={"situaciónmoto"}>
         <Select  >
-          <Operation value ="1"  >taller</Operation>
-          <Operation value ="2">alquilada</Operation>
-          <Operation value ="3">disponible</Operation>
+          <Operation value ="1">{t("mainContent.table.situations.workshop")}</Operation>
+          <Operation value ="2">{t("mainContent.table.situations.available")}</Operation>
+          <Operation value ="3">{t("mainContent.table.situations.rented")}</Operation>
          
         </Select>
         </Form.Item>
@@ -88,11 +88,11 @@ const NuevaMoto = ({isVisible, setVisible}) => {
         </div>
         
               <div className="panelBotonesmoto">
-        <Button className="Bm1" type="primary" size="large" block >Cancelar
+        <Button className="Bm1" type="primary" size="large" block >{t("login.cancel")}
                 </Button>
         
                 <Button className="Bm2" type="primary"  size="large" block>
-                  Aceptar
+                {t("mainContent.table.situations.accept")}
                 </Button>
         </div>
         

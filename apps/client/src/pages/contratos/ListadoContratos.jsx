@@ -1,35 +1,11 @@
-import { Space, Typography, Table, Flex, Button } from "antd";
-import { useState, useEffect } from "react";
+import { Space, Typography, Table, Flex, Button, notification } from "antd";
+import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-
-const extractData = async () => {
-  let dataSource = [];
-  let response = null;
-  try {
-    response = await axios.get("http://localhost:3000/api/contract");
-
-    if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
-        key: index,
-        nombre: element.nombre,
-        matricula: element.matricula,
-        marca: element.marca,
-        modelo: element.modelo,
-        "forma de pago": element.formapago,
-        "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
-        prorroga: element.diasprorroga,
-        "seguro adicional": element.seguro,
-        "importe total": element.importe,
-      }));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataSource;
-};
+import EliminarContrato from "../../component/EliminarContrato";
+import ModalModContract from "../../components/ModalModContract";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const downloadPDF = async (url) => {
   try {
@@ -50,99 +26,100 @@ const downloadPDF = async (url) => {
     
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de Contratos esta vacia'
+    });
   }
 };
 
-const ListadoContratos = () => {
-  const [dataSource, setDataSource] = useState([]);
+const ListadoContratos = ({ extractData , url }) => {
   const [t] = useTranslation("global");
-
-  useEffect(() => {
-    extractData().then((result) => {
-      setDataSource(result);
-    });
-  }, []);
+  const {setRow} = useContext(GlobalContext);
+  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const onClick = async () => {
-    await downloadPDF("http://localhost:3000/api/contract/pdf");
+      await downloadPDF(url);
   };
 
   return (
     <Flex vertical="true">
+      <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
       <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
       <Table
-        scroll={{
-          x: 1200,
+         scroll={{
+          x: 920,
         }}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
-        dataSource={dataSource}
+        dataSource={extractData}
         columns={[
           {
-            title: "Nombre",
+            title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
             fixed: "left",
             width: "8rem",
           },
           {
-            title: "Matricula",
+            title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
           },
           {
-            title: "Marca",
+            title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
           },
           {
-            title: "modelo",
+            title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
           },
           {
-            title: "Forma de pago",
+            title: t("mainContent.table.methodPayment"),
             dataIndex: "forma de pago",
             key: "forma de pago",
           },
           {
-            title: "Fecha de inicio",
+            title: t("mainContent.table.startContract"),
             dataIndex: "fecha de inicio",
             key: "Fecha de inicio",
           },
           {
-            title: "Fecha de fin",
-            dataIndex: "fecha de fin",
+            title: t("mainContent.table.endContract"),
+            dataIndex: "fechaFin",
             key: "fecha de fin",
           },
           {
-            title: "Prórroga",
+            title: t("mainContent.table.extension"),
             dataIndex: "prorroga",
             key: "prorroga",
           },
           {
-            title: "Seguro adicional",
+            title: t("mainContent.table.additionalInsurance"),
             dataIndex: "seguro adicional",
             key: "seguro adicional",
           },
           {
-            title: "Importe total",
+            title: t("mainContent.table.totalAmount"),
             dataIndex: "importe total",
             key: "importe total",
           },
           {
-            title: "Acciones",
+            title: t("mainContent.table.actions"),
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
-                  Modificar
+                <Button className="actionTable" type="primary" onClick={() => {setVisible(true); setRow(record)}}>
+                  {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
-                  Eliminar
+                <Button onClick={() => {setOpen(true); setRow(record)}} className="actionTable" type="primary">
+                  {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

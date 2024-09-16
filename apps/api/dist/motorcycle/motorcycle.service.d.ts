@@ -3,6 +3,7 @@ export declare class MotorcycleService {
     private conn;
     constructor(conn: any);
     getAllMotorcycle(): Promise<any>;
+    getMotoClient(): Promise<any>;
     getPDF(): Promise<Buffer>;
     getPDFSituation(): Promise<Buffer>;
     deleteMotorcycle(id: string): Promise<void>;

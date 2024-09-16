@@ -1,31 +1,12 @@
-import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
-import { useEffect, useState } from "react";
+import { Space, Flex, Typography, Table, Button, Input, Mentions, notification } from "antd";
+import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-
-const extractData = async () => {
-  let dataSource = [];
-  let response = null;
-  try {
-    response = await axios.get("http://localhost:3000/api/client");
-
-    if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
-        key: index,
-        municipio: element.municipio,
-        nombre: element.nombre,
-        ci: element.idcliente,
-        "veces alquiladas": element.count,
-        "valor alquileres": element.sum,
-      }));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataSource;
-};
+import ModalModClient from "../../components/ModalModClient";
+import { GlobalContext } from "../../context/GlobalContext";
+import EliminarUsuario from "../../component/EliminarUsuario";
 
 const downloadPDF = async (url) => {
   try {
@@ -47,7 +28,10 @@ const downloadPDF = async (url) => {
     // Limpiar el objeto URL creado
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.error('Error al descargar el archivo:', error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de Contratos esta vacia'
+    });
   }
 };
 
@@ -64,16 +48,18 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ dateToday }) => {
-  const [dataSource, setDataSource] = useState([]);
+const ListadoClientes = ({ extractData, url }) => {
+
+  const {setRow, user} = useContext(GlobalContext)
+
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
-  useEffect(() => {
-    extractData().then((result) => {
-      setDataSource(result);
-    });
+  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+   
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
         {
@@ -85,32 +71,39 @@ const ListadoClientes = ({ dateToday }) => {
   }, []);
 
   const onClick = async () => {
-    await downloadPDF('http://localhost:3000/api/client/pdf');
+    try {
+      await downloadPDF(url);
+    } catch (error) {
+      
+    }
   };
 
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
+      <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          Fecha actual:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "20rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={dateToday}
+          defaultValue={new Date().toUTCString()}
         />
       </Flex>
       <Table
         scroll={{
           x: 920,
         }}
+        
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
-        dataSource={dataSource}
+        dataSource={extractData}
         columns={[
           {
             title: t("mainContent.table.municipality"),
@@ -145,11 +138,11 @@ const ListadoClientes = ({ dateToday }) => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary">
-                  Modificar
+                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
+                  {t("mainContent.table.modify")}
                 </Button>
-                <Button className="actionTable" type="primary">
-                  Eliminar
+                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
+                {t("mainContent.table.delete")}
                 </Button>
               </Flex>
             ),

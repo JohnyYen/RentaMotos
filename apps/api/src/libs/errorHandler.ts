@@ -5,8 +5,14 @@ export class ErrorHandler {
 
     public returnError() : Error{
         const code = this.error.code;
+        console.log(code);
+        console.log(this.error.message);
+        let message = this.error.message;
         if(code === '23505')
-            return new BadRequestException('Ya este Usuario existe, revise los datos por favor');
+            message = 'Ya este Usuario existe, revise los datos por favor';
+        
+        return new BadRequestException(message);
+
         
     }
 }
