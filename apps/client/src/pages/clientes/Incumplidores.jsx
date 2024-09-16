@@ -25,6 +25,29 @@ const extractData = async () => {
   return dataSource;
 };
 
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'blob',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+    });
+
+    const urlObject = URL.createObjectURL(response.data);
+    const link = document.createElement('a');
+    link.href = urlObject;
+    link.download = 'Incumplidores.pdf';
+    link.click();
+    
+    // Limpiar el objeto URL creado
+    URL.revokeObjectURL(urlObject);
+  } catch (error) {
+    console.error('Error al descargar el archivo:', error);
+  }
+};
 
 const Incumplidores = () => {
   const date = new Date();
@@ -42,6 +65,10 @@ const Incumplidores = () => {
     });
   }, []);
 
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/client/bad/pdf");
+  };
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientNonCompliant")}</Typography.Title>
@@ -50,11 +77,9 @@ const Incumplidores = () => {
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>
       <Table
-      scroll={{
-        x: 920,
-      }}
+      style={{width:1200, height:300}}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
@@ -83,6 +108,15 @@ const Incumplidores = () => {
           },
         ]}
       ></Table>
+       <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

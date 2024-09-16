@@ -7,6 +7,7 @@ export declare class ClientService {
     getClient(id: string): Promise<any>;
     getAllClientByPDF(): Promise<Buffer>;
     getAllClientPDFWorkerMun(mun: string): Promise<Buffer>;
+    validatePhoneNumber(num: string): Promise<boolean>;
     deleteClient(id: string): Promise<void>;
     createClient(client: ClientDto): Promise<void>;
     updateClient(client: ClientDto, id: string): Promise<void>;

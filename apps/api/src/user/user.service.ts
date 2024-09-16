@@ -3,6 +3,7 @@ import { PG_CONNECTION } from 'src/constants';
 import { UserClientDto } from './dto/userClient.dto';
 import { UserWorkerDto } from './dto/userWorker.dto';
 import { ErrorHandler } from '../libs/errorHandler';
+import { empty } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -29,6 +30,11 @@ export class UserService {
         catch(error){
             throw new ErrorHandler(error).returnError(); 
         }
+    }
+
+    async validateUserName(info : string){
+        const res =  await this.conn.query(`SELECT * FROM usuario WHERE (nombre_usuario = '${info}' or email = '${info}')`);
+        return res.rows[0] !== null;
     }
 
     async deleteUser(userName : string){

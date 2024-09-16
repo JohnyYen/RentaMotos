@@ -6,6 +6,7 @@ export declare class UserService {
     getUser(): Promise<any>;
     createUserClient(userClient: UserClientDto): Promise<void>;
     createUserWorker(userWorker: UserWorkerDto): Promise<void>;
+    validateUserName(info: string): Promise<boolean>;
     deleteUser(userName: string): Promise<void>;
     getWorkers(): Promise<any>;
     validationUser(userName: string, contrasenia: string): Promise<any>;

@@ -10,12 +10,11 @@ const extractData = async (client) => {
   let response = null;
   try {
     response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`);
-    console.log(response.data);
+    console.log(response);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
-        nombre: element.nombre,
         matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
@@ -60,22 +59,13 @@ const ListadoContratos = () => {
         </Button>
       </Flex>
       <Table
-        scroll={{
-          x: 1200,
-        }}
+        style={{width:1200, height:300}}
         pagination={{
-          pageSize: 5,
+          pageSize: 4,
           position: ["bottomLeft"],
         }}
         dataSource={dataSource}
         columns={[
-          {
-            title: t("mainContent.table.name"),
-            dataIndex: "nombre",
-            key: "nombre",
-            fixed: "left",
-            width: "8rem",
-          },
           {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",

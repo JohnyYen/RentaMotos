@@ -4,6 +4,7 @@ import { ClientDto } from './dto/client.dto';
 import generatePDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
 import { log } from 'console';
+import { ErrorHandler } from 'src/libs/errorHandler';
 
 @Injectable()
 export class ClientService {
@@ -32,6 +33,15 @@ export class ClientService {
     async getAllClientPDFWorkerMun(mun:string) {
         const client = await this.getClientByMun(mun);
         return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
+    }
+
+    async validatePhoneNumber(num : string){
+        try {
+            const res = await this.conn.query(`SELECT * FROM cliente WHERE numcont = '${num}'`);
+            return res.rows.length !== 0;
+        } catch (error) {
+            throw new ErrorHandler(error);
+        }
     }
 
     async deleteClient(id : string){

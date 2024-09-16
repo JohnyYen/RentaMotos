@@ -4,6 +4,31 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
+const downloadPDF = async (url) => {
+  try {
+    const response = await axios({
+      url,
+      method: "GET",
+      responseType: "blob",
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
+
+    });
+    console.log(response);
+
+    const apiUrl = URL.createObjectURL(response.data);
+    const link = document.createElement("a");
+    link.href = apiUrl;
+    link.download = "Ingreso anual.pdf";
+    link.click();
+
+    URL.revokeObjectURL(apiUrl);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const IngresosAnno = ({ extractData }) => {
   const date = new Date();
   const day = date.getDay();
@@ -13,6 +38,10 @@ const IngresosAnno = ({ extractData }) => {
   
   const [t] = useTranslation("global");
 
+  const onClick = async () => {
+    await downloadPDF("http://localhost:3000/api/pagos/pdf");
+  };
+
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("sideBar.annualIncome")}</Typography.Title>
@@ -21,13 +50,7 @@ const IngresosAnno = ({ extractData }) => {
         <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
       </Flex>
       <Table
-      scroll={{
-        x: 1200,
-      }}
-        pagination={{
-          pageSize: 5,
-          position: ["bottomLeft"],
-        }}
+      style={{width:1200, height:300}}
         dataSource={extractData}
         columns={[
           {
@@ -98,8 +121,15 @@ const IngresosAnno = ({ extractData }) => {
           },
         ]}
       ></Table>
-      
-      <Button className="ant-btn-download" type="primary" icon={<DownloadOutlined />} shape="round">Descargar PDF</Button>
+      <Button
+        className="ant-btn-download"
+        onClick={onClick}
+        type="primary"
+        icon={<DownloadOutlined />}
+        shape="round"
+      >
+        {t("mainContent.downloadPDF")}
+      </Button>
     </Flex>
   );
 };

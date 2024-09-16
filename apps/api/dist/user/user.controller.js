@@ -27,6 +27,9 @@ let UserController = class UserController {
     createUserClient(body) {
         this.userService.createUserClient(body);
     }
+    async validateCreateUser(body) {
+        return await this.userService.validateUserName(body.info);
+    }
     async getWorkers() {
         return this.userService.getWorkers();
     }
@@ -55,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", [userClient_dto_1.UserClientDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "createUserClient", null);
+__decorate([
+    (0, common_1.Post)('/validate'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "validateCreateUser", null);
 __decorate([
     (0, common_1.Get)('/worker'),
     __metadata("design:type", Function),

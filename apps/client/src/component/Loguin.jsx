@@ -3,13 +3,80 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "../App.css";
 import "./NuevoUsuario";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ModalCreateClient from "../components/ModalCreateClient";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
 import { useTranslation } from "react-i18next";
 
+
 function Loguin() {
+
+let bannerRef = useRef({})
+let canvasRef = useRef({})
+
+useEffect(() => {
+  const canvas = canvasRef.current;
+  const banner = bannerRef.current;
+  canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+let ctx = canvas.getContext('2d');
+
+let dots = [];
+let arrayColors = ['#eee', '#545454', '#596d91', '#bb5a68', '#696541'];
+for (let i = 0; i < 50; i++) {
+    dots.push({
+        x: Math.floor(Math.random() * canvas.width),
+        y: Math.floor(Math.random() * canvas.height),
+        size: Math.random() * 3 + 5,
+        color: arrayColors[Math.floor(Math.random() * 5)]
+    })
+}
+
+const drawDots = () => {
+    dots.forEach(dot => {
+        ctx.fillStyle = dot.color;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y,dot.size, 0, Math.PI*2);
+        ctx.fill();
+    })
+}
+
+drawDots();
+
+banner.addEventListener('mousemove', (event)=>{
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    drawDots();
+    let mouse = {
+        x: event.pageX - banner.getBoundingClientRect().left,
+        y: event.y - banner.getBoundingClientRect().top,
+    }
+
+    dots.forEach(dot => {
+
+        let distance = Math.sqrt((mouse.x - dot.x)**2 + (mouse.y - dot.y)**2);
+        if(distance < 300){
+            ctx.strokeStyle = dot.color;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+    })
+})
+
+banner.addEventListener('mouseout', () => {
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    drawDots();
+})
+}, [])
+
+
+  const [form] = Form.useForm();
+  form.resetFields();
+
+
   const [abrirModal, setabrirModal] = useState(false);
   const navigate = useNavigate();
   const [t] = useTranslation("global");
@@ -58,78 +125,32 @@ function Loguin() {
         message.info('Este usuario no existe');
     }
 
-    return (
-      <div className="loguin">
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-        >
-          <UserOutlined className="iconoUsuario" />
-        </div>
-
-        <div>
-          <Form labelCol={{span: 8}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} onFinish={Registrar} >
-            <Form.Item
-              label={t("login.username")}
-              name={"user"}
-              rules={[{required:true, message:'Por favor introduce el usuario'}]}
->
-              <Input onChange={(e) => setUserName(e.target.value)} placeholder="Ingrese su usuario" />
-            </Form.Item>
-
-            <Form.Item
-              label={t("login.password")}
-              name={"password"}
-              rules={[{required:true, message:'Por favor introduce la contraseña'}]}>
-              <Input onChange={(e) => setPassword(e.target.password)} placeholder="Ingrese su contraseña" />
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="default" htmlType="submit">
-              {t("login.accept")}
-              </Button>
-            </Form.Item>
-         
-            <Form.Item>
-              <Button onClick={() => setabrirModal(true)} type="link">
-              {t("login.register")}
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
-
-        <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
-      </div>
-    );
   };
 
   return (
-    <div className="loguin">
+    <main className="banner" ref={bannerRef}>
+      <div className="loguin">
        <div className="divForm">
         <Form className="formAnt"
+          clearOnDestroy={true}
           name="login"
-          initialValues={{
-            remember: true,
-          }}
           style={{
             maxWidth: 360,
           }}
           onFinish={Registrar}
+          form={form}
         >
         <Form.Item
           name="username"
           rules={[{required: true,message: 'Please input your Username!',},
+            {}
           ]}>
           <Input onChange={(e) => setUserName(e.target.value)} prefix={<UserOutlined />} placeholder="Username" />
         </Form.Item>
 
         <Form.Item
           name="password"
-          rules={[{required: true,message: 'Please input your Password!',},]}>
+          rules={[{required: true,message: 'Please input your Password!',}]}>
 
           <Input onChange={(e) => setPassword(e.target.value)} prefix={<LockOutlined />} type="password" placeholder="Password" />
 
@@ -154,6 +175,8 @@ function Loguin() {
        </div>
       <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
     </div>
+    <canvas id="dotsCanvas" ref={canvasRef}></canvas>
+    </main>
   );
   };
 

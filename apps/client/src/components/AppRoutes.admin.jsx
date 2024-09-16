@@ -28,7 +28,7 @@ const extractDataClient = async () => {
   let response = null;
   try {
     response = await axios.get("http://localhost:3000/api/client");
-
+    console.log(response);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
@@ -60,7 +60,7 @@ const extractDataContract = async () => {
         modelo: element.modelo,
         "forma de pago": element.formapago,
         "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
+        fechaFin: element.fechafin,
         prorroga: element.diasprorroga,
         "seguro adicional": element.seguro ? "✔" : "❌",
         "importe total": element.importe,
@@ -108,7 +108,7 @@ const AppRouter = () => {
   const [dataIncome, setDataIncome] = useState();
 
   useEffect(() => {
-    extractDataClient(user).then((result) => {
+    extractDataClient(user).then((result) => {  
       setDataClient(result);
     })
 
