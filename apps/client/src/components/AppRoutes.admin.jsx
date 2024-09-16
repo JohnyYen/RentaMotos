@@ -28,7 +28,7 @@ const extractDataClient = async () => {
   let response = null;
   try {
     response = await axios.get("http://localhost:3000/api/client");
-
+    console.log(response);
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
@@ -108,7 +108,7 @@ const AppRouter = () => {
   const [dataIncome, setDataIncome] = useState();
 
   useEffect(() => {
-    extractDataClient(user).then((result) => {
+    extractDataClient(user).then((result) => {  
       setDataClient(result);
     })
 
