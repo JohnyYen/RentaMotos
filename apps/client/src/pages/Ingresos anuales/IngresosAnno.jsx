@@ -1,4 +1,4 @@
-import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { Mentions, Button, Typography, Table, Flex, notification } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -25,7 +25,10 @@ const downloadPDF = async (url) => {
 
     URL.revokeObjectURL(apiUrl);
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de ingresos anuales esta vacia'
+    });
   }
 };
 

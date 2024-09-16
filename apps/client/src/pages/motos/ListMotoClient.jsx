@@ -57,7 +57,6 @@ const ListMotoClient = () => {
 
   const handleRow = (record) => {
     setRow(record);
-    //console.log(row);
   }
 
   useEffect(() => {

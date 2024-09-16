@@ -21,7 +21,7 @@ http://localhost:3000/api/contract/:id GET obtener todos los contratos de un cli
 ## Rutas PDF Faltantes
 - http://localhost:3000/api/contract/worker/pdf/:mun Obtener PDF de los contratos segun el municipio
 - http://localhost:3000/api/client/worker/pdf/:mun Obtener PDF de los clientes segun el municipio
-
+- http://localhost:3000/api/pagos/worker/pdf/:mun Obtener PDF de los pagos mensuales
 # Rutas API BACKEND
 ## Cliente
 http://localhost:3000/api/client GET
