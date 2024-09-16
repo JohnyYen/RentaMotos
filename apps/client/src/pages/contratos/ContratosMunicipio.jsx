@@ -1,4 +1,4 @@
-import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { Mentions, Button, Typography, Table, Flex, notification } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -23,7 +23,10 @@ const extractData = async () => {
       }));
     }
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de contratos por municipio esta vacia'
+    });
   }
   return dataSource;
 };
@@ -52,12 +55,15 @@ const downloadPDF = async (url) => {
     const apiUrl = URL.createObjectURL(response.data);
     const link = document.createElement("a");
     link.href = apiUrl;
-    link.download = "Contratos por municipio.pdf";
+    link.download = "ContratosMunicipio.pdf";
     link.click();
 
     URL.revokeObjectURL(apiUrl);
   } catch (error) {
-    console.log(error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de contratos por municipio esta vacia'
+    });
   }
 };
 

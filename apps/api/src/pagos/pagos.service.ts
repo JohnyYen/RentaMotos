@@ -20,7 +20,7 @@ export class PagosService {
     async getAllPagosPDF(){
         const list = await this.getAllPagos();
 
-        if(list.length === 0)
+        if(list.filter((item) => item !== null).length === 1)
             throw new NotAcceptableException('La lista de Pagos esta vacia');
         else
             return await generatePDF(Object.keys(list[0]), arrayFormatter(list));

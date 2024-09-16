@@ -1,4 +1,4 @@
-import { Mentions, Button, Typography, Table, Flex } from "antd";
+import { Mentions, Button, Typography, Table, Flex, notification } from "antd";
 import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -45,7 +45,10 @@ const downloadPDF = async (url) => {
     // Limpiar el objeto URL creado
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.error('Error al descargar el archivo:', error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de clientes incumplidores esta vacia'
+    });
   }
 };
 
