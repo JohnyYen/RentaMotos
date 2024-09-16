@@ -1,4 +1,4 @@
-import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
+import { Space, Flex, Typography, Table, Button, Input, Mentions, notification } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import "../../App.css";
@@ -28,7 +28,10 @@ const downloadPDF = async (url) => {
     // Limpiar el objeto URL creado
     URL.revokeObjectURL(urlObject);
   } catch (error) {
-    console.error('Error al descargar el archivo:', error);
+    notification.info({
+      message: "Descarga de PDF",
+      description: 'La lista de Contratos esta vacia'
+    });
   }
 };
 
@@ -49,7 +52,6 @@ const ListadoClientes = ({ extractData, url }) => {
 
   const {setRow, user} = useContext(GlobalContext)
 
-  
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
@@ -69,7 +71,11 @@ const ListadoClientes = ({ extractData, url }) => {
   }, []);
 
   const onClick = async () => {
-    await downloadPDF(url);
+    try {
+      await downloadPDF(url);
+    } catch (error) {
+      
+    }
   };
 
   return (
