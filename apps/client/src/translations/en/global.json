@@ -115,8 +115,11 @@
         "username": "Username",
         "password": "Password",
         "accept": "Accept",
-        "register": "Register",
-        "cancel": "Cancel"
+        "register": "or Register now!",
+        "cancel": "Cancel",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "loginIn": "Login"
     },
     "profile": {
         "profile": "Profile",
@@ -139,6 +142,11 @@
         "createWorker": "Create Worker",
         "createMotorcycle":"Create Motorcycle",
         "rentMotorcycle": "Rent Motorcycle",
+        "createUsername": "Create User",
+        "deleteWorker": "Delete Worker",
+        "deleteClient": "Delete Client",
+        "deleteMotorcycle": "Delete Motorcycle",
+        "deleteContract": "Delete Contract",
         "insurance": "Insurance",
         "cantKm": "Number of Kilometers",
         "situation": "Situation",
@@ -171,7 +179,40 @@
         "emptyStartDate": "Enter the Start Date!",
         "emptyCI": "Enter your ID!",
         "emptyEmail": "Enter your email!",
-        "emptySex": "Enter your sex!"
-        
-    } 
+        "emptySex": "Enter your sex!",
+        "afterEndDate": "The new date must be after",
+        "minCharName": "The name must have a minimum of 4 characters",
+        "maxCharName": "The name must have a maximum of 20 characters",
+        "minCharMiddleName": "The middle name must be at least 4 characters",
+        "maxCharMiddleName": "The middle name must have a maximum of 20 characters" ,
+        "minCharLastName": "The last name must be at least 4 characters",
+        "maxCharLastName": "The last name must have a maximum of 25 characters",
+        "minCharSecondLastName": "Your last name must be at least 4 characters",
+        "maxCharSecondLastName": "Your last name must be at most 20 characters",
+        "minCharUsername": "Your username must be at least 4 characters",
+        "maxCharUsername": "Your username must be at least 20 characters",
+        "minCharPassword": "Password must be at least 5 characters",
+        "maxCharPassword": "The password must be at least 8 characters",
+        "lengthContactNumber": "The contact number must have 8 digits",
+        "existUser": "This user already exists",
+        "notExistUser": "This user not exists",
+        "existEmail": "That email already exists",
+        "extensionGMAIL.COM": "The string must contain @gmail.com",
+        "lengthSerialNumber": "Must be 8 characters",
+        "signatureDateBeforeStartDate": "The signature must be before the start of the rental",
+        "signatureDateBeforeEndDate": "The signature must be before the end of the rental",
+        "startDateBeforeEndDate": "The start of the rental must be before the end of the rental",
+        "lengthID": "The Identity card must have 11 digits"
+    },
+    "messageSuccess": {
+        "success": "Successfully created",
+        "loginSuccess": "Successfully logged in",
+        "deleteSucces": "Successfully removed"
+    },
+    "notification": {
+        "deleteWorker": "Are you sure you want to delete the Worker?",
+        "deleteClient": "Are you sure you want to delete the customer?",
+        "deleteMotorcycle": "Are you sure you want to delete the moto?",
+        "deleteContract": "Are you sure you want to delete the contract?"
+    }   
 }

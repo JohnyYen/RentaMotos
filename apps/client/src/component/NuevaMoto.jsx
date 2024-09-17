@@ -12,6 +12,8 @@ const NuevaMoto = ({isVisible, setVisible}) => {
   const [Color, setColor] = useState("");
   const [marca, setMarca] = useState("");
   const [modelo, setModelo] = useState("");
+  
+  // Translation
   const [t] = useTranslation("global");
 
   if(!isVisible) return null;
@@ -39,7 +41,7 @@ const NuevaMoto = ({isVisible, setVisible}) => {
         
         <Form  >
           <Form.Item  label={<span style={{ color: 'white' }}>{t("mainContent.table.serialNumber")}:</span>} name={"matriculamoto"} >
-              <Input placeholder="Ingrese su matrícula"/>
+              <Input placeholder={t("mainContent.table.serialNumber")}/>
           </Form.Item>
         
         
@@ -62,12 +64,12 @@ const NuevaMoto = ({isVisible, setVisible}) => {
         
         
           <Form.Item label={<span style={{ color: 'white' }}>{t("mainContent.table.mark")}:</span>} name={"marcaMoto"}>
-              <Input placeholder="Ingrese la marca"/>
+              <Input placeholder={t("mainContent.table.mark")}/>
           </Form.Item>
         
         
           <Form.Item label={<span style={{ color: 'white' }}>{t("mainContent.table.model")}:</span>} name={"moodelomoto"}>
-              <Input placeholder="Ingrese el modelo"/>
+              <Input placeholder={t("mainContent.table.Model")}/>
           </Form.Item>
         
         

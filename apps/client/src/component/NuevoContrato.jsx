@@ -15,6 +15,8 @@ const NuevoContrato = ({isVisible, setVisible}) => {
   const [dateFirma, setDateFirma] = useState(new Date());
   const [isChecked, setIsChecked] = useState(false);
   const [formaPago, setFormaPago] = useState("");
+  
+  // Translation 
   const [t] = useTranslation("global");
 
   if (!isVisible) return null;
@@ -40,13 +42,13 @@ const NuevoContrato = ({isVisible, setVisible}) => {
           <form id="nuevo-contrato-form">
             <div id="left-div">
             <label>{t("mainContent.table.serialNumber")}</label>
-            <input onChange={(e) => setMatricula(e.target.value)} placeholder="Matricula de la Moto"/>
+            <input onChange={(e) => setMatricula(e.target.value)} placeholder={t("mainContent.table.serialNumber")}/>
 
             <label>{t("mainContent.table.clientID")}</label>
-            <input onChange={(e) => setId(e.target.value)} placeholder="CI del Cliente"/>
+            <input onChange={(e) => setId(e.target.value)} placeholder={t("mainContent.table.clientID")}/>
 
             <label>{t("mainContent.table.signatureDate")}</label>
-            <input onChange={(e) => setDateFirma(e.target.value)} type="date" placeholder="    "/>
+            <input onChange={(e) => setDateFirma(e.target.value)} type="date" placeholder={t("mainContent.table.signatureDate")}/>
 
             <label>{t("mainContent.table.startContract")}</label>
             <input onChange={(e) => setDateBegin(e.target.value)} type="date"/>

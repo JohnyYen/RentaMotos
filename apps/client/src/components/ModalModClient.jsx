@@ -47,7 +47,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
     }
     const margin = 0;
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}   destroyOnClose={true} title={"Modificar Cliente"} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}   destroyOnClose={true} title={t("modal.modifyClient")} centered={true} open={isOpen} onCancel={setOpen} onClose={setOpen} onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 28}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
@@ -59,45 +59,45 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
          <Row gutter={24}>
            <Col span={12}>
-              <Form.Item label='Nombre:' name="name" rules={[{required: true,message: 'Introduce el nombre!',},
-                {min:4, message:"El nombre debe de tener minimo 4 caracteres"},
-                {max:20, message:"El nombre debe de tener maximo 20 caracteres"},
+              <Form.Item label={t("profile.name") + ":"} name="name" rules={[{required: true,message: t("messageError.emptyName"),},
+                {min:4, message: t("messageError.minCharName")},
+                {max:20, message: t("messageError.maxCharName")},
               ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder='Nuevo nombre'/>
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")}/>
               </Form.Item>
 
-              <Form.Item label='Segundo Nombre:' name="secondName" rules={[{min: 4,message: 'El segundo nombre debe tener minimo 4 caracteres',},
-                {max:20,message: 'El segundo nombre debe tener maximo 20 caracteres',}
+              <Form.Item label={t("profile.middleName") + ":"} name="secondName" rules={[{min: 4,message: t("messageError.minCharMiddleName"),},
+                {max:20,message: t("messageError.maxCharMiddleName"),}
               ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder='Nuevo segundo nombre'/>  
-              </Form.Item>
-
-
-              <Form.Item label='Apellido:' name="primApellido" rules={[{required: true,message: 'Introduce el primer Apellido!',},
-                {min:4, message:"El apellido debe tener minimo 4 caracteres"},
-                {max:25, message:"El apellido debe tener maximo 25 caracteres"},
-              ]}>
-              <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder='Nuevo primer apellido'/>        
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder={t("profile.lastName")}/>  
               </Form.Item>
 
 
-              <Form.Item label='Segundo Apellido:' name="segApellido" rules={[{min: 4,message: 'El apellido debe tener minimo 4 caracteres!',},
-                {max:25 ,message: 'El apellido debe tener maximo 25 caracteres!',},
+              <Form.Item label={t("profile.lastName") + ":"} name="primApellido" rules={[{required: true,message: t("messageError.emptyLastName"),},
+                {min:4, message: t("messageError.minCharLastName")},
+                {max:25, message: t("messageError.maxCharLastName")},
               ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondLast(e.target.value)} placeholder='Nuevo segundo apellido'/>    
+              <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder={t("profile.lastName")}/>        
+              </Form.Item>
+
+
+              <Form.Item label={t("profile.secondLastName") + ":"} name="segApellido" rules={[{min: 4,message: t("messageError.minCharLastName"),},
+                {max:25 ,message: t("messageError.maxCharLastName"),},
+              ]}>
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondLast(e.target.value)} placeholder={t("profile.secondLastName")}/>    
               </Form.Item>
            </Col>
 
            <Col span={12}>
-              <Form.Item label='Numero Contacto:' name="numCont" rules={[{required: true,message: 'Introduce el numero de contacto!',},
-                {len:8, message: "El numero de contacto debe de tener 8 digitos"}
+              <Form.Item label={t("profile.contactNumber") + ":"} name="numCont" rules={[{required: true,message: t("messageError.emptyContactNumber"),},
+                {len:8, message: t("messageError.lengthContactNumber")}
               ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setNumCont(e.target.value)} placeholder='Nuevo numero contacto'/>   
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setNumCont(e.target.value)} placeholder={t("profile.contactNumber")}/>   
               </Form.Item>
 
 
-              <Form.Item label='Municipio:' name="municipio" rules={[{required: true,message: 'Introduce el Municipio!',},]}>
-                <Select style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder='Municipio'>
+              <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
+                <Select style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder={t("profile.municipality")}>
                   {dataSource.map((item, i) => (
                     <Option key={i} value={item.nommun}>{item.nommun}</Option>
                   ))}

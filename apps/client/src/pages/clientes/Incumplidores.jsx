@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 
 const extractData = async () => {
   let dataSource = [];
@@ -53,12 +54,6 @@ const downloadPDF = async (url) => {
 };
 
 const Incumplidores = () => {
-  const date = new Date();
-  const day = date.getDay();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
-
   const [t] = useTranslation("global");
   const [dataSource, setDataSource] = useState([]);
 
@@ -77,7 +72,7 @@ const Incumplidores = () => {
       <Typography.Title level={3}>{t("client.clientNonCompliant")}</Typography.Title>
       <Flex align="center">
         <Typography.Text style={{fontSize: "1rem", fontWeight: "500"}}>{t("mainContent.currentDate")}:</Typography.Text>
-        <Mentions style={{width: "6rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={currentDate} />
+        <Mentions style={{width: "8rem", fontSize: "1rem", fontWeight: "500"}} readOnly variant="borderless" defaultValue={moment().format('L')} />
       </Flex>
       <Table
       scroll={{

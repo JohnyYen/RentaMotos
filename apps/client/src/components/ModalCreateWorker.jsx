@@ -36,14 +36,14 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
         }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  centered={true} title='Crear Trabajador' open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  centered={true} title={t("modal.createWorker")} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
       </Form>
   )}
     >
-        <Form.Item label='Nombre de Usuario:' name="userName" rules={[{required: true,message: 'Introduce el nombre de Usuario!',},
+        <Form.Item label={t("profile.username") + ":"} name="userName" rules={[{required: true,message: t("messageError.emptyUsername"),},
           {validator:(rule, value, callback) => {
             if(rule && value){
               const res =  axios.post('http://localhost:3000/api/user/validate', {info : value});
@@ -54,22 +54,21 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
             }
           }}
         ]}>
-          <Input onChange={(e) => setName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder='Ingrese su nombre'/>
+          <Input onChange={(e) => setName(e.target.value)} style={{marginBottom:margin, width:300}}  placeholder={t("profile.username")}/>
         </Form.Item>
 
-        <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce la Contraseña!',},
+        <Form.Item label={t("profile.password") + ":"} name="password" rules={[{required: true,message: t("messageError.emptyPassword"),},
           {validator:(rule, value, callback) => {
             if(rule && value){
               const res =  axios.post('http://localhost:3000/api/user/validate', {info : value});
               res.then((response) => {
-                console.log(response.data);
-                if(!response.data)
-                  callback(new Error('Este usuario ya existe'));
+                if(response.data)
+                  callback(new Error(t("messageError.existUser")));
               })
             }
           }},
         ]}>
-          <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
+          <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder={t("profile.password")}/>
         </Form.Item>
 
         <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>

@@ -96,7 +96,7 @@ function Loguin() {
       const tipoUsuario = response.data.tipo_usuario;
       setUser(response.data);
       if(tipoUsuario === 'Admin'){
-        message.success('Logueado con Exito')
+        message.success(t("messageSuccess.loginSuccess"))
         navigate('/admin');
       }
 
@@ -104,7 +104,7 @@ function Loguin() {
         const idClient = response.data.id_cliente;
         const res = await axios.get(`http://localhost:3000/api/client/sample/${idClient}`);
         if(res.status === 200){
-          message.success('Logueado con Exito')
+          message.success(t("messageSuccess.loginSuccess"))
           setClient(res.data[0]);
           localStorage.setItem('clientData', JSON.stringify(res.data[0]));
           navigate('/client');
@@ -112,7 +112,7 @@ function Loguin() {
       }
 
       if(tipoUsuario === 'Trabajador'){
-        message.success('Logueado con Exito')
+        message.success(t("messageSuccess.loginSuccess"))
         navigate('/worker');
       }
 
@@ -120,7 +120,7 @@ function Loguin() {
       localStorage.setItem('userData', JSON.stringify(response.data));
         
       if(!tipoUsuario)
-        message.info('Este usuario no existe');
+        message.info(t("messageError.notExistUser"));
     }
 
   };
@@ -140,36 +140,35 @@ function Loguin() {
         >
         <Form.Item
           name="username"
-          rules={[{required: true,message: 'Please input your Username!',},
+          rules={[{required: true,message: t("messageError.emptyUsername"),},
             {}
           ]}>
-          <Input onChange={(e) => setUserName(e.target.value)} prefix={<UserOutlined />} placeholder="Username" />
+          <Input onChange={(e) => setUserName(e.target.value)} prefix={<UserOutlined />} placeholder={t("login.username")} />
         </Form.Item>
 
         <Form.Item
           name="password"
-          rules={[{required: true,message: 'Please input your Password!',}]}>
+          rules={[{required: true,message: t("messageError.emptyPassword"),}]}>
 
-          <Input onChange={(e) => setPassword(e.target.value)} prefix={<LockOutlined />} type="password" placeholder="Password" />
+          <Input onChange={(e) => setPassword(e.target.value)} prefix={<LockOutlined />} type="password" placeholder={t("login.password")} />
 
         </Form.Item>
         <Form.Item>
           <Flex justify="space-between" align="center">
             <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox>{t("login.rememberMe")}</Checkbox>
             </Form.Item>
-            <a style={{color:'whitesmoke'}}>Forgot password</a>
+            <a style={{color:'whitesmoke'}}>{t("login.forgotPassword")}</a>
           </Flex>
         </Form.Item>
 
         <Form.Item>
           <Button block type="default" htmlType="submit">
-            Log in
+            {t("login.loginIn")}
           </Button>
-          or <a onClick={() => setabrirModal(true)} style={{color:'whitesmoke'}}>Register now!</a>
+          <a onClick={() => setabrirModal(true)} style={{color:'whitesmoke'}}>{t("login.register")}</a>
         </Form.Item>
       </Form>
-
        </div>
       <ModalCreateClient isVisible={abrirModal} setVisible={() => setabrirModal(!abrirModal)} />
     </div>

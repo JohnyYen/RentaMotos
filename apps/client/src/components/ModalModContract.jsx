@@ -56,7 +56,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
       }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={"Modificar Contrato"} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  afterOpenChange={() => setSeguro(seguro)} destroyOnClose={true} title={t("modal.modifyContract")} open={isOpen} onOk={handlePetition} onCancel={setOpen}  onClose={setOpen}
      modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
@@ -70,8 +70,8 @@ const ModalModContract = ({isOpen, setOpen}) => {
 
                 <Tag style={{margin:15, width:150,height:30}}><Typography.Text>{row?.matricula}</Typography.Text></Tag>
 
-                <Form.Item label='Forma Pago:' name="formaPago" rules={[{required: true,message: 'Introduce la Forma de Pago!',},]}>
-                <Select style={{marginBottom:margin}} onSelect={(e) => setFormaPago(e)} placeholder={row ? row['forma de pago'] : 'Forma de pago'}>
+                <Form.Item label={t("modal.methodPayment") + ":"} name="formaPago" rules={[{required: true,message: t("messageError.emptyMethodPayment"),},]}>
+                <Select style={{marginBottom:margin}} onSelect={(e) => setFormaPago(e)} placeholder={row ? row['forma de pago'] : t("modal.methodPayment")}>
                     {dataSource.map((item, i) => (
                       <Select.Option key={i} value={item.formapago}>{item.formapago}</Select.Option>
                     ))}
@@ -81,13 +81,13 @@ const ModalModContract = ({isOpen, setOpen}) => {
 
             <Col span={12}>
                 <Form.Item name="seguro" rules={[]}> 
-                  <Checkbox defaultChecked={seguro} title='Seguro' style={{marginBottom:margin}} onChange={(e) => setSeguro(e.target.checked)}>Seguro</Checkbox>
+                  <Checkbox defaultChecked={seguro} title={t("modal.insurance") + ":"} style={{marginBottom:margin}} onChange={(e) => setSeguro(e.target.checked)}>{t("modal.methodPayment") + ":"}</Checkbox>
                 
                 </Form.Item>
 
-              <Form.Item label='Dias Proroga:' name="diasProrroga" rules={[{required: true,message: 'Introduce los dias Prorroga!',},
+              <Form.Item label={t("modal.extensionDays") + ":"} name="diasProrroga" rules={[{required: true,message: t("messageError.emptyExtensionDays"),},
               ]}>
-                <InputNumber min={row?.prorroga} style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : 'Prorroga'}/>
+                <InputNumber min={row?.prorroga} style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : t("modal.methodPayment")}/>
                 
               </Form.Item>
 
