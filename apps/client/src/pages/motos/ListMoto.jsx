@@ -89,13 +89,14 @@ const ListMoto = () => {
       setDataSource(result);
     });
     extractDataFilter().then(result => {
-      setDataFilter(result.map(marca => (
+      setDataFilter(result.map((marca) => (
         {
           text: marca.nommarca,
           value: marca.nomarca,
         }
       )));
     });
+
   }, []);
 
   const onClick = async () => {
@@ -149,7 +150,7 @@ const ListMoto = () => {
             dataIndex: "marca",
             key: "marca",
             filters: dataFilter,
-            onFilter: (value, record) => record.marca.indexOf(value) === 0,
+            onFilter: (value, record) => {record.marca.indexOf(value) === -1},
           },
           {
             title: t("mainContent.table.model"),
