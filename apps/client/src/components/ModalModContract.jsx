@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { SyncOutlined, UserOutlined } from '@ant-design/icons';
 import { LuBike } from 'react-icons/lu';
 
+
 const response = await axios.get('http://localhost:3000/api/formaPago')
 let dataSource = [];
 
@@ -45,11 +46,10 @@ const ModalModContract = ({isOpen, setOpen}) => {
       }
 
       if(date && formaPago && seguro && diasProrroga){
-        console.log(contract);
-        //const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
+        const res = await axios.patch(`http://localhost:3000/api/contract/${row?.matricula}`, contract);
 
         if(res.status === 500){
-          message.info('Hola');
+          message.info('Se ha modificado con exito');
         }
         else
           window.location.reload();
@@ -92,9 +92,8 @@ const ModalModContract = ({isOpen, setOpen}) => {
               </Form.Item>
 
               <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce la fecha de Fin!',},
-                {min:row?.fechaFin, message: "La fecha nueva debe ser despues"}
               ]}>
-                <DatePicker format={'DD/MM/YYYY'} placeholder='Fecha Fin' style={{marginBottom:margin}} onChange={(date, dateString) => setDate(dateString)}/>
+                <DatePicker placement='bottomLeft' minDate={new Date(row?.fechaFin)} format={'DD/MM/YYYY'} placeholder='Fecha Fin' style={{marginBottom:margin}} onChange={(date, dateString) => setDate(dateString)}/>
               </Form.Item>
             </Col>
           </Row>

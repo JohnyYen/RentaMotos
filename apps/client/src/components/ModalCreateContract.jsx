@@ -79,7 +79,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
             ]}
             dependencies={['dateBegin', 'dateEnd']}
             >
-              <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
+              <DatePicker placement='bottomLeft' format={'DD/MM/YYYY'} onChange={(value) => setDateFirm(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Firma'/>
             </Form.Item>
 
             <Form.Item label='Fecha de Inicio:' name="dateBegin" rules={[{required: true,message: 'Introduce la fecha de Inicio!',},
@@ -94,7 +94,7 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
             ]}
             dependencies={['dateFirm', 'dateEnd']}
             >
-              <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
+              <DatePicker placement='bottomLeft' format={'DD/MM/YYYY'} onChange={(value) => setDateBegin(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Inicio'/>
             </Form.Item>
 
           </Col>
@@ -115,10 +115,10 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
               ]}
               dependencies={['dateBegin', 'dateFirm']}
               >
-                <DatePicker format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
+                <DatePicker placement='bottomLeft' format={'DD/MM/YYYY'} onChange={(value) => setDateEnd(value.format('DD/MM/YYYY'))} style={{marginBottom:margin}}  placeholder='Fecha de Fin'/>
               </Form.Item>
   
-              <Form.Item label={t("modal.methodPayment") + ":"} name="formaPago" rules={[{required: true,message: t("messageError.methodPayment"),},]}>
+              <Form.Item label={t("modal.methodPayment") + ":"} name="formaPago" rules={[{required: true,message: t("messageError.emptyMethodPayment"),},]}>
                 <Select onSelect={(value, _) => setFormaPago(value)} style={{marginBottom:margin, width: 150}}  placeholder={t("modal.methodPayment")}> 
                 {dataSource.map((item, i) => (
                   <Select.Option key={i} value={item.formapago}>{item.formaPago}</Select.Option>
