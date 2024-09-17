@@ -105,9 +105,6 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
               </Form.Item>
 
-                <Form.Item label='Edad:' name="edad" rules={[{required: true,message: 'Introduce la edad!',},]}>
-                  <InputNumber min={16} max={50} style={{marginBottom:margin, width:150}} onChange={(value) => setEdad(value)} placeholder='Edad'/>
-                </Form.Item>
            </Col>
          </Row>
 

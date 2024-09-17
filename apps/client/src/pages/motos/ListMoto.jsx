@@ -88,7 +88,7 @@ const ListMoto = () => {
   const {setRow} = useContext(GlobalContext);
 
 
-  message.success('Hola');
+  
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);

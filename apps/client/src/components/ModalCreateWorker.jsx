@@ -25,10 +25,11 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
             mun: mun
         }
 
+        console.log(worker);
         if(name && password && mun){
           const res = await axios.post('http://localhost:3000/api/user/worker', worker);
 
-          if(resp.status === 201)
+          if(res.status === 201)
             message.success('Creado con exito')
 
           window.location.reload();
@@ -47,7 +48,7 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
             if(rule && value){
               const res =  axios.post('http://localhost:3000/api/user/validate', {info : value});
               res.then((response) => {
-                if(response.data)
+                if(!response.data)
                   callback(new Error('Este usuario ya existe'));
               })
             }
@@ -61,7 +62,8 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
             if(rule && value){
               const res =  axios.post('http://localhost:3000/api/user/validate', {info : value});
               res.then((response) => {
-                if(response.data)
+                console.log(response.data);
+                if(!response.data)
                   callback(new Error('Este usuario ya existe'));
               })
             }

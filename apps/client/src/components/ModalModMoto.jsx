@@ -69,13 +69,13 @@ const ModalModMoto = ({isOpen, setOpen}) => {
         <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>
 
-        <Form.Item label={t("modal.situation") + ":"} name={"situacion"} rules={[{required:true, message:("messageError.emptySituation")}]}>
+        {row?.situacion !== "Alquilada" && <Form.Item label={t("modal.situation") + ":"} name={"situacion"} rules={[{required:true, message:("messageError.emptySituation")}]}>
         <Select style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
             {dataSource.map((item, i) => (
               <Select.Option key={i} value={item.situacion}>{item.situacion}</Select.Option>
             ))}
         </Select>
-        </Form.Item>
+        </Form.Item>}
         
        
     </Modal>

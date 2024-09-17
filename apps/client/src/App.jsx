@@ -22,12 +22,14 @@ notification.config({
   showProgress:true,
 })
 
-window.addEventListener('error', async (e) => {
-  if(e.error instanceof Error){
-    const resp = await axios.get('http://localhost:3000/api/server');
-    message.loading(resp.statusText);
-  }
-})
+window.addEventListener('beforeunload', () => localStorage.clear);
+
+// window.addEventListener('error', async (e) => {
+//   if(e.error instanceof Error){
+//     const resp = await axios.get('http://localhost:3000/api/server');
+//     message.loading(resp.statusText);
+//   }
+// })
 function App() {
  
   return (
