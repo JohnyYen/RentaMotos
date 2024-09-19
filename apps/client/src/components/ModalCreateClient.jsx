@@ -126,17 +126,6 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     <Form.Item label='Nombre de Usuario:' name="user_name" rules={[{required: true,message: 'Introduce tu matricula!',},
                         {min:4, message: "Su nombre de usuario debe tener al menos 4 caracteres"},
                         {max:20, message: "Su nombre de usuario debe tener a lo mas 20 caracteres"},
-                        {validator:(rule, value, callback) => {
-                            if(rule && value){
-                                console.log(value);
-                                const res = axios.post('http://localhost:3000/api/user/validate', {info : value});
-                                res.then((response) => {
-                                    if(response.data)
-                                        callback(new Error('Ya existe el usuario'));
-                                })
-                            }
-                            
-                        }}
                     ]}>
                         <Input onChange={(e) => setUserName(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su nombre de usuario'/>
                     </Form.Item>
@@ -164,7 +153,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                     <Form.Item label='Contraseña:' name="password" rules={[{required: true,message: 'Introduce tu Contraseña!',},
                         {min:5, message: "La contraseña debe tener al menos 5 caracteres"},
                         {max:8, message: "La contraseña debe tener a lo mas 8 caracteres"},
-                        {pattern:'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,8}$', message: 'La contraseña no es fuerte, use mayusculas, minusculas y digitos'}
+                        // {pattern:'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,8}$', message: 'La contraseña no es fuerte, use mayusculas, minusculas y digitos'}
                     ]}>
                         <Input.Password onChange={(e) => setPassword(e.target.value)} style={{marginBottom:margin, width:300}} placeholder='Ingrese su contraseña'/>
                     </Form.Item>
