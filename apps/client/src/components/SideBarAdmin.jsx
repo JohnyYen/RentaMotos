@@ -96,17 +96,6 @@ const SideBarAdmin = () => {
             label: "Trabajadores",
             icon: <PiHardHat />,
             key: "listadoTrabajadores"
-          },
-          {
-            label: "Otros",
-            icon: <PiHardHat />,
-            key: "listadoTrabajadores",
-            children: [
-              {
-                label: t("sideBar.contractList"),
-                key: "Formas de Pagos",
-              },
-            ]
           }
         ]}
       ></Menu>

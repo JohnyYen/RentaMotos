@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 import { SyncOutlined, UserOutlined } from '@ant-design/icons';
-import dayjs from 'dayjs';
+import dayjs from 'moment';
 import { LuBike } from 'react-icons/lu';
 
 
@@ -92,7 +92,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
               <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce la fecha de Fin!',},
               ]}>
                 <DatePicker disabledDate={(date) => {
-                  return dayjs(date).isBefore(dayjs(endDate));
+                  return date && date < new Date(row?.fechaFin);
                 }} placement='bottomLeft' format={'DD/MM/YYYY'} placeholder='Fecha Fin' style={{marginBottom:margin}} onChange={(date, dateString) => setDate(dateString)}/>
               </Form.Item>
             </Col>
