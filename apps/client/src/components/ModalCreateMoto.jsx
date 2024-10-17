@@ -58,20 +58,21 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
             const resp = await axios.post('http://localhost:3000/api/moto', moto);
 
             if(resp.status === 201)
-                message.success('Creado con exito')
+                message.success(t("messageSuccess"))
 
             window.location.reload();
         }
     }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  destroyOnClose={true} title={"Crear una nueva moto"} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  destroyOnClose={true} title={t("modal.createMotorcycle")} centered={true} open={isVisible} onCancel={setVisible} onOk={handlePetition}
     modalRender={(dom) => (
         <Form  form={form} labelCol={{span: 12}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}
         </Form>
       )}>
-       <Form.Item label='Matricula:' name="matricula" rules={[{required: true,message: 'Introduce tu matricula!',},
-        {len:8, message:"Debe tener 8 caracteres"}
+       <Form.Item label={t("mainContent.table.serialNumber")} name="matricula" rules={[{required: true,message: t("messageError.emptySerialNumber"),},
+        {max:8, message: t("messageError.lengthSerialNumber")},
+        // {pattern: "^(?=(?:[^A-Z]*[A-Z]{3}))(?!.*\d{6}).*\d{1,5}", message: "Debe tener 1 letra mayuscula y 5 digitos"}
        ]}>
             <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder='Ingrese la matricula'/>
            </Form.Item>

@@ -8,6 +8,7 @@ import ModalModMoto from '../../components/ModalModMoto'
 import {GlobalContext} from '../../context/GlobalContext'
 import ModalCreateMoto from "../../components/ModalCreateMoto";
 import EliminarMoto from "../../component/EliminarMoto";
+import moment from "moment";
 
 
 const extractData = async () => {
@@ -73,12 +74,6 @@ const extractDataFilter = async () => {
 };
 
 const ListMoto = () => {
-  const date = new Date();
-  const day = date.getDay();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const currentDate = `${day}/${month}/${year}`;
-
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
@@ -94,13 +89,14 @@ const ListMoto = () => {
       setDataSource(result);
     });
     extractDataFilter().then(result => {
-      setDataFilter(result.map(marca => (
+      setDataFilter(result.map((marca) => (
         {
           text: marca.nommarca,
           value: marca.nomarca,
         }
       )));
     });
+
   }, []);
 
   const onClick = async () => {
@@ -124,10 +120,10 @@ const ListMoto = () => {
           {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
-          style={{ width: "6rem", fontSize: "1rem", fontWeight: "500" }}
+          style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={currentDate}
+          defaultValue={moment().format('L')}
         />
         </Flex>
         <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
@@ -154,7 +150,7 @@ const ListMoto = () => {
             dataIndex: "marca",
             key: "marca",
             filters: dataFilter,
-            onFilter: (value, record) => record.marca.indexOf(value) === 0,
+            onFilter: (value, record) => {record.marca.indexOf(value) === -1},
           },
           {
             title: t("mainContent.table.model"),

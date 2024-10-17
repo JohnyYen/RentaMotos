@@ -130,7 +130,7 @@ const AppRouter = () => {
       <Route path="contratoMarcaModelo" element={<ContratosMarcaModelo />}></Route>
       <Route path="listadoContratos" element={<ListadoContratos extractData={dataContract} url={'http://localhost:3000/api/contract/pdf'} />}></Route>
       <Route path="contratoMunicipio" element={<ContratosMunicipio />}></Route>
-      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} />}></Route>
+      <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} url={'http://localhost:3000/api/pagos/pdf'} />}></Route>
       <Route path="crearContrato" element></Route>
       <Route path="contratosCliente" element={<ListadoContratos />}></Route>
       <Route path="motosCliente" element={<ListMoto />}></Route>

@@ -12,7 +12,6 @@ const TYPE_DATE = 1082;
 types.setTypeParser(TYPE_DATE, date => date);
 
 const PgProvider = {
-
     provide: PG_CONNECTION,
     useValue: new Pool({
         user: process.env.USER,

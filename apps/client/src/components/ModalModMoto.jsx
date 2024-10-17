@@ -44,7 +44,7 @@ const ModalModMoto = ({isOpen, setOpen}) => {
       
   }
   return (
-    <Modal afterClose={() => form.resetFields()}  okButtonProps={{htmlType:'submit'}} destroyOnClose={true} title={"Modificar Moto"}
+    <Modal afterClose={() => form.resetFields()}  okButtonProps={{htmlType:'submit'}} destroyOnClose={true} title={t("modal.modifyMotorcycle")}
       open={isOpen} centered={true} onCancel={setOpen} onClose={setOpen} onOk={() => handlePetition() }
       modalRender={(dom) => (
         <Form  form={form} labelCol={{span: 12}}  wrapperCol={{span: 16}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
@@ -64,7 +64,7 @@ const ModalModMoto = ({isOpen, setOpen}) => {
           </Select>
         </Form.Item>
 
-       <Form.Item label="Cantidad de Kilometros:" name={"cantKm"} rules={[{required:true, message:'El campo de cantKm no debe estar vacio'},
+       <Form.Item label={t("modal.cantKm") + ":"} name={"cantKm"} rules={[{required:true, message:("messageError.emptyKm")},
        ]}>
         <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>

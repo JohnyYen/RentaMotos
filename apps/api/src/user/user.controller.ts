@@ -1,11 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserClientDto } from './dto/userClient.dto';
 import { UserWorkerDto } from './dto/userWorker.dto';
+import { AuthService } from 'src/auth/auth.service';
+import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
 
 @Controller('api/user')
 export class UserController {
-    constructor(private readonly userService : UserService){}
+    constructor(private readonly authService: AuthService,private readonly userService : UserService){}
 
     @Get()
     async getUser(){
@@ -16,11 +18,18 @@ export class UserController {
         this.userService.createUserClient(body);
     }
 
+
+    
     @Post('/validate')
     async validateCreateUser(@Body() body){
-        return await this.userService.validateUserName(body.info);
+        const result = await this.userService.validateUserName(body.info);
+        if(result)
+            return this.authService.generateToken(body.info);
+        else
+            return null;
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('/worker')
     async getWorkers(){
         return this.userService.getWorkers();
@@ -31,15 +40,17 @@ export class UserController {
         this.userService.createUserWorker(body);
     }
 
+    
     @Post()
     async validateUser(@Body('userName') userName : string, @Body('password') password : string){
-        return await this.userService.validationUser(userName, password);
-        //console.log(await this.userService.validationUser(userName, email, password));
+        const result = await this.userService.validationUser(userName, password);
+        if (result)
+            return this.authService.generateToken({username:userName});
+        else return null;
     }
 
     @Delete('/:userName')
     async deleteUser(@Param("userName") userName : string){
-        console.log(userName);
         this.userService.deleteUser(userName);
     }
 }

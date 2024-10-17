@@ -5,6 +5,6 @@ export declare class FormaPagoController {
     constructor(formaPagoService: FormaPagoService);
     getAllFormaPago(): Promise<any>;
     createFormaPago(form: FormaPagoDto): void;
-    deleteFormaPago(form: string): void;
+    deleteFormaPago(id: string): void;
     updateFormaPago(body: FormaPagoDto, id: string): void;
 }
