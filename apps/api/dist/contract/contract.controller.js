@@ -16,6 +16,7 @@ exports.ContractController = void 0;
 const common_1 = require("@nestjs/common");
 const contract_service_1 = require("./contract.service");
 const contract_dto_1 = require("./dto/contract.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
@@ -75,12 +76,14 @@ let ContractController = class ContractController {
 };
 exports.ContractController = ContractController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContract", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos en formato pdf" }),
     (0, common_1.Get)("/pdf"),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -88,6 +91,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDF", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos en un municipio" }),
     (0, common_1.Get)('/worker/:mun'),
     __param(0, (0, common_1.Param)('mun')),
     __metadata("design:type", Function),
@@ -95,6 +99,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractsMunWorker", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos en un municipio en formato pdf" }),
     (0, common_1.Get)('/worker/pdf/:mun'),
     __param(0, (0, common_1.Param)('mun')),
     __param(1, (0, common_1.Res)()),
@@ -103,12 +108,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getPDFContractWorkerMun", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según los municipios" }),
     (0, common_1.Get)('/mun'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractByMun", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según los municipios en formato pdf" }),
     (0, common_1.Get)("/mun/pdf"),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -116,12 +123,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDFMun", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según la marca y el modelo" }),
     (0, common_1.Get)('/marcxmodel'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getFilterContract", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según la marca y el modelo en formato pdf" }),
     (0, common_1.Get)("/marcxmodel/pdf"),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -129,6 +138,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDFMarc", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos de un determinado cliente" }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -136,6 +146,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractByCliente", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Elimina a un contrato según la matricula de la moto que está en renta" }),
     (0, common_1.Delete)('/:matricula'),
     __param(0, (0, common_1.Param)("matricula")),
     __metadata("design:type", Function),
@@ -143,6 +154,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "deleteContract", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo contrato" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -150,6 +162,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "createContract", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Modifica un contrato según la matricula de la moto que está en renta" }),
     (0, common_1.Patch)('/:matricula'),
     __param(0, (0, common_1.Param)("matricula")),
     __param(1, (0, common_1.Body)()),
@@ -158,6 +171,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "updateContract", null);
 exports.ContractController = ContractController = __decorate([
+    (0, swagger_1.ApiTags)('Contratos'),
     (0, common_1.Controller)('api/contract'),
     __metadata("design:paramtypes", [contract_service_1.ContractService])
 ], ContractController);

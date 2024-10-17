@@ -13,9 +13,12 @@ import { MunModule } from './mun/mun.module';
 import {ConfigModule} from '@nestjs/config'
 import { SituationModule } from './situation/situation.module';
 import { PagosModule } from './pagos/pagos.module';
+import { AuthModule } from './auth/auth.module';
+import {SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 
 @Module({
-  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule, SituationModule, PagosModule],
+  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule, SituationModule, PagosModule, AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

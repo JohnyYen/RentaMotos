@@ -16,6 +16,7 @@ exports.MotorcycleController = void 0;
 const common_1 = require("@nestjs/common");
 const motorcycle_service_1 = require("./motorcycle.service");
 const motorcycle_dto_1 = require("./dto/motorcycle.dto");
+const swagger_1 = require("@nestjs/swagger");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -55,6 +56,7 @@ let MotorcycleController = class MotorcycleController {
 };
 exports.MotorcycleController = MotorcycleController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las motos" }),
     (0, common_1.Get)(),
     (0, common_1.HttpCode)(200),
     __metadata("design:type", Function),
@@ -62,6 +64,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getAllMoto", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las motos en formato pdf" }),
     (0, common_1.Get)('/pdf'),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -75,12 +78,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getMotoClient", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve la situación de las motos" }),
     (0, common_1.Get)('/situation'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getSituationMoto", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve la situación de las motos en formato pdf" }),
     (0, common_1.Get)('/situation/pdf'),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -88,6 +93,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getPDFSituation", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea una mota" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -95,6 +101,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "createMoto", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su id" }),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
@@ -102,6 +109,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "deleteMoto", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Modifica una moto según su id" }),
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
@@ -110,6 +118,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "updateMoto", null);
 exports.MotorcycleController = MotorcycleController = __decorate([
+    (0, swagger_1.ApiTags)('Motocicletas'),
     (0, common_1.Controller)('api/moto'),
     __metadata("design:paramtypes", [motorcycle_service_1.MotorcycleService])
 ], MotorcycleController);

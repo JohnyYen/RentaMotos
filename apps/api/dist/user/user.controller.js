@@ -17,8 +17,11 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const userClient_dto_1 = require("./dto/userClient.dto");
 const userWorker_dto_1 = require("./dto/userWorker.dto");
+const auth_service_1 = require("../auth/auth.service");
+const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
 let UserController = class UserController {
-    constructor(userService) {
+    constructor(authService, userService) {
+        this.authService = authService;
         this.userService = userService;
     }
     async getUser() {
@@ -28,7 +31,11 @@ let UserController = class UserController {
         this.userService.createUserClient(body);
     }
     async validateCreateUser(body) {
-        return await this.userService.validateUserName(body.info);
+        const result = await this.userService.validateUserName(body.info);
+        if (result)
+            return this.authService.generateToken(body.info);
+        else
+            return null;
     }
     async getWorkers() {
         return this.userService.getWorkers();
@@ -37,10 +44,13 @@ let UserController = class UserController {
         this.userService.createUserWorker(body);
     }
     async validateUser(userName, password) {
-        return await this.userService.validationUser(userName, password);
+        const result = await this.userService.validationUser(userName, password);
+        if (result)
+            return this.authService.generateToken({ username: userName });
+        else
+            return null;
     }
     async deleteUser(userName) {
-        console.log(userName);
         this.userService.deleteUser(userName);
     }
 };
@@ -66,6 +76,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "validateCreateUser", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, common_1.Get)('/worker'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -95,6 +106,6 @@ __decorate([
 ], UserController.prototype, "deleteUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('api/user'),
-    __metadata("design:paramtypes", [user_service_1.UserService])
+    __metadata("design:paramtypes", [auth_service_1.AuthService, user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

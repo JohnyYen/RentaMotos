@@ -42,7 +42,7 @@ let UserService = class UserService {
     }
     async validateUserName(info) {
         const res = await this.conn.query(`SELECT * FROM usuario WHERE (nombre_usuario = '${info}' or email = '${info}')`);
-        return res.rows[0] !== null;
+        return !res.rows[0] !== null;
     }
     async deleteUser(userName) {
         await this.conn.query(`DELETE FROM usuario WHERE nombre_usuario = '${userName}'`);

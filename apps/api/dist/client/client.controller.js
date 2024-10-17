@@ -16,6 +16,7 @@ exports.ClientController = void 0;
 const common_1 = require("@nestjs/common");
 const client_service_1 = require("./client.service");
 const client_dto_1 = require("./dto/client.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ClientController = class ClientController {
     constructor(clientService) {
         this.clientService = clientService;
@@ -68,12 +69,14 @@ let ClientController = class ClientController {
 };
 exports.ClientController = ClientController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClients", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes según su municipio" }),
     (0, common_1.Get)('/mun/:mun'),
     __param(0, (0, common_1.Param)('mun')),
     __metadata("design:type", Function),
@@ -81,6 +84,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClientesByMun", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes en formato pdf" }),
     (0, common_1.Get)('/pdf'),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -88,12 +92,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClientsByPDF", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes incumplidores" }),
     (0, common_1.Get)("/bad"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClients", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve a un cliente según su identificador" }),
     (0, common_1.Get)('/sample/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -101,6 +107,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClient", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve el listado de los clientes incumplidores en formato pdf" }),
     (0, common_1.Get)('/bad/pdf'),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -108,6 +115,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClientsByPDF", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve a todos los clientes que pertenecen a un municipio en formato pdf" }),
     (0, common_1.Get)('/worker/pdf/:mun'),
     __param(0, (0, common_1.Param)('mun')),
     __param(1, (0, common_1.Res)()),
@@ -116,6 +124,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getPDF", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo cliente" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -123,6 +132,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "createClient", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Elimina un cliente según su identificador" }),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
@@ -130,6 +140,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "deleteClient", null);
 __decorate([
+    (0, swagger_1.ApiBody)({ type: client_dto_1.ClientDto, description: "Es el dto de Cliente" }),
+    (0, swagger_1.ApiParam)({ name: "id", description: "El carnet de identidad del cliente" }),
+    (0, swagger_1.ApiOperation)({ summary: "Modifica un cliente según su identificador" }),
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -138,6 +151,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientController.prototype, "updateClient", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Valida que el telefono no se repita" }),
     (0, common_1.Post)('/validate/phone'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -145,6 +159,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "validateNumber", null);
 exports.ClientController = ClientController = __decorate([
+    (0, swagger_1.ApiTags)('Clientes'),
     (0, common_1.Controller)('api/client'),
     __metadata("design:paramtypes", [client_service_1.ClientService])
 ], ClientController);

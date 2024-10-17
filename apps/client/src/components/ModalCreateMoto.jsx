@@ -71,7 +71,8 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
         </Form>
       )}>
        <Form.Item label={t("mainContent.table.serialNumber")} name="matricula" rules={[{required: true,message: t("messageError.emptySerialNumber"),},
-        {len:8, message: t("messageError.lengthSerialNumber")}
+        {max:8, message: t("messageError.lengthSerialNumber")},
+        // {pattern: "^(?=(?:[^A-Z]*[A-Z]{3}))(?!.*\d{6}).*\d{1,5}", message: "Debe tener 1 letra mayuscula y 5 digitos"}
        ]}>
             <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder='Ingrese la matricula'/>
            </Form.Item>

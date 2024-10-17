@@ -134,6 +134,7 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
                         {validator:(rule, value, callback) => {
                             if(rule && value){
                                 const emailValue = value.toLowerCase();
+                                console.log(emailValue);
                                 if(emailValue.includes('@gmail.com')){
                                     const res = axios.post('http://localhost:3000/api/user/validate', {info : value});
                                     res.then((response) => {

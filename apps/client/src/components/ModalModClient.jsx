@@ -38,12 +38,14 @@ const ModalModClient = ({isOpen, setOpen}) => {
         numCont:numCont
       }
 
-      if(name && lastName && edad && Municipio && numCont){
-        const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
+      const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
 
-        message.success('Creado con exito');
-        window.location.reload();
-      }
+      message.success('Creado con exito');
+      window.location.reload();
+
+      // if(name && lastName && edad && Municipio && numCont){
+       
+      // }
     }
     const margin = 0;
   return (
