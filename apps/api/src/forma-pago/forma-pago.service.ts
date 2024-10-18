@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
-import { FormaPagoDto } from './dto/formaPago.dto';
+import { FormaPagoDto } from '../contract/dto/formaPago.dto';
 
 @Injectable()
 export class FormaPagoService {

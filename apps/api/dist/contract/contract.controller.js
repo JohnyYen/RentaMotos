@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const contract_service_1 = require("./contract.service");
 const contract_dto_1 = require("./dto/contract.dto");
 const swagger_1 = require("@nestjs/swagger");
+const formaPago_dto_1 = require("./dto/formaPago.dto");
 let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
@@ -72,6 +73,38 @@ let ContractController = class ContractController {
     }
     updateContract(matricula, contract) {
         this.contractService.updateContract(contract, matricula);
+    }
+    async getAllFormaPago() {
+        return await this.contractService.getAllFormaPago();
+    }
+    createFormaPago(form) {
+        this.contractService.createFormaPago(form);
+    }
+    deleteFormaPago(id) {
+        this.contractService.deleteFormaPago(id);
+    }
+    updateFormaPago(body, id) {
+        this.contractService.updateFormaPago(body, id);
+    }
+    async getAllPagos() {
+        return await this.contractService.getAllPagos();
+    }
+    async getAllPagosPDF(res) {
+        const buffer = await this.contractService.getAllPagosPDF();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Importe.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
+    async getAllPagosPDFMun(res, mun) {
+        const buffer = await this.contractService.getAllPagosByPDF(mun);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Importe.pdf');
+        res.setHeader('Content-Length', buffer.length);
+        res.send(buffer);
+    }
+    async getAllPagosByMun(mun) {
+        return await this.contractService.getAllPagosByMun(mun);
     }
 };
 exports.ContractController = ContractController;
@@ -170,6 +203,72 @@ __decorate([
     __metadata("design:paramtypes", [String, contract_dto_1.ContractDto]),
     __metadata("design:returntype", void 0)
 ], ContractController.prototype, "updateContract", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllFormaPago", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Permite crear nuevas formas de pagos" }),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [formaPago_dto_1.FormaPagoDto]),
+    __metadata("design:returntype", void 0)
+], ContractController.prototype, "createFormaPago", null);
+__decorate([
+    (0, swagger_1.ApiParam)({ name: "id", description: "Identificador de la forma de pago", example: 1, type: Number }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina una forma de pago" }),
+    (0, common_1.Delete)("/:id"),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ContractController.prototype, "deleteFormaPago", null);
+__decorate([
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la forma de pago", example: 1 }),
+    (0, swagger_1.ApiOperation)({ summary: "Modifica una forma de pago según su id" }),
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [formaPago_dto_1.FormaPagoDto, String]),
+    __metadata("design:returntype", void 0)
+], ContractController.prototype, "updateFormaPago", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados" }),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllPagos", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados en formato pdf" }),
+    (0, common_1.Get)('/pdf'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllPagosPDF", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros de un municipio en formato pdf" }),
+    (0, common_1.Get)('/worker/pdf/:mun'),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Param)('mun')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllPagosPDFMun", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros de un municipio" }),
+    (0, common_1.Get)('/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllPagosByMun", null);
 exports.ContractController = ContractController = __decorate([
     (0, swagger_1.ApiTags)('Contratos'),
     (0, common_1.Controller)('api/contract'),

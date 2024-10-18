@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { FormaPagoService } from './forma-pago.service';
-import { FormaPagoDto } from './dto/formaPago.dto';
+import { FormaPagoDto } from '../contract/dto/formaPago.dto';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 
 @Controller('api/formaPago')

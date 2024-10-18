@@ -1,4 +1,4 @@
-import { ModelDto } from './dto/model.dto';
+import { ModelDto } from '../motorcycle/dto/model.dto';
 export declare class ModelService {
     private conn;
     constructor(conn: any);

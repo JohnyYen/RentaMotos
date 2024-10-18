@@ -1,4 +1,4 @@
-import { MarcDto } from './dto/marc.dto';
+import { MarcDto } from '../motorcycle/dto/marc.dto';
 export declare class MarcService {
     private conn;
     constructor(conn: any);

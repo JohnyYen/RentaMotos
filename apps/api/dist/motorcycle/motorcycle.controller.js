@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const motorcycle_service_1 = require("./motorcycle.service");
 const motorcycle_dto_1 = require("./dto/motorcycle.dto");
 const swagger_1 = require("@nestjs/swagger");
+const marc_dto_1 = require("./dto/marc.dto");
+const model_dto_1 = require("./dto/model.dto");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -52,6 +54,33 @@ let MotorcycleController = class MotorcycleController {
     }
     updateMoto(id, update) {
         this.motoService.updateMotorcycle(update, id);
+    }
+    async getSituation() {
+        return await this.motoService.getSituation();
+    }
+    getAllMarc() {
+        return this.motoService.getMarc();
+    }
+    deleteMarc(id) {
+        this.motoService.deleteMarc(id);
+    }
+    createMarc(marc) {
+        this.motoService.createMarc(marc);
+    }
+    updateMarc(id, body) {
+        this.motoService.updateMarc(body, id);
+    }
+    getAllModels() {
+        return this.motoService.getModels();
+    }
+    deleteModel(id) {
+        this.motoService.deleteModels(id);
+    }
+    createModel(model) {
+        this.motoService.createModels(model);
+    }
+    updateModel(id, body) {
+        this.motoService.updateModel(body, id);
     }
 };
 exports.MotorcycleController = MotorcycleController;
@@ -117,6 +146,81 @@ __decorate([
     __metadata("design:paramtypes", [String, motorcycle_dto_1.MotorcycleDto]),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "updateMoto", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las situaciones de las motos" }),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "getSituation", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las marcas de las motos" }),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "getAllMarc", null);
+__decorate([
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la marca", example: 1 }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su ID" }),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "deleteMarc", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea una nueva marca de moto" }),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [marc_dto_1.MarcDto]),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "createMarc", null);
+__decorate([
+    (0, swagger_1.ApiParam)({ name: "id", description: "Es el identificador de la marca", example: 1 }),
+    (0, swagger_1.ApiOperation)({ summary: "Modifica una marca de moto" }),
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, marc_dto_1.MarcDto]),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "updateMarc", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los modelos de las motos" }),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "getAllModels", null);
+__decorate([
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador del modelo" }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina un modelo de moto dado su identificador" }),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "deleteModel", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo modelo" }),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [model_dto_1.ModelDto]),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "createModel", null);
+__decorate([
+    (0, swagger_1.ApiParam)({ name: "id", description: "Identificador del modelo" }),
+    (0, swagger_1.ApiOperation)({ summary: "Modifica un modelo dado su identificador" }),
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, model_dto_1.ModelDto]),
+    __metadata("design:returntype", void 0)
+], MotorcycleController.prototype, "updateModel", null);
 exports.MotorcycleController = MotorcycleController = __decorate([
     (0, swagger_1.ApiTags)('Motocicletas'),
     (0, common_1.Controller)('api/moto'),

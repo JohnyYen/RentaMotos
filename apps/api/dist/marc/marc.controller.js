@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MarcController = void 0;
 const common_1 = require("@nestjs/common");
 const marc_service_1 = require("./marc.service");
-const marc_dto_1 = require("./dto/marc.dto");
+const marc_dto_1 = require("../motorcycle/dto/marc.dto");
 const swagger_1 = require("@nestjs/swagger");
 let MarcController = class MarcController {
     constructor(marcService) {

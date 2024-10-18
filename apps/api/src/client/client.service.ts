@@ -75,4 +75,9 @@ export class ClientService {
             throw new NotAcceptableException('La lista de Clientes Incumplidores esta vacia');
         return await generatePDF(Object.keys(client[0]), arrayFormatter(client));
     }
+
+    async getAllMun(){
+        const res = await this.conn.query('select * from municipio');
+        return res.rows;
+    }
 }

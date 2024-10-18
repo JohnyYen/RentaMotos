@@ -1,5 +1,6 @@
 import { ContractService } from './contract.service';
 import { ContractDto } from './dto/contract.dto';
+import { FormaPagoDto } from './dto/formaPago.dto';
 export declare class ContractController {
     private readonly contractService;
     constructor(contractService: ContractService);
@@ -15,4 +16,12 @@ export declare class ContractController {
     deleteContract(matricula: string): void;
     createContract(contract: ContractDto): void;
     updateContract(matricula: string, contract: ContractDto): void;
+    getAllFormaPago(): Promise<any>;
+    createFormaPago(form: FormaPagoDto): void;
+    deleteFormaPago(id: string): void;
+    updateFormaPago(body: FormaPagoDto, id: string): void;
+    getAllPagos(): Promise<any>;
+    getAllPagosPDF(res: any): Promise<void>;
+    getAllPagosPDFMun(res: any, mun: string): Promise<void>;
+    getAllPagosByMun(mun: string): Promise<any>;
 }

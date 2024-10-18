@@ -35,6 +35,10 @@ let MotorcycleService = class MotorcycleService {
             throw new common_1.NotAcceptableException('La lista de motos esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
+    async getSituation() {
+        const res = await this.conn.query('SELECT * FROM situacion');
+        return res.rows;
+    }
     async getPDFSituation() {
         const moto = await this.getSituationMoto();
         if (moto.length === 0)
@@ -43,6 +47,19 @@ let MotorcycleService = class MotorcycleService {
     }
     async deleteMotorcycle(id) {
         await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
+    }
+    async getMarc() {
+        const res = await this.conn.query('SELECT nommarca FROM marca');
+        return res.rows;
+    }
+    async deleteMarc(marc) {
+        await this.conn.query(`DELETE FROM marca WHERE nommarca = '${marc}'`);
+    }
+    async createMarc(nommarca) {
+        await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
+    }
+    async updateMarc(marc, id) {
+        await this.conn.query(`UPDATE marca SET nommarca = '${marc.nommarca}' WHERE nommarca = '${id}'`);
     }
     async createMotorcycle(moto) {
         await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
@@ -53,6 +70,20 @@ let MotorcycleService = class MotorcycleService {
     async getSituationMoto() {
         const res = await this.conn.query('SELECT * FROM SituacionMoto()');
         return res.rows;
+    }
+    async getModels() {
+        const res = await this.conn.query('SELECT * FROM modelo');
+        return res.rows;
+    }
+    async deleteModels(nomModelo) {
+        console.log(nomModelo);
+        await this.conn.query(`DELETE FROM modelo WHERE nommodelo = '${nomModelo}'`);
+    }
+    async createModels(model) {
+        await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
+    }
+    async updateModel(model, nomModel) {
+        this.conn.query(`UPDATE modelo SET nomModelo = '${model.nomModelo}' WHERE nommodelo = '${nomModel}'`);
     }
 };
 exports.MotorcycleService = MotorcycleService;

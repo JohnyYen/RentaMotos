@@ -66,6 +66,9 @@ let ClientController = class ClientController {
     async validateNumber(body) {
         return this.clientService.validatePhoneNumber(body.phoneNumber);
     }
+    async getAllMun() {
+        return await this.clientService.getAllMun();
+    }
 };
 exports.ClientController = ClientController;
 __decorate([
@@ -158,6 +161,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "validateNumber", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los municipios" }),
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getAllMun", null);
 exports.ClientController = ClientController = __decorate([
     (0, swagger_1.ApiTags)('Clientes'),
     (0, common_1.Controller)('api/client'),

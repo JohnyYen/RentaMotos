@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ModelController = void 0;
 const common_1 = require("@nestjs/common");
 const model_service_1 = require("./model.service");
-const model_dto_1 = require("./dto/model.dto");
+const model_dto_1 = require("../motorcycle/dto/model.dto");
 const swagger_1 = require("@nestjs/swagger");
 let ModelController = class ModelController {
     constructor(modelService) {

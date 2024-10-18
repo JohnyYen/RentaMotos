@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormaPagoController = void 0;
 const common_1 = require("@nestjs/common");
 const forma_pago_service_1 = require("./forma-pago.service");
-const formaPago_dto_1 = require("./dto/formaPago.dto");
+const formaPago_dto_1 = require("../contract/dto/formaPago.dto");
 const swagger_1 = require("@nestjs/swagger");
 let FormaPagoController = class FormaPagoController {
     constructor(formaPagoService) {

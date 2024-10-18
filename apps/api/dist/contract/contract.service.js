@@ -80,6 +80,47 @@ let ContractService = class ContractService {
     deleteContract(matricula) {
         this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
     }
+    async getAllFormaPago() {
+        const res = await this.conn.query('SELECT * FROM formaPago');
+        return res.rows;
+    }
+    async createFormaPago(formaPago) {
+        await this.conn.query(`INSERT INTO formaPago values ('${formaPago.formaPago}')`);
+    }
+    async deleteFormaPago(formaPago) {
+        await this.conn.query(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
+    }
+    async updateFormaPago(formaPago, changeFormaPago) {
+        await this.conn.query(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
+    }
+    async getAllPagos() {
+        const res = await this.conn.query('SELECT * FROM pagos_view');
+        return res.rows;
+    }
+    async getAllPagosByMun(mun) {
+        const res = await this.conn.query(`SELECT * FROM pagos_mun_view WHERE municipio = '${mun}'`);
+        return res.rows;
+    }
+    async getAllPagosPDF() {
+        const list = await this.getAllPagos();
+        let counter = 0;
+        console.log(list);
+        for (const e of Object.values(list[0])) {
+            if (e === null)
+                counter++;
+        }
+        if (counter === 13)
+            throw new common_1.NotAcceptableException('La lista de Pagos esta vacia');
+        else
+            return await (0, pdfKit_1.default)(Object.keys(list[0]), (0, jsonFormatter_1.arrayFormatter)(list));
+    }
+    async getAllPagosByPDF(mun) {
+        const list = await this.getAllPagosByMun(mun);
+        if (list.length === 0)
+            throw new common_1.NotAcceptableException('La lista de Pagos esta vacia');
+        else
+            return await (0, pdfKit_1.default)(Object.keys(list[0]), (0, jsonFormatter_1.arrayFormatter)(list));
+    }
 };
 exports.ContractService = ContractService;
 exports.ContractService = ContractService = __decorate([

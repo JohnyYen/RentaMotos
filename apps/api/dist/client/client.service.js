@@ -74,6 +74,10 @@ let ClientService = class ClientService {
             throw new common_1.NotAcceptableException('La lista de Clientes Incumplidores esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
+    async getAllMun() {
+        const res = await this.conn.query('select * from municipio');
+        return res.rows;
+    }
 };
 exports.ClientService = ClientService;
 exports.ClientService = ClientService = __decorate([

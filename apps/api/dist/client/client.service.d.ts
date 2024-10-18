@@ -13,4 +13,5 @@ export declare class ClientService {
     updateClient(client: ClientDto, id: string): Promise<void>;
     getAllBadClients(): Promise<any>;
     getPDFBadClients(): Promise<Buffer>;
+    getAllMun(): Promise<any>;
 }

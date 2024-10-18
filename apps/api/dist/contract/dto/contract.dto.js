@@ -16,42 +16,42 @@ class ContractDto {
 }
 exports.ContractDto = ContractDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "Identificador del cliente", example: '03121067683' }),
+    (0, swagger_1.ApiProperty)({ name: "idCliente", description: "Identificador del Cliente", example: '03121067683', type: String }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "idCliente", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "Matricula de la moto", example: 'LH031210' }),
+    (0, swagger_1.ApiProperty)({ name: "matricula", description: "Matricula de la Moto", example: 'LH031210', type: String }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "matricula", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "Fecha de puesto en vigor el contrato", example: '24/12/2024' }),
+    (0, swagger_1.ApiProperty)({ name: "beginDate", description: "Fecha de Inicio del Contrato", example: '24/12/2024', type: String }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "beginDate", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "Fecha de Finalización del contrato", example: '24/01/2025' }),
+    (0, swagger_1.ApiProperty)({ name: "endDate", description: "Fecha de Fin del Contrato", example: '24/01/2025', type: String }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "endDate", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "Fecha de Firma del Contrato", example: '23/12/2024' }),
+    (0, swagger_1.ApiProperty)({ name: "firmaDate", description: "Fecha de Firma del Contrato", example: '23/12/2024', type: String }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "firmaDate", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "Forma de pago del Contrato", example: 'Cheque' }),
+    (0, swagger_1.ApiProperty)({ name: "formaPago", description: "Forma de Pago el Contrato", example: 'Cheque', type: String }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "formaPago", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: Boolean, description: "Si el Contrato tiene seguro", example: false }),
+    (0, swagger_1.ApiProperty)({ name: "seguro", description: "Si el contrato tiene seguro o no", example: false, type: Boolean }),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], ContractDto.prototype, "seguro", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: Number, description: "Dias de prorroga del contrato", example: 0, minimum: 0 }),
+    (0, swagger_1.ApiProperty)({ name: "diasProrroga", description: "Los dias de prorroga que tenga el contrato", example: 10, type: Number }),
     (0, class_validator_1.IsInt)(),
     (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)

@@ -1,5 +1,5 @@
 import { FormaPagoService } from './forma-pago.service';
-import { FormaPagoDto } from './dto/formaPago.dto';
+import { FormaPagoDto } from '../contract/dto/formaPago.dto';
 export declare class FormaPagoController {
     private formaPagoService;
     constructor(formaPagoService: FormaPagoService);

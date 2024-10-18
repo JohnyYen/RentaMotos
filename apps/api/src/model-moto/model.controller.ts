@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ModelService } from './model.service';
-import { ModelDto } from './dto/model.dto';
+import { ModelDto } from '../motorcycle/dto/model.dto';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 
 @Controller('api/model')

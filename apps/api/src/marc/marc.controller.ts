@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { MarcService } from './marc.service';
-import { MarcDto} from './dto/marc.dto';
+import { MarcDto} from '../motorcycle/dto/marc.dto';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 
 @Controller('api/marc')

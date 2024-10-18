@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
-import { MarcDto } from './dto/marc.dto';
+import { MarcDto } from '../motorcycle/dto/marc.dto';
 
 @Injectable()
 export class MarcService {

@@ -94,4 +94,10 @@ export class ClientController {
     async validateNumber(@Body() body){
         return this.clientService.validatePhoneNumber(body.phoneNumber);
     }
+
+    @ApiOperation({summary: "Devuelve todos los municipios"})
+    @Get()
+    async getAllMun(){
+        return await this.clientService.getAllMun();
+    }
 }
