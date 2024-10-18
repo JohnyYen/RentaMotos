@@ -13,6 +13,7 @@ export class UserController {
     async getUser(){
         return await this.userService.getUser();
     }
+    
     @Post('/client')
     createUserClient(@Body() body : UserClientDto){
         this.userService.createUserClient(body);

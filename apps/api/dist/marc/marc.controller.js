@@ -16,6 +16,7 @@ exports.MarcController = void 0;
 const common_1 = require("@nestjs/common");
 const marc_service_1 = require("./marc.service");
 const marc_dto_1 = require("./dto/marc.dto");
+const swagger_1 = require("@nestjs/swagger");
 let MarcController = class MarcController {
     constructor(marcService) {
         this.marcService = marcService;
@@ -35,12 +36,15 @@ let MarcController = class MarcController {
 };
 exports.MarcController = MarcController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las marcas de las motos" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MarcController.prototype, "getAllMarc", null);
 __decorate([
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la marca", example: 1 }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su ID" }),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -48,6 +52,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MarcController.prototype, "deleteMarc", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea una nueva marca de moto" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -55,6 +60,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MarcController.prototype, "createMarc", null);
 __decorate([
+    (0, swagger_1.ApiParam)({ name: "id", description: "Es el identificador de la marca", example: 1 }),
+    (0, swagger_1.ApiOperation)({ summary: "Modifica una marca de moto" }),
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

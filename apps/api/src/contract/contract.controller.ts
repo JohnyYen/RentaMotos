@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { ContractService } from './contract.service';
-import { ContractDto } from './dto/contract.dto';
+import { ContractDto } from '../forma-pago/dto/contract.dto';
 import { ErrorHandler } from 'src/libs/errorHandler';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 

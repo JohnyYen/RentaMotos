@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SituationController = void 0;
 const common_1 = require("@nestjs/common");
 const situation_service_1 = require("./situation.service");
+const swagger_1 = require("@nestjs/swagger");
 let SituationController = class SituationController {
     constructor(service) {
         this.service = service;
@@ -23,6 +24,7 @@ let SituationController = class SituationController {
 };
 exports.SituationController = SituationController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las situaciones de las motos" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

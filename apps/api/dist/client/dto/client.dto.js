@@ -10,40 +10,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class ClientDto {
 }
 exports.ClientDto = ClientDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Identificador del cliente", example: '03121067683' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "idCliente", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Primer Nombre del cliente", example: 'Johny' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "nombre", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Segundo Nombre del cliente", example: 'Antonio' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "segNombre", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Primer Apellido del cliente", example: 'Pedraza' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "primApellido", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Segundo Apellido del cliente", example: 'Romero' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "segApellido", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: Number, description: "Edad del cliente", example: 21 }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], ClientDto.prototype, "edad", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Municipio del cliente", example: 'Centro Habana' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "municipio", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Sexo del cliente", example: 'M' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ClientDto.prototype, "sexo", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "Número de Contacto del cliente", example: '55002026' }),
+    __metadata("design:type", String)
+], ClientDto.prototype, "numCont", void 0);
 //# sourceMappingURL=client.dto.js.map

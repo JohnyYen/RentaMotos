@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PagosController = void 0;
 const common_1 = require("@nestjs/common");
 const pagos_service_1 = require("./pagos.service");
+const swagger_1 = require("@nestjs/swagger");
 let PagosController = class PagosController {
     constructor(pagosService) {
         this.pagosService = pagosService;
@@ -42,12 +43,14 @@ let PagosController = class PagosController {
 };
 exports.PagosController = PagosController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PagosController.prototype, "getAllPagos", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados en formato pdf" }),
     (0, common_1.Get)('/pdf'),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -55,6 +58,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PagosController.prototype, "getAllPagosPDF", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros de un municipio en formato pdf" }),
     (0, common_1.Get)('/worker/pdf/:mun'),
     __param(0, (0, common_1.Res)()),
     __param(1, (0, common_1.Param)('mun')),
@@ -63,6 +67,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PagosController.prototype, "getAllPagosPDFMun", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros de un municipio" }),
     (0, common_1.Get)('/:mun'),
     __param(0, (0, common_1.Param)('mun')),
     __metadata("design:type", Function),

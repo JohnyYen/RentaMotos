@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, Injectable, NotAcceptableException } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
-import { ContractDto } from './dto/contract.dto';
+import { ContractDto } from '../forma-pago/dto/contract.dto';
 import generatePDF from 'src/libs/pdfKit';
 import { arrayFormatter } from 'src/libs/jsonFormatter';
 import { ErrorHandler } from 'src/libs/errorHandler';

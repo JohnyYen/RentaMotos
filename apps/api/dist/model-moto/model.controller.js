@@ -16,6 +16,7 @@ exports.ModelController = void 0;
 const common_1 = require("@nestjs/common");
 const model_service_1 = require("./model.service");
 const model_dto_1 = require("./dto/model.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ModelController = class ModelController {
     constructor(modelService) {
         this.modelService = modelService;
@@ -35,12 +36,15 @@ let ModelController = class ModelController {
 };
 exports.ModelController = ModelController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los modelos de las motos" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ModelController.prototype, "getAllModels", null);
 __decorate([
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador del modelo" }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina un modelo de moto dado su identificador" }),
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -48,6 +52,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ModelController.prototype, "deleteModel", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo modelo" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -55,6 +60,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ModelController.prototype, "createModel", null);
 __decorate([
+    (0, swagger_1.ApiParam)({ name: "id", description: "Identificador del modelo" }),
+    (0, swagger_1.ApiOperation)({ summary: "Modifica un modelo dado su identificador" }),
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
