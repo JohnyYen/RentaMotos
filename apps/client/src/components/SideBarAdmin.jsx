@@ -14,25 +14,17 @@ import "../App.css";
 import "boxicons";
 //import axios from 'axios';
 
-const SideBarAdmin = () => {
+const SideBarAdmin = ({ isInline = false }) => {
   const navigate = useNavigate();
   const [t] = useTranslation("global"); 
 
   return (
     <>
-      <Flex align="center" justify="center">
-        <box-icon
-          name="cycling"
-          size="md"
-          color="white"
-          style={{ marginTop: "1.5rem" }}
-        ></box-icon>
-      </Flex>
       <Menu
         theme="dark"
         className="sider-menu"
         defaultSelectedKeys={["listadoClientes"]}
-        mode="vertical"
+        mode={ isInline ? "inline" : "vertical"}
         onClick={(item) => {
           navigate(`/admin/${item.key}`);
         }}

@@ -10,19 +10,20 @@ const UserAdmin = () => {
 
   return (
     <Layout className="App">
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-        className="sider">
-        <SideBarAdmin />
-      </Sider>
-      <Layout>
-        <Header className="header">
-          <CustomHeader />
-        </Header>
+      <Header className="header">
+        <CustomHeader />
+      </Header>
+      <Layout style={{height: "auto"}}>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+          className="sider"
+        >
+          <SideBarAdmin />
+        </Sider>
         <Content className="content">
-          <AppRouter/>
+          <AppRouter />
         </Content>
       </Layout>
     </Layout>

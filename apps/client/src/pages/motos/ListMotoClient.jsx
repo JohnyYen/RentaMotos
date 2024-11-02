@@ -1,4 +1,4 @@
-import { Mentions, Typography, Table, Flex, Button } from "antd";
+import { Mentions, Typography, Table, Flex, Button, List, Card, Empty } from "antd";
 import "../../App.css";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next";
 import ModalCreateContract from "../../components/ModalCreateContract";
 import { GlobalContext } from "../../context/GlobalContext";
 import moment from "moment";
+import { SmileOutlined } from "@ant-design/icons";
 
 const extractData = async () => {
-
   let dataSource = [];
   let response = null;
   try {
@@ -33,9 +33,9 @@ const extractData = async () => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-     const response = await axios.get('http://localhost:3000/api/marc');
-    if(response.status === 200){
-      dataFilter = response.data
+    const response = await axios.get("http://localhost:3000/api/marc");
+    if (response.status === 200) {
+      dataFilter = response.data;
     }
   } catch (error) {
     console.log(error);
@@ -48,43 +48,124 @@ const ListMotoClient = () => {
   const [dataSource, setDataSource] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
-
-  const {setRow, row} = useContext(GlobalContext);
+  const { setRow, row } = useContext(GlobalContext);
+  const [pageSize, setPageSize] = useState();
 
   const handleRow = (record) => {
     setRow(record);
-  }
+  };
+
+  // Función para actualizar el pageSize según el ancho de la ventana
+  const updatePageSize = () => {
+    const width = window.innerWidth;
+    let columns;
+    if (width < 576) {
+      columns = 1; // xs
+    } else if (width < 768) {
+      columns = 2; // sm
+    } else if (width < 992) {
+      columns = 2; // md
+    } else if (width < 1200) {
+      columns = 3; // lg
+    } else {
+      columns = 4; // xl y xxl
+    }
+    setPageSize(columns);
+  };
 
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
     });
-    extractDataFilter().then(result => {
-      setDataFilter(result.map(marca => (
-        {
+    extractDataFilter().then((result) => {
+      setDataFilter(
+        result.map((marca) => ({
           text: marca.nommarca,
           value: marca.nomarca,
-        }
-      )));
+        }))
+      );
     });
   }, []);
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
-      <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)}/>
+      <Typography.Title level={3}>
+        {t("motorcycle.motorcycleList")}
+      </Typography.Title>
+      <ModalCreateContract
+        isVisible={visible}
+        setVisible={() => setVisible(!visible)}
+      />
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-        {t("mainContent.currentDate")}:
+          {t("mainContent.currentDate")}:
         </Typography.Text>
         <Mentions
           style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={moment().format('L')}
+          defaultValue={moment().format("L")}
         ></Mentions>
       </Flex>
-      <Table
+
+      <Flex align="center" justify="center">
+        {dataSource.length > 0 ? (
+          <List
+            grid={{
+              gutter: 16,
+              xs: 1,
+              sm: 2,
+              md: 2,
+              lg: 3,
+              xl: 4,
+              xxl: 6,
+            }}
+            pagination={{
+              position: "bottom",
+              align: "center",
+              pageSize: pageSize,
+            }}
+            size="large"
+            dataSource={dataSource}
+            renderItem={(item) => (
+              <List.Item>
+                <Card
+                  hoverable
+                  key={item.key}
+                  style={{ width: 240 }}
+                  cover={
+                    <img
+                      alt="example"
+                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    />
+                  }
+                >
+                  <Card.Meta
+                    title={`Matricula: ${item.matricula}`}
+                    description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Situación: ${item.situacion} | Color: ${item.color} | Km: ${item.kmRecorridos}`}
+                  />
+                </Card>
+              </List.Item>
+            )}
+          />
+        ) : (
+          <Empty style={{position: "fixed", bottom: "30%"}}
+          image={<SmileOutlined style={{ fontSize: '64px', color: '#1890ff' }} />}
+          description={
+            <Flex vertical="true">
+              <Typography.Title level={4} style={{ fontWeight: 'bold', color: '#555' }}>
+                ¡Ups! No hay motos disponibles.
+              </Typography.Title>
+              <Typography.Text style={{ color: '#777' }}>
+                Parece que no tenemos ninguna moto en este momento. Por favor, vuelve más tarde o crea una nueva.
+              </Typography.Text>
+            </Flex>
+          }
+        />
+        )}
+      </Flex>
+
+      {/* <Table
          scroll={{
           x: 920,
         }}
@@ -138,10 +219,9 @@ const ListMotoClient = () => {
             width: "13rem",
           },
         ]}
-      />
+      /> */}
     </Flex>
-
-      )
+  );
 };
 
 export default ListMotoClient;

@@ -112,6 +112,8 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
                     ))}
                 </Select>
            </Form.Item>
+
+                
     </Modal>
   )
 }

@@ -1,15 +1,24 @@
-import { Mentions, Typography, Table, Flex, Button, message } from "antd";
+import {
+  Mentions,
+  Typography,
+  Table,
+  Flex,
+  Button,
+  message,
+  List,
+  Card,
+} from "antd";
 import "../../App.css";
 import axios from "axios";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ModalModMoto from '../../components/ModalModMoto'
-import {GlobalContext} from '../../context/GlobalContext'
+import ModalModMoto from "../../components/ModalModMoto";
+import { GlobalContext } from "../../context/GlobalContext";
 import ModalCreateMoto from "../../components/ModalCreateMoto";
 import EliminarMoto from "../../component/EliminarMoto";
 import moment from "moment";
-
+import Item from "antd/es/list/Item";
 
 const extractData = async () => {
   let dataSource = [];
@@ -55,7 +64,7 @@ const downloadPDF = async (url) => {
   } catch (error) {
     notification.info({
       message: "Descarga de PDF",
-      description: "La lista de Motos esta vacia"
+      description: "La lista de Motos esta vacia",
     });
   }
 };
@@ -63,9 +72,9 @@ const downloadPDF = async (url) => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-     const response = await axios.get('http://localhost:3000/api/marc');
-    if(response.status === 200){
-      dataFilter = response.data
+    const response = await axios.get("http://localhost:3000/api/marc");
+    if (response.status === 200) {
+      dataFilter = response.data;
     }
   } catch (error) {
     console.log(error);
@@ -80,55 +89,124 @@ const ListMoto = () => {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [visualize, setVisualize] = useState(false);
-  const {setRow} = useContext(GlobalContext);
+  const { setRow } = useContext(GlobalContext);
+  const [pageSize, setPageSize] = useState();
 
+  // Función para actualizar el pageSize según el ancho de la ventana
+  const updatePageSize = () => {
+    const width = window.innerWidth;
+    let columns; 
+    if (width < 576) {
+      columns = 1; // xs
+    } else if (width < 768) {
+      columns = 2; // sm
+    } else if (width < 992) {
+      columns = 2; // md
+    } else if (width < 1200) {
+      columns = 3; // lg
+    } else {
+      columns = 4; // xl y xxl
+    }
+    setPageSize(columns);
+  };
 
-  
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
+      console.log(result);
     });
-    extractDataFilter().then(result => {
-      setDataFilter(result.map((marca) => (
-        {
+    extractDataFilter().then((result) => {
+      setDataFilter(
+        result.map((marca) => ({
           text: marca.nommarca,
           value: marca.nomarca,
-        }
-      )));
+        }))
+      );
     });
-
+    window.addEventListener("resize", updatePageSize);
+    updatePageSize();
   }, []);
 
   const onClick = async () => {
-    try{
+    try {
       await downloadPDF("http://localhost:3000/api/moto/pdf");
-    }
-    catch(error){
-     
-    }
+    } catch (error) {}
   };
 
   return (
     <Flex vertical="true">
-      <Typography.Title level={3}>{t("motorcycle.motorcycleList")}</Typography.Title>
-      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)}/>
-      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)}/>
-      <EliminarMoto isOpen={visualize} setOpen={() => setVisualize(!visualize)} />
+      <Typography.Title level={3}>
+        {t("motorcycle.motorcycleList")}
+      </Typography.Title>
+      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)} />
+      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)} />
+      <EliminarMoto
+        isOpen={visualize}
+        setOpen={() => setVisualize(!visualize)}
+      />
       <Flex align="center" justify="space-between">
         <Flex align="center">
-        <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
-          {t("mainContent.currentDate")}:
-        </Typography.Text>
-        <Mentions
-          style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
-          readOnly
-          variant="borderless"
-          defaultValue={moment().format('L')}
-        />
+          <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
+            {t("mainContent.currentDate")}:
+          </Typography.Text>
+          <Mentions
+            style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
+            readOnly
+            variant="borderless"
+            defaultValue={moment().format("L")}
+          />
         </Flex>
-        <Button onClick={()=>setOpen(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">Crear moto</Button>
+        <Button
+          onClick={() => setOpen(true)}
+          className="actionTable"
+          style={{ marginRight: "1rem" }}
+          type="primary"
+        >
+          Crear moto
+        </Button>
       </Flex>
-      <Table
+      <Flex align="center" justify="center">
+        <List
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 2,
+            md: 2,
+            lg: 3,
+            xl: 4,
+            xxl: 6,
+          }}
+          pagination={{
+            position: "bottom",
+            align: "center",
+            pageSize: pageSize,
+          }}
+          size="large"
+          dataSource={dataSource}
+          renderItem={(item) => (
+            <List.Item>
+              <Card
+                hoverable
+                key={item.key}
+                style={{ width: 240 }}
+                actions={[<EditOutlined onClick={() => {setVisible(true); setRow(record)}} />]}
+                cover={
+                  <img
+                    alt="example"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  />
+                }
+              >
+                <Card.Meta
+                  title={`Matricula: ${item.matricula}`}
+                  description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Situación: ${item.situacion} | Color: ${item.color} | Km: ${item.kmRecorridos}`}
+                />
+              </Card>
+            </List.Item>
+          )}
+        />
+      </Flex>
+      {/* <Table
          scroll={{
           x: 920,
         }}
@@ -189,7 +267,7 @@ const ListMoto = () => {
             width: "13rem",
           },
         ]}
-      />
+      /> */}
       <Button
         className="ant-btn-download"
         onClick={onClick}
@@ -197,11 +275,10 @@ const ListMoto = () => {
         icon={<DownloadOutlined />}
         shape="round"
       >
-       {t("mainContent.downloadPDF")}
+        {t("mainContent.downloadPDF")}
       </Button>
     </Flex>
-
-      )
+  );
 };
 
 export default ListMoto;

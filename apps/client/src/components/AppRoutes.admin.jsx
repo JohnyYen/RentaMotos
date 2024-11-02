@@ -62,7 +62,7 @@ const extractDataContract = async () => {
         "fecha de inicio": element.fechainicio,
         fechaFin: element.fechafin,
         prorroga: element.diasprorroga,
-        "seguro adicional": element.seguro ? "✔" : "❌",
+        "seguro adicional": element.seguro ? "Si" : "No",
         "importe total": element.importe,
       }));
     }
