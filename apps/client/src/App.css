@@ -664,6 +664,13 @@ background-color: rebeccapurple;
   padding: 1rem;
 }
 
+.image{
+  background: url('./media.image.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+}
+
 #left-div label, #rigth-div label{
   font-weight: 600;
   font-variant: small-caps;

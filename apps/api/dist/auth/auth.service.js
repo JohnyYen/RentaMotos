@@ -23,30 +23,27 @@ let AuthService = class AuthService {
         this.conn = conn;
     }
     async register(userObject) {
-        const { password } = userObject;
+        const { password, email, user_name, ci } = userObject;
         const plainToCrypto = await (0, bcrypt_1.hash)(password, 10);
         userObject = { ...userObject, password: plainToCrypto };
+        return await this.conn.query(`INSERT INTO USER VALUES ('${user_name}', '${password}', '${email}', '${ci}', 2)`);
     }
     async login(userObject) {
-        const findUser = this.conn.query(`SELECT * FROM user WHERE username = '${userObject.name}'`);
+        const response = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${userObject.user_name}'`);
+        const findUser = response.rows[0];
         if (!findUser)
             throw new common_1.HttpException("USER_NOT_FOUND", 402);
-        const isCheked = (0, bcrypt_1.compare)(userObject.password, findUser.password);
+        console.log(findUser);
+        const isCheked = (0, bcrypt_1.compare)(userObject.password, findUser.contrasenia);
         if (!isCheked)
             throw new common_1.HttpException("PASSWORD_INCORRECT", 401);
-        const payload = { id: findUser.id, name: findUser.name };
+        const payload = { id: findUser.id_user, name: findUser.nombre_usuario };
         const token = this.jwtService.sign(payload);
         const data = {
             user: findUser,
             token,
         };
         return data;
-    }
-    async generateToken(user) {
-        const payload = { sub: user.username, username: user.username, iat: Date.now(), exp: (Date.now() / 1000) + (60 * 60 * 24) };
-        return {
-            access_token: this.jwtService.sign(payload),
-        };
     }
 };
 exports.AuthService = AuthService;

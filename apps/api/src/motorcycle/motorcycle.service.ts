@@ -5,12 +5,14 @@ import { arrayFormatter } from 'src/libs/jsonFormatter';
 import generatePDF from 'src/libs/pdfKit';
 import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
+import { PgService } from 'src/pg/pg.service';
 
 @Injectable()
 export class MotorcycleService {
-    constructor(@Inject(PG_CONNECTION) private conn : any){}
+    constructor(@Inject(PG_CONNECTION) private conn : any, private pgService : PgService){}
 
     async getAllMotorcycle(){
+        return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }

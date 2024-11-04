@@ -13,15 +13,15 @@ export declare class ContractController {
     getFilterContract(): Promise<any>;
     getContractInPDFMarc(res: any): Promise<void>;
     getContractByCliente(id: string): Promise<any>;
-    deleteContract(matricula: string): void;
-    createContract(contract: ContractDto): void;
-    updateContract(matricula: string, contract: ContractDto): void;
-    getAllFormaPago(): Promise<any>;
-    createFormaPago(form: FormaPagoDto): void;
-    deleteFormaPago(id: string): void;
-    updateFormaPago(body: FormaPagoDto, id: string): void;
     getAllPagos(): Promise<any>;
     getAllPagosPDF(res: any): Promise<void>;
     getAllPagosPDFMun(res: any, mun: string): Promise<void>;
     getAllPagosByMun(mun: string): Promise<any>;
+    getAllFormaPago(): Promise<any>;
+    createContract(contract: ContractDto): void;
+    createFormaPago(form: FormaPagoDto): void;
+    updateContract(matricula: string, contract: ContractDto): void;
+    updateFormaPago(body: FormaPagoDto, id: string): void;
+    deleteFormaPago(id: string): void;
+    deleteContract(matricula: string): void;
 }

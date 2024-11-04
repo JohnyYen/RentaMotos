@@ -13,17 +13,19 @@ const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const constants_1 = require("../constants");
 const jwtStrategy_1 = require("./jwtStrategy");
-const pg_module_1 = require("../models/pg.module");
+const pg_module_1 = require("../pg/pg.module");
+const auth_controller_1 = require("./auth.controller");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
+        controllers: [auth_controller_1.AuthController],
         imports: [pg_module_1.PgModule, passport_1.PassportModule, jwt_1.JwtModule.register({
                 secret: constants_1.JWT_CONSTANTS.secret,
+                signOptions: { expiresIn: '20h' }
             })],
         providers: [auth_service_1.AuthService, jwtStrategy_1.JwtStrategy],
-        exports: [auth_service_1.AuthService]
     })
 ], AuthModule);
 //# sourceMappingURL=auth.module.js.map

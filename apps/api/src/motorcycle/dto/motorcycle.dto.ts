@@ -11,7 +11,7 @@ export class MotorcycleDto{
     @IsString({message: "The color atribute can be a String"})
     public color : string;
 
-    @ApiProperty({type:Number, description:"La cantidad de Km recorridos por la moto", example: 14, minimum:0})
+    @ApiProperty({type:Number, description:"La cantidad de Km recorridos por la moto", example: 0, minimum:0})
     @IsInt({message: "The cantKm atribute can be a Integer"})
     @Min(0, {message: "The cantKm can be zero"})
     public cantKm : number;
@@ -20,7 +20,7 @@ export class MotorcycleDto{
     @IsString({message: "The marca atribute can be a String"})
     public marca : string;
 
-    @ApiProperty({type:String, description:"El modelo de la moto", example: 'Odissey'})
+    @ApiProperty({type:String, description:"El modelo de la moto", example: 'Gold Wing'})
     @IsString({message: "The modelo atribute can be a String"})
     public modelo : string;
 

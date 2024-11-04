@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "color", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: Number, description: "La cantidad de Km recorridos por la moto", example: 14, minimum: 0 }),
+    (0, swagger_1.ApiProperty)({ type: Number, description: "La cantidad de Km recorridos por la moto", example: 0, minimum: 0 }),
     (0, class_validator_1.IsInt)({ message: "The cantKm atribute can be a Integer" }),
     (0, class_validator_1.Min)(0, { message: "The cantKm can be zero" }),
     __metadata("design:type", Number)
@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "marca", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "El modelo de la moto", example: 'Odissey' }),
+    (0, swagger_1.ApiProperty)({ type: String, description: "El modelo de la moto", example: 'Gold Wing' }),
     (0, class_validator_1.IsString)({ message: "The modelo atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "modelo", void 0);

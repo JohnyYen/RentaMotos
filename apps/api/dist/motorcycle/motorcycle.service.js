@@ -17,11 +17,14 @@ const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
 const pdfKit_1 = require("../libs/pdfKit");
+const pg_service_1 = require("../pg/pg.service");
 let MotorcycleService = class MotorcycleService {
-    constructor(conn) {
+    constructor(conn, pgService) {
         this.conn = conn;
+        this.pgService = pgService;
     }
     async getAllMotorcycle() {
+        return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
@@ -90,6 +93,6 @@ exports.MotorcycleService = MotorcycleService;
 exports.MotorcycleService = MotorcycleService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)(constants_1.PG_CONNECTION)),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:paramtypes", [Object, pg_service_1.PgService])
 ], MotorcycleService);
 //# sourceMappingURL=motorcycle.service.js.map

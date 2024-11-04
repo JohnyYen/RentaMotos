@@ -1,9 +1,11 @@
 import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
+import { PgService } from 'src/pg/pg.service';
 export declare class MotorcycleService {
     private conn;
-    constructor(conn: any);
+    private pgService;
+    constructor(conn: any, pgService: PgService);
     getAllMotorcycle(): Promise<any>;
     getMotoClient(): Promise<any>;
     getPDF(): Promise<Buffer>;

@@ -18,33 +18,40 @@ const swagger_1 = require("@nestjs/swagger");
 const auth_service_1 = require("./auth.service");
 const loginObject_dto_1 = require("./dto/loginObject.dto");
 const signObject_dto_1 = require("./dto/signObject.dto");
+const clientSign_dto_1 = require("./dto/clientSign.dto");
 let AuthController = class AuthController {
-    constructor(jwtService) {
-        this.jwtService = jwtService;
+    constructor(authService) {
+        this.authService = authService;
     }
     login(authObject) {
+        return this.authService.login(authObject);
     }
     register(authObject) {
+        this.authService.register(authObject);
     }
 };
 exports.AuthController = AuthController;
 __decorate([
-    (0, common_1.Post)('login'),
+    (0, swagger_1.ApiOperation)({ summary: "Loguear al usuario" }),
+    (0, swagger_1.ApiBody)({ type: loginObject_dto_1.LoginObjectDto, description: 'Revisar la documentación del Login Dto' }),
+    (0, common_1.Post)('/login'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [loginObject_dto_1.LoginObjectDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
 __decorate([
-    (0, common_1.Post)("register"),
+    (0, swagger_1.ApiOperation)({ summary: "Registrar un nuevo usuario" }),
+    (0, swagger_1.ApiBody)({ type: signObject_dto_1.SignObjectDto, description: "Revisar la documentación del Sign Dto" }),
+    (0, common_1.Post)("/register"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [signObject_dto_1.SignObjectDto]),
+    __metadata("design:paramtypes", [clientSign_dto_1.ClientSignDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "register", null);
 exports.AuthController = AuthController = __decorate([
-    (0, swagger_1.ApiTags)('Autorización'),
-    (0, common_1.Controller)('auth'),
+    (0, swagger_1.ApiTags)('Auth'),
+    (0, common_1.Controller)('api/auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);
 //# sourceMappingURL=auth.controller.js.map

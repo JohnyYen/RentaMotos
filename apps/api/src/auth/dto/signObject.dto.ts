@@ -1,9 +1,7 @@
-import { IsEmail, isEmail, IsString } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEmail, isEmail, IsString, IsStrongPassword } from "class-validator";
 
 export class SignObjectDto {
-    @IsEmail()
-    email: string;
 
-    password: string;
-
+   
 }

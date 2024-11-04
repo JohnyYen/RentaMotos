@@ -1,16 +1,13 @@
 import { JwtService } from '@nestjs/jwt';
-import { SignObjectDto } from './dto/signObject.dto';
 import { LoginObjectDto } from './dto/loginObject.dto';
+import { ClientSignDto } from './dto/clientSign.dto';
 export declare class AuthService {
     private jwtService;
     private conn;
     constructor(jwtService: JwtService, conn: any);
-    register(userObject: SignObjectDto): Promise<void>;
+    register(userObject: ClientSignDto): Promise<any>;
     login(userObject: LoginObjectDto): Promise<{
         user: any;
         token: string;
-    }>;
-    generateToken(user: any): Promise<{
-        access_token: string;
     }>;
 }

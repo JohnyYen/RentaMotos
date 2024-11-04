@@ -11,16 +11,15 @@ export declare class MotorcycleController {
     getMotoClient(): Promise<any>;
     getSituationMoto(): Promise<any>;
     getPDFSituation(res: any): Promise<void>;
-    createMoto(body: MotorcycleDto): void;
-    deleteMoto(id: string): void;
-    updateMoto(id: string, update: MotorcycleDto): void;
-    getSituation(): Promise<any>;
-    getAllMarc(): Promise<any>;
-    deleteMarc(id: string): void;
-    createMarc(marc: MarcDto): void;
-    updateMarc(id: string, body: MarcDto): void;
     getAllModels(): Promise<any>;
-    deleteModel(id: string): void;
+    getSituation(): Promise<any>;
+    createMoto(body: MotorcycleDto): void;
+    createMarc(marc: MarcDto): void;
     createModel(model: ModelDto): void;
+    updateMoto(id: string, update: MotorcycleDto): void;
     updateModel(id: string, body: ModelDto): void;
+    updateMarc(id: string, body: MarcDto): void;
+    deleteModel(id: string): void;
+    deleteMarc(id: string): void;
+    deleteMoto(id: string): void;
 }

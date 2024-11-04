@@ -37,7 +37,7 @@ function App() {
         <GlobalProvider>
           <Routes>
             <Route path="/prueba" element={<Prueba/>}/>
-            <Route loa path="/" element={<Loguin/>} />
+            <Route path="/" element={<Loguin/>} />
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/client/*" element={<UserClient/>}/>
             <Route path="/worker/*" element={<UserWorker/>}/>
