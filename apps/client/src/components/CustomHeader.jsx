@@ -18,11 +18,11 @@ const CustomHeader = () => {
   };
 
   return (
-    <Flex align="center" justify="space-between">
+    <Flex align="center" justify= "space-between" style={{height:40}}>
       <Typography.Title style={{color: "white"}} level={2}>{t("header.motorcycleRent")}</Typography.Title>
       <Flex align="center" justify="center">
           <Button onClick={() => {localStorage.removeItem('userData'); localStorage.removeItem('clientData');}} className="header-button" type="link" iconPosition="end" icon={<LoginOutlined style={{fontSize: "1.2rem"}}/>}>
-            <Link to='/'>Log Out</Link></Button>
+            <Link to='/login'>Log Out</Link></Button>
             <Select className="popup-language"
             variant="Filled"
             size="small"

@@ -1,3 +1,28 @@
+/*no borres esto que viene johny*/
+.paquito {
+  height: 2rem;
+  background-color: #002345;
+  width: 100%;
+  border-top-left-radius: 0.5rem;
+}
+.nombreEmpresa{
+  height: 8rem;
+  font-size: 3rem;
+  font-family:  fantasy;
+  color: #000;
+}
+.subscribete{
+  height: 6rem;
+  font-size: 4rem;
+  font-family:  Helvetica;
+
+}
+.slogan{
+  height: 5rem;
+  font-size: 3rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .header {
   /* position: relative;
   display: flex;
@@ -140,7 +165,7 @@ background-color: rebeccapurple;
   height: 50vh;
   border-radius: 5%;
 
-  background: #147bdb;
+  background: #00162b;
 
   /* background: hsla(216, 91%, 35%, 1);
 

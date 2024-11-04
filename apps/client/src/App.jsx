@@ -1,5 +1,6 @@
 import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
+import HomePage from "./pages/UserPages/HomePage";
 import UserAdmin from "./pages/UserPages/UserAdmin";
 import Loguin from "./component/Loguin";
 import UserClient from "./pages/UserPages/UserClient";
@@ -9,6 +10,7 @@ import GlobalProvider from "./context/GlobalContext";
 import { Suspense } from "react";
 import { message, notification } from "antd";
 import axios from "axios";
+import { SiHomepage } from "react-icons/si";
 
 
 
@@ -36,11 +38,8 @@ function App() {
     <>
         <GlobalProvider>
           <Routes>
-            <Route path="/prueba" element={<Prueba/>}/>
-            <Route loa path="/" element={<Loguin/>} />
+            <Route path="/" element={<HomePage/>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
-            <Route path="/client/*" element={<UserClient/>}/>
-            <Route path="/worker/*" element={<UserWorker/>}/>
           </Routes>
         </GlobalProvider>
     </>

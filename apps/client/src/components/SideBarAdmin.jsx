@@ -18,6 +18,16 @@ import { MdOutlineNightShelter } from "react-icons/md";
 const SideBarAdmin = () => {
   const navigate = useNavigate();
   const [t] = useTranslation("global"); 
+  const language = (value, option) => {
+    switch(value){
+      case 'es':
+        i18n.changeLanguage("es");
+        break;
+      case 'en':
+        i18n.changeLanguage("en");
+        break;
+    }
+  };
 
   return (
     <>
