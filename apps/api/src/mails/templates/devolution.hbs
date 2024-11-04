@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email de Renta de Motos</title>
+    <title>Devolución de Moto</title>
     <style>
+        /* Reset general de estilos */
+        body, p, h1, h2, h3, a {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: inherit;
+        }
         body {
             font-family: Arial, sans-serif;
             color: #333;
-            background-color: #ffffff; /* Fondo blanco */
+            background-color: #ffffff;
             margin: 0;
             padding: 0;
         }
@@ -41,6 +48,16 @@
             color: #333;
             line-height: 1.6;
         }
+        .message h2 {
+            color: #003366;
+            font-size: 24px;
+        }
+        .timer-container {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #005580; /* Azul medio */
+        }
         .button-container {
             text-align: center;
             margin: 20px 0;
@@ -53,6 +70,7 @@
             border-radius: 4px;
             font-weight: bold;
             transition: background-color 0.3s;
+            display: inline-block;
         }
         .button:hover {
             background-color: #003366; /* Azul oscuro al pasar el ratón */
@@ -74,6 +92,20 @@
         .footer a:hover {
             text-decoration: underline;
         }
+
+        /* Estilos responsive */
+        @media screen and (max-width: 600px) {
+            .header, .message, .footer {
+                padding: 15px;
+            }
+            .message h2 {
+                font-size: 20px;
+            }
+            .button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -89,16 +121,18 @@
 
     <!-- Message -->
     <div class="message">
-        <h2>¡Gracias por elegirnos, {{customerName}}👍!</h2>
-        <p>Estamos emocionados de acompañarte en tu próxima aventura en moto. A continuación, puedes visualizar y descargar el contrato de renta de tu moto y presentarlo en la sucursal más cercana.</p>
+        <h2>¡Estimado/a {{customerName}}!</h2>
+        <p>Recuerda que tu moto debe ser devuelta el <strong>{{returnDate}}</strong>. A continuación, puedes ver el tiempo restante hasta la fecha de devolución.</p>
     </div>
 
-    <!-- Contract View and Download -->
-    <div class="button-container">
-        <object data="" type="application/pdf">hola</object>
+    <!-- Timer -->
+    <div class="timer-container" id="countdown">
+        Tiempo restante: <span id="timer"></span>
     </div>
+
+    <!-- Button for Legal Aspects -->
     <div class="button-container">
-        <a href="{{contractDownloadLink}}" class="button">Descargar Contrato</a>
+        <a href="{{legalLink}}" class="button">Ver Aspectos Legales</a>
     </div>
 
     <!-- Footer -->
@@ -109,6 +143,32 @@
         <p><a href="{{websiteUrl}}">Visita nuestro sitio web</a></p>
     </div>
 </div>
+
+<script>
+    // JavaScript para el temporizador
+    const countdownElement = document.getElementById('timer');
+    const returnDate = new Date("{{returnDate}}").getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = returnDate - now;
+
+        if (distance < 0) {
+            countdownElement.innerHTML = "¡Tiempo de devolución vencido!";
+            clearInterval(timerInterval);
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+</script>
 
 </body>
 </html>
