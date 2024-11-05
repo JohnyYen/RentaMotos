@@ -87,15 +87,21 @@ export class ContractService {
     }
 
     async updateContract(contract : ContractDto, matricula : string){
-
-        return await this.pgService.execute(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`)
-        this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
+        try {
+            return await this.pgService.execute(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`)
+            this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 
     async deleteContract(matricula : string){
-        return await this.pgService.execute(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
-
-        this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
+       try {
+            return await this.pgService.execute(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
+            this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
+       } catch (error) {
+            throw new ErrorHandler(error).returnError();
+       }
     }
 
     async getAllFormaPago(){
@@ -108,18 +114,30 @@ export class ContractService {
     }
 
     async createFormaPago(formaPago : FormaPagoDto){
-        return await this.pgService.execute(`INSERT INTO formaPago values ('${formaPago.formaPago}')`)
-        await this.conn.query(`INSERT INTO formaPago values ('${formaPago.formaPago}')`);
+        try {
+            return await this.pgService.execute(`INSERT INTO formaPago values ('${formaPago.formaPago}')`)
+            await this.conn.query(`INSERT INTO formaPago values ('${formaPago.formaPago}')`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 
     async deleteFormaPago(formaPago : string){
-        return await this.pgService.execute(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
-        await this.conn.query(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
+       try {
+            return await this.pgService.execute(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
+            await this.conn.query(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
+       } catch (error) {
+            throw new ErrorHandler(error).returnError();
+       }
     }
 
     async updateFormaPago(formaPago : FormaPagoDto, changeFormaPago : string){
+       try {
         return await this.pgService.execute(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
         await this.conn.query(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
+       } catch (error) {
+            throw new ErrorHandler(error).returnError();
+       }
     }
 
     async getAllPagos(){

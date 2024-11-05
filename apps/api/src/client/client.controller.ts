@@ -88,8 +88,8 @@ export class ClientController {
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Crea un nuevo cliente"})
     @Post()
-    createClient(@Body() clientDto : ClientDto){
-        this.clientService.createClient(clientDto);
+    async createClient(@Body() clientDto : ClientDto){
+        return await this.clientService.createClient(clientDto);
     }
 
     @UseGuards(JwtAuthGuard)
@@ -104,15 +104,15 @@ export class ClientController {
     @ApiParam({name: "id", description: "El carnet de identidad del cliente"})
     @ApiOperation({summary: "Modifica un cliente según su identificador"})
     @Patch('/:id')
-    updateClient(@Param('id') id : string, @Body() client : ClientDto){
-        this.clientService.updateClient(client, id);
+    async updateClient(@Param('id') id : string, @Body() client : ClientDto){
+        return await this.clientService.updateClient(client, id);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Elimina un cliente según su identificador"})
     @Delete('/:id')
-    deleteClient(@Param("id") id : string){
-        this.clientService.deleteClient(id);
+    async deleteClient(@Param("id") id : string){
+        return await this.clientService.deleteClient(id);
     }
 
 }

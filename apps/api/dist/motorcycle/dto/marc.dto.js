@@ -10,12 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MarcDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class MarcDto {
 }
 exports.MarcDto = MarcDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: "La marca de la moto", example: 'Honda' }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], MarcDto.prototype, "nommarca", void 0);
+], MarcDto.prototype, "nomMarca", void 0);
 //# sourceMappingURL=marc.dto.js.map

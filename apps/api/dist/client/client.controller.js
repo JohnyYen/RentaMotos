@@ -58,17 +58,17 @@ let ClientController = class ClientController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
-    createClient(clientDto) {
-        this.clientService.createClient(clientDto);
+    async createClient(clientDto) {
+        return await this.clientService.createClient(clientDto);
     }
     async validateNumber(body) {
         return this.clientService.validatePhoneNumber(body.phoneNumber);
     }
-    updateClient(id, client) {
-        this.clientService.updateClient(client, id);
+    async updateClient(id, client) {
+        return await this.clientService.updateClient(client, id);
     }
-    deleteClient(id) {
-        this.clientService.deleteClient(id);
+    async deleteClient(id) {
+        return await this.clientService.deleteClient(id);
     }
 };
 exports.ClientController = ClientController;
@@ -148,7 +148,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [client_dto_1.ClientDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClientController.prototype, "createClient", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -169,7 +169,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, client_dto_1.ClientDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClientController.prototype, "updateClient", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -178,7 +178,7 @@ __decorate([
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClientController.prototype, "deleteClient", null);
 exports.ClientController = ClientController = __decorate([
     (0, swagger_1.ApiBearerAuth)(),

@@ -61,16 +61,29 @@ let ClientService = class ClientService {
         }
     }
     async deleteClient(id) {
-        return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
-        this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+        try {
+            return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
+            this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async createClient(client) {
-        return await this.pgService.execute(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numCont}')`);
-        this.conn.query(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numCont}')`);
+        try {
+            return await this.conn.query(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numCont}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async updateClient(client, id) {
-        return await this.pgService.execute(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`);
-        this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`);
+        try {
+            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async getAllBadClients() {
         return await this.pgService.execute(` clientesIncumplidores()`);

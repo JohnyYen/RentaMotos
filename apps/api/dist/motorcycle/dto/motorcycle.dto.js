@@ -42,7 +42,7 @@ __decorate([
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "modelo", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: String, description: "La situacion de la moto", examples: ['Alquilada', 'Taller', 'Disponible'] }),
+    (0, swagger_1.ApiProperty)({ type: String, description: "La situacion de la moto", example: 'Disponible' }),
     (0, class_validator_1.IsString)({ message: "The situacion atribute can be a String" }),
     __metadata("design:type", String)
 ], MotorcycleDto.prototype, "situacion", void 0);

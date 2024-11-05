@@ -6,6 +6,7 @@ import generatePDF from 'src/libs/pdfKit';
 import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
 import { PgService } from 'src/pg/pg.service';
+import { ErrorHandler } from 'src/libs/errorHandler';
 
 @Injectable()
 export class MotorcycleService {
@@ -41,36 +42,59 @@ export class MotorcycleService {
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
 
-    async deleteMotorcycle( id : string){
-        // try {
-             await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
-        // } catch (error) {
-        //     console.log('Ocurrio un error');
-        // }
+    async deleteMotorcycle( id : number){
+        try {
+             await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 
     async getMarc() {
-        const res = await  this.conn.query('SELECT nommarca FROM marca');
+        const res = await  this.conn.query('SELECT nom_marca FROM marca');
         return res.rows;
     }
 
-    async deleteMarc(marc : string) {
-        await this.conn.query(`DELETE FROM marca WHERE nommarca = '${marc}'`);
+    async deleteMarc(marc : number) {
+        try {
+            await this.conn.query(`DELETE FROM marca WHERE id_marca = '${marc}'`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
+
     }
 
-    async createMarc(nommarca : MarcDto) {
-        await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
+    async createMarc(marca : MarcDto) {
+        try {
+            await this.conn.query(`INSERT INTO marca VALUES ('${marca.nomMarca}')`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 
-    async updateMarc(marc : MarcDto, id : string){
-        await this.conn.query(`UPDATE marca SET nommarca = '${marc.nommarca}' WHERE nommarca = '${id}'`);
+    async updateMarc(marc : MarcDto, id : number){
+        try {
+            await this.conn.query(`UPDATE marca SET nom_marca = '${marc.nomMarca}' WHERE id_marca = '${id}'`);
+        } catch (error) {
+            return new ErrorHandler(error).returnError();
+        }
     }
+
     async createMotorcycle (moto : MotorcycleDto){
-        await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
+       try{
+        //return await this.pgService.execute(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`)
+        return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
+       }catch(error){
+            throw new ErrorHandler(error).returnError();
+       }
     }
 
     async updateMotorcycle (moto : MotorcycleDto, id : string){
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+        try {
+            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 
     async getSituationMoto(){
@@ -83,16 +107,27 @@ export class MotorcycleService {
         return res.rows;
     }
 
-    async deleteModels(nomModelo : string) {
-        console.log(nomModelo);
-        await this.conn.query(`DELETE FROM modelo WHERE nommodelo = '${nomModelo}'`);
+    async deleteModels(id : number) {
+       try {
+        await this.conn.query(`DELETE FROM modelo WHERE id_modelo = '${id}'`);
+       } catch (error) {
+        throw new ErrorHandler(error).returnError();
+       }
     }
 
     async createModels(model : ModelDto) {
-        await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
+        try {
+            await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 
-    async updateModel(model : ModelDto, nomModel : string){
-        this.conn.query(`UPDATE modelo SET nomModelo = '${model.nomModelo}' WHERE nommodelo = '${nomModel}'`);
+    async updateModel(model : ModelDto, id : number){
+        try {
+            this.conn.query(`UPDATE modelo SET nom_modelo = '${model.nomModelo}' WHERE id_modelo = '${id}'`);
+        } catch (error) {
+            throw new ErrorHandler(error).returnError();
+        }
     }
 }

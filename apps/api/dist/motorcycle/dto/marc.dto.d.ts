@@ -1,3 +1,3 @@
 export declare class MarcDto {
-    nommarca: string;
+    nomMarca: string;
 }

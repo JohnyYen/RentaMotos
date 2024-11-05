@@ -24,7 +24,7 @@ export class MotorcycleDto{
     @IsString({message: "The modelo atribute can be a String"})
     public modelo : string;
 
-    @ApiProperty({type:String, description:"La situacion de la moto", examples: ['Alquilada', 'Taller', 'Disponible']})
+    @ApiProperty({type:String, description:"La situacion de la moto", example: 'Disponible'})
     @IsString({message: "The situacion atribute can be a String"})
     public situacion : string;
 }

@@ -89,23 +89,23 @@ let ContractController = class ContractController {
     async getAllFormaPago() {
         return await this.contractService.getAllFormaPago();
     }
-    createContract(contract) {
-        this.contractService.createContract(contract);
+    async createContract(contract) {
+        return await this.contractService.createContract(contract);
     }
-    createFormaPago(form) {
-        this.contractService.createFormaPago(form);
+    async createFormaPago(form) {
+        return await this.contractService.createFormaPago(form);
     }
-    updateContract(matricula, contract) {
-        this.contractService.updateContract(contract, matricula);
+    async updateContract(matricula, contract) {
+        return await this.contractService.updateContract(contract, matricula);
     }
-    updateFormaPago(body, id) {
-        this.contractService.updateFormaPago(body, id);
+    async updateFormaPago(body, id) {
+        return await this.contractService.updateFormaPago(body, id);
     }
-    deleteFormaPago(id) {
-        this.contractService.deleteFormaPago(id);
+    async deleteFormaPago(id) {
+        return await this.contractService.deleteFormaPago(id);
     }
-    deleteContract(matricula) {
-        this.contractService.deleteContract(matricula);
+    async deleteContract(matricula) {
+        return await this.contractService.deleteContract(matricula);
     }
 };
 exports.ContractController = ContractController;
@@ -239,7 +239,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [contract_dto_1.ContractDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "createContract", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -248,7 +248,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [formaPago_dto_1.FormaPagoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "createFormaPago", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -258,7 +258,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, contract_dto_1.ContractDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "updateContract", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -269,7 +269,7 @@ __decorate([
     __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [formaPago_dto_1.FormaPagoDto, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "updateFormaPago", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -279,7 +279,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "deleteFormaPago", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -288,7 +288,7 @@ __decorate([
     __param(0, (0, common_1.Param)("matricula")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ContractController.prototype, "deleteContract", null);
 exports.ContractController = ContractController = __decorate([
     (0, swagger_1.ApiBearerAuth)(),

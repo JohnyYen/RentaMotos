@@ -64,8 +64,8 @@ export class MotorcycleController {
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Devuelve todos los modelos de las motos"})
     @Get('/model')
-    getAllModels() {
-        return this.motoService.getModels();
+    async getAllModels() {
+        return await this.motoService.getModels();
     }
 
     @UseGuards(JwtAuthGuard)
@@ -79,24 +79,28 @@ export class MotorcycleController {
     @ApiBody({type:MotorcycleDto, description: "Los datos de la moto"})
     @ApiOperation({summary: "Crea una moto"})
     @Post()
-    createMoto(@Body() body : MotorcycleDto){
-        this.motoService.createMotorcycle(body);
+    async createMoto(@Body() body : MotorcycleDto){
+        return await this.motoService.createMotorcycle(body);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiBody({type:MarcDto, description: "Los datos de la marca"})
     @ApiOperation({summary: "Crea una nueva marca de moto"})
     @Post('/marca')
-    createMarc(@Body() marc : MarcDto) {
-        this.motoService.createMarc(marc);
+    async createMarc(@Body() marc : MarcDto) {
+        // try {
+            return await this.motoService.createMarc(marc);
+        // } catch (error) {
+        //     throw error;
+        // }
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiBody({type:ModelDto, description:"Los datos para crear una nueva moto"})
     @ApiOperation({summary: "Crea un nuevo modelo"})
     @Post('/model')
-    createModel(@Body() model : ModelDto) {
-        this.motoService.createModels(model);
+    async createModel(@Body() model : ModelDto) {
+        return await this.motoService.createModels(model);
     }
 
     @UseGuards(JwtAuthGuard)
@@ -104,49 +108,50 @@ export class MotorcycleController {
     @ApiBody({type:MotorcycleDto, description: "Los datos de las motos"})
     @ApiOperation({summary: "Modifica una moto según su id"})
     @Patch('/:id')
-    updateMoto(@Param("id") id : string, @Body() update : MotorcycleDto){
-        this.motoService.updateMotorcycle(update, id);
+    async updateMoto(@Param("id") id : string, @Body() update : MotorcycleDto){
+        return await this.motoService.updateMotorcycle(update, id);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiBody({type: ModelDto, description: "Los datos del modelo"})
     @ApiParam({name:"id", description: "Identificador del modelo"})
     @ApiOperation({summary: "Modifica un modelo dado su identificador"})
-    @Patch('/:id')
-    updateModel(@Param('id') id : string, @Body() body : ModelDto){
-        this.motoService.updateModel(body, id);
+    @Patch('/model/:id')
+    async updateModel(@Param('id') id : string, @Body() body : ModelDto){
+        return await this.motoService.updateModel(body, +id);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiBody({type: MarcDto, description: "Los datos de la Marca"})
     @ApiParam({name: "id", description: "Es el identificador de la marca", example: 1})
     @ApiOperation({summary: "Modifica una marca de moto"})
-    @Patch('/:id')
-    updateMarc(@Param('id') id : string, @Body() body : MarcDto){
-        this.motoService.updateMarc(body , id);
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @ApiParam({name:'id', description:"Identificador del modelo"})
-    @ApiOperation({summary: "Elimina un modelo de moto dado su identificador"})
-    @Delete('/:id')
-    deleteModel(@Param('id') id : string){
-        this.motoService.deleteModels(id);
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @ApiParam({name: 'id', description: "Identificador de la marca", example: 1})
-    @ApiOperation({summary: "Elimina una moto según su ID"})
-    @Delete('/:id')
-    deleteMarc(@Param('id') id : string){
-        this.motoService.deleteMarc(id);
+    @Patch('/marc/:id')
+    async updateMarc(@Param('id') id : string, @Body() body : MarcDto){
+        return await this.motoService.updateMarc(body , +id);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiParam({name:"id", description:"Matricula de la Moto"})
     @ApiOperation({summary: "Elimina una moto según su id"})
     @Delete('/:id')
-    deleteMoto(@Param("id") id : string ) {
-        this.motoService.deleteMotorcycle(id);
+    async deleteMoto(@Param("id") id : string ) {
+        return await this.motoService.deleteMotorcycle(+id);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @ApiParam({name:'id', description:"Identificador del modelo"})
+    @ApiOperation({summary: "Elimina un modelo de moto dado su identificador"})
+    @Delete('/model/:id')
+    async deleteModel(@Param('id') id : string){
+        return await this.motoService.deleteModels(+id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @ApiParam({name: 'id', description: "Identificador de la marca", example: 1})
+    @ApiOperation({summary: "Elimina una moto según su ID"})
+    @Delete('/marc/:id')
+    async deleteMarc(@Param('id') id : string){
+        return await this.motoService.deleteMarc(+id);
+    }
+
 }

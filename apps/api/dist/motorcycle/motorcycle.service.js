@@ -18,6 +18,7 @@ const constants_1 = require("../constants");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
 const pdfKit_1 = require("../libs/pdfKit");
 const pg_service_1 = require("../pg/pg.service");
+const errorHandler_1 = require("../libs/errorHandler");
 let MotorcycleService = class MotorcycleService {
     constructor(conn, pgService) {
         this.conn = conn;
@@ -49,26 +50,56 @@ let MotorcycleService = class MotorcycleService {
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
     async deleteMotorcycle(id) {
-        await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
+        try {
+            await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async getMarc() {
-        const res = await this.conn.query('SELECT nommarca FROM marca');
+        const res = await this.conn.query('SELECT nom_marca FROM marca');
         return res.rows;
     }
     async deleteMarc(marc) {
-        await this.conn.query(`DELETE FROM marca WHERE nommarca = '${marc}'`);
+        try {
+            await this.conn.query(`DELETE FROM marca WHERE id_marca = '${marc}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
-    async createMarc(nommarca) {
-        await this.conn.query(`INSERT INTO marca VALUES ('${nommarca.nommarca}')`);
+    async createMarc(marca) {
+        try {
+            await this.conn.query(`INSERT INTO marca VALUES ('${marca.nomMarca}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async updateMarc(marc, id) {
-        await this.conn.query(`UPDATE marca SET nommarca = '${marc.nommarca}' WHERE nommarca = '${id}'`);
+        try {
+            await this.conn.query(`UPDATE marca SET nom_marca = '${marc.nomMarca}' WHERE id_marca = '${id}'`);
+        }
+        catch (error) {
+            return new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async createMotorcycle(moto) {
-        await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
+        try {
+            return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async updateMotorcycle(moto, id) {
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+        try {
+            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async getSituationMoto() {
         const res = await this.conn.query('SELECT * FROM SituacionMoto()');
@@ -78,15 +109,29 @@ let MotorcycleService = class MotorcycleService {
         const res = await this.conn.query('SELECT * FROM modelo');
         return res.rows;
     }
-    async deleteModels(nomModelo) {
-        console.log(nomModelo);
-        await this.conn.query(`DELETE FROM modelo WHERE nommodelo = '${nomModelo}'`);
+    async deleteModels(id) {
+        try {
+            await this.conn.query(`DELETE FROM modelo WHERE id_modelo = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async createModels(model) {
-        await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
+        try {
+            await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
-    async updateModel(model, nomModel) {
-        this.conn.query(`UPDATE modelo SET nomModelo = '${model.nomModelo}' WHERE nommodelo = '${nomModel}'`);
+    async updateModel(model, id) {
+        try {
+            this.conn.query(`UPDATE modelo SET nom_modelo = '${model.nomModelo}' WHERE id_modelo = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
 };
 exports.MotorcycleService = MotorcycleService;

@@ -11,16 +11,16 @@ export declare class MotorcycleService {
     getPDF(): Promise<Buffer>;
     getSituation(): Promise<any>;
     getPDFSituation(): Promise<Buffer>;
-    deleteMotorcycle(id: string): Promise<void>;
+    deleteMotorcycle(id: number): Promise<void>;
     getMarc(): Promise<any>;
-    deleteMarc(marc: string): Promise<void>;
-    createMarc(nommarca: MarcDto): Promise<void>;
-    updateMarc(marc: MarcDto, id: string): Promise<void>;
-    createMotorcycle(moto: MotorcycleDto): Promise<void>;
+    deleteMarc(marc: number): Promise<void>;
+    createMarc(marca: MarcDto): Promise<void>;
+    updateMarc(marc: MarcDto, id: number): Promise<void>;
+    createMotorcycle(moto: MotorcycleDto): Promise<any>;
     updateMotorcycle(moto: MotorcycleDto, id: string): Promise<void>;
     getSituationMoto(): Promise<any>;
     getModels(): Promise<any>;
-    deleteModels(nomModelo: string): Promise<void>;
+    deleteModels(id: number): Promise<void>;
     createModels(model: ModelDto): Promise<void>;
-    updateModel(model: ModelDto, nomModel: string): Promise<void>;
+    updateModel(model: ModelDto, id: number): Promise<void>;
 }

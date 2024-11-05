@@ -47,38 +47,38 @@ let MotorcycleController = class MotorcycleController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
-    getAllModels() {
-        return this.motoService.getModels();
+    async getAllModels() {
+        return await this.motoService.getModels();
     }
     async getSituation() {
         return await this.motoService.getSituation();
     }
-    createMoto(body) {
-        this.motoService.createMotorcycle(body);
+    async createMoto(body) {
+        return await this.motoService.createMotorcycle(body);
     }
-    createMarc(marc) {
-        this.motoService.createMarc(marc);
+    async createMarc(marc) {
+        return await this.motoService.createMarc(marc);
     }
-    createModel(model) {
-        this.motoService.createModels(model);
+    async createModel(model) {
+        return await this.motoService.createModels(model);
     }
-    updateMoto(id, update) {
-        this.motoService.updateMotorcycle(update, id);
+    async updateMoto(id, update) {
+        return await this.motoService.updateMotorcycle(update, id);
     }
-    updateModel(id, body) {
-        this.motoService.updateModel(body, id);
+    async updateModel(id, body) {
+        return await this.motoService.updateModel(body, +id);
     }
-    updateMarc(id, body) {
-        this.motoService.updateMarc(body, id);
+    async updateMarc(id, body) {
+        return await this.motoService.updateMarc(body, +id);
     }
-    deleteModel(id) {
-        this.motoService.deleteModels(id);
+    async deleteMoto(id) {
+        return await this.motoService.deleteMotorcycle(+id);
     }
-    deleteMarc(id) {
-        this.motoService.deleteMarc(id);
+    async deleteModel(id) {
+        return await this.motoService.deleteModels(+id);
     }
-    deleteMoto(id) {
-        this.motoService.deleteMotorcycle(id);
+    async deleteMarc(id) {
+        return await this.motoService.deleteMarc(+id);
     }
 };
 exports.MotorcycleController = MotorcycleController;
@@ -131,7 +131,7 @@ __decorate([
     (0, common_1.Get)('/model'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllModels", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -149,7 +149,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [motorcycle_dto_1.MotorcycleDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "createMoto", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -159,7 +159,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [marc_dto_1.MarcDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "createMarc", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -169,7 +169,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [model_dto_1.ModelDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "createModel", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
@@ -181,52 +181,32 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, motorcycle_dto_1.MotorcycleDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateMoto", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiBody)({ type: model_dto_1.ModelDto, description: "Los datos del modelo" }),
     (0, swagger_1.ApiParam)({ name: "id", description: "Identificador del modelo" }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica un modelo dado su identificador" }),
-    (0, common_1.Patch)('/:id'),
+    (0, common_1.Patch)('/model/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, model_dto_1.ModelDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateModel", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiBody)({ type: marc_dto_1.MarcDto, description: "Los datos de la Marca" }),
     (0, swagger_1.ApiParam)({ name: "id", description: "Es el identificador de la marca", example: 1 }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica una marca de moto" }),
-    (0, common_1.Patch)('/:id'),
+    (0, common_1.Patch)('/marc/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, marc_dto_1.MarcDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateMarc", null);
-__decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
-    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador del modelo" }),
-    (0, swagger_1.ApiOperation)({ summary: "Elimina un modelo de moto dado su identificador" }),
-    (0, common_1.Delete)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], MotorcycleController.prototype, "deleteModel", null);
-__decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
-    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la marca", example: 1 }),
-    (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su ID" }),
-    (0, common_1.Delete)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], MotorcycleController.prototype, "deleteMarc", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiParam)({ name: "id", description: "Matricula de la Moto" }),
@@ -235,8 +215,28 @@ __decorate([
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "deleteMoto", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador del modelo" }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina un modelo de moto dado su identificador" }),
+    (0, common_1.Delete)('/model/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "deleteModel", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la marca", example: 1 }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su ID" }),
+    (0, common_1.Delete)('/marc/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "deleteMarc", null);
 exports.MotorcycleController = MotorcycleController = __decorate([
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('Motocicletas'),

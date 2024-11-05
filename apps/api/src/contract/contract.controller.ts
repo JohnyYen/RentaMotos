@@ -150,44 +150,44 @@ export class ContractController {
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Crea un nuevo contrato"})
     @Post()
-    createContract(@Body() contract : ContractDto){
-        this.contractService.createContract(contract);    
+    async createContract(@Body() contract : ContractDto){
+        return await this.contractService.createContract(contract);    
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Permite crear nuevas formas de pagos"})
     @Post('/formasPago')
-    createFormaPago(@Body() form : FormaPagoDto){
-        this.contractService.createFormaPago(form);
+    async createFormaPago(@Body() form : FormaPagoDto){
+        return await this.contractService.createFormaPago(form);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Modifica un contrato según la matricula de la moto que está en renta"})
     @Patch('/:matricula')
-    updateContract(@Param("matricula") matricula : string, @Body() contract : ContractDto){
-        this.contractService.updateContract(contract, matricula);
+    async updateContract(@Param("matricula") matricula : string, @Body() contract : ContractDto){
+        return await this.contractService.updateContract(contract, matricula);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiParam({name:'id', description:"Identificador de la forma de pago", example: 1})
     @ApiOperation({summary: "Modifica una forma de pago según su id"})
     @Patch('/formasPago/:id')
-    updateFormaPago(@Body() body : FormaPagoDto, @Param('id') id : string){
-        this.contractService.updateFormaPago(body, id);
+    async updateFormaPago(@Body() body : FormaPagoDto, @Param('id') id : string){
+        return await this.contractService.updateFormaPago(body, id);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiParam({name: "id", description: "Identificador de la forma de pago", example: 1, type: Number})
     @ApiOperation({summary: "Elimina una forma de pago"})
     @Delete("/formasPago/:id")
-    deleteFormaPago(@Param('id') id : string){
-        this.contractService.deleteFormaPago(id);
+    async deleteFormaPago(@Param('id') id : string){
+        return await this.contractService.deleteFormaPago(id);
     }
 
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Elimina a un contrato según la matricula de la moto que está en renta"})
     @Delete('/:matricula')
-    deleteContract(@Param("matricula") matricula : string){
-        this.contractService.deleteContract(matricula);
+    async deleteContract(@Param("matricula") matricula : string){
+        return await this.contractService.deleteContract(matricula);
     }
 }
