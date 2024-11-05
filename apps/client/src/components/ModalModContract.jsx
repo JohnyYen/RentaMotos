@@ -28,9 +28,7 @@ const ModalModContract = ({isOpen, setOpen}) => {
     const [date, setDate] = useState('');
     const [t] = useTranslation("global");
 
-    const handleSeguro = (value) =>{
-      seguro = value;
-    }
+    
     const margin = 0;
 
     const handlePetition = async () =>{
