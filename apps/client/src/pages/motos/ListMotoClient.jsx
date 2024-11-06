@@ -144,6 +144,8 @@ const ListMotoClient = () => {
                     title={`Matricula: ${item.matricula}`}
                     description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Situación: ${item.situacion} | Color: ${item.color} | Km: ${item.kmRecorridos}`}
                   />
+
+                  <Card
                 </Card>
               </List.Item>
             )}
