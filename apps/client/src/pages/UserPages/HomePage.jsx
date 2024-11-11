@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Card, Divider, FloatButton, Image, Layout } from "antd";
+import { Card, Divider, Flex, FloatButton, Image, Layout } from "antd";
 import SideBarClient from "../../components/SideBarClient";
 import CustomHeader from "../../components/CustomHeader";
 import AppRouter from "../../components/AppRoutes.home";
@@ -32,6 +32,12 @@ const [collapsed, setCollapsed] = useState(true);
   
           <AppRouter/>
         </Content>
+        <Footer className="footer">
+        <Flex align="center" justify= "end" style={{height:40, textAlign: "center"}}>
+                  <div>telefono: </div>
+                  <div>Email:</div>
+    </Flex>
+        </Footer >
         
           
       

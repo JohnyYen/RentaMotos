@@ -11,6 +11,8 @@ import { Suspense } from "react";
 import { message, notification } from "antd";
 import axios from "axios";
 import { SiHomepage } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
+import FaqBody from "./components/Faq";
 
 
 
@@ -33,13 +35,16 @@ window.addEventListener('beforeunload', () => localStorage.clear);
 //   }
 // })
 function App() {
+  const navigate = useNavigate();
  
   return (
     <>
         <GlobalProvider>
           <Routes>
-            <Route path="/" element={<HomePage/>}/>
+            
+            <Route path="/home/*" element={<HomePage/>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
+            <Route path="/loguin/*" element={<Loguin/>}/>
           </Routes>
         </GlobalProvider>
     </>

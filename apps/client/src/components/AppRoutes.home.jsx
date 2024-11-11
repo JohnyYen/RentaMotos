@@ -17,7 +17,7 @@ const AppRouter = () => {
   return (
     <Routes>
      <Route path="" element={<Welcome/>} />
-      <Route path="/faq" element={<FaqBody/>} />
+      <Route path="faq" element={<FaqBody/>} />
     </Routes>
   );
 };

@@ -11,11 +11,45 @@
   font-family:  fantasy;
   color: #000;
 }
+
 .subscribete{
   height: 6rem;
   font-size: 4rem;
   font-family:  Helvetica;
 
+}
+.footer{
+  background-color: #00162b;
+  display: flex;
+  width: 90%;
+  height: 1%;
+  border-radius: 100rem;
+  padding: 2rem;
+  margin: auto;
+  font-size: 2rem;
+  font: helvetica;
+  color: bisque;
+  align-items: center;
+  
+  
+}
+.CardMoto{
+ background-color: #00162b;
+ color: bisque;
+ height: 13rem;
+ width: 12rem;
+ border-radius: 1rem;
+
+}
+.espaciador{
+  text-align: center;
+  color:bisque;
+  font: 1em sans-serif;
+  align-content: center;
+  background-color: #00162b;
+  width: cover;
+  height: 2rem;
+  border-radius: 10rem;
 }
 .slogan{
   height: 5rem;
