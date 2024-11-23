@@ -1,6 +1,7 @@
 import React from "react";
 import WelcomeText from "./WelcomeText";
 import SliderTopVentas from "./SliderTopVentas";
+import SliderComentarios from "./SliderComentarios";
 
 
 
@@ -14,7 +15,7 @@ import SliderTopVentas from "./SliderTopVentas";
           <h2>Top Rentas</h2>
           <SliderTopVentas/>
           <h2>Comentarios destacados</h2>
-          <SliderTopVentas/>
+          <SliderComentarios/>
     </div>
  }
  export default Welcome;

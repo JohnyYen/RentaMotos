@@ -27,7 +27,7 @@ const Profile = ({isOpen, setOpen}) => {
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.username")}: </Tag>
-                    <FormItemLabel label={user?.nombre_usuario}/>
+                    <FormItemLabel  label={user?.nombre_usuario}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
