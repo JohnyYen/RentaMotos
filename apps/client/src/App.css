@@ -105,7 +105,7 @@ background-color: rebeccapurple;
 }
 
 .content {
-  padding: 0 1rem;
+  padding: 1rem;
   background-image: url('../src/assets/background.png');
   background-size: cover;
   background-position: center;
