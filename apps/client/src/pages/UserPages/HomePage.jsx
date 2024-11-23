@@ -34,8 +34,8 @@ const [collapsed, setCollapsed] = useState(true);
         </Content>
         <Footer className="footer">
         <Flex align="center" justify= "end" style={{height:40, textAlign: "center"}}>
-                  <div>telefono: </div>
-                  <div>Email:</div>
+                  <div>telefono: 53591352_______________ </div>
+                  <div> Email: rentamotos@gmail.com</div>
     </Flex>
         </Footer >
         

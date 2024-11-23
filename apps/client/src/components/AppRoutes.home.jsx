@@ -3,6 +3,7 @@ import ListMoto from "../pages/motos/ListMotoClient";
 import ListadoContratos from "../pages/contratos/ListadoContratosClient";
 import FaqBody from "./Faq";
 import Welcome from "./Welcome";
+import Profile from "./Profile";
 
 const dateToday = () => {
   const newDate = new Date();
@@ -18,6 +19,9 @@ const AppRouter = () => {
     <Routes>
      <Route path="" element={<Welcome/>} />
       <Route path="faq" element={<FaqBody/>} />
+      <Route path="motosCliente" element={<ListMoto/>} />
+      <Route path="contratosCliente" element={<ListadoContratos/>} />
+      <Route path="perfil" element={<Profile/>} />
     </Routes>
   );
 };

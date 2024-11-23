@@ -63,7 +63,9 @@ import { useNavigate } from "react-router-dom";
             if(item.key === "faq"){
               navigate(`/home/${item.key}`);
             }else{
-            if(item.key === "contratosCliente" || item.key === "motosCliente" || item.key === "perfil"){
+              if(localStorage.getItem('login') === 'true' && item.key === "contratosCliente" || item.key === "motosCliente" || item.key === "perfil"){
+                navigate(`/home/${item.key}`)
+              }else{if(item.key === "contratosCliente" || item.key === "motosCliente" || item.key === "perfil"){
              
               messageApi.open({
                 onClick:()=>{ navigate('/loguin');},
@@ -73,13 +75,15 @@ import { useNavigate } from "react-router-dom";
               }); 
             
              
-            }
-            if(item.key === "spanish"){
+            }else{
+              if(item.key === "spanish"){
               language("es");
             }
             if(item.key === "english"){
               language("en");
+            }}
             }
+            
           }
           }}
           items={[

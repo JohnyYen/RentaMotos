@@ -11,6 +11,7 @@ import { BiCycling } from "react-icons/bi";
 import { PiMotorcycleBold, PiMotorcycleDuotone, PiMotorcycleFill } from "react-icons/pi";
 
 const {Content} = Layout;
+
 const WelcomeText = ()=>{
     
     return (
@@ -21,9 +22,9 @@ const WelcomeText = ()=>{
           size="5rem"
           color="black"
           style={{ marginTop: "3rem" }}
-        ></box-icon>Renta Motos
+        ></box-icon>
                 </div>
-                <div className="slogan">Consigue las mejores</div>
+                <div className="nombreEmpresa">Renta Motos</div>
                 <div className="subscribete">Registrate</div>
                 <div className="slogan">Y</div>
                 <div className="slogan">Consulta todos los servicios</div>
