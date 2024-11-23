@@ -14,7 +14,6 @@ const dateToday = () => {
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="lista" ></Route>
       <Route path="motosCliente" element={<ListMoto/>} />
       <Route path="contratosCliente" element={<ListadoContratos/>} />
     </Routes>

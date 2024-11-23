@@ -12,11 +12,22 @@ import { useTranslation } from "react-i18next";
 import { PiHardHat } from "react-icons/pi";
 import "../App.css";
 import "boxicons";
+import { MdOutlineNightShelter } from "react-icons/md";
 //import axios from 'axios';
 
 const SideBarAdmin = ({ isInline = false }) => {
   const navigate = useNavigate();
   const [t] = useTranslation("global"); 
+  const language = (value, option) => {
+    switch(value){
+      case 'es':
+        i18n.changeLanguage("es");
+        break;
+      case 'en':
+        i18n.changeLanguage("en");
+        break;
+    }
+  };
 
   return (
     <>

@@ -31,7 +31,15 @@ let PagosService = class PagosService {
     }
     async getAllPagosPDF() {
         const list = await this.getAllPagos();
-        if (list.filter((item) => item !== null).length === 1)
+        let counter = 0;
+        console.log(list);
+        for (const e of Object.values(list[0])) {
+            if (e === null)
+                counter++;
+        }
+        console.log(list);
+        console.log(counter);
+        if (counter === 13)
             throw new common_1.NotAcceptableException('La lista de Pagos esta vacia');
         else
             return await (0, pdfKit_1.default)(Object.keys(list[0]), (0, jsonFormatter_1.arrayFormatter)(list));
