@@ -45,6 +45,7 @@ function App() {
             <Route path="/home/*" element={<HomePage/>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/loguin/*" element={<Loguin/>}/>
+            <Route path="/client/*" element={<UserClient/>}/>
           </Routes>
         </GlobalProvider>
     </>
