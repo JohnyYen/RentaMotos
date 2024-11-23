@@ -13,7 +13,7 @@ import SliderTopVentas from "./SliderTopVentas";
           </div>
           <h2>Top Rentas</h2>
           <SliderTopVentas/>
-          <h2>Top Marcas</h2>
+          <h2>Comentarios destacados</h2>
           <SliderTopVentas/>
     </div>
  }

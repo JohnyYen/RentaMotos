@@ -22,7 +22,8 @@ const CardMoto = ({marca,modelo,image})=>{
         content: <h3>Para acceder a este servicio debe estar logeado <h4>Pulse en este letrero para loguearse/regristrarse</h4></h3>,
        
       }); }}  size="default" content="hola" children={
-        [<div>Marca:<div>{marca}</div></div>,
+        
+        [   <div>Marca:<div>{marca}</div></div>,
             <div>Modelo:<div>{modelo}</div></div>,
             <div>Image<div>{image}</div></div>,]} ></Card></>)
 }
