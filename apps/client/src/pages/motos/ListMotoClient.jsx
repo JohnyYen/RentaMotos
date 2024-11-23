@@ -85,6 +85,8 @@ const ListMotoClient = () => {
         }))
       );
     });
+    window.addEventListener("resize", updatePageSize);
+    updatePageSize();
   }, []);
 
   return (

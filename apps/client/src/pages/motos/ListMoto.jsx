@@ -165,7 +165,7 @@ const ListMoto = () => {
           Crear moto
         </Button>
       </Flex>
-      <Flex align="center" justify="center">
+      {/* <Flex align="center" justify="center">
         <List
           grid={{
             gutter: 16,
@@ -205,8 +205,8 @@ const ListMoto = () => {
             </List.Item>
           )}
         />
-      </Flex>
-      {/* <Table
+      </Flex> */}
+      <Table
          scroll={{
           x: 920,
         }}
@@ -267,7 +267,7 @@ const ListMoto = () => {
             width: "13rem",
           },
         ]}
-      /> */}
+      />
       <Button
         className="ant-btn-download"
         onClick={onClick}
