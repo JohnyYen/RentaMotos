@@ -96,18 +96,29 @@ background-color: rebeccapurple;
 } */
 
 .header-button {
-  margin-top: 0.5rem;
   border: none;
 }
 
 .popup-language {
-  margin-top: 0.5rem;
+  margin-right: 0.5rem;
   background-color: darkblue;
   border-radius: 5px;
 }
 
 .popup-language span {
   color: white;
+}
+
+@media (min-width: 700px){
+  .toggle-menu{
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .sider {
+    display: none;
+  }
 }
 
 .content {

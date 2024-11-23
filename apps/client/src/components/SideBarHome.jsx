@@ -88,7 +88,7 @@ import { useNavigate } from "react-router-dom";
           }}
           items={[
             {
-            label: t("sideBar.perfil"),
+            label: t("sideBar.profile"),
             icon: <UserOutlined/>,
             key: "perfil",
         }

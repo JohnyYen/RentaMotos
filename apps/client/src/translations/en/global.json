@@ -19,6 +19,10 @@
         "workerList": "Worker List",
         "addWorker": "Add Worker"
     },
+    "home": {
+        "titleHome": "Customer satisfaction is our priority.",
+        "spacer": "Promotional Sector"
+    },
     "sideBar": {
         "client": "Customers",
         "clientList": "Client List",
@@ -32,7 +36,11 @@
         "contractMunicipality": "By Municipality",
         "contractMakeModel": "By Make and Model",
         "annualIncome": "Annual Income",
-        "myContracts": "My Contracts"
+        "myContracts": "My Contracts",
+        "profile": "Profile",
+        "FAQ": "FAQ",
+        "spanish": "Spanish",
+        "english": "English"
     },
     "mainContent": {
         "downloadPDF": "Download PDF",
