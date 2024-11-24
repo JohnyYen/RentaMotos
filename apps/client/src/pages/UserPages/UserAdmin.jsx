@@ -6,7 +6,7 @@ import AppRouter from "../../components/AppRoutes.admin";
 const { Sider, Header, Content } = Layout;
 
 const UserAdmin = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <Layout className="App">
