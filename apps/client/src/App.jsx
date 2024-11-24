@@ -41,7 +41,7 @@ function App() {
     <>
         <GlobalProvider>
           <Routes>
-            
+            <Route path="/" element={<HomePage/>}/>
             <Route path="/home/*" element={<HomePage/>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/loguin/*" element={<Loguin/>}/>

@@ -15,7 +15,7 @@ const {Content} = Layout;
 const WelcomeText = ()=>{
     
     return (
-         <Flex align="center" justify="center" vertical = "true">
+         <Flex wrap align="center" justify="center" vertical = "true">
             <div className="nombreEmpresa" >
             <box-icon
           name="cycling"

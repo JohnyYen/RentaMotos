@@ -5,7 +5,7 @@ import { Font } from "@react-pdf/renderer";
 
 const SliderComentarios = () =>{
    
-    return <Flex justify="space-between">
+    return <Flex wrap justify="space-around">
         <CardComentario user={"juan"} comentar={"la mejor empresa"} image={'/src/assets/moto.png'}/>
         <CardComentario user={"pedro"} comentar={"que buenas ofertas"} image={'/src/assets/moto2.png'}/>
         <CardComentario user={"alfredo"} comentar={"wow los mejores"} image={'/src/assets/istockphoto-187133277-612x612.jpg'}/>

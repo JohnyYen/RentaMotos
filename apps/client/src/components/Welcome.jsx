@@ -2,19 +2,20 @@ import React from "react";
 import WelcomeText from "./WelcomeText";
 import SliderTopVentas from "./SliderTopVentas";
 import SliderComentarios from "./SliderComentarios";
+import { Flex } from "antd";
 
 
 
  const Welcome = () =>{
     return <div>
-        <WelcomeText/>
-          <h1>La satisfaccion del cliente es nuestra prioridad</h1>
+       
+          <Flex wrap justify="center"> <WelcomeText/><h1 className="satisfaccion">La satisfaccion del cliente es nuestra prioridad</h1></Flex>
           <div className="espaciador">
             Sector Promocional
           </div>
-          <h2>Top Rentas</h2>
+          <h2 className="subtitulo">Top Rentas</h2>
           <SliderTopVentas/>
-          <h2>Comentarios destacados</h2>
+          <h2 className="subtitulo">Comentarios destacados</h2>
           <SliderComentarios/>
     </div>
  }
