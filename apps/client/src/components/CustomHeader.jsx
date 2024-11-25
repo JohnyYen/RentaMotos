@@ -64,7 +64,7 @@ const CustomHeader = () => {
             },
           ]}
         />
-        <MenuOutlined className="toggle-menu" style={{fontSize: "1.5rem", color: "white", }} onClick={() => setOpenMenu(true)} />
+        <MenuOutlined className="toggle-menu" style={{fontSize: "1.5rem", color: "white"}} onClick={() => setOpenMenu(true)} />
         <Drawer open={openMenu} onClose={() => setOpenMenu(false)} closable={false} style={{backgroundColor: "#001529"}}>
           <SideBarAdmin isInline/>
         </Drawer>

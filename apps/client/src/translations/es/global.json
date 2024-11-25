@@ -19,6 +19,10 @@
         "workerList": "Listado Trabajadores",
         "addWorker": "Agregar trabajador"
     },
+    "home": {
+        "titleHome": "La satisfaccion del cliente es nuestra",
+        "spacer": "Sector Promocional"
+    },
     "sideBar": {
         "client": "Clientes",
         "clientList": "Listado Clientes",
@@ -32,7 +36,11 @@
         "contractMunicipality": "Por Municipio",
         "contractMakeModel": "Por Marca y Modelo",
         "annualIncome": "Ingresos Anuales",
-        "myContracts": "Mis contratos"
+        "myContracts": "Mis contratos",
+        "profile": "Perfil",
+        "FAQ": "FAQ",
+        "spanish": "Español",
+        "english": "Inglés"
     },
     "mainContent": {
         "downloadPDF": "Descargar PDF",
