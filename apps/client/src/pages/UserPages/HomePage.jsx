@@ -28,8 +28,7 @@ const [collapsed, setCollapsed] = useState(true);
       </Sider>
       <Layout>
         
-        <Content className="content"  >
-  
+        <Content>
           <AppRouter/>
         </Content>
         <Footer className="footer">
@@ -38,9 +37,6 @@ const [collapsed, setCollapsed] = useState(true);
                   <div> Email: rentamotos@gmail.com</div>
     </Flex>
         </Footer >
-        
-          
-      
       </Layout>
     </Layout>
   );

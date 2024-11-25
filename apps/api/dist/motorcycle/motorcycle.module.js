@@ -10,7 +10,7 @@ exports.MotorcycleModule = void 0;
 const common_1 = require("@nestjs/common");
 const motorcycle_controller_1 = require("./motorcycle.controller");
 const motorcycle_service_1 = require("./motorcycle.service");
-const pg_module_1 = require("../models/pg.module");
+const pg_module_1 = require("../pg/pg.module");
 let MotorcycleModule = class MotorcycleModule {
 };
 exports.MotorcycleModule = MotorcycleModule;

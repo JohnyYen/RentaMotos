@@ -13,7 +13,9 @@ import axios from "axios";
 import { SiHomepage } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import FaqBody from "./components/Faq";
-
+import ProtectedRoutes from "./utils/ProtectedRoutes";
+import Register from "./components/Register";
+//import './register.css';
 
 
 message.config({
@@ -26,26 +28,16 @@ notification.config({
   showProgress:true,
 })
 
-window.addEventListener('beforeunload', () => localStorage.clear);
-
-// window.addEventListener('error', async (e) => {
-//   if(e.error instanceof Error){
-//     const resp = await axios.get('http://localhost:3000/api/server');
-//     message.loading(resp.statusText);
-//   }
-// })
 function App() {
-  const navigate = useNavigate();
- 
   return (
     <>
         <GlobalProvider>
           <Routes>
-            
+            <Route path="/" element={<HomePage/>}/>
             <Route path="/home/*" element={<HomePage/>}/>
-            <Route path="/admin/*" element={<UserAdmin/>}/>
-            <Route path="/loguin/*" element={<Loguin/>}/>
-            <Route path="/client/*" element={<UserClient/>}/>
+            <Route path="/login/*" element={<Register/>}/>
+            <Route path="/admin/*" element={<ProtectedRoutes children={<UserAdmin/>}/>}/>
+            <Route path="/worker/*" element={<ProtectedRoutes children={<UserWorker/>}/>}/>
           </Routes>
         </GlobalProvider>
     </>

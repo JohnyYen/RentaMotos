@@ -4,13 +4,13 @@ import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 
-const response = await axios.get('http://localhost:3000/api/situation');
-let dataSource;
+const response = await axios.get('http://localhost:3000/api/moto/situacion');
+let situations;
 
 if(response.status === 200)
-  dataSource = response.data;
+  situations = response.data;
 
-const ModalModMoto = ({isOpen, setOpen}) => {
+const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
 
     const [form] = Form.useForm();
     const {row} = useContext(GlobalContext);
@@ -30,16 +30,28 @@ const ModalModMoto = ({isOpen, setOpen}) => {
       matricula:row?.matricula,
       color:color,
       cantKm:cantKm,
-      marca:row?.marca,
-      modelo:row?.modelo,
       situacion:Situacion
     }
 
-
     if(color && cantKm && Situacion){
-      const res = await axios.patch(`http://localhost:3000/api/moto/${moto.matricula}`, moto);
 
-      window.location.reload();
+      const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+
+      const res = await axios.patch(`http://localhost:3000/api/moto/${moto.matricula}`, moto,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`
+          }
+        }
+      );
+      console.log(res.status);
+      if(res.status === 200){
+        const index = dataSource.findIndex(item = item.matricula === moto.matricula);
+        dataSource[index] = {...dataSource[index], moto};
+
+        setDataSource(dataSource);
+      }
+      setOpen();
     }
       
   }
@@ -71,7 +83,7 @@ const ModalModMoto = ({isOpen, setOpen}) => {
 
         {row?.situacion !== "Alquilada" && <Form.Item label={t("modal.situation") + ":"} name={"situacion"} rules={[{required:true, message:("messageError.emptySituation")}]}>
         <Select style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
-            {dataSource.map((item, i) => (
+            {situations.map((item, i) => (
               <Select.Option key={i} value={item.situacion}>{item.situacion}</Select.Option>
             ))}
         </Select>

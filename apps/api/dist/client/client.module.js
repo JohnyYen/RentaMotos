@@ -10,7 +10,7 @@ exports.ClientModule = void 0;
 const common_1 = require("@nestjs/common");
 const client_controller_1 = require("./client.controller");
 const client_service_1 = require("./client.service");
-const pg_module_1 = require("../models/pg.module");
+const pg_module_1 = require("../pg/pg.module");
 let ClientModule = class ClientModule {
 };
 exports.ClientModule = ClientModule;

@@ -4,18 +4,16 @@ import { AppService } from './app.service';
 import { ClientModule } from './client/client.module';
 import { ContractModule } from './contract/contract.module';
 import { MotorcycleModule } from './motorcycle/motorcycle.module';
-import { PgModule } from './models/pg.module';
-import { ModelModule } from './model-moto/model.module';
-import { MarcModule } from './marc/marc.module';
-import { FormaPagoModule } from './forma-pago/forma-pago.module';
+import { PgModule } from './pg/pg.module';
 import { UserModule } from './user/user.module';
-import { MunModule } from './mun/mun.module';
-import {ConfigModule} from '@nestjs/config'
-import { SituationModule } from './situation/situation.module';
-import { PagosModule } from './pagos/pagos.module';
+import { AuthModule } from './auth/auth.module';
+import { MailsModule } from './mails/mails.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, ModelModule, MarcModule, FormaPagoModule, UserModule, MunModule, SituationModule, PagosModule],
+  imports: [ClientModule, ContractModule, MotorcycleModule, PgModule, UserModule, AuthModule, MailsModule, ConfigModule.forRoot({
+    isGlobal:true
+  })],
   controllers: [AppController],
   providers: [AppService],
 })

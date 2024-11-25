@@ -9,7 +9,7 @@ import dayjs from 'moment';
 import { LuBike } from 'react-icons/lu';
 
 
-const response = await axios.get('http://localhost:3000/api/formaPago')
+const response = await axios.get('http://localhost:3000/api/contract/formasPago')
 let dataSource = [];
 
 if(response.status === 200)

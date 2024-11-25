@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const userClient_dto_1 = require("./dto/userClient.dto");
 const userWorker_dto_1 = require("./dto/userWorker.dto");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -27,31 +28,27 @@ let UserController = class UserController {
     createUserClient(body) {
         this.userService.createUserClient(body);
     }
-    async validateCreateUser(body) {
-        return await this.userService.validateUserName(body.info);
-    }
     async getWorkers() {
         return this.userService.getWorkers();
     }
     createUserWorker(body) {
         this.userService.createUserWorker(body);
     }
-    async validateUser(userName, password) {
-        return await this.userService.validationUser(userName, password);
-    }
     async deleteUser(userName) {
-        console.log(userName);
         this.userService.deleteUser(userName);
     }
 };
 exports.UserController = UserController;
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los usuarios" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUser", null);
 __decorate([
+    (0, swagger_1.ApiBody)({ type: userClient_dto_1.UserClientDto, description: "Los datos de un usuario tipo cliente" }),
+    (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo usuario cliente" }),
     (0, common_1.Post)('/client'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -59,19 +56,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "createUserClient", null);
 __decorate([
-    (0, common_1.Post)('/validate'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "validateCreateUser", null);
-__decorate([
     (0, common_1.Get)('/worker'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getWorkers", null);
 __decorate([
+    (0, swagger_1.ApiBody)({ type: userWorker_dto_1.UserWorkerDto, description: "Los datos de un usuario tipo trabajador" }),
+    (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo trabajador" }),
     (0, common_1.Post)('/worker'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -79,14 +71,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "createUserWorker", null);
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)('userName')),
-    __param(1, (0, common_1.Body)('password')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "validateUser", null);
-__decorate([
+    (0, swagger_1.ApiParam)({ name: "userName", description: "Nombre de Usuario" }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina Usuarios" }),
     (0, common_1.Delete)('/:userName'),
     __param(0, (0, common_1.Param)("userName")),
     __metadata("design:type", Function),

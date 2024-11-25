@@ -27,7 +27,7 @@ const UserClient = () => {
       >
         <SideBarClient />
       </Sider>
-        <Content className="content">
+        <Content>
           <AppRouter/>
         </Content>
       </Layout>

@@ -10,7 +10,7 @@ exports.ContractModule = void 0;
 const common_1 = require("@nestjs/common");
 const contract_controller_1 = require("./contract.controller");
 const contract_service_1 = require("./contract.service");
-const pg_module_1 = require("../models/pg.module");
+const pg_module_1 = require("../pg/pg.module");
 let ContractModule = class ContractModule {
 };
 exports.ContractModule = ContractModule;
