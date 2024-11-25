@@ -49,7 +49,7 @@ import { useNavigate } from "react-router-dom";
             name="home"
             size="2.5rem"
             color="white"
-            style={{ marginTop: "1.5rem" }}
+            style={{ marginTop: "1.5rem", cursor: "pointer"}}
           ></box-icon>
         </Flex>
         <Menu

@@ -11,8 +11,6 @@ export class JwtAuthGuard extends AuthGuard("jwt"){
     canActivate(context: ExecutionContext) {
         const isPublic = this.reflector.get<boolean>('isPublic', context.getHandler());
         
-        console.log(isPublic);
-
         if(isPublic)
             return true;
 

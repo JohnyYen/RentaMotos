@@ -26,7 +26,7 @@ if(response.status === 200)
     modelData = response.data;
 
 
-const ModalCreateMoto = ({isVisible, setVisible}) => {
+const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => {
 
     const [form] = Form.useForm();
     const [matricula, setMatricula] = useState('');
@@ -39,7 +39,7 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
 
     const changeModel = (value) => {
         setMarca(value);
-        setItem(modelData.filter((item) => item.nommarca === value));
+        setItem(modelData.filter((item) => item.nom_marca === value));
     }
     
     const handlePetition = async () => {
@@ -53,14 +53,37 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
             situacion:situation
         }
 
-
+        const jwt = JSON.parse(sessionStorage.getItem('jwt'))
         if(matricula && color && marca && modelo && situation){
-            const resp = await axios.post('http://localhost:3000/api/moto', moto);
-                
-            if(resp.status === 201)
+            const resp = await axios.post('http://localhost:3000/api/moto', moto, {
+                headers : {
+                    Authorization: `Bearer ${jwt}`
+                }
+            });
+                console.log({
+                    key: dataSource[dataSource.length-1].key+1,
+                    matricula,
+                    marca,
+                    modelo,
+                    situacion,
+                    color,
+                    kmRecorridos: 0,
+                })
+            if(resp.status === 201){
                 message.success(t("messageSuccess"))
+                setDataSource([...dataSource, {
+                    key: dataSource[dataSource.length-1].key+1,
+                    matricula,
+                    marca,
+                    modelo,
+                    situacion,
+                    color,
+                    kmRecorridos: 0,
+                }])
+            }
+                
 
-            window.location.reload();
+            setVisible();
         }
     }
   return (
@@ -93,7 +116,7 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
            <Form.Item label={t("mainContent.table.mark") + ":"} name="marca" rules={[{required: true,message: t("messageError.emptyMark"),},]}>
             <Select onSelect={(value, _) => changeModel(value)} style={{marginBottom:margin,width: 150}} placeholder={t("mainContent.table.mark")}>
                     {marcData.map((item, i) => (
-                        <Select.Option key={i} value={item.nommarca}>{item.nommarca}</Select.Option>
+                        <Select.Option key={i} value={item.nom_marca}>{item.nom_marca}</Select.Option>
                     ))}
                 </Select>
            </Form.Item>
@@ -101,7 +124,7 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
            <Form.Item label={t("mainContent.table.model") + ":"} name="modelo" rules={[{required: true,message: t("messageError.emptyModel"),},]}>
             <Select onChange={(value) => setModelo(value)} style={{marginBottom:margin, width: 200}} placeholder={t("mainContent.table.model")}>
                     {items.map((item, i) => (
-                        <Select.Option key={i} value={item.nommodelo}>{item.nommodelo}</Select.Option>
+                        <Select.Option key={i} value={item.nom_modelo}>{item.nom_modelo}</Select.Option>
                     ))}
                 </Select>
            </Form.Item>

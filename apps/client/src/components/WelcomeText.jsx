@@ -15,15 +15,15 @@ const {Content} = Layout;
 const WelcomeText = ()=>{
     
     return (
-         <Flex wrap align="center" justify="center" vertical = "true">
+         <Flex className="hero-section" wrap align="center" justify="center" vertical = "true">
             <div className="nombreEmpresa" >
-            <box-icon
-          name="cycling"
-          size="5rem"
-          color="black"
-          style={{ marginTop: "3rem" }}
-        ></box-icon>
-                </div>
+              <box-icon
+                name="cycling"
+                size="5rem"
+                color="black"
+                style={{ marginTop: "3rem" }}
+              ></box-icon>
+            </div>
                 <div className="nombreEmpresa">Renta Motos</div>
                 <div className="subscribete">Registrate</div>
                 <div className="slogan">Y</div>

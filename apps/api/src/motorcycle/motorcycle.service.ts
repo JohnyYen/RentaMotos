@@ -7,6 +7,7 @@ import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
 import { PgService } from 'src/pg/pg.service';
 import { ErrorHandler } from 'src/libs/errorHandler';
+import { MotorcyclePartial } from './dto/motorcyclePartial.dto';
 
 @Injectable()
 export class MotorcycleService {
@@ -89,7 +90,7 @@ export class MotorcycleService {
        }
     }
 
-    async updateMotorcycle (moto : MotorcycleDto, id : string){
+    async updateMotorcycle (moto : MotorcyclePartial, id : string){
         try {
             this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
         } catch (error) {

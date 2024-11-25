@@ -5,13 +5,24 @@
   font-weight: bold;
   font-style: bold;
 }
+
+.hero-section{
+  /* background-color: #000;
+  width: 95vw;
+  height: 150vh;
+  background-size: contain;
+  background-repeat: no-repeat; */
+}
+
 .paquito {
   height: 2rem;
   background-color: #002345;
   width: 100%;
   border-top-left-radius: 0.5rem;
 }
+
 .nombreEmpresa{
+
   height: 8rem;
   font-size: 6rem;
   font-family:  fantasy;

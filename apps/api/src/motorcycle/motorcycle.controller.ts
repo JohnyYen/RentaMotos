@@ -7,6 +7,7 @@ import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
 import { SkipAuth } from 'src/auth/public.decorator';
+import { MotorcyclePartial } from './dto/motorcyclePartial.dto';
 
 @ApiBearerAuth()
 @ApiTags('Motocicletas')
@@ -116,7 +117,7 @@ export class MotorcycleController {
     @ApiBody({type:MotorcycleDto, description: "Los datos de las motos"})
     @ApiOperation({summary: "Modifica una moto según su id"})
     @Patch('/:id')
-    async updateMoto(@Param("id") id : string, @Body() update : MotorcycleDto){
+    async updateMoto(@Param("id") id : string, @Body() update : MotorcyclePartial){
         return await this.motoService.updateMotorcycle(update, id);
     }
 

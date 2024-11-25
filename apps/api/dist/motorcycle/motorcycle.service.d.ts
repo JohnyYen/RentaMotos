@@ -2,6 +2,7 @@ import { MotorcycleDto } from './dto/motorcycle.dto';
 import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
 import { PgService } from 'src/pg/pg.service';
+import { MotorcyclePartial } from './dto/motorcyclePartial.dto';
 export declare class MotorcycleService {
     private conn;
     private pgService;
@@ -17,7 +18,7 @@ export declare class MotorcycleService {
     createMarc(marca: MarcDto): Promise<void>;
     updateMarc(marc: MarcDto, id: number): Promise<void>;
     createMotorcycle(moto: MotorcycleDto): Promise<any>;
-    updateMotorcycle(moto: MotorcycleDto, id: string): Promise<void>;
+    updateMotorcycle(moto: MotorcyclePartial, id: string): Promise<void>;
     getSituationMoto(): Promise<any>;
     getModels(): Promise<any>;
     deleteModels(id: number): Promise<void>;

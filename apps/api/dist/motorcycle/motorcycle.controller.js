@@ -21,6 +21,7 @@ const marc_dto_1 = require("./dto/marc.dto");
 const model_dto_1 = require("./dto/model.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
 const public_decorator_1 = require("../auth/public.decorator");
+const motorcyclePartial_dto_1 = require("./dto/motorcyclePartial.dto");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -192,7 +193,7 @@ __decorate([
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, motorcycle_dto_1.MotorcycleDto]),
+    __metadata("design:paramtypes", [String, motorcyclePartial_dto_1.MotorcyclePartial]),
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateMoto", null);
 __decorate([

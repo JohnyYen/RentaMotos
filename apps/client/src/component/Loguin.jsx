@@ -108,7 +108,6 @@ function Loguin() {
           message.success(t("messageSuccess.loginSuccess"))
           setClient(res.data[0]);
           localStorage.setItem('clientData', JSON.stringify(res.data[0]));
-          localStorage.setItem('login', 'true')
           navigate('/home');
         }
       }

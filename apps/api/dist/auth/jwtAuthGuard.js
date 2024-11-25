@@ -20,7 +20,6 @@ let JwtAuthGuard = class JwtAuthGuard extends (0, passport_1.AuthGuard)("jwt") {
     }
     canActivate(context) {
         const isPublic = this.reflector.get('isPublic', context.getHandler());
-        console.log(isPublic);
         if (isPublic)
             return true;
         return super.canActivate(context);

@@ -22,7 +22,7 @@ const UserWorker = () => {
         >
           <SideBarWorker />
         </Sider>
-        <Content className="content">
+        <Content>
           <AppRouter />
         </Content>
       </Layout>

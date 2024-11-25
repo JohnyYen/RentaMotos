@@ -18,16 +18,23 @@ import { GlobalContext } from "../../context/GlobalContext";
 import ModalCreateMoto from "../../components/ModalCreateMoto";
 import EliminarMoto from "../../component/EliminarMoto";
 import moment from "moment";
-import Item from "antd/es/list/Item";
+
+const jwt = JSON.parse(sessionStorage.getItem('jwt'))
 
 const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/moto");
-
+    response = await axios.get("http://localhost:3000/api/moto", 
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        }
+      }
+    );
     if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
+     
+      dataSource = response.data.data.map((element, index) => ({
         key: index,
         matricula: element.matricula,
         marca: element.marca,
@@ -72,7 +79,7 @@ const downloadPDF = async (url) => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-    const response = await axios.get("http://localhost:3000/api/marc");
+    const response = await axios.get("http://localhost:3000/api/moto/marc");
     if (response.status === 200) {
       dataFilter = response.data;
     }
@@ -113,7 +120,6 @@ const ListMoto = () => {
   useEffect(() => {
     extractData().then((result) => {
       setDataSource(result);
-      console.log(result);
     });
     extractDataFilter().then((result) => {
       setDataFilter(
@@ -129,7 +135,12 @@ const ListMoto = () => {
 
   const onClick = async () => {
     try {
-      await downloadPDF("http://localhost:3000/api/moto/pdf");
+      await downloadPDF("http://localhost:3000/api/moto/pdf", 
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          }
+        });
     } catch (error) {}
   };
 
@@ -138,8 +149,8 @@ const ListMoto = () => {
       <Typography.Title level={3}>
         {t("motorcycle.motorcycleList")}
       </Typography.Title>
-      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)} />
-      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)} />
+      <ModalModMoto isOpen={visible} setOpen={() => setVisible(!visible)} dataSource={dataSource} setDataSource={setDataSource}/>
+      <ModalCreateMoto isVisible={open} setVisible={() => setOpen(!open)} dataSource={dataSource} setDataSource={setDataSource}/>
       <EliminarMoto
         isOpen={visualize}
         setOpen={() => setVisualize(!visualize)}
