@@ -18,14 +18,6 @@ import {
 
     return (
       <>
-        <Flex align="center" justify="center">
-          <box-icon
-            name="cycling"
-            size="md"
-            color="white"
-            style={{ marginTop: "1.5rem" }}
-          ></box-icon>
-        </Flex>
         <Menu
           theme="dark"
           className="sider-menu"
@@ -42,7 +34,7 @@ import {
                 key: "contratosCliente",
             },
             {
-              label: t("sideBar.motorcycleList"),
+              label: t("sideBar.motorcyclesAvailable"),
               icon: <CarOutlined />,
               key: "motosCliente",
             },

@@ -4,13 +4,16 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { GlobalContext } from "../../context/GlobalContext";
+import { pdf } from "@react-pdf/renderer";
+import DocumentPDF from "../../components/DocumentPDF";
+
 
 const extractData = async (client) => {
   let dataSource = [];
   let response = null;
   try {
     response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`);
-    console.log(response);
+    console.log(response.data);
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -20,9 +23,9 @@ const extractData = async (client) => {
         modelo: element.modelo,
         "forma de pago": element.formapago,
         "fecha de inicio": element.fechainicio,
-        "fecha de fin": element.fechafin,
+        "fechaFin": element.fechafin,
         prorroga: element.diasprorroga,
-        "seguro adicional": element.seguro ? "✔" : "❌",
+        "seguro adicional": element.seguro ? "Si" : "No",
         "importe total": element.importe,
       }));
       console.log(dataSource);
@@ -43,6 +46,12 @@ const ListadoContratos = () => {
       setDataSource(result);
     });
   }, []);
+
+  const handleRowClick = async (record) => {
+    const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url);
+  };
 
   return (
     <Flex vertical="true">
@@ -65,6 +74,11 @@ const ListadoContratos = () => {
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],
+        }}
+        onRow={(record) => {
+          return {
+            onClick: (e) => handleRowClick(record),
+          };
         }}
         dataSource={dataSource}
         columns={[
@@ -95,8 +109,8 @@ const ListadoContratos = () => {
           },
           {
             title: t("mainContent.table.endContract"),
-            dataIndex: "fecha de fin",
-            key: "fecha de fin",
+            dataIndex: "fechaFin",
+            key: "fechaFin",
           },
           {
             title: t("mainContent.table.extension"),

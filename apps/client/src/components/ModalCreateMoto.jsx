@@ -43,6 +43,7 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
     }
     
     const handlePetition = async () => {
+
         const moto = {
             matricula:matricula,
             color:color,
@@ -52,11 +53,10 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
             situacion:situation
         }
 
-        // console.log(moto);
 
         if(matricula && color && marca && modelo && situation){
             const resp = await axios.post('http://localhost:3000/api/moto', moto);
-
+                
             if(resp.status === 201)
                 message.success(t("messageSuccess"))
 
@@ -113,6 +113,8 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
                     ))}
                 </Select>
            </Form.Item>
+
+                
     </Modal>
   )
 }

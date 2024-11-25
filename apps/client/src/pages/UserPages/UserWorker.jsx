@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Layout } from "antd";
-import SideBarWorker from "../../components/SideBarWorker"
+import SideBarWorker from "../../components/SideBarWorker";
 import CustomHeader from "../../components/CustomHeader";
 import AppRouter from "../../components/AppRoutes.worker";
 const { Sider, Header, Content } = Layout;
@@ -10,19 +10,20 @@ const UserWorker = () => {
 
   return (
     <Layout className="App">
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-        className="sider">
-        <SideBarWorker />
-      </Sider>
+      <Header className="header">
+        <CustomHeader />
+      </Header>
       <Layout>
-        <Header className="header">
-          <CustomHeader />
-        </Header>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+          className="sider"
+        >
+          <SideBarWorker />
+        </Sider>
         <Content className="content">
-          <AppRouter/>
+          <AppRouter />
         </Content>
       </Layout>
     </Layout>

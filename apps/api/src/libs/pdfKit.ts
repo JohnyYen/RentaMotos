@@ -1,5 +1,4 @@
 const PDFDocument = require('pdfkit-table');
-
 export function buildPDF( dataHeaders, dataRows, response, dataCallback?, endCallback?){
     const doc = new PDFDocument();
  
@@ -24,8 +23,9 @@ export default async function generatePDF(dataHeader, dataRows){
             size: "LETTER",
             bufferPage: true,
             layout: "portrait",
-
         });
+
+        
         
         doc.moveTo(0,0,0);
         const tableArray = {

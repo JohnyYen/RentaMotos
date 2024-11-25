@@ -6,6 +6,9 @@ import axios from "axios";
 import EliminarContrato from "../../component/EliminarContrato";
 import ModalModContract from "../../components/ModalModContract";
 import { GlobalContext } from "../../context/GlobalContext";
+import { pdf } from "@react-pdf/renderer";
+import DocumentPDF from "../../components/DocumentPDF";
+
 
 const extractDataContract = async (user) => {
     let dataSource = [];
@@ -75,6 +78,12 @@ const ListadoContratos = ({url }) => {
       await downloadPDF(url);
   };
 
+  const handleRowClick = async (record) => {
+    const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url);
+  };
+
   return (
     <Flex vertical="true">
       <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)}/>
@@ -87,6 +96,11 @@ const ListadoContratos = ({url }) => {
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],
+        }}
+        onRow={(record) => {
+          return {
+            onClick: (e) => handleRowClick(record),
+          };
         }}
         dataSource={extractData}
         columns={[

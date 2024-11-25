@@ -2,7 +2,9 @@ import { useTranslation } from "react-i18next";
 import { Modal, Tag , Descriptions, Flex, Divider, Col, Row} from 'antd'
 import FormItemLabel from 'antd/es/form/FormItemLabel'
 import React, { useContext } from 'react'
+import{ Avatar } from "antd"
 import { GlobalContext } from '../context/GlobalContext'
+import { Content } from "antd/es/layout/layout";
 
 const Profile = ({isOpen, setOpen}) => {
     const [t] = useTranslation("global");
@@ -10,16 +12,22 @@ const Profile = ({isOpen, setOpen}) => {
     const {user, client} = useContext(GlobalContext);
     console.log(client);
 
-    const margin = 10;
+    const margin = 15;
   return (
-    <Modal footer={null} title={"Perfil"} centered={true} open={isOpen} cancelText="Volver"  okButtonProps={null} onCancel={setOpen}>
+    <Content>
+       <Flex style={{marginBottom:50}}justify="center"><Avatar  size={200}></Avatar></Flex> 
         
-        <Row gutter={16}>
+    <Flex justify="center"  style={{marginLeft:100}}>
+       
+        
+        
+        <Row gutter={80}> 
+            
             <Col span={12}>
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.username")}: </Tag>
-                    <FormItemLabel label={user?.nombre_usuario}/>
+                    <FormItemLabel  label={user?.nombre_usuario}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
@@ -85,7 +93,7 @@ const Profile = ({isOpen, setOpen}) => {
             </Col>
         </Row>
         
-    </Modal>
+    </Flex></Content>
   )
 }
 

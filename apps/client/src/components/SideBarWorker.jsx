@@ -18,14 +18,6 @@ import {
   
     return (
       <>
-        <Flex align="center" justify="center">
-          <box-icon
-            name="cycling"
-            size="md"
-            color="white"
-            style={{ marginTop: "1.5rem" }}
-          ></box-icon>
-        </Flex>
         <Menu
           theme="dark"
           className="sider-menu"

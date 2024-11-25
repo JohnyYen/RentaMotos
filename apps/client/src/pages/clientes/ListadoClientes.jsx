@@ -110,7 +110,6 @@ const ListadoClientes = ({ extractData, url }) => {
             title: t("mainContent.table.municipality"),
             dataIndex: "municipio",
             key: "municipio",
-            fixed: "left",
             filters: dataFilter,
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
@@ -147,8 +146,6 @@ const ListadoClientes = ({ extractData, url }) => {
                 </Button>
               </Flex>
             ),
-            fixed: "right",
-            width: "13rem",
           },
         ]}
       ></Table>

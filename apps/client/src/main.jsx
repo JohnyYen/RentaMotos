@@ -11,6 +11,7 @@ import global_en from "./translations/en/global.json"
 import { I18nextProvider } from "react-i18next";
 
 /*Crear proyecton*/
+localStorage.setItem('login','false')
 i18next.init({
   interpolation: { escapeValue: false },
   lng: "es",

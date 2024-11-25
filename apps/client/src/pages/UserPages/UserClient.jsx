@@ -15,6 +15,10 @@ const UserClient = () => {
 
   return (
     <Layout className="App">
+      <Header className="header">
+          <CustomHeader />
+        </Header>
+      <Layout>
       <Sider
         collapsible
         collapsed={collapsed}
@@ -23,10 +27,6 @@ const UserClient = () => {
       >
         <SideBarClient />
       </Sider>
-      <Layout>
-        <Header className="header">
-          <CustomHeader />
-        </Header>
         <Content className="content">
           <AppRouter/>
         </Content>

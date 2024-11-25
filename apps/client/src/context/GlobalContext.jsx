@@ -6,6 +6,7 @@ const GlobalProvider = ({children}) => {
   const [row, setRow] = useState(null);
   const [user, setUser] = useState(null);
   const [client, setClient] = useState(null);
+  
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');
