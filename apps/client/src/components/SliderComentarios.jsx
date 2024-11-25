@@ -19,7 +19,7 @@ const CardComentario = ({user,comentar,image})=>{
     return(
     <>
         {contextHolder} 
-        <Card className="CardMoto" onClickCapture={ () =>{
+        <Card className="CardComentario" onClickCapture={ () =>{
             if(localStorage.getItem('login')){
                 
             }else{
@@ -31,9 +31,9 @@ const CardComentario = ({user,comentar,image})=>{
       });}
              }}  size="default" content="" children={
             
-        [ <Flex justify="center"><Avatar size={80} src={image}></Avatar></Flex>  ,
-        <div ><div>{user}</div></div>,
-            <div>Comentario:<div>{comentar}</div></div>]} >
+        [ <Flex  key={'comentFlex'} justify="center"><Avatar size={80} src={image}></Avatar></Flex>  ,
+        <div key={'userTitle'} ><div key={'user'}>{user}</div></div>,
+            <div key={'comentTitle'}>Comentario:<div key={'coment'}>{comentar}</div></div>]} >
                 </Card></>)
 }
 

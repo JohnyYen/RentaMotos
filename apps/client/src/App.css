@@ -48,6 +48,14 @@
  border-radius: 2rem;
 
 }
+.CardComentario{
+  text-align: center;
+ background-color: #00162b;
+ color: bisque;
+ height: 13rem;
+ width: 12rem;
+ border-radius: 2rem;
+}
 .espaciador{
   text-align: center;
   color:bisque;
