@@ -6,14 +6,6 @@
   font-style: bold;
 }
 
-.hero-section{
-  /* background-color: #000;
-  width: 95vw;
-  height: 150vh;
-  background-size: contain;
-  background-repeat: no-repeat; */
-}
-
 .paquito {
   height: 2rem;
   background-color: #002345;
@@ -84,30 +76,6 @@
   height: 5rem;
 }
 
-/* main {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-
-.banner {
-background-color: rebeccapurple;
-  position: relative;
-}
-
-.banner #dotsCanvas{
-  position: absolute;
-  background-color: transparent;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-} */
-
 @media (max-width: 1200px){
   .footer{
     font-size: 1.5rem;
@@ -163,14 +131,13 @@ background-color: rebeccapurple;
 .popup-language span {
   color: white;
 }
-
-.content {
+/* .content {
 
   background-image: url('../src/assets/background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
+} */
 
 .cover {
   padding: 0;

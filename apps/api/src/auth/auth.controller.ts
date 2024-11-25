@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginObjectDto } from './dto/loginObject.dto';
 import { SignObjectDto } from './dto/signObject.dto';
@@ -19,6 +19,7 @@ export class AuthController {
        return this.authService.login(authObject);
     }
 
+    @SkipAuth()
     @ApiOperation({summary: "Registrar un nuevo usuario"})
     @ApiBody({type:SignObjectDto, description: "Revisar la documentación del Sign Dto"})
     @Post("/register")

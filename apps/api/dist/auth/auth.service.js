@@ -23,10 +23,11 @@ let AuthService = class AuthService {
         this.conn = conn;
     }
     async register(userObject) {
-        const { password, email, user_name, ci } = userObject;
+        const { password, email, user_name } = userObject;
         const plainToCrypto = await (0, bcrypt_1.hash)(password, 10);
         userObject = { ...userObject, password: plainToCrypto };
-        return await this.conn.query(`INSERT INTO USER VALUES ('${user_name}', '${password}', '${email}', '${ci}', 2)`);
+        const response = await this.conn.query(`INSERT INTO usuario(nombre_usuario, contrasenia, email, tipo_usuario) VALUES ('${user_name}', '${password}', '${email}', 2)`);
+        return true;
     }
     async login(userObject) {
         const response = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${userObject.user_name}'`);

@@ -43,6 +43,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
 __decorate([
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Registrar un nuevo usuario" }),
     (0, swagger_1.ApiBody)({ type: signObject_dto_1.SignObjectDto, description: "Revisar la documentación del Sign Dto" }),
     (0, common_1.Post)("/register"),

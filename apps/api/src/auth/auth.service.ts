@@ -8,15 +8,17 @@ import { ClientSignDto } from './dto/clientSign.dto';
 
 @Injectable()
 export class AuthService {
-    constructor (private jwtService: JwtService, @Inject(PG_CONNECTION)private conn : any ){}
+    constructor (private jwtService: JwtService, @Inject(PG_CONNECTION) private conn : any ){}
 
     async register(userObject:ClientSignDto){
-        const {password, email, user_name, ci} = userObject;
+        const {password, email, user_name} = userObject;
 
         const plainToCrypto = await hash(password, 10);
         userObject = {...userObject, password:plainToCrypto};
         
-        return await this.conn.query(`INSERT INTO USER VALUES ('${user_name}', '${password}', '${email}', '${ci}', 2)`);
+        const response = await this.conn.query(`INSERT INTO usuario(nombre_usuario, contrasenia, email, tipo_usuario) VALUES ('${user_name}', '${password}', '${email}', 2)`);
+
+        return true;
     }
 
     async login(userObject:LoginObjectDto){
