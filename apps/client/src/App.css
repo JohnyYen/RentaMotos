@@ -5,6 +5,11 @@
   font-weight: bold;
   font-style: bold;
 }
+.toggle-menu{
+  margin-left: 1rem;
+  margin-top: 0.45rem;
+  visibility: hidden;
+}
 .paquito {
   height: 2rem;
   background-color: #002345;
@@ -106,11 +111,24 @@ background-color: rebeccapurple;
 } */
 
 @media (max-width: 1200px){
+  
   .footer{
     font-size: 1.5rem;
   }
 }
+@media(min-width: 600){
+  .toggle-menu{
+   visibility: hidden;
+  }
+}
 @media (max-width: 600px){
+  .perfiInfo{
+    margin-left: 0;
+  }
+  .toggle-menu{
+    visibility: visible;
+   }
+
   .footer{
     font-size: 0.7rem;
   }
@@ -162,7 +180,7 @@ background-color: rebeccapurple;
 }
 
 .content {
-
+  padding: 1rem;
   background-image: url('../src/assets/background.png');
   background-size: cover;
   background-position: center;
