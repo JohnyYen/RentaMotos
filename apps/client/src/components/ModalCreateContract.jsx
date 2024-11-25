@@ -12,7 +12,7 @@ let dataSource = [];
 if(response.status === 200)
   dataSource = response.data;
 
-const ModalCreateContract = ({isVisible, setVisible}) => {
+const ModalCreateContract = ({isVisible, setVisible, setDataSource, dataSource}) => {
 
   const [form] = Form.useForm();
   const {row, client} = useContext(GlobalContext);
@@ -39,11 +39,29 @@ const ModalCreateContract = ({isVisible, setVisible}) => {
     }
     
     console.log(client);
+    const jwt = sessionStorage.getItem("jwt");
     if(dateBegin && dateEnd && dateFirm && formaPago){
      try {
-      const res = await axios.post('http://localhost:3000/api/contract/', contract);
+      const res = await axios.post('http://localhost:3000/api/contract/', contract, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
       
-      message.success('Creado con exito')
+      if(res.status === 201){
+        message.success(t("messageSuccess"));
+        setDataSource([...dataSource, {
+          key: dataSource[dataSource.length-1].key+1,
+          idCliente,
+          matricula,
+          beginDate,
+          endDate,
+          firmaDate,
+          formaPago,
+          seguro,
+          diasProrroga: 0
+        }])
+      }
      } catch (error) {
       console.log(error);
       message.error(error.message);

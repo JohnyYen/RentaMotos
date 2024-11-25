@@ -15,12 +15,14 @@ const EliminarContrato = ({ isOpen, setOpen }) => {
     try {
       const apiUrl = `http://localhost:3000/api/contract/${row?.matricula}`;
       const response = await axios.delete(apiUrl);
-      message.success(t("messageSuccess.deleteSuccess"));
+      if(response.status === 201){
+        message.success(t("messageSuccess.deleteSuccess"));
+
+      }
     } catch (error) {
       message.error(error.text);
     }
 
-    window.location.reload();
   };
 
   return (

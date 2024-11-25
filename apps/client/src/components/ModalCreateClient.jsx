@@ -55,11 +55,17 @@ const ModalCreateClient = ({isVisible, setVisible}) => {
         }
 
         console.log(client);
-        
+        const jwt = sessionStorage.getItem("jwt");
         if(ci && name && lastName && edad && mun && sex && numCont){
-            let response = await axios.post('http://localhost:3000/api/client',client);
+            let response = await axios.post('http://localhost:3000/api/client', client, {
+                headers: {
+                    Authorization: `Bearer ${jwt}`
+                }
+            });
             console.log(response.status);
             if(response.status === 201){
+                
+                
                 response = await axios.post('http://localhost:3000/api/user/client', user);
                 if(response.status === 201){
                     message.success(t("messageSuccess"))

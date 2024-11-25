@@ -39,16 +39,6 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
   const [items, setItem] = useState([]);
   const [t] = useTranslation("global");
 
-  const handlePetition = async () => {
-    const moto = {
-      matricula: matricula,
-      color: color,
-      cantKm: 0,
-      marca: marca,
-      modelo: modelo,
-      situacion: situation,
-    };
-
     const changeModel = (value) => {
         setMarca(value);
         setItem(modelData.filter((item) => item.nom_marca === value));
@@ -97,8 +87,7 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
 
             setVisible();
         }
-    }
-  };
+    };
   return (
     <Modal
       okButtonProps={{ htmlType: "submit" }}

@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Select } from 'antd'
+import { Form, Input, Modal, Select, message } from 'antd'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'; 
@@ -9,7 +9,7 @@ if(response.status === 200){
     dataSource = response.data;
 }
 
-const ModalCreateWorker = ({isOpen, setOpen}) => {
+const ModalCreateWorker = ({isOpen, setOpen, setDataSource, dataSource}) => {
 
     const [form] = Form.useForm();
     const [name, setName] = useState('');
@@ -26,13 +26,22 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
         }
 
         console.log(worker);
+        const jwt = JSON.parse(sessionStorage.getItem('jwt'));
         if(name && password && mun){
-          const res = await axios.post('http://localhost:3000/api/user/worker', worker);
+          const res = await axios.post('http://localhost:3000/api/user/worker', worker, {
+            headers: {
+              Authorization: `Bearer ${jwt}` 
+            }
+          });
 
           if(res.status === 201)
-            message.success('Creado con exito')
-
-          window.location.reload();
+            message.success(t("messageSuccess"));
+            setDataSource([...dataSource, {
+              key: dataSource[dataSource.length-1].key+1,
+              name,
+              password,
+              mun
+            }])
         }
     }
   return (

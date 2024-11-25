@@ -104,6 +104,8 @@ const ListMotoClient = () => {
       <ModalCreateContract
         isVisible={visible}
         setVisible={() => setVisible(!visible)}
+        setDataSource={setDataSource}
+        dataSource={dataSource}
       />
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
