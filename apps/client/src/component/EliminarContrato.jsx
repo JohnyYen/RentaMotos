@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { useTranslation } from "react-i18next";
 
-const EliminarContrato = ({ isOpen, setOpen }) => {
+const EliminarContrato = ({ isOpen, setOpen, setDataSource, dataSource }) => {
   const { row } = useContext(GlobalContext);
 
   // Translation
@@ -17,7 +17,7 @@ const EliminarContrato = ({ isOpen, setOpen }) => {
       const response = await axios.delete(apiUrl);
       if(response.status === 201){
         message.success(t("messageSuccess.deleteSuccess"));
-
+        setDataSource(dataSource.filter(contract => contract.matricula !== row.matricula)); 
       }
     } catch (error) {
       message.error(error.text);

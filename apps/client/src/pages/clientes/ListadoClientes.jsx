@@ -84,7 +84,7 @@ const ListadoClientes = ({ extractData, url }) => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
       <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
-      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)}/>
+      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           {t("mainContent.currentDate")}:

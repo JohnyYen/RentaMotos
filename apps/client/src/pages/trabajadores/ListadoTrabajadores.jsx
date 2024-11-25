@@ -47,7 +47,7 @@ const ListadoTrabajadores = () => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("worker.workerList")}</Typography.Title>
       <ModalCreateWorker isOpen={visible} setOpen={() => setVisible(!visible)} setDataSource={setDataSource} dataSource={dataSource}/>
-      <EliminarWorker isOpen={open} setOpen={() => setOpen(!open)}/>
+      <EliminarWorker isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
       <Flex align="center" justify="flex-end"> 
         <Button onClick={() => setVisible(true)} className="actionTable" style={{marginBottom: "1rem", marginRight: "1rem"}} type="primary">{t("worker.addWorker")}</Button>
       </Flex>

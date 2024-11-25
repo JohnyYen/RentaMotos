@@ -62,7 +62,7 @@ const ListadoContratos = ({ extractData, url }) => {
   return (
     <Flex vertical="true">
       <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)} />
-      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)} />
+      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>

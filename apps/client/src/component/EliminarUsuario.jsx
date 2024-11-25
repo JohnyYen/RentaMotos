@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { useTranslation } from "react-i18next";
 
-const EliminarUsuario = ({ isOpen, setOpen }) => {
+const EliminarUsuario = ({ isOpen, setOpen, setDataSource, dataSource }) => {
   // Translation
   const [t] = useTranslation("global");
 
@@ -16,7 +16,10 @@ const EliminarUsuario = ({ isOpen, setOpen }) => {
     try {
       const apiUrl = `http://localhost:3000/api/client/${row?.ci}`;
       const response = await axios.delete(apiUrl);
-      message.success(t("messageSuccess.deleteSuccess"));
+      if(response.status === 201){
+        message.success(t("messageSuccess.deleteSuccess"));
+        setDataSource(dataSource.filter(cliente => cliente.ci !== row.ci));
+      }
     } catch (error) {
       message.error(error);
     }

@@ -154,6 +154,8 @@ const ListMoto = () => {
       <EliminarMoto
         isOpen={visualize}
         setOpen={() => setVisualize(!visualize)}
+        setDataSource={setDataSource}
+        dataSource={dataSource}
       />
       <Flex align="center" justify="space-between">
         <Flex align="center">
