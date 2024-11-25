@@ -11,6 +11,7 @@ async function bootstrap() {
         .setTitle('API Renta de Motos')
         .setDescription("Documentación para la API de Renta de Motos")
         .setVersion('1.0')
+        .addBearerAuth()
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, option);
     swagger_1.SwaggerModule.setup('api/docs', app, document);

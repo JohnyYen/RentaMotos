@@ -17,11 +17,15 @@ const common_1 = require("@nestjs/common");
 const constants_1 = require("../constants");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
 const pdfKit_1 = require("../libs/pdfKit");
+const pg_service_1 = require("../pg/pg.service");
+const errorHandler_1 = require("../libs/errorHandler");
 let MotorcycleService = class MotorcycleService {
-    constructor(conn) {
+    constructor(conn, pgService) {
         this.conn = conn;
+        this.pgService = pgService;
     }
     async getAllMotorcycle() {
+        return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
@@ -35,6 +39,10 @@ let MotorcycleService = class MotorcycleService {
             throw new common_1.NotAcceptableException('La lista de motos esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
+    async getSituation() {
+        const res = await this.conn.query('SELECT * FROM situacion');
+        return res.rows;
+    }
     async getPDFSituation() {
         const moto = await this.getSituationMoto();
         if (moto.length === 0)
@@ -42,23 +50,94 @@ let MotorcycleService = class MotorcycleService {
         return await (0, pdfKit_1.default)(Object.keys(moto[0]), (0, jsonFormatter_1.arrayFormatter)(moto));
     }
     async deleteMotorcycle(id) {
-        await this.conn.query(`DELETE FROM moto WHERE moto.matricula = '${id}'`);
+        try {
+            await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
+    }
+    async getMarc() {
+        const res = await this.conn.query('SELECT nom_marca FROM marca');
+        return res.rows;
+    }
+    async deleteMarc(marc) {
+        try {
+            await this.conn.query(`DELETE FROM marca WHERE id_marca = '${marc}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
+    }
+    async createMarc(marca) {
+        try {
+            await this.conn.query(`INSERT INTO marca VALUES ('${marca.nomMarca}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
+    }
+    async updateMarc(marc, id) {
+        try {
+            await this.conn.query(`UPDATE marca SET nom_marca = '${marc.nomMarca}' WHERE id_marca = '${id}'`);
+        }
+        catch (error) {
+            return new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async createMotorcycle(moto) {
-        await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
+        try {
+            return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async updateMotorcycle(moto, id) {
-        this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+        try {
+            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
     async getSituationMoto() {
         const res = await this.conn.query('SELECT * FROM SituacionMoto()');
         return res.rows;
+    }
+    async getModels() {
+        const res = await this.conn.query('SELECT * FROM modelo');
+        return res.rows;
+    }
+    async deleteModels(id) {
+        try {
+            await this.conn.query(`DELETE FROM modelo WHERE id_modelo = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
+    }
+    async createModels(model) {
+        try {
+            await this.conn.query(`INSERT INTO modelo values ('${model.nomModelo}' , '${model.nomMarca}')`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
+    }
+    async updateModel(model, id) {
+        try {
+            this.conn.query(`UPDATE modelo SET nom_modelo = '${model.nomModelo}' WHERE id_modelo = '${id}'`);
+        }
+        catch (error) {
+            throw new errorHandler_1.ErrorHandler(error).returnError();
+        }
     }
 };
 exports.MotorcycleService = MotorcycleService;
 exports.MotorcycleService = MotorcycleService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)(constants_1.PG_CONNECTION)),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:paramtypes", [Object, pg_service_1.PgService])
 ], MotorcycleService);
 //# sourceMappingURL=motorcycle.service.js.map

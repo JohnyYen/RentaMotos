@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolución de Moto</title>
+    <style>
+        /* Reset general de estilos */
+        body, p, h1, h2, h3, a {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: inherit;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366; /* Azul oscuro */
+        }
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .message {
+            padding: 20px;
+            text-align: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .message h2 {
+            color: #003366;
+            font-size: 24px;
+        }
+        .timer-container {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #005580; /* Azul medio */
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #005580; /* Azul medio */
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #003366; /* Azul oscuro al pasar el ratón */
+        }
+        .footer {
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #003366;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos responsive */
+        @media screen and (max-width: 600px) {
+            .header, .message, .footer {
+                padding: 15px;
+            }
+            .message h2 {
+                font-size: 20px;
+            }
+            .button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <img src="{{logoUrl}}" alt="Logo de {{storeName}}">
+    </div>
+
+    <!-- Hero Image -->
+    <img src="{{heroImageUrl}}" alt="Imagen de impacto" class="hero-image">
+
+    <!-- Message -->
+    <div class="message">
+        <h2>¡Estimado/a {{customerName}}!</h2>
+        <p>Recuerda que tu moto debe ser devuelta el <strong>{{returnDate}}</strong>. A continuación, puedes ver el tiempo restante hasta la fecha de devolución.</p>
+    </div>
+
+    <!-- Timer -->
+    <div class="timer-container" id="countdown">
+        Tiempo restante: <span id="timer"></span>
+    </div>
+
+    <!-- Button for Legal Aspects -->
+    <div class="button-container">
+        <a href="{{legalLink}}" class="button">Ver Aspectos Legales</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>¿Tienes alguna pregunta? Contáctanos:</p>
+        <p>Email: <a href="mailto:{{contactEmail}}">{{contactEmail}}</a> | Tel: {{contactPhone}}</p>
+        <p>&copy; {{year}} {{storeName}}. Todos los derechos reservados.</p>
+        <p><a href="{{websiteUrl}}">Visita nuestro sitio web</a></p>
+    </div>
+</div>
+
+<script>
+    // JavaScript para el temporizador
+    const countdownElement = document.getElementById('timer');
+    const returnDate = new Date("{{returnDate}}").getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = returnDate - now;
+
+        if (distance < 0) {
+            countdownElement.innerHTML = "¡Tiempo de devolución vencido!";
+            clearInterval(timerInterval);
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

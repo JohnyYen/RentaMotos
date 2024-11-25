@@ -17,15 +17,13 @@ const common_1 = require("@nestjs/common");
 const client_service_1 = require("./client.service");
 const client_dto_1 = require("./dto/client.dto");
 const swagger_1 = require("@nestjs/swagger");
+const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
 let ClientController = class ClientController {
     constructor(clientService) {
         this.clientService = clientService;
     }
     async getClients() {
         return await this.clientService.getAllClients();
-    }
-    async getClientesByMun(mun) {
-        return await this.clientService.getClientByMun(mun);
     }
     async getClientsByPDF(res) {
         const buffer = await this.clientService.getAllClientByPDF();
@@ -34,11 +32,14 @@ let ClientController = class ClientController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
+    async getAllMun() {
+        return await this.clientService.getAllMun();
+    }
+    async getClientesByMun(mun) {
+        return await this.clientService.getClientByMun(mun);
+    }
     async getBadClients() {
         return await this.clientService.getAllBadClients();
-    }
-    async getClient(id) {
-        return await this.clientService.getClient(id);
     }
     async getBadClientsByPDF(res) {
         const buffer = await this.clientService.getPDFBadClients();
@@ -47,6 +48,9 @@ let ClientController = class ClientController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
+    async getClient(id) {
+        return await this.clientService.getClient(id);
+    }
     async getPDF(mun, res) {
         const buffer = await this.clientService.getAllClientPDFWorkerMun(mun);
         res.setHeader('Content-Type', 'application/pdf');
@@ -54,21 +58,22 @@ let ClientController = class ClientController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
-    createClient(clientDto) {
-        this.clientService.createClient(clientDto);
-    }
-    deleteClient(id) {
-        this.clientService.deleteClient(id);
-    }
-    updateClient(id, client) {
-        this.clientService.updateClient(client, id);
+    async createClient(clientDto) {
+        return await this.clientService.createClient(clientDto);
     }
     async validateNumber(body) {
         return this.clientService.validatePhoneNumber(body.phoneNumber);
     }
+    async updateClient(id, client) {
+        return await this.clientService.updateClient(client, id);
+    }
+    async deleteClient(id) {
+        return await this.clientService.deleteClient(id);
+    }
 };
 exports.ClientController = ClientController;
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -76,14 +81,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClients", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes según su municipio" }),
-    (0, common_1.Get)('/mun/:mun'),
-    __param(0, (0, common_1.Param)('mun')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], ClientController.prototype, "getClientesByMun", null);
-__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes en formato pdf" }),
     (0, common_1.Get)('/pdf'),
     __param(0, (0, common_1.Res)()),
@@ -92,6 +90,23 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClientsByPDF", null);
 __decorate([
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los municipios" }),
+    (0, common_1.Get)('/mun'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getAllMun", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes según su municipio" }),
+    (0, common_1.Get)('/mun/:mun'),
+    __param(0, (0, common_1.Param)('mun')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClientesByMun", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los clientes incumplidores" }),
     (0, common_1.Get)("/bad"),
     __metadata("design:type", Function),
@@ -99,14 +114,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClients", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Devuelve a un cliente según su identificador" }),
-    (0, common_1.Get)('/sample/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], ClientController.prototype, "getClient", null);
-__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve el listado de los clientes incumplidores en formato pdf" }),
     (0, common_1.Get)('/bad/pdf'),
     __param(0, (0, common_1.Res)()),
@@ -115,6 +123,16 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClientsByPDF", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve a un cliente según su identificador" }),
+    (0, common_1.Get)('/sample/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "getClient", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve a todos los clientes que pertenecen a un municipio en formato pdf" }),
     (0, common_1.Get)('/worker/pdf/:mun'),
     __param(0, (0, common_1.Param)('mun')),
@@ -124,22 +142,25 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getPDF", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo cliente" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [client_dto_1.ClientDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClientController.prototype, "createClient", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Elimina un cliente según su identificador" }),
-    (0, common_1.Delete)('/:id'),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, swagger_1.ApiOperation)({ summary: "Valida que el telefono no se repita" }),
+    (0, common_1.Post)('/validate/phone'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], ClientController.prototype, "deleteClient", null);
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ClientController.prototype, "validateNumber", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiBody)({ type: client_dto_1.ClientDto, description: "Es el dto de Cliente" }),
     (0, swagger_1.ApiParam)({ name: "id", description: "El carnet de identidad del cliente" }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica un cliente según su identificador" }),
@@ -148,17 +169,19 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, client_dto_1.ClientDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClientController.prototype, "updateClient", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: "Valida que el telefono no se repita" }),
-    (0, common_1.Post)('/validate/phone'),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina un cliente según su identificador" }),
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ClientController.prototype, "validateNumber", null);
+], ClientController.prototype, "deleteClient", null);
 exports.ClientController = ClientController = __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiTags)('Clientes'),
     (0, common_1.Controller)('api/client'),
     __metadata("design:paramtypes", [client_service_1.ClientService])
