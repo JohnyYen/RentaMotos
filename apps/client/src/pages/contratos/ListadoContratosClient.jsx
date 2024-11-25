@@ -6,7 +6,8 @@ import axios from "axios";
 import { GlobalContext } from "../../context/GlobalContext";
 import { pdf } from "@react-pdf/renderer";
 import DocumentPDF from "../../components/DocumentPDF";
-import ModalCreateContract from "../../components/ModalCreateContract"
+import ModalCreateMoto from "../../components/ModalCreateContract"
+import ModalCreateContract from "../../components/ModalCreateContract";
 
 
 const extractData = async (client) => {
@@ -36,7 +37,7 @@ const extractData = async (client) => {
   }
   return dataSource;
 };
-<ModalCreateContract isVisible={open} setVisible={() => setOpen(!open)} />
+
 
 const ListadoContratos = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -57,12 +58,13 @@ const ListadoContratos = () => {
 
   return (
     <Flex vertical="true">
+        <ModalCreateContract isVisible={false} setVisible={() => setOpen(!open)}/>
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>
       <Flex align="center" justify="flex-end">
         <Button
-        
+          onClickCapture={() => setVisible(open)}
           className="actionTable"
           style={{ marginBottom: "1rem", marginRight: "1rem" }}
           type="primary"

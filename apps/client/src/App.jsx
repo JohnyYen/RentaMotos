@@ -43,6 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/home/*" element={<HomePage/>}/>
+            <Route path="/worker/*" element={<UserWorker/>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/loguin/*" element={<Loguin/>}/>
             <Route path="/client/*" element={<UserClient/>}/>

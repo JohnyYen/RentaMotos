@@ -178,14 +178,12 @@ background-color: rebeccapurple;
   color: white;
 }
 
-@media (min-width: 700px){
-  .toggle-menu{
-    display: none;
-  }
-}
 
-@media (max-width: 700px) {
-  
+
+@media (max-width: 530px) {
+  .header{
+    height: 6.5rem;
+  }
 }
 
 .content {
