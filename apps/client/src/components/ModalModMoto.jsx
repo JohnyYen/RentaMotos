@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 
-const response = await axios.get('http://localhost:3000/api/situation');
+const response = await axios.get('http://localhost:3000/api/moto/situacion');
 let dataSource;
 
 if(response.status === 200)

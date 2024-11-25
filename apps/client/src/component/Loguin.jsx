@@ -87,21 +87,22 @@ function Loguin() {
   const {setUser, setClient} = useContext(GlobalContext);
   const Registrar = async () => {
     
-    const response = await axios.post('http://localhost:3000/api/user', {
-      userName: userName,
+    const response = await axios.post('http://localhost:3000/api/auth/login', {
+      user_name: userName,
       password: password
     });
 
+    sessionStorage.setItem('jwt', JSON.stringify(response.data.token));
     if(response.status === 201){
-      const tipoUsuario = response.data.tipo_usuario;
-      setUser(response.data);
+      const tipoUsuario = response.data.user.tipo_usuario;
+      setUser(response.data.user);
       if(tipoUsuario === 'Admin'){
         message.success(t("messageSuccess.loginSuccess"))
         navigate('/admin');
       }
 
       if(tipoUsuario === 'Cliente'){
-        const idClient = response.data.id_cliente;
+        const idClient = response.data.user.id_cliente;
         const res = await axios.get(`http://localhost:3000/api/client/sample/${idClient}`);
         if(res.status === 200){
           message.success(t("messageSuccess.loginSuccess"))
@@ -118,8 +119,6 @@ function Loguin() {
       }
 
       //Guardar la referencia a los usuarios y clientes en caso de que se refresque la pantalla
-      localStorage.setItem('userData', JSON.stringify(response.data));
-        
       if(!tipoUsuario)
         message.info(t("messageError.notExistUser"));
     }

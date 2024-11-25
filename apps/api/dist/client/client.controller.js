@@ -18,6 +18,7 @@ const client_service_1 = require("./client.service");
 const client_dto_1 = require("./dto/client.dto");
 const swagger_1 = require("@nestjs/swagger");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
+const public_decorator_1 = require("../auth/public.decorator");
 let ClientController = class ClientController {
     constructor(clientService) {
         this.clientService = clientService;
@@ -68,7 +69,7 @@ let ClientController = class ClientController {
         return await this.clientService.updateClient(client, id);
     }
     async deleteClient(id) {
-        return await this.clientService.deleteClient(id);
+        return await this.clientService.deleteClient(+id);
     }
 };
 exports.ClientController = ClientController;
@@ -90,6 +91,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getClientsByPDF", null);
 __decorate([
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los municipios" }),
     (0, common_1.Get)('/mun'),
     __metadata("design:type", Function),

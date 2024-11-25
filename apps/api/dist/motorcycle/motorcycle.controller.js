@@ -20,6 +20,7 @@ const swagger_1 = require("@nestjs/swagger");
 const marc_dto_1 = require("./dto/marc.dto");
 const model_dto_1 = require("./dto/model.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
+const public_decorator_1 = require("../auth/public.decorator");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -52,6 +53,9 @@ let MotorcycleController = class MotorcycleController {
     }
     async getSituation() {
         return await this.motoService.getSituation();
+    }
+    async getMarc() {
+        return await this.motoService.getMarc();
     }
     async createMoto(body) {
         return await this.motoService.createMotorcycle(body);
@@ -126,7 +130,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getPDFSituation", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los modelos de las motos" }),
     (0, common_1.Get)('/model'),
     __metadata("design:type", Function),
@@ -134,13 +138,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllModels", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las situaciones posibles para las motos" }),
     (0, common_1.Get)('/situacion'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getSituation", null);
+__decorate([
+    (0, public_decorator_1.SkipAuth)(),
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las marcas de las motos" }),
+    (0, common_1.Get)('/marc'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], MotorcycleController.prototype, "getMarc", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiBody)({ type: motorcycle_dto_1.MotorcycleDto, description: "Los datos de la moto" }),

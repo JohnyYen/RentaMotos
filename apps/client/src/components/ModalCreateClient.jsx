@@ -5,7 +5,7 @@ import { GlobalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const response = await axios.get('http://localhost:3000/api/mun')
+const response = await axios.get('http://localhost:3000/api/client/mun')
 let dataSource = [];
 if(response.status === 200){
     dataSource = response.data;

@@ -38,9 +38,6 @@ const [collapsed, setCollapsed] = useState(true);
                   <div> Email: rentamotos@gmail.com</div>
     </Flex>
         </Footer >
-        
-          
-      
       </Layout>
     </Layout>
   );

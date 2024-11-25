@@ -4,6 +4,7 @@ import { FormaPagoDto } from './dto/formaPago.dto';
 export declare class ContractController {
     private readonly contractService;
     constructor(contractService: ContractService);
+    getAllFormaPago(): Promise<any>;
     getContract(): Promise<any>;
     getContractInPDF(res: any): Promise<void>;
     getContractsMunWorker(mun: string): Promise<any>;
@@ -17,7 +18,6 @@ export declare class ContractController {
     getAllPagosPDF(res: any): Promise<void>;
     getAllPagosPDFMun(res: any, mun: string): Promise<void>;
     getAllPagosByMun(mun: string): Promise<any>;
-    getAllFormaPago(): Promise<any>;
     createContract(contract: ContractDto): Promise<any>;
     createFormaPago(form: FormaPagoDto): Promise<any>;
     updateContract(matricula: string, contract: ContractDto): Promise<any>;

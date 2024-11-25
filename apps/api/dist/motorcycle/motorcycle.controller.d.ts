@@ -13,6 +13,7 @@ export declare class MotorcycleController {
     getPDFSituation(res: any): Promise<void>;
     getAllModels(): Promise<any>;
     getSituation(): Promise<any>;
+    getMarc(): Promise<any>;
     createMoto(body: MotorcycleDto): Promise<any>;
     createMarc(marc: MarcDto): Promise<void>;
     createModel(model: ModelDto): Promise<void>;

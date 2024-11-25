@@ -4,12 +4,14 @@ import { AuthService } from './auth.service';
 import { LoginObjectDto } from './dto/loginObject.dto';
 import { SignObjectDto } from './dto/signObject.dto';
 import { ClientSignDto } from './dto/clientSign.dto';
+import { SkipAuth } from './public.decorator';
 
 @ApiTags('Auth')
 @Controller('api/auth')
 export class AuthController {
     constructor(private authService: AuthService){}
 
+    @SkipAuth()
     @ApiOperation({summary: "Loguear al usuario"})
     @ApiBody({type:LoginObjectDto, description: 'Revisar la documentación del Login Dto'})
     @Post('/login')

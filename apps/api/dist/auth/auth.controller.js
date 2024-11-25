@@ -19,6 +19,7 @@ const auth_service_1 = require("./auth.service");
 const loginObject_dto_1 = require("./dto/loginObject.dto");
 const signObject_dto_1 = require("./dto/signObject.dto");
 const clientSign_dto_1 = require("./dto/clientSign.dto");
+const public_decorator_1 = require("./public.decorator");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -32,6 +33,7 @@ let AuthController = class AuthController {
 };
 exports.AuthController = AuthController;
 __decorate([
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Loguear al usuario" }),
     (0, swagger_1.ApiBody)({ type: loginObject_dto_1.LoginObjectDto, description: 'Revisar la documentación del Login Dto' }),
     (0, common_1.Post)('/login'),

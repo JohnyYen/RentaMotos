@@ -19,9 +19,13 @@ const contract_dto_1 = require("./dto/contract.dto");
 const swagger_1 = require("@nestjs/swagger");
 const formaPago_dto_1 = require("./dto/formaPago.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
+const public_decorator_1 = require("../auth/public.decorator");
 let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
+    }
+    async getAllFormaPago() {
+        return await this.contractService.getAllFormaPago();
     }
     async getContract() {
         return await this.contractService.getAllContract();
@@ -86,9 +90,6 @@ let ContractController = class ContractController {
     async getAllPagosByMun(mun) {
         return await this.contractService.getAllPagosByMun(mun);
     }
-    async getAllFormaPago() {
-        return await this.contractService.getAllFormaPago();
-    }
     async createContract(contract) {
         return await this.contractService.createContract(contract);
     }
@@ -109,6 +110,14 @@ let ContractController = class ContractController {
     }
 };
 exports.ContractController = ContractController;
+__decorate([
+    (0, public_decorator_1.SkipAuth)(),
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
+    (0, common_1.Get)('/formasPago'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllFormaPago", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos" }),
@@ -224,14 +233,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagosByMun", null);
-__decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
-    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
-    (0, common_1.Get)('/formasPago'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], ContractController.prototype, "getAllFormaPago", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo contrato" }),

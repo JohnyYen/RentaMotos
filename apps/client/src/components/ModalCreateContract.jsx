@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 import { GlobalContext, useRow } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 
-const response = await axios.get('http://localhost:3000/api/formaPago');
+const response = await axios.get('http://localhost:3000/api/contract/formasPago');
 
 let dataSource = [];
 

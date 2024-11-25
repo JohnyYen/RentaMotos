@@ -5,12 +5,19 @@ import { ErrorHandler } from 'src/libs/errorHandler';
 import { ApiBearerAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { FormaPagoDto } from './dto/formaPago.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
-
+import { SkipAuth } from 'src/auth/public.decorator';
 @ApiBearerAuth()
 @ApiTags('Contratos')
 @Controller('api/contract')
 export class ContractController {
     constructor(private readonly contractService : ContractService){}
+
+    @SkipAuth()
+    @ApiOperation({summary: "Devuelve todas las formas de pago en la aplicación"})
+    @Get('/formasPago')
+    async getAllFormaPago(){
+        return await this.contractService.getAllFormaPago();
+    }
 
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Devuelve todos los contratos"})
@@ -72,6 +79,7 @@ export class ContractController {
  
         res.send(buffer);
     }
+
     
     @UseGuards(JwtAuthGuard)
     @ApiOperation({summary: "Devuelve todos los contratos según la marca y el modelo"})
@@ -138,13 +146,6 @@ export class ContractController {
     @Get('/cobros/:mun')
     async getAllPagosByMun(@Param('mun') mun:string){
         return await this.contractService.getAllPagosByMun(mun);
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @ApiOperation({summary: "Devuelve todas las formas de pago en la aplicación"})
-    @Get('/formasPago')
-    async getAllFormaPago(){
-        return await this.contractService.getAllFormaPago();
     }
 
     @UseGuards(JwtAuthGuard)

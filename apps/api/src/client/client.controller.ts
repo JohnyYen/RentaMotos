@@ -3,6 +3,7 @@ import { ClientService } from './client.service';
 import { ClientDto } from './dto/client.dto';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
+import { SkipAuth } from 'src/auth/public.decorator';
 
 @ApiBearerAuth()
 @ApiTags('Clientes')
@@ -31,7 +32,7 @@ export class ClientController {
         res.send(buffer);
     }
 
-    //@UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve todos los municipios"})
     @Get('/mun')
     async getAllMun(){
@@ -112,7 +113,7 @@ export class ClientController {
     @ApiOperation({summary: "Elimina un cliente según su identificador"})
     @Delete('/:id')
     async deleteClient(@Param("id") id : string){
-        return await this.clientService.deleteClient(id);
+        return await this.clientService.deleteClient(+id);
     }
 
 }

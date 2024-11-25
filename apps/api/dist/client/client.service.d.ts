@@ -10,7 +10,7 @@ export declare class ClientService {
     getAllClientByPDF(): Promise<Buffer>;
     getAllClientPDFWorkerMun(mun: string): Promise<Buffer>;
     validatePhoneNumber(num: string): Promise<boolean>;
-    deleteClient(id: string): Promise<any>;
+    deleteClient(id: number): Promise<any>;
     createClient(client: ClientDto): Promise<any>;
     updateClient(client: ClientDto, id: string): Promise<any>;
     getAllBadClients(): Promise<any>;

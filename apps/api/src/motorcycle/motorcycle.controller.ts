@@ -6,6 +6,7 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs
 import { MarcDto } from './dto/marc.dto';
 import { ModelDto } from './dto/model.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
+import { SkipAuth } from 'src/auth/public.decorator';
 
 @ApiBearerAuth()
 @ApiTags('Motocicletas')
@@ -61,18 +62,25 @@ export class MotorcycleController {
         res.send(buffer);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve todos los modelos de las motos"})
     @Get('/model')
     async getAllModels() {
         return await this.motoService.getModels();
     }
 
-    @UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve todas las situaciones posibles para las motos"})
     @Get('/situacion')
     async getSituation(){
         return await this.motoService.getSituation();
+    }
+
+    @SkipAuth()
+    @ApiOperation({summary: "Devuelve todas las marcas de las motos"})
+    @Get('/marc')
+    async getMarc(){
+        return await this.motoService.getMarc();
     }
 
     @UseGuards(JwtAuthGuard)

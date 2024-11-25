@@ -11,8 +11,15 @@ import { SmileOutlined } from "@ant-design/icons";
 const extractData = async () => {
   let dataSource = [];
   let response = null;
+  const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+
   try {
-    response = await axios.get("http://localhost:3000/api/moto/client");
+    response = await axios.get("http://localhost:3000/api/moto/client", {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        'Content-Type': 'application/json'
+      }
+    });
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
@@ -33,7 +40,7 @@ const extractData = async () => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-    const response = await axios.get("http://localhost:3000/api/marc");
+    const response = await axios.get("http://localhost:3000/api/moto/marc");
     if (response.status === 200) {
       dataFilter = response.data;
     }
@@ -88,7 +95,7 @@ const ListMotoClient = () => {
   }, []);
 
   return (
-    <Flex vertical="true">
+    <Flex vertical="true" align="center">
       <Typography.Title level={3}>
         {t("motorcycle.motorcycleList")}
       </Typography.Title>
@@ -131,12 +138,15 @@ const ListMotoClient = () => {
               <List.Item>
                 <Card
                   hoverable
+                  actions={[
+                    <Button onClick={() => setVisible(true)} style={{margin:10}} type="primary">Rentar</Button>
+                  ]}
                   key={item.key}
                   style={{ width: 240 }}
                   cover={
                     <img
                       alt="example"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                      src="apps\client\src\assets\moto.png"
                     />
                   }
                 >
@@ -144,6 +154,7 @@ const ListMotoClient = () => {
                     title={`Matricula: ${item.matricula}`}
                     description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Situación: ${item.situacion} | Color: ${item.color} | Km: ${item.kmRecorridos}`}
                   />
+              
                 </Card>
               </List.Item>
             )}
@@ -157,7 +168,7 @@ const ListMotoClient = () => {
                 ¡Ups! No hay motos disponibles.
               </Typography.Title>
               <Typography.Text style={{ color: '#777' }}>
-                Parece que no tenemos ninguna moto en este momento. Por favor, vuelve más tarde o crea una nueva.
+                Parece que no tenemos ninguna moto en este momento.
               </Typography.Text>
             </Flex>
           }
