@@ -1,5 +1,4 @@
-import { MotorcycleDto } from "./motorcycle.dto";
-declare const MotorcyclePartial_base: import("@nestjs/common").Type<Partial<Omit<MotorcycleDto, "matricula">>>;
+declare const MotorcyclePartial_base: any;
 export declare class MotorcyclePartial extends MotorcyclePartial_base {
 }
 export {};

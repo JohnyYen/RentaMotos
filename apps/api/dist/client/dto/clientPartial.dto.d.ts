@@ -1,5 +1,4 @@
-import { ClientDto } from "./client.dto";
-declare const ClientPartialDto_base: import("@nestjs/common").Type<Partial<Omit<ClientDto, "idCliente" | "edad">>>;
+declare const ClientPartialDto_base: any;
 export declare class ClientPartialDto extends ClientPartialDto_base {
 }
 export {};
