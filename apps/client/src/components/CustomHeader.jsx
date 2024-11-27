@@ -22,15 +22,15 @@ const CustomHeader = () => {
   };
 
   return (
-    <Flex style={{ width: "100%" }} align="center" justify="space-between">
+    <Flex  style={{ width: "100%" }} align="center" justify="space-between">
       <Flex align="center" justify="center">
         <box-icon
           name="cycling"
           size="md"
           color="white"
-          style={{ marginRight: "1.5rem" }}
+          style={{ marginRight: "0.5rem" }}
         ></box-icon>
-        <Typography.Title style={{ color: "white" }} level={2}>
+        <Typography.Title  style={{ className:'titulo',fontSize:30 , color: "white" }} level={2}>
           {t("header.motorcycleRent")}
         </Typography.Title>
       </Flex>

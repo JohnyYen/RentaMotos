@@ -12,18 +12,18 @@ const Profile = ({isOpen, setOpen}) => {
     const {user, client} = useContext(GlobalContext);
     console.log(client);
 
-    const margin = 15;
+    const margin = 12;
   return (
     <Content>
        <Flex style={{marginBottom:50}}justify="center"><Avatar  size={200}></Avatar></Flex> 
         
-    <Flex justify="center"  style={{marginLeft:100}}>
+    <Flex justify="center" className="perfilInfo" style={{}}>
        
         
         
-        <Row gutter={80}> 
+        <Row gutter={0}> 
             
-            <Col span={12}>
+            <Col justify="center" wrapspan={0} >
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.username")}: </Tag>

@@ -5,7 +5,11 @@
   font-weight: bold;
   font-style: bold;
 }
-
+.toggle-menu{
+  margin-left: 1rem;
+  margin-top: 0.45rem;
+  visibility: hidden;
+}
 .paquito {
   height: 2rem;
   background-color: #002345;
@@ -51,6 +55,14 @@
  border-radius: 2rem;
 
 }
+.CardComentario{
+  text-align: center;
+ background-color: #00162b;
+ color: bisque;
+ height: 13rem;
+ width: 12rem;
+ border-radius: 2rem;
+}
 .espaciador{
   text-align: center;
   color:bisque;
@@ -77,11 +89,24 @@
 }
 
 @media (max-width: 1200px){
+  
   .footer{
     font-size: 1.5rem;
   }
 }
+@media(min-width: 600){
+  .toggle-menu{
+   visibility: hidden;
+  }
+}
 @media (max-width: 600px){
+  .perfiInfo{
+    margin-left: 0;
+  }
+  .toggle-menu{
+    visibility: visible;
+   }
+
   .footer{
     font-size: 0.7rem;
   }
@@ -129,18 +154,6 @@
 
 .popup-language span {
   color: white;
-}
-
-@media (min-width: 700px){
-  .toggle-menu{
-    display: none;
-  }
-}
-
-@media (max-width: 700px) {
-  .sider {
-    display: none;
-  }
 }
 
 .content {

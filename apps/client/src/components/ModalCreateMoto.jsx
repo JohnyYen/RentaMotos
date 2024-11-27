@@ -12,7 +12,13 @@ let marcData = [];
 let modelData = [];
 let situationData = [];
 
-let response = await axios.get('http://localhost:3000/api/moto/situacion');
+let response = await axios.get('http://localhost:3000/api/moto/marc');
+
+if (response.status === 200) {
+  marcData = response.data;gi
+}
+
+response = await axios.get('http://localhost:3000/api/moto/situacion');
 
 if (response.status === 200)
   situationData = response.data.filter(

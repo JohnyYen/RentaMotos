@@ -71,7 +71,14 @@ const ModalCreateContract = ({isVisible, setVisible, setDataSource, dataSource})
     }
   }
   return (
-    <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()} destroyOnClose={true} centered={true} open={isVisible} onCancel={setVisible} title={t("modal.rentMotorcycle")} onOk={handlePetition}
+    <Modal okButtonProps={{htmlType:'submit'}}
+     afterClose={() => form.resetFields()} 
+    destroyOnClose={true} 
+    centered={true} 
+    open={isVisible} 
+    onCancel={setVisible} 
+    title={t("modal.rentMotorcycle")} 
+    onOk={handlePetition}
     modalRender={(dom) => (
       <Form  form={form} labelCol={{span: 16}}  wrapperCol={{span: 24}} autoComplete="off" initialValues={{remember: false,}} layout='vertical'>
           {dom}

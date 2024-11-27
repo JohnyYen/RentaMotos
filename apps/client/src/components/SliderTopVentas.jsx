@@ -27,9 +27,9 @@ const CardMoto = ({marca,modelo,image})=>{
       }); }
             }}  size="default"  children={
             
-        [   <Flex  justify="center"><div className = "avatarMoto" > <img className = "avatarMotoImg" src ={image}></img></div></Flex>,
-            <div>Marca: {marca}</div>,
-            <div>Modelo: {modelo}</div>,
+        [   <Flex  key={'motoTitle'} justify="center"><div   className = "avatarMoto" > <img className = "avatarMotoImg" src ={image}></img></div></Flex>,
+            <div  key={'marca'}>Marca: {marca}</div>,
+            <div  key={'modelo'}>Modelo: {modelo}</div>,
                 ]} ></Card></>)
 }
 

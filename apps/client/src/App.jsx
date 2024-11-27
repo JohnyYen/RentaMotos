@@ -35,9 +35,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/home/*" element={<HomePage/>}/>
-            <Route path="/login/*" element={<Register/>}/>
-            <Route path="/admin/*" element={<ProtectedRoutes children={<UserAdmin/>}/>}/>
-            <Route path="/worker/*" element={<ProtectedRoutes children={<UserWorker/>}/>}/>
+            <Route path="/worker/*" element={<UserWorker/>}/>
+            <Route path="/admin/*" element={<UserAdmin/>}/>
+            <Route path="/loguin/*" element={<Loguin/>}/>
+            <Route path="/client/*" element={<UserClient/>}/>
           </Routes>
         </GlobalProvider>
     </>
