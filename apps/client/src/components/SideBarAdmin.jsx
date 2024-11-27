@@ -2,6 +2,7 @@ import {
   CarOutlined,
   DollarOutlined,
   FileDoneOutlined,
+  FlagOutlined,
   MediumWorkmarkOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -17,13 +18,14 @@ import { MdOutlineNightShelter } from "react-icons/md";
 
 const SideBarAdmin = ({ isInline = false }) => {
   const navigate = useNavigate();
-  const [t] = useTranslation("global"); 
+  const [t, i18n] = useTranslation("global");
+
   const language = (value, option) => {
-    switch(value){
-      case 'es':
+    switch (value) {
+      case "es":
         i18n.changeLanguage("es");
         break;
-      case 'en':
+      case "en":
         i18n.changeLanguage("en");
         break;
     }
@@ -35,9 +37,17 @@ const SideBarAdmin = ({ isInline = false }) => {
         theme="dark"
         className="sider-menu"
         defaultSelectedKeys={["listadoClientes"]}
-        mode={ isInline ? "inline" : "vertical"}
+        mode={isInline ? "inline" : "vertical"}
         onClick={(item) => {
-          navigate(`/admin/${item.key}`);
+          if (item.key !== "spanish" && item.key !== "english") {
+            navigate(`/admin/${item.key}`);
+          } else {
+            if (item.key === "spanish") {
+              language("es");
+            } else {
+              language("en");
+            }
+          }
         }}
         items={[
           {
@@ -97,8 +107,25 @@ const SideBarAdmin = ({ isInline = false }) => {
           {
             label: "Trabajadores",
             icon: <PiHardHat />,
-            key: "listadoTrabajadores"
-          }
+            key: "listadoTrabajadores",
+          },
+          {
+            label: t("sideBar.traduction"),
+            icon: <FlagOutlined />,
+            key: "traduccion",
+            children: [
+              {
+                label: t("sideBar.spanish"),
+                key: "spanish",
+                value: "es",
+              },
+              {
+                label: t("sideBar.english"),
+                key: "english",
+                value: "en",
+              },
+            ],
+          },
         ]}
       ></Menu>
     </>

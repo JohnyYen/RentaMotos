@@ -23,7 +23,7 @@ const CustomHeader = () => {
 
   return (
     <Flex  style={{ width: "100%" }} align="center" justify="space-between">
-      <Flex align="center" justify="center">
+      <Flex>
         <box-icon
           name="cycling"
           size="md"
@@ -47,7 +47,7 @@ const CustomHeader = () => {
         >
           <Link to="/">Log Out</Link>
         </Button>
-        <Select
+        {/* <Select
           className="popup-language"
           variant="Filled"
           size="small"
@@ -63,7 +63,7 @@ const CustomHeader = () => {
               label: "en",
             },
           ]}
-        />
+        /> */}
         <MenuOutlined className="toggle-menu" style={{fontSize: "1.5rem", color: "white"}} onClick={() => setOpenMenu(true)} />
         <Drawer open={openMenu} onClose={() => setOpenMenu(false)} closable={false} style={{backgroundColor: "#001529"}}>
           <SideBarAdmin isInline/>

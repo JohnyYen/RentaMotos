@@ -1,228 +1,274 @@
 {
-    "header": {
-        "motorcycleRent": "Renta Motos"
+  "header": {
+    "motorcycleRent": "Renta Motos"
+  },
+  "client": {
+    "clientListTitle": "Listado de Clientes",
+    "clientNonCompliant": "Lista incumplidores"
+  },
+  "motorcycle": {
+    "motorcycleList": "Listado de motos",
+    "motorcycleSituation": "Situacion motos"
+  },
+  "contract": {
+    "contractList": "Listado de contratos",
+    "contractMunicipality": "Contratos por municipio",
+    "contractMakeModel": "Contratos por marca y modelo"
+  },
+  "worker": {
+    "workerList": "Listado Trabajadores",
+    "addWorker": "Agregar trabajador"
+  },
+  "home": {
+    "titleHome": "La satisfaccion del cliente es nuestra",
+    "spacer": "Sector Promocional"
+  },
+  "sideBar": {
+    "client": "Clientes",
+    "clientList": "Listado Clientes",
+    "clientNonCompliant": "Incumplidores",
+    "motorcycle": "Motos",
+    "motorcycleList": "Listado motos",
+    "motorcyclesAvailable": "Motos disponibles",
+    "motorcycleSituation": "Situacion",
+    "contract": "Contratos",
+    "contractList": "Listado contratos",
+    "contractMunicipality": "Por Municipio",
+    "contractMakeModel": "Por Marca y Modelo",
+    "annualIncome": "Ingresos Anuales",
+    "myContracts": "Mis contratos",
+    "profile": "Perfil",
+    "FAQ": "FAQ",
+    "traduction": "Traducciones",
+    "spanish": "Español",
+    "english": "Inglés",
+    "loginWarning": "Para acceder a este servicio debe estar logeado",
+    "loginPrompt": "Pulse en este letrero para loguearse/registrarse"
+  },
+  "mainContent": {
+    "downloadPDF": "Descargar PDF",
+    "currentDate": "Fecha actual",
+    "createMotorcycle": "Agregar moto",
+    "createContract": "Crear contrato",
+    "table": {
+      "clientID": "ID Cliente",
+      "serialNumber": "Matricula",
+      "mark": "Marca",
+      "model": "Modelo",
+      "color": "Color",
+      "colors": {
+        "red": "Rojo",
+        "black": "Negro",
+        "white": "Blanco",
+        "blue": "Azul",
+        "green": "Verde",
+        "yellow": "Amarillo",
+        "grey": "Gris",
+        "orange": "Naranja",
+        "purple": "Morado",
+        "neon": "Neón",
+        "silver": "Plateado",
+        "gold": "Dorado",
+        "red-black": "Rojo-Negro",
+        "blue-black": "Azul-Negro",
+        "red-white": "Rojo-Blanco",
+        "white-black": "Blanco-Negro"
+      },
+      "kmTraveled": "Km recorridos",
+      "actions": "Acciones",
+      "name": "Nombre",
+      "lastName": "Apellidos",
+      "endContract": "Fin de contrato",
+      "motorcycleDelivery": "Entrega de moto",
+      "signatureDate": "Fecha de Firma",
+      "municipality": "Municipio",
+      "timesRented": "Veces alquiladas",
+      "rentalValue": "Valor alquileres",
+      "situation": "Situación",
+      "situations": {
+        "workshop": "Taller",
+        "available": "Disponible",
+        "rented": "Alquilada"
+      },
+      "methodPayment": "Forma de pago",
+      "startContract": "Inicio de contrato",
+      "extension": "Prórroga",
+      "additionalInsurance": "Seguro adicional",
+      "totalAmount": "Importe total",
+      "numberMotorcycle": "Cantidad de motos",
+      "totalDaysRented": "Dias totales alquilados",
+      "creditCardIncome": "Ingresos por tarjeta de crédito",
+      "incomeCheck": "Ingresos por cheque",
+      "cashIncome": "Ingresos por efectivo",
+      "daysRented": "Dias alquilados",
+      "extensionDays": "Días de prórroga",
+      "totalCash": "Total efectivo",
+      "delete": "Eliminar",
+      "modify": "Modificar",
+      "rent": "Rentar",
+      "annualIncome": "Ingresos Anuales",
+      "income": {
+        "january": "Ingreso enero",
+        "february": "Ingreso febrero",
+        "march": "Ingreso marzo",
+        "april": "Ingreso abril",
+        "may": "Ingreso mayo",
+        "june": "Ingreso junio",
+        "july": "Ingreso julio",
+        "august": "Ingreso agosto",
+        "september": "Ingreso septiembre",
+        "october": "Ingreso octubre",
+        "november": "Ingreso noviembre",
+        "december": "Ingreso diciembre"
+      }
+    }
+  },
+  "login": {
+    "username": "usuario",
+    "password": "Contraseña",
+    "accept": "Aceptar",
+    "register": "o Registrarse ahora!",
+    "cancel": "Cancelar",
+    "rememberMe": "Recordar",
+    "forgotPassword": "Olvidaste la contraseña?",
+    "loginIn": "Iniciar sesión"
+  },
+  "profile": {
+    "profile": "Perfil",
+    "name": "Nombre",
+    "middleName": "Segundo Nombre",
+    "lastName": "Primer Apellido",
+    "secondLastName": "Segundo Apellido",
+    "username": "Nombre de Usuario",
+    "password": "Contraseña",
+    "email": "Email",
+    "municipality": "Municipio",
+    "age": "Edad",
+    "sex": "Sexo",
+    "contactNumber": "Número de contacto"
+  },
+  "modal": {
+    "modifyClient": "Modificar Cliente",
+    "modifyContract": "Modificar Contrato",
+    "modifyMotorcycle": "Modificar Moto",
+    "createWorker": "Crear trabajador",
+    "createMotorcycle": "Crear moto",
+    "createUsername": "Crear Usuario",
+    "rentMotorcycle": "Rentar Moto",
+    "deleteWorker": "Eliminar Trabajador",
+    "deleteClient": "Eliminar Cliente",
+    "deleteMotorcycle": "Eliminat Moto",
+    "deleteContract": "Eliminar Contrato",
+    "insurance": "Seguro",
+    "cantKm": "Cantidad de Kilómetros",
+    "situation": "Situación",
+    "methodPayment": "Forma pago",
+    "extensionDays": "Días prórroga",
+    "endDate": "Fecha de Fin",
+    "startDate": "Fecha de Inicio",
+    "signatureDate": "Fecha de Firma"
+  },
+  "messageError": {
+    "emptyColor": "El campo de color no debe estar vacio",
+    "emptyKm": "El campo de cantKm no debe estar vacio",
+    "emptySituation": "El campo de situacion no debe estar vacio",
+    "emptyMethodPayment": "Introduce la Forma de Pago!",
+    "emptyExtensionDays": "Introduce los dias Prórroga!",
+    "emptyEndDate": "Introduce la fecha de fin!",
+    "emptyName": "Introduce el nombre!",
+    "emptySecondName": "Introduce el segundo nombre!",
+    "emptyLastName": "Introduce el primer Apellido!",
+    "emptySecondLastName": "Introduce el Segundo Apellido!",
+    "emptyContactNumber": "Introduce el número de contacto!",
+    "emptyMunicipality": "Introduce el Municipio!",
+    "emptyAge": "Introduce la edad!",
+    "emptyUsername": "Introduce el nombre de Usuario!",
+    "emptyPassword": "Introduce la Contraseña!",
+    "weakPassword": "La contraseña no es fuerte, use mayusculas, minusculas y digitos",
+    "emptySerialNumber": "Introduce la matrícula!",
+    "emptyMark": "Introduce la marca!",
+    "emptyModel": "Introduce el modelo!",
+    "emptySignatureDate": "Introduce la fecha de firma!",
+    "emptyStartDate": "Introduce la fecha de fin",
+    "emptyCI": "Introduce tu CI!",
+    "emptyEmail": "Introduce tu Email!",
+    "emptySex": "Introduce tu Sexo!",
+    "afterEndDate": "La fecha nueva debe ser despues",
+    "minCharName": "El nombre debe de tener minimo 4 caracteres",
+    "maxCharName": "El nombre debe de tener maximo 20 caracteres",
+    "minCharMiddleName": "El segundo nombre debe tener minimo 4 caracteres",
+    "maxCharMiddleName": "El segundo nombre debe tener maximo 20 caracteres",
+    "minCharLastName": "El apellido debe tener minimo 4 caracteres",
+    "maxCharLastName": "El apellido debe tener maximo 25 caracteres",
+    "minCharSecondLastName": "Su apellido debe tener al menos 4 caracteres",
+    "maxCharSecondLastName": "Su apellido debe tener a lo más 20 caracteres",
+    "minCharUsername": "Su nombre de usuario debe tener al menos 4 caracteres",
+    "maxCharUsername": "Su nombre de usuario debe tener a lo mas 20 caracteres",
+    "minCharPassword": "La contraseña debe tener al menos 5 caracteres",
+    "maxCharPassword": "La contraseña debe tener a lo mas 8 caracteres",
+    "lengthContactNumber": "El numero de contacto debe de tener 8 digitos",
+    "existUser": "Este usuario ya existe",
+    "existEmail": "Ya existe ese email",
+    "notExistUser": "Este usuario no existe",
+    "extensionGMAIL.COM": "La cadena debe de contener @gmail.com",
+    "lengthSerialNumber": "Debe tener 8 caracteres",
+    "signatureDateBeforeStartDate": "La firma debe ser antes que el inicio del alquiler",
+    "signatureDateBeforeEndDate": "La firma debe ser antes que el fin del alquiler",
+    "startDateBeforeEndDate": "El inicio del alquiler debe ser antes que el fin del alquiler",
+    "lengthID": "El carnet de Identidad debe de tener 11 digitos"
+  },
+  "messageSuccess": {
+    "success": "Creado con éxito",
+    "loginSuccess": "Logueado con Exito",
+    "deleteSucces": "Eliminado exitosamente"
+  },
+  "notification": {
+    "deleteWorker": "¿Estás seguro que deseas eliminar al Trabajador?",
+    "deleteClient": "¿Estás seguro que deseas eliminar al Cliente?",
+    "deleteMotorcycle": "¿Estás seguro que deseas eliminar el moto?",
+    "deleteContract": "¿Estás seguro que deseas eliminar el contrato?"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes y Términos Legales",
+    "eligibility": {
+      "title": "Elegibilidad",
+      "description": "Para utilizar nuestros servicios, debes ser mayor de 18 años y poseer una licencia de conducir válida y vigente para motocicletas. Al registrarte en nuestro sitio y utilizar nuestros servicios, garantizas que cumples con estos requisitos."
     },
-    "client": {
-        "clientListTitle": "Listado de Clientes",
-        "clientNonCompliant": "Lista incumplidores"
+    "reservation": {
+      "title": "Proceso de Reserva",
+      "description": "Las reservas de motos se realizan a través de nuestro sitio web. Deberás proporcionar información veraz y actualizada durante el proceso de reserva. Nos reservamos el derecho de cancelar cualquier reserva que contenga información incorrecta o incompleta."
     },
-    "motorcycle": {
-        "motorcycleList": "Listado de motos",
-        "motorcycleSituation": "Situacion motos"
+    "rates": {
+      "title": "Tarifas y Pagos",
+      "description": "Las tarifas de alquiler de motos se detallan en nuestro sitio web y pueden variar según el modelo de la moto y la duración del alquiler. Los pagos se realizarán en el momento de la reserva mediante los métodos de pago aceptados. Nos reservamos el derecho de cambiar nuestras tarifas en cualquier momento, aunque las reservas confirmadas no se verán afectadas por dichos cambios."
     },
-    "contract": {
-        "contractList": "Listado de contratos",
-        "contractMunicipality": "Contratos por municipio",
-        "contractMakeModel": "Contratos por marca y modelo"
+    "usage": {
+      "title": "Uso de la Moto",
+      "description": "El arrendatario se compromete a utilizar la moto de manera responsable y de acuerdo con todas las leyes de tránsito aplicables. Está prohibido utilizar la moto para competiciones, carreras, fuera de carretera o cualquier otra actividad que pueda dañar la moto. Cualquier daño causado por el mal uso de la moto será responsabilidad del arrendatario."
     },
-    "worker":{
-        "workerList": "Listado Trabajadores",
-        "addWorker": "Agregar trabajador"
+    "insurance": {
+      "title": "Seguro y Cobertura",
+      "description": "Ofrecemos seguros opcionales que cubren ciertos tipos de daños y responsabilidades. Se recomienda revisar las opciones de seguro disponibles y seleccionar la cobertura que mejor se adapte a tus necesidades. El arrendatario es responsable de cualquier daño o pérdida no cubiertos por el seguro."
     },
-    "home": {
-        "titleHome": "La satisfaccion del cliente es nuestra",
-        "spacer": "Sector Promocional"
+    "return": {
+      "title": "Devolución de la Moto",
+      "description": "La moto debe ser devuelta en la fecha y hora acordadas, en las mismas condiciones en las que fue entregada, con todos los accesorios y documentos. Cualquier retraso en la devolución puede resultar en cargos adicionales. Si la moto se devuelve con daños, se evaluarán y cobrarán los costos de reparación correspondientes."
     },
-    "sideBar": {
-        "client": "Clientes",
-        "clientList": "Listado Clientes",
-        "clientNonCompliant": "Incumplidores",
-        "motorcycle": "Motos",
-        "motorcycleList": "Listado motos",
-        "motorcyclesAvailable": "Motos disponibles",
-        "motorcycleSituation": "Situacion",
-        "contract": "Contratos",
-        "contractList": "Listado contratos",
-        "contractMunicipality": "Por Municipio",
-        "contractMakeModel": "Por Marca y Modelo",
-        "annualIncome": "Ingresos Anuales",
-        "myContracts": "Mis contratos",
-        "profile": "Perfil",
-        "FAQ": "FAQ",
-        "spanish": "Español",
-        "english": "Inglés"
+    "cancellation": {
+      "title": "Cancelaciones y Reembolsos",
+      "description": "Las reservas pueden ser canceladas con una notificación previa de al menos 48 horas para obtener un reembolso completo. Las cancelaciones realizadas con menos de 48 horas de antelación no serán reembolsables. Nos reservamos el derecho de cancelar reservas por motivos de seguridad, disponibilidad o incumplimiento de los Términos."
     },
-    "mainContent": {
-        "downloadPDF": "Descargar PDF",
-        "currentDate": "Fecha actual",
-        "createMotorcycle": "Agregar moto",
-        "createContract": "Crear contrato",
-        "table": {
-            "clientID": "ID Cliente",
-            "serialNumber": "Matricula",
-            "mark": "Marca",
-            "model": "Modelo",
-            "color": "Color",
-            "colors": {
-                "red": "Rojo",
-                "black": "Negro",
-                "white": "Blanco",
-                "blue": "Azul",
-                "green": "Verde",
-                "yellow": "Amarillo",
-                "grey": "Gris",
-                "orange": "Naranja",
-                "purple": "Morado",
-                "neon": "Neón",
-                "silver": "Plateado",
-                "gold": "Dorado",
-                "red-black": "Rojo-Negro",
-                "blue-black": "Azul-Negro",
-                "red-white": "Rojo-Blanco",
-                "white-black": "Blanco-Negro"
-            },
-            "kmTraveled": "Km recorridos",
-            "actions": "Acciones",
-            "name": "Nombre",
-            "lastName": "Apellidos",
-            "endContract": "Fin de contrato",
-            "motorcycleDelivery": "Entrega de moto",
-            "signatureDate": "Fecha de Firma",
-            "municipality": "Municipio",
-            "timesRented": "Veces alquiladas",
-            "rentalValue": "Valor alquileres",
-            "situation": "Situación",
-            "situations": {
-                "workshop": "Taller",
-                "available": "Disponible",
-                "rented": "Alquilada"
-            },
-            "methodPayment": "Forma de pago",
-            "startContract": "Inicio de contrato",
-            "extension": "Prórroga",
-            "additionalInsurance": "Seguro adicional",
-            "totalAmount": "Importe total",
-            "numberMotorcycle": "Cantidad de motos",
-            "totalDaysRented": "Dias totales alquilados",
-            "creditCardIncome": "Ingresos por tarjeta de crédito",
-            "incomeCheck": "Ingresos por cheque",
-            "cashIncome": "Ingresos por efectivo",
-            "daysRented": "Dias alquilados",
-            "extensionDays": "Días de prórroga",
-            "totalCash": "Total efectivo",
-            "delete": "Eliminar",
-            "modify": "Modificar",
-            "rent": "Rentar",
-            "annualIncome": "Ingresos Anuales",
-            "income": {
-                "january": "Ingreso enero",
-                "february": "Ingreso febrero",
-                "march": "Ingreso marzo",
-                "april": "Ingreso abril",
-                "may": "Ingreso mayo",
-                "june": "Ingreso junio",
-                "july": "Ingreso julio",
-                "august": "Ingreso agosto",
-                "september": "Ingreso septiembre",
-                "october": "Ingreso octubre",
-                "november": "Ingreso noviembre",
-                "december": "Ingreso diciembre"
-            }
-        }
+    "liability": {
+      "title": "Limitación de Responsabilidad",
+      "description": "La empresa no será responsable por ningún daño directo, indirecto, incidental, especial o consecuente que surja del uso de nuestros servicios o de la imposibilidad de utilizarlos. Esta limitación de responsabilidad se aplicará en la medida permitida por la ley."
     },
-    "login": {
-        "username": "usuario",
-        "password": "Contraseña",
-        "accept": "Aceptar",
-        "register": "o Registrarse ahora!",
-        "cancel": "Cancelar",
-        "rememberMe": "Recordar",
-        "forgotPassword": "Olvidaste la contraseña?",
-        "loginIn": "Iniciar sesión"
+    "modifications": {
+      "title": "Modificaciones de los Términos",
+      "description": "Nos reservamos el derecho de modificar estos Términos en cualquier momento. Las modificaciones serán efectivas inmediatamente después de su publicación en nuestro sitio web. Es responsabilidad del usuario revisar regularmente los Términos actualizados."
     },
-    "profile": {
-        "profile": "Perfil",
-        "name": "Nombre",
-        "middleName": "Segundo Nombre",
-        "lastName": "Primer Apellido",
-        "secondLastName": "Segundo Apellido",
-        "username": "Nombre de Usuario",
-        "password": "Contraseña",
-        "email": "Email",
-        "municipality": "Municipio",
-        "age": "Edad",
-        "sex": "Sexo",
-        "contactNumber": "Número de contacto" 
-    },
-    "modal": {
-        "modifyClient": "Modificar Cliente",
-        "modifyContract": "Modificar Contrato",
-        "modifyMotorcycle": "Modificar Moto",
-        "createWorker": "Crear trabajador",
-        "createMotorcycle":"Crear moto",
-        "createUsername": "Crear Usuario",
-        "rentMotorcycle": "Rentar Moto",
-        "deleteWorker": "Eliminar Trabajador",
-        "deleteClient": "Eliminar Cliente",
-        "deleteMotorcycle": "Eliminat Moto",
-        "deleteContract": "Eliminar Contrato",
-        "insurance": "Seguro",
-        "cantKm": "Cantidad de Kilómetros",
-        "situation": "Situación",
-        "methodPayment": "Forma pago",
-        "extensionDays": "Días prórroga",
-        "endDate": "Fecha de Fin",
-        "startDate": "Fecha de Inicio",
-        "signatureDate": "Fecha de Firma"
-    },
-    "messageError": {
-        "emptyColor": "El campo de color no debe estar vacio",
-        "emptyKm": "El campo de cantKm no debe estar vacio",
-        "emptySituation": "El campo de situacion no debe estar vacio",
-        "emptyMethodPayment": "Introduce la Forma de Pago!",
-        "emptyExtensionDays": "Introduce los dias Prórroga!",
-        "emptyEndDate": "Introduce la fecha de fin!",
-        "emptyName": "Introduce el nombre!",
-        "emptySecondName": "Introduce el segundo nombre!",
-        "emptyLastName": "Introduce el primer Apellido!",
-        "emptySecondLastName": "Introduce el Segundo Apellido!",
-        "emptyContactNumber": "Introduce el número de contacto!",
-        "emptyMunicipality": "Introduce el Municipio!",
-        "emptyAge": "Introduce la edad!",
-        "emptyUsername": "Introduce el nombre de Usuario!",
-        "emptyPassword": "Introduce la Contraseña!",
-        "weakPassword": "La contraseña no es fuerte, use mayusculas, minusculas y digitos",
-        "emptySerialNumber": "Introduce la matrícula!",
-        "emptyMark": "Introduce la marca!",
-        "emptyModel": "Introduce el modelo!",
-        "emptySignatureDate": "Introduce la fecha de firma!",
-        "emptyStartDate": "Introduce la fecha de fin",
-        "emptyCI": "Introduce tu CI!",
-        "emptyEmail": "Introduce tu Email!",
-        "emptySex": "Introduce tu Sexo!",
-        "afterEndDate": "La fecha nueva debe ser despues",
-        "minCharName": "El nombre debe de tener minimo 4 caracteres",
-        "maxCharName": "El nombre debe de tener maximo 20 caracteres",
-        "minCharMiddleName": "El segundo nombre debe tener minimo 4 caracteres",
-        "maxCharMiddleName": "El segundo nombre debe tener maximo 20 caracteres" ,
-        "minCharLastName": "El apellido debe tener minimo 4 caracteres",
-        "maxCharLastName": "El apellido debe tener maximo 25 caracteres",
-        "minCharSecondLastName": "Su apellido debe tener al menos 4 caracteres",
-        "maxCharSecondLastName": "Su apellido debe tener a lo más 20 caracteres",
-        "minCharUsername": "Su nombre de usuario debe tener al menos 4 caracteres",
-        "maxCharUsername": "Su nombre de usuario debe tener a lo mas 20 caracteres",
-        "minCharPassword": "La contraseña debe tener al menos 5 caracteres",
-        "maxCharPassword": "La contraseña debe tener a lo mas 8 caracteres",
-        "lengthContactNumber": "El numero de contacto debe de tener 8 digitos",
-        "existUser": "Este usuario ya existe",
-        "existEmail": "Ya existe ese email",
-        "notExistUser": "Este usuario no existe",
-        "extensionGMAIL.COM": "La cadena debe de contener @gmail.com",
-        "lengthSerialNumber": "Debe tener 8 caracteres",
-        "signatureDateBeforeStartDate": "La firma debe ser antes que el inicio del alquiler",
-        "signatureDateBeforeEndDate": "La firma debe ser antes que el fin del alquiler",
-        "startDateBeforeEndDate": "El inicio del alquiler debe ser antes que el fin del alquiler",
-        "lengthID": "El carnet de Identidad debe de tener 11 digitos"
-    },
-    "messageSuccess": {
-        "success": "Creado con éxito",
-        "loginSuccess": "Logueado con Exito",
-        "deleteSucces": "Eliminado exitosamente"
-    },
-    "notification": {
-        "deleteWorker": "¿Estás seguro que deseas eliminar al Trabajador?",
-        "deleteClient": "¿Estás seguro que deseas eliminar al Cliente?",
-        "deleteMotorcycle": "¿Estás seguro que deseas eliminar el moto?",
-        "deleteContract": "¿Estás seguro que deseas eliminar el contrato?"
-    } 
+    "jurisdiction": {
+      "title": "Ley Aplicable y Jurisdicción",
+      "description": "Estos Términos se regirán e interpretarán de acuerdo con las leyes de Cuba. Cualquier disputa que surja en relación con estos Términos estará sujeta a la jurisdicción exclusiva de los tribunales de La Habana."
+    }
+  }
 }
