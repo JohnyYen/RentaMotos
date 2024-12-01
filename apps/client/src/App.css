@@ -5,7 +5,14 @@
   font-weight: bold;
   font-style: bold;
 }
+<<<<<<< Updated upstream
 
+=======
+.toggle-menu{
+  margin-left: 1rem;
+  visibility: hidden;
+}
+>>>>>>> Stashed changes
 .paquito {
   height: 2rem;
   background-color: #002345;
@@ -69,10 +76,10 @@
 }
 
 .header {
-  /* position: relative;
+  position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center; */
+  align-items: center;
   height: 5rem;
 }
 
@@ -81,7 +88,27 @@
     font-size: 1.5rem;
   }
 }
+<<<<<<< Updated upstream
 @media (max-width: 600px){
+=======
+@media(min-width: 600px){
+  .toggle-menu{
+   visibility: hidden;
+  }
+}
+@media (max-width: 600px){
+  .perfiInfo{
+    margin-left: 0;
+  }
+  .toggle-menu{
+    visibility: visible;
+   }
+
+   .sider {
+    visibility: hidden;
+   }
+
+>>>>>>> Stashed changes
   .footer{
     font-size: 0.7rem;
   }
