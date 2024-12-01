@@ -66,7 +66,7 @@ const downloadPDF = async (url) => {
 
 
 
-const ListadoContratos = ({url }) => {
+const ListadoContratosWorker = ({url }) => {
   const [t] = useTranslation("global");
   const {setRow} = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
@@ -187,4 +187,4 @@ const ListadoContratos = ({url }) => {
   );
 };
 
-export default ListadoContratos;
+export default ListadoContratosWorker;

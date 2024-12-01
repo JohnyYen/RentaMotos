@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext"; 
 import React, { useContext, useEffect, useState } from "react";
-import ListMoto from "../pages/motos/ListMoto";
-import ListadoClientes from "../pages/clientes/ListadoClientes";
-import ListadoContratos from "../pages/contratos/ListadoContratos";
-import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
+import ListMoto from "../../../components/ListMoto";
+import ListadoClientes from '../components/ListadoClientesWorker'
+import ListadoContratos from "../components/ListadoContratoWorker";
+import IngresosAnno from "../../../components/IngresosAnno";
 import { Result } from "antd";
 import axios from "axios";
 import { use } from "i18next";

@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import ListMoto from "../pages/motos/ListMotoClient";
-import ListadoContratos from "../pages/contratos/ListadoContratosClient";
-import FaqBody from "./Faq";
-import Welcome from "./Welcome";
-import Profile from "./Profile";
+import ListMoto from "../components/ListMotoClient";
+import ListadoContratos from "../components/ListadoContratosClient";
+import FaqBody from "../components/Faq";
+import Welcome from "../components/Welcome";
+import Profile from "../components/Profile";
 
 const dateToday = () => {
   const newDate = new Date();

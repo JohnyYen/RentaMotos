@@ -2,17 +2,15 @@ import { Route, Routes } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import ListMoto from "../pages/motos/ListMoto";
-import ListadoClientes from "../pages/clientes/ListadoClientes";
-import Incumplidores from "../pages/clientes/Incumplidores";
-import SituacionMoto from "../pages/motos/SituacionMoto";
-import ListadoContratos from "../pages/contratos/ListadoContratos";
-import ContratosMarcaModelo from "../pages/contratos/ContratosMarcaModelo";
-import ContratosMunicipio from "../pages/contratos/ContratosMunicipio";
-import IngresosAnno from "../pages/Ingresos anuales/IngresosAnno";
-import UserAdmin from "../pages/UserPages/UserAdmin";
-import Loguin from "../component/Loguin";
+import ListadoClientes from "../components/ListadoClientes";
+import Incumplidores from "../components/Incumplidores";
+import SituacionMoto from "../components/SituacionMoto";
+import ListadoContratos from "../components/ListadoContratos";
+import ContratosMarcaModelo from "../components/ContratosMarcaModelo";
+import ContratosMunicipio from "../components/ContratosMunicipio";
+import IngresosAnno from "../../../components/IngresosAnno";
 import axios from "axios";
-import ListadoTrabajadores from "../pages/trabajadores/ListadoTrabajadores";
+import ListadoTrabajadores from "../components/ListadoTrabajadores";
 
 const dateToday = () => {
   const newDate = new Date();

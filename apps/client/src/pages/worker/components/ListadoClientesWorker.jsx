@@ -72,7 +72,7 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ data ,url }) => {
+const ListadoClientesWorker = ({ data ,url }) => {
 
   const {setRow, user} = useContext(GlobalContext)
 
@@ -193,4 +193,4 @@ const ListadoClientes = ({ data ,url }) => {
   );
 };
 
-export default ListadoClientes;
+export default ListadoClientesWorker;
