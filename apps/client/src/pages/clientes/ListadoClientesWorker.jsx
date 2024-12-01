@@ -72,7 +72,7 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({  url }) => {
+const ListadoClientes = ({ data ,url }) => {
 
   const {setRow, user} = useContext(GlobalContext)
 

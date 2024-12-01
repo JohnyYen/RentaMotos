@@ -9,10 +9,15 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/client/bad");
-
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    response = await axios.get("http://localhost:3000/api/client/bad", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
+    console.log(response)
     if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
+      dataSource = response.data.data.map((element, index) => ({
         key: index,
         nombre: element.nomvre,
         apellidos: element.prim_apellido + ' ' + element.seg_apellido,
@@ -59,7 +64,7 @@ const Incumplidores = () => {
 
   useEffect(() => {
     extractData().then((result) => {
-      setDataSource(result);à
+      setDataSource(result);
     });
   }, []);
 

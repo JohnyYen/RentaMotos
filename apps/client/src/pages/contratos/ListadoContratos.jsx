@@ -43,7 +43,7 @@ const downloadPDF = async (url) => {
   }
 };
 
-const ListadoContratos = ({ extractData, url }) => {
+const ListadoContratos = ({ dataContract, setDataContract, url }) => {
   const [t] = useTranslation("global");
   const { setRow } = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
@@ -62,7 +62,7 @@ const ListadoContratos = ({ extractData, url }) => {
   return (
     <Flex vertical="true">
       <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)} />
-      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
+      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataContract} dataSource={dataContract}/>
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>
@@ -79,7 +79,7 @@ const ListadoContratos = ({ extractData, url }) => {
             onClick: (e) => handleRowClick(record),
           };
         }}
-        dataSource={extractData}
+        dataSource={dataContract}
         columns={[
           {
             title: t("mainContent.table.name"),

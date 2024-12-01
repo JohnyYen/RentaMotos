@@ -48,10 +48,15 @@ const extractDataContract = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
 
     if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
+      dataSource = response.data.data.map((element, index) => ({
         key: index,
         nombre: element.nombre,
         matricula: element.matricula,
@@ -74,9 +79,14 @@ const extractDataContract = async (user) => {
 const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
-   const response = await axios.get(`http://localhost:3000/api/pagos/${user?.mun}`);
+   const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+   const response = await axios.get(`http://localhost:3000/api/cobros/${user?.mun}`, {
+    headers: {
+      Authorization: `Bearer ${jwt}`
+    }
+   });
    if(response.status === 200){
-    dataSource = response.data.map((element, index) => ({
+    dataSource = response.data.data.map((element, index) => ({
       key: index,
       "ingreso anual":  Number(element.enero) + Number(element.febrero) + Number(element.marzo) + Number(element.abril) + Number(element.mayo) + Number(element.junio) + Number(element.julio) + Number(element.agosto) + Number(element.septiembre) + Number(element.octubre) + Number(element.noviembre) + Number(element.diciembre),
       "ingreso enero": element.enero,
@@ -128,12 +138,17 @@ const AppRouter = () => {
     let response = null;
     console.log(user);
     try {
-      response = await axios.get(`http://localhost:3000/api/client/mun/${user?.mun}`);
+      const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+      response = await axios.get(`http://localhost:3000/api/client/mun/${user?.mun}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
       console.log(user?.mun);
       console.log(response);
   
       if (response.status === 200) {
-        dataSource = response.data.map((element, index) => ({
+        dataSource = response.data.data.map((element, index) => ({
           key: index,
           municipio: element.municipio,
           nombre: element.nombre,
@@ -153,7 +168,6 @@ const AppRouter = () => {
       setDataClient(result);
     })
 
-
     console.log(dataClient);
     extractDataContract(user).then((result) => {
       setDataContract(result);
@@ -166,9 +180,9 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes extractData={dataClient}  url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
+      <Route path="listadoClientes" element={<ListadoClientes dataClient={dataClient} setDataClient={setDataClient} url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
-      <Route path="listadoContratos"  element={<ListadoContratos  extractData={dataContract} url={`http://localhost:3000/api/contract/worker/pdf/${user?.mun}`} />}></Route>
+      <Route path="listadoContratos"  element={<ListadoContratos  dataContract={dataContract} setDataContract={setDataContract} url={`http://localhost:3000/api/contract/worker/pdf/${user?.mun}`} />}></Route>
       <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} url={`http://localhost:3000/api/pagos/worker/pdf/${user?.mun}`} />} />
     </Routes>
   );

@@ -37,7 +37,7 @@ function App() {
             <Route path="/home/*" element={<HomePage/>}/>
             <Route path="/worker/*" element={<UserWorker/>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
-            <Route path="/loguin/*" element={<Loguin/>}/>
+            <Route path="/loguin/*" element={<Register/>}/>
             <Route path="/client/*" element={<UserClient/>}/>
           </Routes>
         </GlobalProvider>

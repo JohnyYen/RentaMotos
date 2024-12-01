@@ -40,7 +40,12 @@ const downloadPDF = async (url) => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-     const response = await axios.get('http://localhost:3000/api/mun');
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+     const response = await axios.get('http://localhost:3000/api/client/mun', {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+     });
     if(response.status === 200){
       dataFilter = response.data
     }
@@ -50,7 +55,7 @@ const extractDataFilter = async () => {
   return dataFilter;
 };
 
-const ListadoClientes = ({ extractData, url }) => {
+const ListadoClientes = ({ dataClient, setDataClient, url }) => {
 
   const {setRow, user} = useContext(GlobalContext)
 
@@ -84,7 +89,7 @@ const ListadoClientes = ({ extractData, url }) => {
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
       <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
-      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
+      <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataClient} dataSource={dataClient}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
           {t("mainContent.currentDate")}:
@@ -105,7 +110,7 @@ const ListadoClientes = ({ extractData, url }) => {
           pageSize: 4,
           position: ["bottomLeft"],
         }}
-        dataSource={extractData}
+        dataSource={dataClient}
         columns={[
           {
             title: t("mainContent.table.municipality"),

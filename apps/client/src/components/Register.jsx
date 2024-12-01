@@ -42,7 +42,11 @@ function Register() {
 
       if(tipoUsuario === 2){
         const idClient = response.data.user.id_cliente;
-        const res = await axios.get(`http://localhost:3000/api/client/sample/${idClient}`);
+        const res = await axios.get(`http://localhost:3000/api/client/sample/${idClient}`, {
+          headers: {
+            Authorization: `Bearer ${response.data.token}`
+          }
+        });
         if(res.status === 200){
           message.success(t("messageSuccess.loginSuccess"))
           setClient(res.data[0]);
@@ -93,7 +97,6 @@ function Register() {
               <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button onClick={(e) => handleLogin(e)} value="Login" className="btn solid">Login</button>
-            <p className="social-text">Or Sign in with social platforms</p>
           </form>
           <form className="sign-up-form">
             <h2 className="title">Sign up</h2>
@@ -117,7 +120,7 @@ function Register() {
 
       <div className="panels-container">
         <div className="panel left-panel">
-          <div className="content">
+          <div className="content-login">
             <h3>New here ?</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
@@ -129,7 +132,7 @@ function Register() {
           </div>
         </div>
         <div className="panel right-panel">
-          <div className="content">
+          <div className="content-login">
             <h3>One of us ?</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum

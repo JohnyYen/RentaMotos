@@ -9,10 +9,14 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/contract/marcxmodel");
-    console.log(response.data);
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    response = await axios.get("http://localhost:3000/api/contract/marcxmodel", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
     if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
+      dataSource = response.data.data.map((element, index) => ({
         key: index,
         marca: element.marca,
         modelo: element.modelo,
@@ -35,7 +39,12 @@ const extractData = async () => {
 const extractDataFilterMarca = async () => {
   let dataFilter = [];
   try {
-    const response = await axios.get("http://localhost:3000/api/marc");
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    const response = await axios.get("http://localhost:3000/api/moto/marc", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
 
     if (response.status === 200) {
       dataFilter = response.data;
@@ -49,7 +58,12 @@ const extractDataFilterMarca = async () => {
 const extractDataFilterModelo = async () => {
   let dataFilter = [];
   try {
-    const response = await axios.get("http://localhost:3000/api/model");
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    const response = await axios.get("http://localhost:3000/api/moto/model", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
     if (response.status === 200) {
       dataFilter = response.data;
     }

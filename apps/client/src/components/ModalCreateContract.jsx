@@ -5,12 +5,17 @@ import React, { useContext, useState } from 'react'
 import { GlobalContext, useRow } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 
-const response = await axios.get('http://localhost:3000/api/contract/formasPago');
+const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+const response = await axios.get('http://localhost:3000/api/contract/formasPago', {
+  headers: {
+    Authorization: `Bearer ${jwt}`
+  }
+});
 
 let dataSource = [];
 
 if(response.status === 200)
-  dataSource = response.data;
+  dataSource = response.data.data;
 
 const ModalCreateContract = ({isVisible, setVisible, setDataSource, dataSource}) => {
 

@@ -14,11 +14,16 @@ const extractData = async (client) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`);
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
     console.log(response.data);
 
     if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
+      dataSource = response.data.data.map((element, index) => ({
         key: index,
         matricula: element.matricula,
         marca: element.marca,
@@ -58,7 +63,7 @@ const ListadoContratos = () => {
 
   return (
     <Flex vertical="true">
-        <ModalCreateContract isVisible={false} setVisible={() => setOpen(!open)}/>
+        <ModalCreateContract isVisible={false} setVisible={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>

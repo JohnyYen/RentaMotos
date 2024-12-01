@@ -6,7 +6,6 @@
   font-style: bold;
 }
 .toggle-menu{
-  margin-left: 1rem;
   visibility: hidden;
 }
 .paquito {
@@ -107,7 +106,11 @@
    }
 
    .sider {
-    visibility: hidden;
+    display: none;
+   }
+
+   .content {
+    height: 100vh;
    }
 
   .footer{

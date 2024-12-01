@@ -9,10 +9,6 @@ const ModalCreateMoto = ({isVisible, setVisible}) => {
     const [form] = Form.useForm();
     
     const [t] = useTranslation("global");
-
-
-   
-    
     const handlePetition = async () => {
         
     }

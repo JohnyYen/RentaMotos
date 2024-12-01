@@ -9,10 +9,15 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/contract/mun");
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    response = await axios.get("http://localhost:3000/api/contract/mun", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
 
     if (response.status === 200) {
-      dataSource = response.data.map((element, index) => ({
+      dataSource = response.data.data.map((element, index) => ({
         key: index,
         municipio: element.nommun,
         marca: element.marca,
@@ -35,7 +40,12 @@ const extractData = async () => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-     const response = await axios.get('http://localhost:3000/api/mun');
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+     const response = await axios.get('http://localhost:3000/api/client/mun', {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+     });
     if(response.status === 200){
       dataFilter = response.data
     }

@@ -28,7 +28,7 @@ const [collapsed, setCollapsed] = useState(true);
       </Sider>
       <Layout>
         
-        <Content>
+        <Content className="content">
           <AppRouter/>
         </Content>
         <Footer className="footer">

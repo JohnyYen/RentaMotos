@@ -25,7 +25,7 @@ export class AuthService {
         const response = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${userObject.user_name}'`);
         const findUser = response.rows[0]; 
         if(!findUser)
-            throw new HttpException("USER_NOT_FOUND", 402);
+            throw new HttpException("USER_NOT_FOUND", 401);
         console.log(findUser);
        const isCheked = compare(userObject.password, findUser.contrasenia);
        if(!isCheked)

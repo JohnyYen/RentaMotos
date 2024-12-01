@@ -20,8 +20,8 @@ const GlobalProvider = ({children}) => {
     if(userData)
       setUser(JSON.parse(userData));
 
-    if(clientData)
-      setClient(JSON.parse(clientData));
+    // if(clientData !== undefined)
+    //   setClient(JSON.parse(clientData));
   }, [])
   
   return (

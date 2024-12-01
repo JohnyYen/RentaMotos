@@ -9,7 +9,12 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get("http://localhost:3000/api/moto/situation");
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    response = await axios.get("http://localhost:3000/api/moto/situation", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
 
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({

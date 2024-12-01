@@ -25,6 +25,7 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     response = await axios.get("http://localhost:3000/api/moto", 
       {
         headers: {
@@ -79,7 +80,13 @@ const downloadPDF = async (url) => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-    const response = await axios.get("http://localhost:3000/api/moto/marc");
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    const response = await axios.get("http://localhost:3000/api/moto/marc", 
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        }
+      });
     if (response.status === 200) {
       dataFilter = response.data;
     }

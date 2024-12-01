@@ -12,8 +12,13 @@ const extractDataWorker = async (user) => {
   let dataSource = [];
   let response = null;
   try {
-    response = await axios.get('http://localhost:3000/api/user/worker');
-    console.log(response);
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    response = await axios.get('http://localhost:3000/api/user/worker', {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
+
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,

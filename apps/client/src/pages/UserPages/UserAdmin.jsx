@@ -22,7 +22,7 @@ const UserAdmin = () => {
         >
           <SideBarAdmin />
         </Sider>
-        <Content>
+        <Content className="content">
           <AppRouter />
         </Content>
       </Layout>

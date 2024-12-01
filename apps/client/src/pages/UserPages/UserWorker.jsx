@@ -6,7 +6,7 @@ import AppRouter from "../../components/AppRoutes.worker";
 const { Sider, Header, Content } = Layout;
 
 const UserWorker = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <Layout className="App">
@@ -22,7 +22,7 @@ const UserWorker = () => {
         >
           <SideBarWorker />
         </Sider>
-        <Content>
+        <Content className="content">
           <AppRouter />
         </Content>
       </Layout>
