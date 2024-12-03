@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email de Renta de Motos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #ffffff; /* Fondo blanco */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366; /* Azul oscuro */
+        }
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .message {
+            padding: 20px;
+            text-align: center;
+            color: #333;
+            line-height: 1.6;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #005580; /* Azul medio */
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #003366; /* Azul oscuro al pasar el ratón */
+        }
+        .footer {
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #003366;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <img src="{{logoUrl}}" alt="Logo de E-Rent Moto">
+    </div>
+
+    <!-- Hero Image -->
+    <img src="{{heroImageUrl}}" alt="Imagen de impacto" class="hero-image">
+
+    <!-- Message -->
+    <div class="message">
+        <h2>¡Gracias por elegirnos, {{name}}👍!</h2>
+        <p>Estamos emocionados de acompañarte en tu próxima aventura en moto. A continuación, puedes visualizar y descargar el contrato de renta de tu moto y presentarlo en la sucursal más cercana.</p>
+    </div>
+
+    <!-- Contract View and Download -->
+    <div class="button-container">
+        <object data="" type="application/pdf">hola</object>
+    </div>
+    <div class="button-container">
+        <a href="{{contractDownloadLink}}" class="button">Descargar Contrato</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>¿Tienes alguna pregunta? Contáctanos:</p>
+        <p>Email: <a href="mailto:{{contactEmail}}">{{contactEmail}}</a> | Tel: {{contactPhone}}</p>
+        <p>&copy; {{year}} E-Rent Moto. Todos los derechos reservados.</p>
+        <p><a href="{{websiteUrl}}">Visita nuestro sitio web</a></p>
+    </div>
+</div>
+
+</body>
+</html>

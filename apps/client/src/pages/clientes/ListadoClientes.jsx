@@ -11,6 +11,7 @@ import EliminarUsuario from "../../component/EliminarUsuario";
 
 const downloadPDF = async (url) => {
   try {
+    await axios.get("")
     const response = await axios({
       url,
       method: 'GET',

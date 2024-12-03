@@ -7,6 +7,11 @@ const GlobalProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [client, setClient] = useState(null);
   
+  const isAuthenticate = () => {
+    if(sessionStorage.getItem('jwt'))
+      return true;
+    else return false;
+  }
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');
@@ -20,7 +25,7 @@ const GlobalProvider = ({children}) => {
   }, [])
   
   return (
-    <GlobalContext.Provider value={{row, setRow, user, setUser, client, setClient}}>
+    <GlobalContext.Provider value={{row, setRow, user, setUser, client, setClient, isAuthenticate}}>
       {children}
     </GlobalContext.Provider>
   )

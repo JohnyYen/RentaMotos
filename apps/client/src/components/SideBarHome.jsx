@@ -20,7 +20,6 @@ import { useNavigate } from "react-router-dom";
 
   
   const SideBarHome = () => {
-    
     const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
 
@@ -50,7 +49,7 @@ import { useNavigate } from "react-router-dom";
             name="home"
             size="2.5rem"
             color="white"
-            style={{ marginTop: "1.5rem" }}
+            style={{ marginTop: "1.5rem", cursor: "pointer"}}
           ></box-icon>
         </Flex>
         <Menu
@@ -63,7 +62,7 @@ import { useNavigate } from "react-router-dom";
             if(item.key === "faq"){
               navigate(`/home/${item.key}`);
             }else{
-              if(localStorage.getItem('login') === 'true' && item.key === "contratosCliente" || localStorage.getItem('login') === 'true' && item.key === "motosCliente" || localStorage.getItem('login') === 'true' && item.key === "perfil"){
+              if(sessionStorage.getItem('jwt') && item.key === "contratosCliente" || sessionStorage.getItem('jwt') && item.key === "motosCliente" || sessionStorage.getItem('jwt') && item.key === "perfil"){
                 navigate(`/home/${item.key}`)
               }else{if(item.key === "contratosCliente" || item.key === "motosCliente" || item.key === "perfil"){
              

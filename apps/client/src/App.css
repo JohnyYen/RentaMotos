@@ -16,7 +16,9 @@
   width: 100%;
   border-top-left-radius: 0.5rem;
 }
+
 .nombreEmpresa{
+
   height: 8rem;
   font-size: 6rem;
   font-family:  fantasy;
@@ -85,30 +87,6 @@
   align-items: center; */
   height: 5rem;
 }
-
-/* main {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-
-.banner {
-background-color: rebeccapurple;
-  position: relative;
-}
-
-.banner #dotsCanvas{
-  position: absolute;
-  background-color: transparent;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-} */
 
 @media (max-width: 1200px){
   
@@ -192,7 +170,7 @@ background-color: rebeccapurple;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
+} */
 
 .cover {
   padding: 0;
@@ -813,6 +791,13 @@ background-color: rebeccapurple;
   display: flex;
   flex-direction: column;
   padding: 1rem;
+}
+
+.image{
+  background: url('./media.image.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
 }
 
 #left-div label, #rigth-div label{
