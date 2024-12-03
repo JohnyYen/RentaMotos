@@ -2,9 +2,8 @@ import { Image, Typography, Drawer, Flex, Button, Select } from "antd";
 import { LoginOutlined, MenuOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import SideBarAdmin from "./SideBarAdmin";
+import SideBarAdmin from "../pages/admin/components/SideBarAdmin";
 import { useState } from "react";
-import { PiSelectionBackground } from "react-icons/pi";
 
 const CustomHeader = () => {
   const [t, i18n] = useTranslation("global");

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { GlobalContext } from "../context/GlobalContext"; 
+import { GlobalContext } from "../../../context/GlobalContext"; 
 import React, { useContext, useEffect, useState } from "react";
 import ListMoto from "../../../components/ListMoto";
 import ListadoClientes from '../components/ListadoClientesWorker'

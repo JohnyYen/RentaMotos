@@ -1,12 +1,12 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
-import EliminarWorker from '../../component/EliminarWorker';
-import "../../App.css";
+import EliminarWorker from '../../..//components/EliminarWorker';
+import "../../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import ModalCreateWorker from "../../components/ModalCreateWorker"
-import { GlobalContext } from "../../context/GlobalContext";
+import ModalCreateWorker from "../../../components/ModalCreateWorker";
+import { GlobalContext } from "../../../context/GlobalContext";
 
 const extractDataWorker = async (user) => {
   let dataSource = [];

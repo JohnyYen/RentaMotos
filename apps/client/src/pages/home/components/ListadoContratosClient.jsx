@@ -3,11 +3,10 @@ import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { GlobalContext } from "../../context/GlobalContext";
+import { GlobalContext } from "../../../context/GlobalContext";
 import { pdf } from "@react-pdf/renderer";
-import DocumentPDF from "../../components/DocumentPDF";
-import ModalCreateMoto from "../../components/ModalCreateContract"
-import ModalCreateContract from "../../components/ModalCreateContract";
+import DocumentPDF from "../../../components/DocumentPDF";
+import ModalCreateContract from "../../../components/ModalCreateContract";
 
 
 const extractData = async (client) => {

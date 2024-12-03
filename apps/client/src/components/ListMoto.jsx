@@ -8,15 +8,15 @@ import {
   List,
   Card,
 } from "antd";
-import "../../App.css";
+import "../App.css";
 import axios from "axios";
 import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ModalModMoto from "../../components/ModalModMoto";
-import { GlobalContext } from "../../context/GlobalContext";
-import ModalCreateMoto from "../../components/ModalCreateMoto";
-import EliminarMoto from "../../component/EliminarMoto";
+import ModalModMoto from "./ModalModMoto";
+import { GlobalContext } from "../context/GlobalContext";
+import ModalCreateMoto from "./ModalCreateMoto";
+import EliminarMoto from "./EliminarMoto";
 import moment from "moment";
 
 const jwt = JSON.parse(sessionStorage.getItem('jwt'))

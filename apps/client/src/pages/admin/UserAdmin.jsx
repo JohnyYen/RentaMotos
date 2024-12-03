@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Layout } from "antd";
-import SideBarAdmin from "../../components/SideBarAdmin";
+import SideBarAdmin from "./components/SideBarAdmin";
 import CustomHeader from "../../components/CustomHeader";
-import AppRouter from "../../components/AppRoutes.admin";
+import AppRouter from "./components/AppRoutes.admin";
 const { Sider, Header, Content } = Layout;
 
 const UserAdmin = () => {

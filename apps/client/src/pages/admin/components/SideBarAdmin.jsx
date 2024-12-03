@@ -7,11 +7,10 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu, Flex } from "antd";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { PiHardHat } from "react-icons/pi";
-import "../App.css";
+import "../../../App.css";
 import "boxicons";
 import { MdOutlineNightShelter } from "react-icons/md";
 //import axios from 'axios';

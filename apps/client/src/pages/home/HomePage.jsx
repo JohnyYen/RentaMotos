@@ -1,14 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Card, Divider, Flex, FloatButton, Image, Layout } from "antd";
-import SideBarClient from "../../components/SideBarClient";
-import CustomHeader from "../../components/CustomHeader";
-import AppRouter from "../../components/AppRoutes.home";
-import { UserOutlined } from "@ant-design/icons";
-import Profile from '../../components/Profile';
-import SideBarHome from '../../components/SideBarHome';
-import WelcomeText from '../../components/WelcomeText';
-import SliderTopVentas from "../../components/SliderTopVentas";
+import AppRouter from "./components/AppRoutes.home";
+import SideBarHome from './components/SideBarHome';
 
 const { Sider, Header, Content,Footer } = Layout;
 

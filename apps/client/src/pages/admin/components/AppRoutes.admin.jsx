@@ -1,16 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../context/GlobalContext";
-import ListMoto from "../pages/motos/ListMoto";
-import ListadoClientes from "../components/ListadoClientes";
-import Incumplidores from "../components/Incumplidores";
-import SituacionMoto from "../components/SituacionMoto";
-import ListadoContratos from "../components/ListadoContratos";
-import ContratosMarcaModelo from "../components/ContratosMarcaModelo";
-import ContratosMunicipio from "../components/ContratosMunicipio";
+import { GlobalContext } from "../../../context/GlobalContext";
+import ListMoto from "../../../components/ListMoto";
+import ListadoClientes from "./ListadoClientes";
+import Incumplidores from "./Incumplidores";
+import SituacionMoto from "./SituacionMoto";
+import ListadoContratos from "./ListadoContratos";
+import ContratosMarcaModelo from "./ContratosMarcaModelo";
+import ContratosMunicipio from "./ContratosMunicipio";
 import IngresosAnno from "../../../components/IngresosAnno";
 import axios from "axios";
-import ListadoTrabajadores from "../components/ListadoTrabajadores";
+import ListadoTrabajadores from "./ListadoTrabajadores";
 
 const dateToday = () => {
   const newDate = new Date();

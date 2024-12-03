@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import '../register.css'
+import '../login/styled-components/register.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { GlobalContext } from '../context/GlobalContext';
+import { GlobalContext } from '../../context/GlobalContext';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
 

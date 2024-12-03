@@ -3,7 +3,7 @@ import { Modal, Tag , Descriptions, Flex, Divider, Col, Row} from 'antd'
 import FormItemLabel from 'antd/es/form/FormItemLabel'
 import React, { useContext } from 'react'
 import{ Avatar } from "antd"
-import { GlobalContext } from '../context/GlobalContext'
+import { GlobalContext } from '../../../context/GlobalContext'
 import { Content } from "antd/es/layout/layout";
 
 const Profile = ({isOpen, setOpen}) => {

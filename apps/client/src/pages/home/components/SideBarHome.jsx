@@ -10,9 +10,8 @@ import {
   } from "@ant-design/icons";
   import { Menu, Flex, message, Button } from "antd";
   import { useTranslation } from "react-i18next";
-  import "../App.css";
+  import "../../../App.css";
   import "boxicons";
-import { GiSpain } from "react-icons/gi";
 import { IoDocumentOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 

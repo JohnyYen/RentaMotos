@@ -9,7 +9,7 @@ import { Menu, Flex } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../App.css";
+import "../../../App.css";
 import "boxicons";
 //import axios from 'axios';
 

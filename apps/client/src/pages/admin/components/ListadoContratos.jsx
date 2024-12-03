@@ -11,10 +11,10 @@ import { useState, useEffect, useContext } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import EliminarContrato from "../../component/EliminarContrato";
-import ModalModContract from "../../components/ModalModContract";
-import { GlobalContext } from "../../context/GlobalContext";
-import DocumentPDF from "../../components/DocumentPDF";
+import EliminarContrato from "../../../components/EliminarContrato";
+import ModalModContract from "../../../components/ModalModContract";
+import { GlobalContext } from "../../../context/GlobalContext";
+import DocumentPDF from "../../../components/DocumentPDF";
 import { pdf } from "@react-pdf/renderer";
 
 const downloadPDF = async (url) => {

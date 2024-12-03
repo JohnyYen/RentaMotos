@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { FloatButton, Layout } from "antd";
-import SideBarClient from "../../components/SideBarClient";
-import CustomHeader from "../../components/CustomHeader";
-import AppRouter from "../../components/AppRoutes.client";
+import SideBarClient from "../components/SideBarClient";
+import CustomHeader from "../components/CustomHeader";
+import AppRouter from "../components/AppRoutes.client";
 import { UserOutlined } from "@ant-design/icons";
-import Profile from '../../components/Profile'
+import Profile from './home/components/Profile'
 
 const { Sider, Header, Content } = Layout;
 

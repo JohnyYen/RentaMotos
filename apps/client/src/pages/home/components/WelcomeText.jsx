@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "@ant-design/icons";
   import { useTranslation } from "react-i18next";
-  import "../App.css";
+  import "../../../App.css";
   import "boxicons";
   import { Card, Divider, FloatButton, Image, Layout, Space } from "antd";
 import { GiSpain } from "react-icons/gi";

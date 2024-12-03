@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Layout } from "antd";
-import SideBarWorker from "../../components/SideBarWorker";
+import SideBarWorker from "../worker/components/SideBarWorker";
 import CustomHeader from "../../components/CustomHeader";
-import AppRouter from "../../components/AppRoutes.worker";
+import AppRouter from "../worker/components/AppRoutes.worker";
 const { Sider, Header, Content } = Layout;
 
 const UserWorker = () => {

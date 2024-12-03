@@ -2,12 +2,12 @@ import { Space, Flex, Typography, Table, Button, Input, Mentions, notification }
 import { useContext, useEffect, useState } from "react";
 import { DownloadOutlined } from "@ant-design/icons";
 import moment from "moment";
-import "../../App.css";
+import "../../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import ModalModClient from "../../components/ModalModClient";
-import { GlobalContext } from "../../context/GlobalContext";
-import EliminarUsuario from "../../component/EliminarUsuario";
+import ModalModClient from "../../../components/ModalModClient";
+import { GlobalContext } from "../../../context/GlobalContext";
+import EliminarUsuario from "../../../components/EliminarUsuario";
 
 const downloadPDF = async (url) => {
   try {

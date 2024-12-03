@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import ListMoto from "../pages/motos/ListMotoClient";
-import ListadoContratos from "../pages/contratos/ListadoContratosClient";
+import ListMoto from "../pages/home/components/ListMotoClient";
+import ListadoContratos from "../pages/home/components/ListadoContratosClient";
 
 const dateToday = () => {
   const newDate = new Date();
