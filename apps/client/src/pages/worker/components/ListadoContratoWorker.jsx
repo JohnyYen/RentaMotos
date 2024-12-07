@@ -14,7 +14,12 @@ const extractDataContract = async (user) => {
     let dataSource = [];
     let response = null;
     try {
-      response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
+      const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+      response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
   
       if (response.status === 200) {
         dataSource = response.data.map((element, index) => ({

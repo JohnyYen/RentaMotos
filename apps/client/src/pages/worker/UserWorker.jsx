@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Layout } from "antd";
-import SideBarWorker from "../worker/components/SideBarWorker";
+import SideBarWorker from "./components/NavBarWorker";
 import CustomHeader from "../../components/CustomHeader";
 import AppRouter from "../worker/components/AppRoutes.worker";
+import NavBarWorker from "./components/NavBarWorker";
 const { Sider, Header, Content } = Layout;
 
 const UserWorker = () => {
@@ -11,21 +12,11 @@ const UserWorker = () => {
   return (
     <Layout className="App">
       <Header className="header">
-        <CustomHeader />
+        <NavBarWorker />
       </Header>
-      <Layout>
-        <Sider
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-          className="sider"
-        >
-          <SideBarWorker />
-        </Sider>
-        <Content className="content">
-          <AppRouter />
-        </Content>
-      </Layout>
+      <Content className="content">
+        <AppRouter />
+      </Content>
     </Layout>
   );
 };

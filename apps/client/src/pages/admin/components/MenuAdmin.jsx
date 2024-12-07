@@ -3,19 +3,16 @@ import {
   DollarOutlined,
   FileDoneOutlined,
   FlagOutlined,
-  MediumWorkmarkOutlined,
+  LogoutOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Menu, Flex } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Menu } from "antd";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { PiHardHat } from "react-icons/pi";
-import "../../../App.css";
-import "boxicons";
-import { MdOutlineNightShelter } from "react-icons/md";
-//import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-const SideBarAdmin = ({ isInline = false }) => {
+const MenuAdmin = ({ isInline = false }) => {
   const navigate = useNavigate();
   const [t, i18n] = useTranslation("global");
 
@@ -34,18 +31,24 @@ const SideBarAdmin = ({ isInline = false }) => {
     <>
       <Menu
         theme="dark"
-        className="sider-menu"
+        className={`navBar-menu ${isInline ? "inline" : "horizontal"} navBar-menu-admin`}
         defaultSelectedKeys={["listadoClientes"]}
-        mode={isInline ? "inline" : "vertical"}
+        mode={isInline ? "inline" : "horizontal"}
         onClick={(item) => {
-          if (item.key !== "spanish" && item.key !== "english") {
+          if (
+            item.key !== "spanish" &&
+            item.key !== "english" &&
+            item.key !== "logout"
+          ) {
             navigate(`/admin/${item.key}`);
-          } else {
+          } else if (item.key === "english" || item.key === "spanish") {
             if (item.key === "spanish") {
               language("es");
             } else {
               language("en");
             }
+          } else {
+            navigate(`/loguin`);
           }
         }}
         items={[
@@ -125,10 +128,16 @@ const SideBarAdmin = ({ isInline = false }) => {
               },
             ],
           },
+          {
+            label: "Cerrar sesión",
+            icon: <LogoutOutlined />,
+            key: "logout",
+            value: "logout",
+          },
         ]}
       ></Menu>
     </>
   );
 };
 
-export default SideBarAdmin;
+export default MenuAdmin;
