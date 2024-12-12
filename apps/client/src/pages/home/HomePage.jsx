@@ -26,8 +26,8 @@ const [collapsed, setCollapsed] = useState(true);
           <AppRouter/>
         </Content>
         <Footer className="footer">
-        <Flex align="center" justify= "end" style={{height:40, textAlign: "center"}}>
-                  <div>telefono: 53591352_______________ </div>
+        <Flex align="center" justify= "space-between" style={{height:40, width:1000, textAlign: "center"}}>
+                  <div>telefono: 53591352</div>
                   <div> Email: rentamotos@gmail.com</div>
     </Flex>
         </Footer >

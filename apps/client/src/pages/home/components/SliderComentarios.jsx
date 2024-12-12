@@ -10,7 +10,7 @@ const SliderComentarios = () =>{
         <CardComentario user={"pedro"} comentar={"que buenas ofertas"} image={'/src/assets/moto2.png'}/>
         <CardComentario user={"alfredo"} comentar={"wow los mejores"} image={'/src/assets/istockphoto-187133277-612x612.jpg'}/>
         <CardComentario user={"pepe"} comentar={"fernando gay"}image={'/src/assets/background.png'} />
-        <CardComentario user={"Alfonso"} comentar={"nunca decepcionan"} image={'/src/assets/moto.png'}/>
+        <CardComentario  user={"Alfonso"} comentar={"nunca decepcionan"} image={'/src/assets/moto.png'}/>
     </Flex>
 }
 const CardComentario = ({user,comentar,image})=>{ 
@@ -19,7 +19,7 @@ const CardComentario = ({user,comentar,image})=>{
     return(
     <>
         {contextHolder} 
-        <Card className="CardComentario" onClickCapture={ () =>{
+        <Card  className="CardComentario" onClickCapture={ () =>{
             if(localStorage.getItem('login')){
                 
             }else{
@@ -29,11 +29,13 @@ const CardComentario = ({user,comentar,image})=>{
         content: <h3>Para acceder a este servicio debe estar logeado <h4>Pulse en este letrero para loguearse/regristrarse</h4></h3>,
        
       });}
-             }}  size="default" content="" children={
+             }}  size="small"   children={
             
-        [ <Flex  key={'comentFlex'} justify="center"><Avatar size={80} src={image}></Avatar></Flex>  ,
-        <div key={'userTitle'} ><div key={'user'}>{user}</div></div>,
-            <div key={'comentTitle'}>Comentario:<div key={'coment'}>{comentar}</div></div>]} >
+        [ <Flex wrap align="center" key={'comentFlex'} justify="start"><Avatar className="avatarComment" size={40}  src={image}></Avatar><div>
+        Usuario:</div><div  className="userCommentName"key={'user'}>{user}</div><div>
+        Comentario:</div><div className="commentText" key={'coment'}>{comentar}</div></Flex>  ,
+       
+            ]} >
                 </Card></>)
 }
 
