@@ -30,7 +30,7 @@ const MenuHome = ({ isInline = false, messageApi }) => {
   };
 
   const handleMenuClick = (item) => {
-    const jwt = sessionStorage.getItem("jwt");
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
 
     const actions = {
       logout: () => navigate("/loguin"),

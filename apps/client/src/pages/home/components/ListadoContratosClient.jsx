@@ -44,7 +44,7 @@ const extractData = async (client) => {
 
 
 const ListadoContratos = () => {
-  const [dataSource, setDataSource] = useState([]);
+  const [dataSource, setDataSource] = useState();
   const [t] = useTranslation("global");
   const { client } = useContext(GlobalContext);
 
@@ -52,10 +52,10 @@ const ListadoContratos = () => {
     extractData(client).then((result) => {
       setDataSource(result);
     });
-  }, []);
+  }, [client]);
 
   const handleRowClick = async (record) => {
-    const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
+    const blob = await pdf(<DocumentPDF client = { client } dataContract={record} />).toBlob();
     const url = URL.createObjectURL(blob);
     window.open(url);
   };

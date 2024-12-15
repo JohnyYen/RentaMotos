@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { GlobalContext } from "../context/GlobalContext";
 
 // Define estilos para el documento
 const styles = StyleSheet.create({
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const DocumentPDF = ({ dataContract }) => {
+const DocumentPDF = ({ client, dataContract }) => {
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -62,7 +64,7 @@ const DocumentPDF = ({ dataContract }) => {
               <Text style={styles.fieldLabel}>Nombre:</Text>
               <Text style={styles.fieldValue}>
                 {" "}
-                {dataContract.nombre || "N/A"}
+                {client.nombre || "N/A"}
               </Text>
             </Text>
             <Text style={styles.field}>

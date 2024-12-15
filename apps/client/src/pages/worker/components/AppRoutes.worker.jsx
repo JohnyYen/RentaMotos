@@ -80,13 +80,13 @@ const extractDataIncome = async (user) => {
   let dataSource = [];
   try {
    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-   const response = await axios.get(`http://localhost:3000/api/cobros/${user?.mun}`, {
+   const response = await axios.get(`http://localhost:3000/api/contract/cobros/${user?.mun}`, {
     headers: {
       Authorization: `Bearer ${jwt}`
     }
    });
    if(response.status === 200){
-    dataSource = response.data.data.map((element, index) => ({
+    dataSource = response.data.map((element, index) => ({
       key: index,
       "ingreso anual":  Number(element.enero) + Number(element.febrero) + Number(element.marzo) + Number(element.abril) + Number(element.mayo) + Number(element.junio) + Number(element.julio) + Number(element.agosto) + Number(element.septiembre) + Number(element.octubre) + Number(element.noviembre) + Number(element.diciembre),
       "ingreso enero": element.enero,
@@ -176,7 +176,7 @@ const AppRouter = () => {
     extractDataIncome(user).then((result) => {
       setDataIncome(result);
     })
-  }, [])
+  }, [user])
 
   return (
     <Routes>

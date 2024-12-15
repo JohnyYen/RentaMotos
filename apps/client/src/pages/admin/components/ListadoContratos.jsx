@@ -48,7 +48,7 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
   const { setRow } = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
-
+  console.log(dataContract);
   const onClick = async () => {
     await downloadPDF(url);
   };
