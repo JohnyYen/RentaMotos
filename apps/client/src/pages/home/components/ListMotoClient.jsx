@@ -3,10 +3,10 @@ import "../../../App.css";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ModalCreateContract from "../../../components/ModalCreateContract";
 import { GlobalContext } from "../../../context/GlobalContext";
 import moment from "moment";
 import { SmileOutlined } from "@ant-design/icons";
+import ModalCreateContractClient from "./ModalCreateContractClient";
 
 const extractData = async () => {
   let dataSource = [];
@@ -37,18 +37,18 @@ const extractData = async () => {
   return dataSource;
 };
 
-const extractDataFilter = async () => {
-  let dataFilter = [];
-  try {
-    const response = await axios.get("http://localhost:3000/api/moto/marc");
-    if (response.status === 200) {
-      dataFilter = response.data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataFilter;
-};
+// const extractDataFilter = async () => {
+//   let dataFilter = [];
+//   try {
+//     const response = await axios.get("http://localhost:3000/api/moto/marc");
+//     if (response.status === 200) {
+//       dataFilter = response.data;
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return dataFilter;
+// };
 
 const ListMotoClient = () => {
   const [visible, setVisible] = useState(false);
@@ -84,28 +84,28 @@ const ListMotoClient = () => {
     extractData().then((result) => {
       setDataSource(result);
     });
-    extractDataFilter().then((result) => {
-      setDataFilter(
-        result.map((marca) => ({
-          text: marca.nommarca,
-          value: marca.nomarca,
-        }))
-      );
-    });
+    // extractDataFilter().then((result) => {
+    //   setDataFilter(
+    //     result.map((marca) => ({
+    //       text: marca.nommarca,
+    //       value: marca.nomarca,
+    //     }))
+    //   );
+    // });
     window.addEventListener("resize", updatePageSize);
     updatePageSize();
   }, []);
 
   return (
-    <Flex vertical="true" align="center">
+    <Flex vertical="true">
       <Typography.Title level={3}>
         {t("motorcycle.motorcycleList")}
       </Typography.Title>
-      <ModalCreateContract
+      <ModalCreateContractClient
         isVisible={visible}
         setVisible={() => setVisible(!visible)}
-        setDataSource={setDataSource}
-        dataSource={dataSource}
+        setDataSourceMoto = {setDataSource}
+        dataSourceMoto = {dataSource}
       />
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
@@ -118,7 +118,6 @@ const ListMotoClient = () => {
           defaultValue={moment().format("L")}
         ></Mentions>
       </Flex>
-
       <Flex align="center" justify="center">
         {dataSource.length > 0 ? (
           <List
@@ -143,7 +142,7 @@ const ListMotoClient = () => {
                 <Card
                   hoverable
                   actions={[
-                    <Button onClick={() => setVisible(true)} style={{margin:10}} type="primary">Rentar</Button>
+                    <Button onClick={() => {setVisible(true); setRow(item);}} type="primary">Rentar</Button>
                   ]}
                   key={item.key}
                   style={{ width: 240 }}
@@ -156,9 +155,8 @@ const ListMotoClient = () => {
                 >
                   <Card.Meta
                     title={`Matricula: ${item.matricula}`}
-                    description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Situación: ${item.situacion} | Color: ${item.color} | Km: ${item.kmRecorridos}`}
+                    description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Color: ${item.color} | Km: ${item['Km recorridos']}`}
                   />
-              
                 </Card>
               </List.Item>
             )}

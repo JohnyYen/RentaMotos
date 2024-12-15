@@ -13,10 +13,15 @@ const extractDataClient = async (user) => {
     let response = null;
     console.log(user);
     try {
-      response = await axios.get(`http://localhost:3000/api/client/mun/${user?.mun}`);
+      const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+      response = await axios.get(`http://localhost:3000/api/client/mun/${user?.mun}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
   
       if (response.status === 200) {
-        dataSource = response.data.map((element, index) => ({
+        dataSource = response.data.data.map((element, index) => ({
           key: index,
           municipio: element.municipio,
           nombre: element.nombre,
@@ -62,9 +67,15 @@ const downloadPDF = async (url) => {
 const extractDataFilter = async () => {
   let dataFilter = [];
   try {
-     const response = await axios.get('http://localhost:3000/api/mun');
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+     const response = await axios.get('http://localhost:3000/api/mun', {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
+
     if(response.status === 200){
-      dataFilter = response.data
+      dataFilter = response.data.data;
     }
   } catch (error) {
     console.log(error);
@@ -97,7 +108,7 @@ const ListadoClientesWorker = ({ data ,url }) => {
         }
       )));
     });
-  }, []);
+  }, [user]);
 
   const onClick = async () => {
     try {

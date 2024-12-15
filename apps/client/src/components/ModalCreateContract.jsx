@@ -15,9 +15,9 @@ const response = await axios.get('http://localhost:3000/api/contract/formasPago'
 let dataSource = [];
 
 if(response.status === 200)
-  dataSource = response.data.data;
+  dataSource = response.data;
 
-const ModalCreateContract = ({isVisible, setVisible, setDataSource, dataSource}) => {
+const ModalCreateContract = ({isVisible, setVisible, setDataContract, dataContract}) => {
 
   const [form] = Form.useForm();
   const {row, client} = useContext(GlobalContext);
@@ -44,7 +44,6 @@ const ModalCreateContract = ({isVisible, setVisible, setDataSource, dataSource})
     }
     
     console.log(client);
-    const jwt = sessionStorage.getItem("jwt");
     if(dateBegin && dateEnd && dateFirm && formaPago){
      try {
       const res = await axios.post('http://localhost:3000/api/contract/', contract, {
@@ -55,8 +54,8 @@ const ModalCreateContract = ({isVisible, setVisible, setDataSource, dataSource})
       
       if(res.status === 201){
         message.success(t("messageSuccess"));
-        setDataSource([...dataSource, {
-          key: dataSource[dataSource.length-1].key+1,
+        setDataContract([...dataContract, {
+          key: dataContract[dataContract.length-1].key+1,
           idCliente,
           matricula,
           beginDate,

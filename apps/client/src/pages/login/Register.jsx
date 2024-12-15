@@ -48,9 +48,10 @@ function Register() {
           }
         });
         if(res.status === 200){
+          console.log(res);
           message.success(t("messageSuccess.loginSuccess"))
-          setClient(res.data[0]);
-          localStorage.setItem('clientData', JSON.stringify(res.data[0]));
+          setClient(res.data.data[0]);
+          localStorage.setItem('clientData', JSON.stringify(res.data.data[0]));
           navigate('/home');
         }
       }

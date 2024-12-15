@@ -2,7 +2,6 @@ import { Image, Typography, Drawer, Flex, Button, Select } from "antd";
 import { LoginOutlined, MenuOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import SideBarAdmin from "../pages/admin/components/SideBarAdmin";
 import { useState } from "react";
 
 const CustomHeader = () => {

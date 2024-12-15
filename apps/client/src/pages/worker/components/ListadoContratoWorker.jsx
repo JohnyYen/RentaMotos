@@ -8,16 +8,22 @@ import ModalModContract from "../../../components/ModalModContract";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { pdf } from "@react-pdf/renderer";
 import DocumentPDF from "../../../components/DocumentPDF";
+import ModalCreateContractWorker from "./ModalCreateContractWorker";
 
 
 const extractDataContract = async (user) => {
     let dataSource = [];
     let response = null;
     try {
-      response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`);
-  
+      const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+      response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
+      console.log(response.data.data);
       if (response.status === 200) {
-        dataSource = response.data.map((element, index) => ({
+        dataSource = response.data.data.map((element, index) => ({
           key: index,
           nombre: element.nombre,
           matricula: element.matricula,
@@ -64,16 +70,15 @@ const downloadPDF = async (url) => {
   }
 };
 
-
-
-const ListadoContratosWorker = ({url }) => {
+const ListadoContratosWorker = ({ url }) => {
   const [t] = useTranslation("global");
   const {setRow} = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+  const [visibleCreateContract, setVisibleCreateContract] = useState(false);
   const {user} = useContext(GlobalContext);
+  const [dataSource, setDataSource] = useState();
 
-  const extractData = extractDataContract(user);
   const onClick = async () => {
       await downloadPDF(url);
   };
@@ -84,11 +89,34 @@ const ListadoContratosWorker = ({url }) => {
     window.open(url);
   };
 
+  useEffect(() => {
+    extractDataContract(user).then(result => {
+      setDataSource(result);
+      console.log(result);
+    })
+  }, [user])
+
   return (
     <Flex vertical="true">
       <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)}/>
       <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
       <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
+      <Flex align="center" justify="flex-end">
+        <Button
+          onClickCapture={() => setVisibleCreateContract(true)}
+          className="actionTable"
+          style={{ marginBottom: "1rem", marginRight: "1rem" }}
+          type="primary"
+        >
+          {t("mainContent.createContract")}
+        </Button>
+        <ModalCreateContractWorker
+        isVisible={visibleCreateContract}
+        setVisible={() => setVisibleCreateContract(!visibleCreateContract)}
+        setDataContract={setDataSource}
+        dataContract={dataSource}
+      />
+      </Flex>
       <Table
          scroll={{
           x: 920,
@@ -102,7 +130,7 @@ const ListadoContratosWorker = ({url }) => {
             onClick: (e) => handleRowClick(record),
           };
         }}
-        dataSource={extractData}
+        dataSource={dataSource}
         columns={[
           {
             title: t("mainContent.table.name"),
