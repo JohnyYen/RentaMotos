@@ -13,7 +13,7 @@ const extractData = async (client) => {
   let dataSource = [];
   let response = null;
   try {
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    const jwt = JSON.parse(localStorage.getItem("jwt"));
     response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`, {
       headers: {
         Authorization: `Bearer ${jwt}`
@@ -23,7 +23,7 @@ const extractData = async (client) => {
 
     if (response.status === 200) {
       dataSource = response.data.data.map((element, index) => ({
-        key: index,
+        key: index ,
         matricula: element.matricula,
         marca: element.marca,
         modelo: element.modelo,
