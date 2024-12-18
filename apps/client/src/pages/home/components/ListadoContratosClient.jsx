@@ -47,6 +47,7 @@ const ListadoContratos = () => {
   const [dataSource, setDataSource] = useState();
   const [t] = useTranslation("global");
   const { client } = useContext(GlobalContext);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     extractData(client).then((result) => {
@@ -62,13 +63,13 @@ const ListadoContratos = () => {
 
   return (
     <Flex vertical="true">
-        <ModalCreateContract isVisible={false} setVisible={() => setOpen(!open)} setDataSource={setDataSource} dataSource={dataSource}/>
+        <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)} setDataSource={setDataSource} dataSource={dataSource}/>
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>
       <Flex align="center" justify="flex-end">
         <Button
-          onClickCapture={() => setVisible(open)}
+          onClick={() => setVisible(true)}
           className="actionTable"
           style={{ marginBottom: "1rem", marginRight: "1rem" }}
           type="primary"

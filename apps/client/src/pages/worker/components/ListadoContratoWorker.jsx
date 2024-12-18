@@ -8,7 +8,7 @@ import ModalModContract from "../../../components/ModalModContract";
 import { GlobalContext } from "../../../context/GlobalContext";
 import { pdf } from "@react-pdf/renderer";
 import DocumentPDF from "../../../components/DocumentPDF";
-import ModalCreateContractWorker from "./ModalCreateContractWorker";
+import ModalCreateContractWorker from "../../../components/ModalCreateContract";
 
 
 const extractDataContract = async (user) => {
