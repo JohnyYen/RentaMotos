@@ -161,6 +161,7 @@ const ContratosMarcaModelo = () => {
             dataIndex: "marca",
             key: "marca",
             fixed: "left",
+            align: "center",
             filters: dataFilterMarca,
             onFilter: (value, record) => record.marca.indexOf(value) === 0,
           },
@@ -169,6 +170,7 @@ const ContratosMarcaModelo = () => {
             dataIndex: "modelo",
             key: "modelo",
             fixed: "left",
+            align: "center",
             filters: dataFilterModelo,
             onFilter: (value, record) => record.modelo.indexOf(value) === 0,
           },
@@ -176,31 +178,37 @@ const ContratosMarcaModelo = () => {
             title: t("mainContent.table.numberMotorcycle"),
             dataIndex: "cantidad de motos",
             key: "cantidad de motos",
+            align: "center",
           },
           {
             title: t("mainContent.table.totalDaysRented"),
             dataIndex: "dias totales alquilados",
             key: "dias totales alquilados",
+            align: "center",
           },
           {
             title: t("mainContent.table.creditCardIncome"),
             dataIndex: "ingresos tarjeta de crédito",
             key: "ingresos tarjeta de crédito",
+            align: "center",
           },
           {
             title: t("mainContent.table.incomeCheck"),
             dataIndex: "ingresos por cheques",
             key: "ingresos por cheques",
+            align: "center",
           },
           {
             title: t("mainContent.table.cashIncome"),
             dataIndex: "ingresos por efectivo",
             key: "ingresos por efectivo",
+            align: "center",
           },
           {
             title: t("mainContent.table.totalAmount"),
             dataIndex: "ingresos totales",
             key: "ingresos totales",
+            align: "center",
           },
         ]}
       ></Table>

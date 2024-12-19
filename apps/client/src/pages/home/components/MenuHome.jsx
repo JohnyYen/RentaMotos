@@ -32,8 +32,14 @@ const MenuHome = ({ isInline = false, messageApi }) => {
   const handleMenuClick = (item) => {
     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
 
+    console.log('JWT:', jwt);
+
     const actions = {
-      logout: () => navigate("/loguin"),
+      logout: () => {
+        navigate("/loguin"); 
+        localStorage.removeItem("userData");
+        localStorage.removeItem("clientData");
+      },
       spanish: () => language("es"),
       english: () => language("en"),
       faq: () => navigate(`/home/${item.key}`),
@@ -53,10 +59,13 @@ const MenuHome = ({ isInline = false, messageApi }) => {
   const showLoginWarning = () => {
     messageApi.warning({
       content: (
-        <h3>
-          {t("sideBar.loginWarning")}
+        <div
+          onClick={() => navigate("/loguin")}
+          style={{ cursor: "pointer" }}
+        >
+          <h3>{t("sideBar.loginWarning")}</h3>
           <h4>{t("sideBar.loginPrompt")}</h4>
-        </h3>
+        </div>
       ),
       duration: 3,
     });

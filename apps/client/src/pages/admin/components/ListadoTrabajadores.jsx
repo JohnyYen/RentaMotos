@@ -70,25 +70,35 @@ const ListadoTrabajadores = () => {
             title: "Usuario",
             dataIndex: "usuario",
             key: "usuario",
+            align: "center",
           },
           {
             title: "Contraseña",
             dataIndex: "contraseña",
             key: "contraseña",
+            align: "center",
           },
           {
             title: "Municipio",
             dataIndex: "municipio",
             key: "municipio",
+            align: "center",
           },
           {
             title: t("mainContent.table.actions"),
             key: "acciones",
+            align: "center",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
-                {t("mainContent.table.delete")}
-                </Button>
+                <Button
+                  className="actionTable"
+                  type="primary"
+                  onClick={() => {
+                    setOpen(true);
+                    setRow(record);
+                  }}
+                  icon={<DeleteOutl />}
+                />
               </Flex>
             ),
             fixed: "right",

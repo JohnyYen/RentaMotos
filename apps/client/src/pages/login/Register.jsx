@@ -28,12 +28,15 @@ function Register() {
       password: password
     });
 
+    console.log(response.data.user)
+
     sessionStorage.setItem('jwt', JSON.stringify(response.data.token));
 
     console.log(response);
     if(response.status === 201){
       const tipoUsuario = response.data.user.tipo_usuario;
       setUser(response.data.user);
+      localStorage.setItem('userData', JSON.stringify(response.data.user));
       
       if(tipoUsuario === 1){
         message.success(t("messageSuccess.loginSuccess"))

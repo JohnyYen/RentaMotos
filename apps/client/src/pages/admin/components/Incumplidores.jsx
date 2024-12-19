@@ -94,24 +94,28 @@ const Incumplidores = () => {
             dataIndex: "nombre",
             key: "nombre",
             fixed: "left",
-            width: "8rem"
+            width: "8rem",
+            align: "center",
           },
           {
             title: t("mainContent.table.lastName"),
             dataIndex: "apellidos",
             key: "apellidos",
+            align: "center",
           },
           {
             title: t("mainContent.table.endContract"),
             dataIndex: "fin de contrato",
             key: "fin de contrato",
+            align: "center",
           },
           {
             title: t("mainContent.table.motorcycleDelivery"),
             dataIndex: "entrega de moto",
             key: "entrega de moto",
+            align: "center",
           },
-        ]}
+        ]}        
       ></Table>
        <Button
         className="ant-btn-download"

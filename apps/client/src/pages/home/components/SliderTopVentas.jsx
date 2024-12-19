@@ -1,6 +1,7 @@
 import React from "react";
 import { Slider ,Card, Flex, Alert, message, Avatar} from "antd";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SliderTopVentas = ({marca,modelo,image}) =>{
    
@@ -13,6 +14,8 @@ const SliderTopVentas = ({marca,modelo,image}) =>{
 const CardMoto = ({marca,modelo,image})=>{ 
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
+    const [t] = useTranslation('global');
+
     return(
     <>
         {contextHolder} 
@@ -29,8 +32,16 @@ const CardMoto = ({marca,modelo,image})=>{
             }else{messageApi.open({
         onClick:()=>{ navigate('/loguin');},
         type: 'warning',
-        content: <h3>Para acceder a este servicio debe estar logeado <h4>Pulse en este letrero para loguearse/regristrarse</h4></h3>,
-       
+        content: (
+          <div
+            onClick={() => navigate("/loguin")}
+            style={{ cursor: "pointer" }}
+          >
+            <h3>{t("sideBar.loginWarning")}</h3>
+            <h4>{t("sideBar.loginPrompt")}</h4>
+          </div>
+        ),
+        duration: 3,
       }); }
             }}  size="default"  ><Card.Meta
                     title={`Marca: ${marca}`}

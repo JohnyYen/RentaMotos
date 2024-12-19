@@ -123,6 +123,7 @@ const ContratosMunicipio = () => {
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
+            align: "center",
             filters: dataFilter,
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
@@ -130,33 +131,39 @@ const ContratosMunicipio = () => {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            align: "center",
           },
           {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+            align: "center",
           },
           {
             title: t("mainContent.table.daysRented"),
             dataIndex: "días alquilados",
             key: "días alquilados",
+            align: "center",
           },
           {
             title: t("mainContent.table.extensionDays"),
             dataIndex: "días de prórroga",
             key: "días de prórroga",
+            align: "center",
           },
           {
             title: t("mainContent.table.totalCash"),
             dataIndex: "total efectivo",
             key: "total efectivo",
+            align: "center",
           },
           {
             title: t("mainContent.table.totalAmount"),
             dataIndex: "valor total",
             key: "valor total",
+            align: "center",
           },
-        ]}
+        ]}        
       ></Table>
       <Button
         className="ant-btn-download"

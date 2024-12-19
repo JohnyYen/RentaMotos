@@ -8,7 +8,7 @@ import {
   Modal,
 } from "antd";
 import { useState, useEffect, useContext } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import EliminarContrato from "../../../components/EliminarContrato";
@@ -62,7 +62,12 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
   return (
     <Flex vertical="true">
       <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)} />
-      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataContract} dataSource={dataContract}/>
+      <EliminarContrato
+        isOpen={open}
+        setOpen={() => setOpen(!open)}
+        setDataSource={setDataContract}
+        dataSource={dataContract}
+      />
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>
@@ -87,55 +92,66 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
             key: "nombre",
             fixed: "left",
             width: "8rem",
+            align: "center",
           },
           {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
+            align: "center",
           },
           {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            align: "center",
           },
           {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+            align: "center",
           },
           {
             title: t("mainContent.table.methodPayment"),
             dataIndex: "forma de pago",
             key: "forma de pago",
+            align: "center",
           },
           {
             title: t("mainContent.table.startContract"),
             dataIndex: "fecha de inicio",
             key: "Fecha de inicio",
+            align: "center",
           },
           {
             title: t("mainContent.table.endContract"),
             dataIndex: "fechaFin",
             key: "fecha de fin",
+            align: "center",
           },
           {
             title: t("mainContent.table.extension"),
             dataIndex: "prorroga",
             key: "prorroga",
+            align: "center",
           },
           {
             title: t("mainContent.table.additionalInsurance"),
             dataIndex: "seguro adicional",
             key: "seguro adicional",
+            align: "center",
           },
           {
             title: t("mainContent.table.totalAmount"),
             dataIndex: "importe total",
             key: "importe total",
+            align: "center",
           },
           {
             title: t("mainContent.table.actions"),
             key: "acciones",
+            align: "center",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button
@@ -145,9 +161,8 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
                     setVisible(true);
                     setRow(record);
                   }}
-                >
-                  {t("mainContent.table.modify")}
-                </Button>
+                  icon={<EditOutlined />}
+                />
                 <Button
                   onClick={() => {
                     setOpen(true);
@@ -155,9 +170,8 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
                   }}
                   className="actionTable"
                   type="primary"
-                >
-                  {t("mainContent.table.delete")}
-                </Button>
+                  icon={<DeleteOutlined />}
+                />
               </Flex>
             ),
             fixed: "right",

@@ -1,6 +1,6 @@
 import { Space, Typography, Table, Flex, Button, notification } from "antd";
 import { useState, useEffect, useContext } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import EliminarContrato from "../../../components/EliminarContrato";
@@ -133,68 +133,62 @@ const ListadoContratosWorker = ({ url }) => {
         dataSource={dataSource}
         columns={[
           {
+            title: t("mainContent.table.municipality"),
+            dataIndex: "municipio",
+            key: "municipio",
+            fixed: "left",
+            filters: dataFilter,
+            onFilter: (value, record) => record.municipio.indexOf(value) === 0,
+            align: "center",
+          },
+          {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
-            fixed: "left",
-            width: "8rem",
+            align: "center",
           },
           {
-            title: t("mainContent.table.serialNumber"),
-            dataIndex: "matricula",
-            key: "matricula",
+            title: "CI",
+            dataIndex: "ci",
+            key: "ci",
+            align: "center",
           },
           {
-            title: t("mainContent.table.mark"),
-            dataIndex: "marca",
-            key: "marca",
+            title: t("mainContent.table.timesRented"),
+            dataIndex: "veces alquiladas",
+            key: "veces alquiladas",
+            align: "center",
           },
           {
-            title: t("mainContent.table.model"),
-            dataIndex: "modelo",
-            key: "modelo",
-          },
-          {
-            title: t("mainContent.table.methodPayment"),
-            dataIndex: "forma de pago",
-            key: "forma de pago",
-          },
-          {
-            title: t("mainContent.table.startContract"),
-            dataIndex: "fecha de inicio",
-            key: "Fecha de inicio",
-          },
-          {
-            title: t("mainContent.table.endContract"),
-            dataIndex: "fechaFin",
-            key: "fecha de fin",
-          },
-          {
-            title: t("mainContent.table.extension"),
-            dataIndex: "prorroga",
-            key: "prorroga",
-          },
-          {
-            title: t("mainContent.table.additionalInsurance"),
-            dataIndex: "seguro adicional",
-            key: "seguro adicional",
-          },
-          {
-            title: t("mainContent.table.totalAmount"),
-            dataIndex: "importe total",
-            key: "importe total",
+            title: t("mainContent.table.rentalValue"),
+            dataIndex: "valor alquileres",
+            key: "valor alquileres",
+            align: "center",
           },
           {
             title: t("mainContent.table.actions"),
             key: "acciones",
+            align: "center",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button className="actionTable" type="primary" onClick={() => {setVisible(true); setRow(record)}}>
-                  {t("mainContent.table.modify")}
-                </Button>
-                <Button onClick={() => {setOpen(true); setRow(record)}} className="actionTable" type="primary">
-                  {t("mainContent.table.delete")}
-                </Button>
+                <Button
+                  onClick={() => {
+                    setVisible(true);
+                    setRow(record);
+                  }}
+                  className="actionTable"
+                  type="primary"
+                  icon={<EditOutlined />}
+                />
+                <Button
+                  className="actionTable"
+                  type="primary"
+                  onClick={() => {
+                    setOpen(true);
+                    setRow(record);
+                  }}
+                  icon={<DeleteOutlined />}
+                />
               </Flex>
             ),
             fixed: "right",

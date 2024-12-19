@@ -1,6 +1,6 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions, notification } from "antd";
 import { useContext, useEffect, useState } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DownloadOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "../../../App.css";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
@@ -68,14 +68,14 @@ const extractDataFilter = async () => {
   let dataFilter = [];
   try {
     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-     const response = await axios.get('http://localhost:3000/api/mun', {
+     const response = await axios.get('http://localhost:3000/api/client/mun', {
       headers: {
         Authorization: `Bearer ${jwt}`
       }
     });
 
     if(response.status === 200){
-      dataFilter = response.data.data;
+      dataFilter = response.data;
     }
   } catch (error) {
     console.log(error);
@@ -152,38 +152,56 @@ const ListadoClientesWorker = ({ data ,url }) => {
             fixed: "left",
             filters: dataFilter,
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
+            align: "center",
           },
           {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
+            align: "center",
           },
           {
             title: "CI",
             dataIndex: "ci",
             key: "ci",
+            align: "center",
           },
           {
             title: t("mainContent.table.timesRented"),
             dataIndex: "veces alquiladas",
             key: "veces alquiladas",
+            align: "center",
           },
           {
             title: t("mainContent.table.rentalValue"),
             dataIndex: "valor alquileres",
             key: "valor alquileres",
+            align: "center",
           },
           {
             title: t("mainContent.table.actions"),
             key: "acciones",
+            align: "center",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
-                  {t("mainContent.table.modify")}
-                </Button>
-                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
-                {t("mainContent.table.delete")}
-                </Button>
+                <Button
+                  onClick={() => {
+                    setVisible(true);
+                    setRow(record);
+                  }}
+                  className="actionTable"
+                  type="primary"
+                  icon={<EditOutlined />}
+                />
+                <Button
+                  className="actionTable"
+                  type="primary"
+                  onClick={() => {
+                    setOpen(true);
+                    setRow(record);
+                  }}
+                  icon={<DeleteOutlined />}
+                />
               </Flex>
             ),
             fixed: "right",

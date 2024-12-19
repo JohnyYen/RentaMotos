@@ -145,7 +145,7 @@ const ListMotoClient = () => {
                     <Button onClick={() => {setVisible(true); setRow(item);}} type="primary">Rentar</Button>
                   ]}
                   key={item.key}
-                  style={{ width: 240 }}
+                  style={{ width: 240, marginRight: '1rem' }}
                   cover={
                     <img
                       alt="example"

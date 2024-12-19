@@ -1,6 +1,6 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions, notification } from "antd";
 import { useContext, useEffect, useState } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import moment from "moment";
 import "../../../App.css";
 import axios from "axios";
@@ -115,6 +115,7 @@ const ListadoClientes = ({ dataClient, setDataClient, url }) => {
             title: t("mainContent.table.municipality"),
             dataIndex: "municipio",
             key: "municipio",
+            align: "center",
             filters: dataFilter,
             onFilter: (value, record) => record.municipio.indexOf(value) === 0,
           },
@@ -122,33 +123,50 @@ const ListadoClientes = ({ dataClient, setDataClient, url }) => {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
+            align: "center",
           },
           {
             title: "CI",
             dataIndex: "ci",
             key: "ci",
+            align: "center",
           },
           {
             title: t("mainContent.table.timesRented"),
             dataIndex: "veces alquiladas",
             key: "veces alquiladas",
+            align: "center",
           },
           {
             title: t("mainContent.table.rentalValue"),
             dataIndex: "valor alquileres",
             key: "valor alquileres",
+            align: "center",
           },
           {
             title: t("mainContent.table.actions"),
             key: "acciones",
+            align: "center",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
-                  {t("mainContent.table.modify")}
-                </Button>
-                <Button className="actionTable" type="primary" onClick={() => {setOpen(true); setRow(record)}}>
-                {t("mainContent.table.delete")}
-                </Button>
+                <Button
+                  onClick={() => {
+                    setVisible(true);
+                    setRow(record);
+                  }}
+                  className="actionTable"
+                  type="primary"
+                  icon={<EditOutlined />}
+                />
+                <Button
+                  className="actionTable"
+                  type="primary"
+                  onClick={() => {
+                    setOpen(true);
+                    setRow(record);
+                  }}
+                  icon={<DeleteOutlined />}
+                />
               </Flex>
             ),
           },

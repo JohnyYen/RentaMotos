@@ -96,48 +96,57 @@ const ListadoContratos = () => {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
+            align: "center",
           },
           {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            align: "center",
           },
           {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+            align: "center",
           },
           {
             title: t("mainContent.table.methodPayment"),
             dataIndex: "forma de pago",
             key: "forma de pago",
+            align: "center",
           },
           {
             title: t("mainContent.table.startContract"),
             dataIndex: "fecha de inicio",
             key: "Fecha de inicio",
+            align: "center",
           },
           {
             title: t("mainContent.table.endContract"),
             dataIndex: "fechaFin",
             key: "fechaFin",
+            align: "center",
           },
           {
             title: t("mainContent.table.extension"),
             dataIndex: "prorroga",
             key: "prorroga",
+            align: "center",
           },
           {
             title: t("mainContent.table.additionalInsurance"),
             dataIndex: "seguro adicional",
             key: "seguro adicional",
+            align: "center",
           },
           {
             title: t("mainContent.table.totalAmount"),
             dataIndex: "importe total",
             key: "importe total",
+            align: "center",
           },
-        ]}
+        ]}        
       ></Table>
     </Flex>
   );

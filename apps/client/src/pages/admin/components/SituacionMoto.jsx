@@ -106,23 +106,27 @@ const SituacionMoto = () => {
             key: "matricula",
             fixed: "left",
             width: "8rem",
+            align: "center",
           },
           {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            align: "center",
           },
           {
             title: t("mainContent.table.situation"),
             dataIndex: "situacion",
             key: "situacion",
+            align: "center",
           },
           {
             title: t("mainContent.table.endContract"),
             dataIndex: "Fin de contrato",
             key: "Fin de contrato",
+            align: "center",
           },
-        ]}
+        ]}        
       ></Table>
       <Button
         className="ant-btn-download"
