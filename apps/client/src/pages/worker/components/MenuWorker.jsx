@@ -1,12 +1,13 @@
 import { CarOutlined, DollarOutlined, FileDoneOutlined, FlagOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const MenuWorker = ({ isInline = false }) => {
     const navigate = useNavigate();
     const [t, i18n] = useTranslation("global");
+    const [current, setCurrent] = useState('listadoClientes');
   
     const language = (value, option) => {
       switch (value) {
@@ -24,10 +25,11 @@ const MenuWorker = ({ isInline = false }) => {
       <Menu
         theme="dark"
         className={`navBar-menu ${isInline ? "inline" : "horizontal"} navBar-menu-admin`}
-        defaultSelectedKeys={["listadoClientes"]}
+        selectedKeys={[current]}
         mode={isInline ? "inline" : "horizontal"}
         onClick={(item) => {
           if (item.key !== "spanish" && item.key !== "english" && item.key !== "logout") {
+            setCurrent(item.key);
             navigate(`/worker/${item.key}`);
           } else if( item.key === 'english' || item.key === 'spanish' ){
             if (item.key === "spanish") {

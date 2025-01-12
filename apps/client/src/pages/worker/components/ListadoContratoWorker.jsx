@@ -137,8 +137,6 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
-            filters: dataFilter,
-            onFilter: (value, record) => record.municipio.indexOf(value) === 0,
             align: "center",
           },
           {
