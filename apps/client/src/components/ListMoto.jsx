@@ -77,24 +77,24 @@ const downloadPDF = async (url) => {
   }
 };
 
-const extractDataFilter = async () => {
-  let dataFilter = [];
-  try {
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-    const response = await axios.get("http://localhost:3000/api/moto/marc", 
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        }
-      });
-    if (response.status === 200) {
-      dataFilter = response.data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataFilter;
-};
+// const extractDataFilter = async () => {
+//   let dataFilter = [];
+//   try {
+//     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+//     const response = await axios.get("http://localhost:3000/api/moto/marc", 
+//       {
+//         headers: {
+//           Authorization: `Bearer ${jwt}`,
+//         }
+//       });
+//     if (response.status === 200) {
+//       dataFilter = response.data;
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return dataFilter;
+// };
 
 const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -247,8 +247,6 @@ const ListMoto = () => {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
-            filters: dataFilter,
-            onFilter: (value, record) => {record.marca.indexOf(value) === -1},
           },
           {
             title: t("mainContent.table.model"),

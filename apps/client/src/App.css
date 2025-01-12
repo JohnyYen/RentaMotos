@@ -291,7 +291,8 @@
 }
 
 .ant-menu-item-selected {
-  background-color: darkblue !important;
+  background: none !important;
+  border-bottom: 2px solid darkblue !important;
 }
 
 .App {
@@ -609,11 +610,6 @@
   flex-direction: column;
   gap: 1rem;
   font-weight: 500;
-}
-
-
-.ant-menu-item-selected {
-  background-color: darkblue !important;
 }
 
 .App {

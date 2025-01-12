@@ -64,30 +64,10 @@ const downloadPDF = async (url) => {
   }
 };
 
-const extractDataFilter = async () => {
-  let dataFilter = [];
-  try {
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-     const response = await axios.get('http://localhost:3000/api/client/mun', {
-      headers: {
-        Authorization: `Bearer ${jwt}`
-      }
-    });
-
-    if(response.status === 200){
-      dataFilter = response.data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return dataFilter;
-};
-
 const ListadoClientesWorker = ({ data ,url }) => {
 
   const {setRow, user} = useContext(GlobalContext)
 
-  const [dataFilter, setDataFilter] = useState([]);
   const [t] = useTranslation("global");
 
   const [visible, setVisible] = useState(false);
@@ -100,14 +80,6 @@ const ListadoClientesWorker = ({ data ,url }) => {
         setDataClient(result);
       })
    
-    extractDataFilter().then(result => {
-      setDataFilter(result.map(municipio => (
-        {
-          text: municipio.nommun,
-          value: municipio.nommun,
-        }
-      )));
-    });
   }, [user]);
 
   const onClick = async () => {
@@ -150,20 +122,28 @@ const ListadoClientesWorker = ({ data ,url }) => {
             dataIndex: "municipio",
             key: "municipio",
             fixed: "left",
-            filters: dataFilter,
-            onFilter: (value, record) => record.municipio.indexOf(value) === 0,
             align: "center",
           },
           {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
+            filters: extractData.map((item) => ({
+              text: item.nombre,
+              value: item.nombre,
+            })),
+            onFilter: (value, record) => record.nombre.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
             title: "CI",
             dataIndex: "ci",
             key: "ci",
+            filters: extractData.map((item) => ({
+              text: item.ci,
+              value: item.ci.toString(),
+            })),
+            onFilter: (value, record) => record.ci.toString().includes(value),      
             align: "center",
           },
           {

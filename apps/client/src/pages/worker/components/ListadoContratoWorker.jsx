@@ -1,6 +1,10 @@
 import { Space, Typography, Table, Flex, Button, notification } from "antd";
 import { useState, useEffect, useContext } from "react";
-import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import EliminarContrato from "../../../components/EliminarContrato";
@@ -10,77 +14,78 @@ import { pdf } from "@react-pdf/renderer";
 import DocumentPDF from "../../../components/DocumentPDF";
 import ModalCreateContractWorker from "../../../components/ModalCreateContract";
 
-
 const extractDataContract = async (user) => {
-    let dataSource = [];
-    let response = null;
-    try {
-      const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-      response = await axios.get(`http://localhost:3000/api/contract/worker/${user?.mun}`, {
+  let dataSource = [];
+  let response = null;
+  try {
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    response = await axios.get(
+      `http://localhost:3000/api/contract/worker/${user?.mun}`,
+      {
         headers: {
-          Authorization: `Bearer ${jwt}`
-        }
-      });
-      console.log(response.data.data);
-      if (response.status === 200) {
-        dataSource = response.data.data.map((element, index) => ({
-          key: index,
-          nombre: element.nombre,
-          matricula: element.matricula,
-          marca: element.marca,
-          modelo: element.modelo,
-          "forma de pago": element.formapago,
-          "fecha de inicio": element.fechainicio,
-          fechaFin: element.fechafin,
-          prorroga: element.diasprorroga,
-          "seguro adicional": element.seguro  ? "✔" : "❌",
-          "importe total": element.importe,
-        }));
+          Authorization: `Bearer ${jwt}`,
+        },
       }
-    } catch (error) {
-      console.log(error);
+    );
+    console.log(response.data.data);
+    if (response.status === 200) {
+      dataSource = response.data.data.map((element, index) => ({
+        key: index,
+        nombre: element.nombre,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        fechaFin: element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro ? "✔" : "❌",
+        "importe total": element.importe,
+      }));
     }
-    return dataSource;
-  };
-
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
 
 const downloadPDF = async (url) => {
   try {
     const response = await axios({
       url,
-      method: 'GET',
-      responseType: 'blob',
+      method: "GET",
+      responseType: "blob",
       headers: {
-        'Content-Type': 'application/pdf',
+        "Content-Type": "application/pdf",
       },
     });
-    
+
     const urlObject = URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = urlObject;
-    link.download = 'ReporteContratos.pdf';
+    link.download = "ReporteContratos.pdf";
     link.click();
-    
+
     URL.revokeObjectURL(urlObject);
   } catch (error) {
     notification.info({
       message: "Descarga de PDF",
-      description: 'La lista de Contratos esta vacia'
+      description: "La lista de Contratos esta vacia",
     });
   }
 };
 
 const ListadoContratosWorker = ({ url }) => {
   const [t] = useTranslation("global");
-  const {setRow} = useContext(GlobalContext);
+  const { setRow } = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [visibleCreateContract, setVisibleCreateContract] = useState(false);
-  const {user} = useContext(GlobalContext);
+  const { user } = useContext(GlobalContext);
   const [dataSource, setDataSource] = useState();
 
   const onClick = async () => {
-      await downloadPDF(url);
+    await downloadPDF(url);
   };
 
   const handleRowClick = async (record) => {
@@ -90,17 +95,19 @@ const ListadoContratosWorker = ({ url }) => {
   };
 
   useEffect(() => {
-    extractDataContract(user).then(result => {
+    extractDataContract(user).then((result) => {
       setDataSource(result);
       console.log(result);
-    })
-  }, [user])
+    });
+  }, [user]);
 
   return (
     <Flex vertical="true">
-      <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)}/>
-      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)}/>
-      <Typography.Title level={3}>{t("contract.contractList")}</Typography.Title>
+      <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)} />
+      <EliminarContrato isOpen={open} setOpen={() => setOpen(!open)} />
+      <Typography.Title level={3}>
+        {t("contract.contractList")}
+      </Typography.Title>
       <Flex align="center" justify="flex-end">
         <Button
           onClickCapture={() => setVisibleCreateContract(true)}
@@ -111,14 +118,14 @@ const ListadoContratosWorker = ({ url }) => {
           {t("mainContent.createContract")}
         </Button>
         <ModalCreateContractWorker
-        isVisible={visibleCreateContract}
-        setVisible={() => setVisibleCreateContract(!visibleCreateContract)}
-        setDataContract={setDataSource}
-        dataContract={dataSource}
-      />
+          isVisible={visibleCreateContract}
+          setVisible={() => setVisibleCreateContract(!visibleCreateContract)}
+          setDataContract={setDataSource}
+          dataContract={dataSource}
+        />
       </Flex>
       <Table
-         scroll={{
+        scroll={{
           x: 920,
         }}
         pagination={{
@@ -133,34 +140,103 @@ const ListadoContratosWorker = ({ url }) => {
         dataSource={dataSource}
         columns={[
           {
-            title: t("mainContent.table.municipality"),
-            dataIndex: "municipio",
-            key: "municipio",
+            title: t("mainContent.table.name"),
+            dataIndex: "nombre",
+            key: "nombre",
+            filters: dataSource
+              ? dataSource.map((item) => ({
+                  text: item.nombre,
+                  value: item.nombre,
+                }))
+              : [],
+            onFilter: (value, record) =>
+              record.nombre.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
             align: "center",
           },
           {
-            title: t("mainContent.table.name"),
-            dataIndex: "nombre",
-            key: "nombre",
+            title: t("mainContent.table.serialNumber"),
+            dataIndex: "matricula",
+            key: "matricula",
+            filters: dataSource
+              ? dataSource.map((item) => ({
+                  text: item.matricula,
+                  value: item.matricula,
+                }))
+              : [],
+            onFilter: (value, record) =>
+              record.matricula.toLowerCase().includes(value.toLowerCase()),
+            align: "center",          },
+          {
+            title: t("mainContent.table.mark"),
+            dataIndex: "marca",
+            key: "marca",
+            filters: dataSource
+              ? dataSource.map((item) => ({
+                  text: item.marca,
+                  value: item.marca,
+                }))
+              : [],
+            onFilter: (value, record) =>
+              record.marca.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
-            title: "CI",
-            dataIndex: "ci",
-            key: "ci",
+            title: t("mainContent.table.model"),
+            dataIndex: "modelo",
+            key: "modelo",
+            filters: dataSource
+              ? dataSource.map((item) => ({
+                  text: item.modelo,
+                  value: item.modelo,
+                }))
+              : [],
+            onFilter: (value, record) =>
+              record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
-            title: t("mainContent.table.timesRented"),
-            dataIndex: "veces alquiladas",
-            key: "veces alquiladas",
+            title: t("mainContent.table.methodPayment"),
+            dataIndex: "forma de pago",
+            key: "forma de pago",
+            filters: dataSource
+              ? dataSource.map((item) => ({
+                  text: item['forma de pago'],
+                  value: item['forma de pago'],
+                }))
+              : [],
+            onFilter: (value, record) =>
+              record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
-            title: t("mainContent.table.rentalValue"),
-            dataIndex: "valor alquileres",
-            key: "valor alquileres",
+            title: t("mainContent.table.startContract"),
+            dataIndex: "fecha de inicio",
+            key: "Fecha de inicio",
+            align: "center",
+          },
+          {
+            title: t("mainContent.table.endContract"),
+            dataIndex: "fechaFin",
+            key: "fecha de fin",
+            align: "center",
+          },
+          {
+            title: t("mainContent.table.extension"),
+            dataIndex: "prorroga",
+            key: "prorroga",
+            align: "center",
+          },
+          {
+            title: t("mainContent.table.additionalInsurance"),
+            dataIndex: "seguro adicional",
+            key: "seguro adicional",
+            align: "center",
+          },
+          {
+            title: t("mainContent.table.totalAmount"),
+            dataIndex: "importe total",
+            key: "importe total",
             align: "center",
           },
           {
@@ -170,21 +246,21 @@ const ListadoContratosWorker = ({ url }) => {
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
                 <Button
+                  className="actionTable"
+                  type="primary"
                   onClick={() => {
                     setVisible(true);
                     setRow(record);
                   }}
-                  className="actionTable"
-                  type="primary"
                   icon={<EditOutlined />}
                 />
                 <Button
-                  className="actionTable"
-                  type="primary"
                   onClick={() => {
                     setOpen(true);
                     setRow(record);
                   }}
+                  className="actionTable"
+                  type="primary"
                   icon={<DeleteOutlined />}
                 />
               </Flex>
