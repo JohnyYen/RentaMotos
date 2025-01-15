@@ -10,6 +10,27 @@ import { pdf } from "@react-pdf/renderer";
 import DocumentPDF from "../../../components/DocumentPDF";
 import ModalCreateContractWorker from "../../../components/ModalCreateContract";
 
+const extractDataFilter = async () => {
+  let dataFilter = [];
+  try {
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+     const response = await axios.get('http://localhost:3000/api/client/mun', {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
+
+    if(response.status === 200){
+      dataFilter = response.data.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataFilter;
+};
+
+const dataFilter = await extractDataFilter();
+
 
 const extractDataContract = async (user) => {
     let dataSource = [];

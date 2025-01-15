@@ -10,7 +10,7 @@ import {
 } from "antd";
 import "../App.css";
 import axios from "axios";
-import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalModMoto from "./ModalModMoto";
@@ -275,11 +275,11 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
-                  {t("mainContent.table.modify")}
+                <Button icon={<EditOutlined/>} onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
+                  
                 </Button>
-                <Button className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}}>
-                {t("mainContent.table.delete")}
+                <Button icon={<DeleteOutlined/>} className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}}>
+               
                 </Button>
               </Flex>
             ),

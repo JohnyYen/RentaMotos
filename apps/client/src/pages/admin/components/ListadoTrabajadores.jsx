@@ -1,6 +1,6 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useContext, useEffect, useState } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined } from "@ant-design/icons";
 import EliminarWorker from '../../..//components/EliminarWorker';
 import "../../../App.css";
 import axios from "axios";
@@ -97,7 +97,7 @@ const ListadoTrabajadores = () => {
                     setOpen(true);
                     setRow(record);
                   }}
-                  icon={<DeleteOutl />}
+                  icon={<DeleteOutlined/>}
                 />
               </Flex>
             ),

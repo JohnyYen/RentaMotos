@@ -19,10 +19,10 @@ const HomePage = () => {
       <Footer className="footer">
         <Flex
           align="center"
-          justify="end"
-          style={{ height: 40, textAlign: "center" }}
+          justify="space-between"
+          style={{ height: 40, textAlign: "center", width:'100%' }}
         >
-          <div>telefono: 53591352_______________ </div>
+          <div >telefono: 53591352</div>
           <div> Email: rentamotos@gmail.com</div>
         </Flex>
       </Footer>
