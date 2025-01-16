@@ -18,10 +18,10 @@ export declare class ContractController {
     getAllPagosPDFMun(res: any, mun: string): Promise<void>;
     getAllPagosByMun(mun: string): Promise<any>;
     getAllFormaPago(): Promise<any>;
-    createContract(contract: ContractDto): Promise<any>;
-    createFormaPago(form: FormaPagoDto): Promise<any>;
-    updateContract(matricula: string, contract: ContractDto): Promise<any>;
-    updateFormaPago(body: FormaPagoDto, id: string): Promise<any>;
-    deleteFormaPago(id: string): Promise<any>;
-    deleteContract(matricula: string): Promise<any>;
+    createContract(contract: ContractDto): Promise<void>;
+    createFormaPago(form: FormaPagoDto): Promise<void>;
+    updateContract(matricula: string, contract: ContractDto): Promise<void>;
+    updateFormaPago(body: FormaPagoDto, id: string): Promise<void>;
+    deleteFormaPago(id: string): Promise<void>;
+    deleteContract(matricula: string): Promise<void>;
 }

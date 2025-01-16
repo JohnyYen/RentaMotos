@@ -7,7 +7,7 @@ export declare class AuthService {
     constructor(jwtService: JwtService, conn: any);
     register(userObject: ClientSignDto): Promise<any>;
     login(userObject: LoginObjectDto): Promise<{
-        user: any;
+        userId: any;
         token: string;
     }>;
 }
