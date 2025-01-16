@@ -14,7 +14,7 @@ export class MotorcycleService {
     constructor(@Inject(PG_CONNECTION) private conn : any, private pgService : PgService){}
 
     async getAllMotorcycle(){
-        return await this.pgService.pagination('moto_view');
+        //return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }

@@ -33,15 +33,24 @@ let AuthService = class AuthService {
         const response = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${userObject.user_name}'`);
         const findUser = response.rows[0];
         if (!findUser)
+<<<<<<< HEAD
             throw new common_1.HttpException("USER_NOT_FOUND", 401);
         console.log(findUser);
+=======
+            throw new common_1.HttpException("USER_NOT_FOUND", 402);
+>>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
         const isCheked = (0, bcrypt_1.compare)(userObject.password, findUser.contrasenia);
         if (!isCheked)
             throw new common_1.HttpException("PASSWORD_INCORRECT", 401);
-        const payload = { id: findUser.id_user, name: findUser.nombre_usuario };
+        console.log(findUser);
+        const payload = {
+            id: findUser.id_user,
+            name: findUser.nombre_usuario,
+            roles: findUser.tipo_usuario,
+        };
         const token = this.jwtService.sign(payload);
         const data = {
-            user: findUser,
+            userId: findUser.id_user,
             token,
         };
         return data;

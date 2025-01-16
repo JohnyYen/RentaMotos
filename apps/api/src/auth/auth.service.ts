@@ -25,16 +25,19 @@ export class AuthService {
         const response = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${userObject.user_name}'`);
         const findUser = response.rows[0]; 
         if(!findUser)
-            throw new HttpException("USER_NOT_FOUND", 401);
-        console.log(findUser);
+            throw new HttpException("USER_NOT_FOUND", 402);
        const isCheked = compare(userObject.password, findUser.contrasenia);
        if(!isCheked)
             throw new HttpException("PASSWORD_INCORRECT", 401);
-       
-       const payload = {id:findUser.id_user, name:findUser.nombre_usuario};
+       console.log(findUser);
+       const payload = {
+            id:findUser.id_user,
+            name:findUser.nombre_usuario,
+            roles: findUser.tipo_usuario,
+        };
        const token = this.jwtService.sign(payload);
        const data = {
-        user:findUser,
+        userId:findUser.id_user,
         token,
        }
 

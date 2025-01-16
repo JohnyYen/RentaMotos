@@ -25,7 +25,6 @@ let MotorcycleService = class MotorcycleService {
         this.pgService = pgService;
     }
     async getAllMotorcycle() {
-        return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }

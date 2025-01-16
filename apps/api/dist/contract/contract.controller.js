@@ -19,7 +19,13 @@ const contract_dto_1 = require("./dto/contract.dto");
 const swagger_1 = require("@nestjs/swagger");
 const formaPago_dto_1 = require("./dto/formaPago.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
+<<<<<<< HEAD
 const public_decorator_1 = require("../auth/public.decorator");
+=======
+const roles_guard_1 = require("../auth/roles.guard");
+const roles_decorator_1 = require("../auth/roles.decorator");
+const role_enum_1 = require("../auth/role.enum");
+>>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
 let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
@@ -111,6 +117,7 @@ let ContractController = class ContractController {
 };
 exports.ContractController = ContractController;
 __decorate([
+<<<<<<< HEAD
     (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
     (0, common_1.Get)('/formasPago'),
@@ -120,6 +127,10 @@ __decorate([
 ], ContractController.prototype, "getAllFormaPago", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+=======
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
+>>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -127,7 +138,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContract", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos en formato pdf" }),
     (0, common_1.Get)("/pdf"),
     __param(0, (0, common_1.Res)()),
@@ -136,7 +148,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDF", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos en un municipio" }),
     (0, common_1.Get)('/worker/:mun'),
     __param(0, (0, common_1.Param)('mun')),
@@ -145,7 +158,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractsMunWorker", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos en un municipio en formato pdf" }),
     (0, common_1.Get)('/worker/pdf/:mun'),
     __param(0, (0, common_1.Param)('mun')),
@@ -155,15 +169,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getPDFContractWorkerMun", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según los municipios" }),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, common_1.Get)('/mun'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractByMun", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según los municipios en formato pdf" }),
     (0, common_1.Get)("/mun/pdf"),
     __param(0, (0, common_1.Res)()),
@@ -172,7 +188,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDFMun", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según la marca y el modelo" }),
     (0, common_1.Get)('/marcxmodel'),
     __metadata("design:type", Function),
@@ -180,7 +197,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getFilterContract", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos según la marca y el modelo en formato pdf" }),
     (0, common_1.Get)("/marcxmodel/pdf"),
     __param(0, (0, common_1.Res)()),
@@ -189,7 +207,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractInPDFMarc", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos de un determinado cliente" }),
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
@@ -198,7 +217,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getContractByCliente", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados" }),
     (0, common_1.Get)('/cobros'),
     __metadata("design:type", Function),
@@ -206,7 +226,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagos", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados en formato pdf" }),
     (0, common_1.Get)('/cobros/pdf'),
     __param(0, (0, common_1.Res)()),
@@ -215,7 +236,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagosPDF", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros de un municipio en formato pdf" }),
     (0, common_1.Get)('/cobros/worker/pdf/:mun'),
     __param(0, (0, common_1.Res)()),
@@ -225,7 +247,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagosPDFMun", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros de un municipio" }),
     (0, common_1.Get)('/cobros/:mun'),
     __param(0, (0, common_1.Param)('mun')),
@@ -234,7 +257,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagosByMun", null);
 __decorate([
+<<<<<<< HEAD
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+=======
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
+    (0, common_1.Get)('/formasPago'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getAllFormaPago", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
+>>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo contrato" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -243,7 +280,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "createContract", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiOperation)({ summary: "Permite crear nuevas formas de pagos" }),
     (0, common_1.Post)('/formasPago'),
     __param(0, (0, common_1.Body)()),
@@ -252,7 +290,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "createFormaPago", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Modifica un contrato según la matricula de la moto que está en renta" }),
     (0, common_1.Patch)('/:matricula'),
     __param(0, (0, common_1.Param)("matricula")),
@@ -262,7 +301,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "updateContract", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la forma de pago", example: 1 }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica una forma de pago según su id" }),
     (0, common_1.Patch)('/formasPago/:id'),
@@ -273,7 +313,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "updateFormaPago", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiParam)({ name: "id", description: "Identificador de la forma de pago", example: 1, type: Number }),
     (0, swagger_1.ApiOperation)({ summary: "Elimina una forma de pago" }),
     (0, common_1.Delete)("/formasPago/:id"),
@@ -283,7 +324,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "deleteFormaPago", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Elimina a un contrato según la matricula de la moto que está en renta" }),
     (0, common_1.Delete)('/:matricula'),
     __param(0, (0, common_1.Param)("matricula")),

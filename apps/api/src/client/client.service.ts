@@ -18,7 +18,7 @@ export class ClientService {
      * @returns Todos los clientes en forma de pagina
      */
     async getAllClients(pageSize:number=1, page:number=1) {
-        return await this.pgService.pagination('cliente_view');
+        //return await this.pgService.pagination('cliente_view');
         const res = await this.conn.query(`SELECT * FROM cliente_view LIMIT ${pageSize} OFFSET ${(page-1) * pageSize}`);
         return res.rows;
     }
@@ -29,7 +29,7 @@ export class ClientService {
      * @returns Todos los clientes de un municipio en especifico
      */
     async getClientByMun(mun:string){
-        return await this.pgService.pagination(`cliente_view WHERE municipio = '${mun}'`);
+        //return await this.pgService.pagination(`cliente_view WHERE municipio = '${mun}'`);
 
         const res = await this.conn.query(`SELECT * FROM cliente_view WHERE municipio = '${mun}'`);
         return res.rows;
@@ -41,7 +41,7 @@ export class ClientService {
      * @returns Devuelve solamente el cliente
      */
     async getClient(id : string){
-        return await this.pgService.pagination(`cliente WHERE idcliente = '${id}'`);
+        //return await this.pgService.pagination(`cliente WHERE idcliente = '${id}'`);
 
         const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
         return res.rows;
@@ -134,7 +134,7 @@ export class ClientService {
      * @returns Todos los clientes incumplidores
      */
     async getAllBadClients(){
-        return await this.pgService.execute(` clientesIncumplidores()`);
+        //return await this.pgService.execute(` clientesIncumplidores()`);
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
     }
@@ -156,7 +156,7 @@ export class ClientService {
      * @returns Todos los municipios
      */
     async getAllMun(){
-        return await this.pgService.execute('select * from municipio');
+        //return await this.pgService.execute('select * from municipio');
 
         const res = await this.conn.query('select * from municipio');
         return res.rows;

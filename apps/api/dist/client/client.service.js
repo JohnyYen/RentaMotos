@@ -25,17 +25,14 @@ let ClientService = class ClientService {
         this.pgService = pgService;
     }
     async getAllClients(pageSize = 1, page = 1) {
-        return await this.pgService.pagination('cliente_view');
         const res = await this.conn.query(`SELECT * FROM cliente_view LIMIT ${pageSize} OFFSET ${(page - 1) * pageSize}`);
         return res.rows;
     }
     async getClientByMun(mun) {
-        return await this.pgService.pagination(`cliente_view WHERE municipio = '${mun}'`);
         const res = await this.conn.query(`SELECT * FROM cliente_view WHERE municipio = '${mun}'`);
         return res.rows;
     }
     async getClient(id) {
-        return await this.pgService.pagination(`cliente WHERE idcliente = '${id}'`);
         const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
         return res.rows;
     }
@@ -86,7 +83,6 @@ let ClientService = class ClientService {
         }
     }
     async getAllBadClients() {
-        return await this.pgService.execute(` clientesIncumplidores()`);
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
     }
@@ -97,7 +93,6 @@ let ClientService = class ClientService {
         return await (0, pdfKit_1.default)(Object.keys(client[0]), (0, jsonFormatter_1.arrayFormatter)(client));
     }
     async getAllMun() {
-        return await this.pgService.execute('select * from municipio');
         const res = await this.conn.query('select * from municipio');
         return res.rows;
     }
