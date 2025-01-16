@@ -64,7 +64,7 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
       </Form>
       )}>   
       <Form.Item label="Color:" name={"color"} rules={[{required:true, message:t("messageError.emptyColor")}]}>
-          <Select style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder={row?.color}>
+          <Select defaultValue={row?.color} style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder={row?.color}>
               <Select.Option value='Rojo'>{t("mainContent.table.colors.red")}</Select.Option>
               <Select.Option value='Azul'>{t("mainContent.table.colors.blue")}</Select.Option>
               <Select.Option value='Negro'>{t("mainContent.table.colors.black")}</Select.Option>
@@ -78,11 +78,11 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
 
        <Form.Item label={t("modal.cantKm") + ":"} name={"cantKm"} rules={[{required:true, message:("messageError.emptyKm")},
        ]}>
-        <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
+        <InputNumber defaultValue={row?.kmRecorridos} min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>
 
         {row?.situacion !== "Alquilada" && <Form.Item label={t("modal.situation") + ":"} name={"situacion"} rules={[{required:true, message:("messageError.emptySituation")}]}>
-        <Select style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
+        <Select defaultValue={row?.situacion} style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
             {situations.map((item, i) => (
               <Select.Option key={i} value={item.situacion}>{item.situacion}</Select.Option>
             ))}

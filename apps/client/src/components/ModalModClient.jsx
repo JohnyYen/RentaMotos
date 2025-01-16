@@ -60,46 +60,23 @@ const ModalModClient = ({isOpen, setOpen}) => {
         <Flex vertical={true}>
 
          <Row gutter={24}>
-           <Col span={12}>
+           <Col span={20}>
               <Form.Item label={t("profile.name") + ":"} name="name" rules={[{required: true,message: t("messageError.emptyName"),},
                 {min:4, message: t("messageError.minCharName")},
                 {max:20, message: t("messageError.maxCharName")},
               ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")}/>
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")} defaultValue={row?.nombre}/>
               </Form.Item>
 
-              <Form.Item label={t("profile.middleName") + ":"} name="secondName" rules={[{min: 4,message: t("messageError.minCharMiddleName"),},
-                {max:20,message: t("messageError.maxCharMiddleName"),}
-              ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder={t("profile.lastName")}/>  
-              </Form.Item>
-
-
-              <Form.Item label={t("profile.lastName") + ":"} name="primApellido" rules={[{required: true,message: t("messageError.emptyLastName"),},
-                {min:4, message: t("messageError.minCharLastName")},
-                {max:25, message: t("messageError.maxCharLastName")},
-              ]}>
-              <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder={t("profile.lastName")}/>        
-              </Form.Item>
-
-
-              <Form.Item label={t("profile.secondLastName") + ":"} name="segApellido" rules={[{min: 4,message: t("messageError.minCharLastName"),},
-                {max:25 ,message: t("messageError.maxCharLastName"),},
-              ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondLast(e.target.value)} placeholder={t("profile.secondLastName")}/>    
-              </Form.Item>
-           </Col>
-
-           <Col span={12}>
-              <Form.Item label={t("profile.contactNumber") + ":"} name="numCont" rules={[{required: true,message: t("messageError.emptyContactNumber"),},
+              {/* <Form.Item label={t("profile.contactNumber") + ":"} name="numCont" rules={[{required: true,message: t("messageError.emptyContactNumber"),},
                 {len:8, message: t("messageError.lengthContactNumber")}
               ]}>
                 <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setNumCont(e.target.value)} placeholder={t("profile.contactNumber")}/>   
-              </Form.Item>
+              </Form.Item> */}
 
 
               <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
-                <Select style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder={t("profile.municipality")}>
+                <Select style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder={t("profile.municipality")} defaultValue={row?.municipio}>
                   {dataSource.map((item, i) => (
                     <Option key={i} value={item.nommun}>{item.nommun}</Option>
                   ))}
@@ -107,6 +84,26 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
               </Form.Item>
 
+              {/* <Form.Item label={t("profile.middleName") + ":"} name="secondName" rules={[{min: 4,message: t("messageError.minCharMiddleName"),},
+                {max:20,message: t("messageError.maxCharMiddleName"),}
+              ]}>
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder={t("profile.lastName")} defaultValue={row?.segNombre}/>  
+              </Form.Item>
+
+
+              <Form.Item label={t("profile.lastName") + ":"} name="primApellido" rules={[{required: true,message: t("messageError.emptyLastName"),},
+                {min:4, message: t("messageError.minCharLastName")},
+                {max:25, message: t("messageError.maxCharLastName")},
+              ]}>
+              <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder={t("profile.lastName")} />        
+              </Form.Item>
+
+
+              <Form.Item label={t("profile.secondLastName") + ":"} name="segApellido" rules={[{min: 4,message: t("messageError.minCharLastName"),},
+                {max:25 ,message: t("messageError.maxCharLastName"),},
+              ]}>
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondLast(e.target.value)} placeholder={t("profile.secondLastName")}/>    
+              </Form.Item> */}
            </Col>
          </Row>
 

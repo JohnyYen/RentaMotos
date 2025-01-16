@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const DocumentPDF = ({ client, dataContract }) => {
+const DocumentPDF = ({ dataContract }) => {
 
   return (
     <Document>
@@ -64,7 +64,7 @@ const DocumentPDF = ({ client, dataContract }) => {
               <Text style={styles.fieldLabel}>Nombre:</Text>
               <Text style={styles.fieldValue}>
                 {" "}
-                {client.nombre || "N/A"}
+                {dataContract['nombre'] || "N/A"}
               </Text>
             </Text>
             <Text style={styles.field}>

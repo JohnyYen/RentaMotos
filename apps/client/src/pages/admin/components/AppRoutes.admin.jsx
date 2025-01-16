@@ -135,7 +135,7 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes dataClient={dataClient} setDataClient={setDataClient} url={'http://localhost:3000/api/client/pdf'} />}/>
+      <Route path="" element={<ListadoClientes dataClient={dataClient} setDataClient={setDataClient} url={'http://localhost:3000/api/client/pdf'} />}/>
       <Route path="incumplidoresClientes" element={<Incumplidores />}></Route>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
       <Route path="situacionMotos" element={<SituacionMoto />}></Route>

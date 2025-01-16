@@ -123,12 +123,32 @@ const ListadoClientes = ({ dataClient, setDataClient, url }) => {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
+            filters: dataClient
+            ? Array.from(
+                new Set(dataClient.map((item) => item.nombre))
+              ).map((nombre) => ({
+                text: nombre,
+                value: nombre,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.nombre.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
             title: "CI",
             dataIndex: "ci",
             key: "ci",
+            filters: dataClient
+            ? Array.from(
+                new Set(dataClient.map((item) => item.ci))
+              ).map((ci) => ({
+                text: ci,
+                value: ci,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.ci.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {

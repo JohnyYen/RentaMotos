@@ -85,13 +85,13 @@ const ModalModContract = ({isOpen, setOpen}) => {
 
               <Form.Item label={t("modal.extensionDays") + ":"} name="diasProrroga" rules={[{required: true,message: t("messageError.emptyExtensionDays"),},
               ]}>
-                <InputNumber min={row?.prorroga} style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : t("modal.methodPayment")}/>
+                <InputNumber defaultValue={row?.prorroga} min={row?.prorroga} style={{marginBottom:margin, width:150}} onChange={(e) => setDiasProrroga(e)} placeholder={row ? row['prorroga'] : t("modal.methodPayment")}/>
                 
               </Form.Item>
 
               <Form.Item label='Fecha de Fin:' name="dateEnd" rules={[{required: true,message: 'Introduce la fecha de Fin!',},
               ]}>
-                <DatePicker disabledDate={(date) => {
+                <DatePicker defaultValue={row?.fechaFin} disabledDate={(date) => {
                   return date && date < new Date(row?.fechaFin);
                 }} placement='bottomLeft' format={'DD/MM/YYYY'} placeholder='Fecha Fin' style={{marginBottom:margin}} onChange={(date, dateString) => setDate(dateString)}/>
               </Form.Item>

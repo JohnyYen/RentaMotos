@@ -45,7 +45,7 @@ const ModalCreateContractClient = ({
   const [formaPago, setFormaPago] = useState("");
   const [seguro, setSeguro] = useState(false);
   const [t] = useTranslation("global");
-  const [signatureURL, setSignatureURL] = useState();
+  // const [signatureURL, setSignatureURL] = useState();
 
   const handlePetition = async () => {
     const contract = {
@@ -243,9 +243,9 @@ const ModalCreateContractClient = ({
         </Col>
       </Row>
 
-      <Form.Item label={t("modal.signature") + ":"}>
+      {/* <Form.Item label={t("modal.signature") + ":"}>
         <SignaturePad setSignatureURL={setSignatureURL} />
-      </Form.Item>
+      </Form.Item> */}
 
     </Modal>
   );

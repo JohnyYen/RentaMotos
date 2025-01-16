@@ -383,7 +383,7 @@ const ModalCreateContractWorker = ({
               </Select>
             </Form.Item>
 
-            <Form.Item name="seguro">
+            <Form.Item name="seguro" style={{marginTop: 55}}> 
               <Typography.Paragraph>
                 {t("modal.insurance")}{" "}
                 <Checkbox
@@ -394,14 +394,7 @@ const ModalCreateContractWorker = ({
             </Form.Item>
           </Col>
         
-          <Form.Item label={t("modal.signature") + ":"}
-          name="signature"
-           rules={[
-            { required: true, message: 'Firma vacía' },
-          ]}
-        >
-          <SignaturePad setSignatureURL={setSignatureURL} />
-        </Form.Item>
+  
         
         </Row>
       </Modal>

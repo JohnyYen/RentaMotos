@@ -144,11 +144,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "nombre",
             key: "nombre",
             filters: dataSource
-              ? dataSource.map((item) => ({
-                  text: item.nombre,
-                  value: item.nombre,
-                }))
-              : [],
+            ? Array.from(
+                new Set(dataSource.map((item) => item.nombre))
+              ).map((nombre) => ({
+                text: nombre,
+                value: nombre,
+              }))
+            : [],
             onFilter: (value, record) =>
               record.nombre.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
@@ -159,11 +161,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "matricula",
             key: "matricula",
             filters: dataSource
-              ? dataSource.map((item) => ({
-                  text: item.matricula,
-                  value: item.matricula,
-                }))
-              : [],
+            ? Array.from(
+                new Set(dataSource.map((item) => item.matricula))
+              ).map((matricula) => ({
+                text: matricula,
+                value: matricula,
+              }))
+            : [],
             onFilter: (value, record) =>
               record.matricula.toLowerCase().includes(value.toLowerCase()),
             align: "center",          },
@@ -172,11 +176,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "marca",
             key: "marca",
             filters: dataSource
-              ? dataSource.map((item) => ({
-                  text: item.marca,
-                  value: item.marca,
-                }))
-              : [],
+            ? Array.from(
+                new Set(dataSource.map((item) => item.marca))
+              ).map((marca) => ({
+                text: marca,
+                value: marca,
+              }))
+            : [],
             onFilter: (value, record) =>
               record.marca.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -186,11 +192,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "modelo",
             key: "modelo",
             filters: dataSource
-              ? dataSource.map((item) => ({
-                  text: item.modelo,
-                  value: item.modelo,
-                }))
-              : [],
+            ? Array.from(
+                new Set(dataSource.map((item) => item.modelo))
+              ).map((modelo) => ({
+                text: modelo,
+                value: modelo,
+              }))
+            : [],
             onFilter: (value, record) =>
               record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -200,11 +208,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "forma de pago",
             key: "forma de pago",
             filters: dataSource
-              ? dataSource.map((item) => ({
-                  text: item['forma de pago'],
-                  value: item['forma de pago'],
-                }))
-              : [],
+            ? Array.from(
+                new Set(dataSource.map((item) => item['forma de pago']))
+              ).map((formapago) => ({
+                text: formapago,
+                value: formapago,
+              }))
+            : [],
             onFilter: (value, record) =>
               record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",

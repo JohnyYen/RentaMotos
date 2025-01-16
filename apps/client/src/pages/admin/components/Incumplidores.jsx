@@ -93,6 +93,16 @@ const Incumplidores = () => {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.nombre))
+              ).map((nombre) => ({
+                text: nombre,
+                value: nombre,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.nombre.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
             width: "8rem",
             align: "center",
@@ -101,6 +111,16 @@ const Incumplidores = () => {
             title: t("mainContent.table.lastName"),
             dataIndex: "apellidos",
             key: "apellidos",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.apellidos))
+              ).map((apellidos) => ({
+                text: apellidos,
+                value: apellidos,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.apellidos.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {

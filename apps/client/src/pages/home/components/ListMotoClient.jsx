@@ -97,7 +97,7 @@ const ListMotoClient = () => {
   }, []);
 
   return (
-    <Flex vertical="true">
+    <Flex vertical="true" style={{height: '40rem'}}>
       <Typography.Title level={3}>
         {t("motorcycle.motorcycleList")}
       </Typography.Title>
@@ -118,7 +118,7 @@ const ListMotoClient = () => {
           defaultValue={moment().format("L")}
         ></Mentions>
       </Flex>
-      <Flex align="center" justify="center">
+      <Flex align="center" justify="center" style={{height: '40rem'}}>
         {dataSource.length > 0 ? (
           <List
             grid={{
@@ -149,7 +149,7 @@ const ListMotoClient = () => {
                   cover={
                     <img
                       alt="example"
-                      src="apps\client\src\assets\moto.png"
+                      src="/src/assets/images/moto.png"
                     />
                   }
                 >

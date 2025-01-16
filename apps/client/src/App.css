@@ -212,7 +212,6 @@
 
 .content {
   width: 100%;
-  height: auto;
   min-height: 100vh;
   padding: 1rem;
   background-image: url('../src/assets/background.png');
@@ -289,12 +288,20 @@
 .navBar-menu.horizontal {
   display: flex;
 }
-
+.ant-menu-submenu-selected{
+  
+  background: none !important;
+  border-bottom: 2px solid darkblue !important ;
+}
 .ant-menu-item-selected {
+  
   background: none !important;
   border-bottom: 2px solid darkblue !important;
 }
-
+.ant-menu-item-only-child{
+  background: none !important;
+  border-bottom: none !important;
+}
 .App {
   display: flex;
   flex-direction: column;

@@ -131,12 +131,32 @@ const ContratosMunicipio = () => {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.marca))
+              ).map((marca) => ({
+                text: marca,
+                value: marca,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.marca.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.modelo))
+              ).map((modelo) => ({
+                text: modelo,
+                value: modelo,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {

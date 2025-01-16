@@ -1,6 +1,6 @@
 import { Space, Flex, Typography, Table, Button, Input, Mentions } from "antd";
 import { useContext, useEffect, useState } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined } from "@ant-design/icons";
 import EliminarWorker from '../../..//components/EliminarWorker';
 import "../../../App.css";
 import axios from "axios";
@@ -23,7 +23,6 @@ const extractDataWorker = async (user) => {
       dataSource = response.data.map((element, index) => ({
         key: index,
         usuario: element.nombre_usuario,
-        'contraseña': element.contrasenia,
         municipio: element.mun
       }));
     }
@@ -73,12 +72,6 @@ const ListadoTrabajadores = () => {
             align: "center",
           },
           {
-            title: "Contraseña",
-            dataIndex: "contraseña",
-            key: "contraseña",
-            align: "center",
-          },
-          {
             title: "Municipio",
             dataIndex: "municipio",
             key: "municipio",
@@ -97,7 +90,7 @@ const ListadoTrabajadores = () => {
                     setOpen(true);
                     setRow(record);
                   }}
-                  icon={<DeleteOutl />}
+                  icon={<DeleteOutlined/>}
                 />
               </Flex>
             ),

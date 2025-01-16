@@ -5,6 +5,7 @@ import ListMoto from "../../../components/ListMoto";
 import ListadoClientes from '../components/ListadoClientesWorker'
 import ListadoContratos from "../components/ListadoContratoWorker";
 import IngresosAnno from "../../../components/IngresosAnno";
+import Incumplidores from '../../admin/components/Incumplidores';
 import { Result } from "antd";
 import axios from "axios";
 import { use } from "i18next";
@@ -180,7 +181,8 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="listadoClientes" element={<ListadoClientes dataClient={dataClient} setDataClient={setDataClient} url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
+      <Route path="" element={<ListadoClientes dataClient={dataClient} setDataClient={setDataClient} url={`http://localhost:3000/api/client/worker/pdf/${user?.mun}`} />}/>
+      <Route path="listadoIncumplidores" element={<Incumplidores />}/>
       <Route path="listadoMoto" element={<ListMoto />}></Route>
       <Route path="listadoContratos"  element={<ListadoContratos  dataContract={dataContract} setDataContract={setDataContract} url={`http://localhost:3000/api/contract/worker/pdf/${user?.mun}`} />}></Route>
       <Route path="ingresosAño" element={<IngresosAnno extractData={dataIncome} url={`http://localhost:3000/api/pagos/worker/pdf/${user?.mun}`} />} />

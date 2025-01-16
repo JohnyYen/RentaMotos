@@ -48,16 +48,16 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
   const { setRow } = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  console.log(dataContract);
+
   const onClick = async () => {
     await downloadPDF(url);
   };
 
-  const handleRowClick = async (record) => {
-    const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
-    const url = URL.createObjectURL(blob);
-    window.open(url);
-  };
+  // const handleRowClick = async (record) => {
+  //   const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
+  //   const url = URL.createObjectURL(blob);
+  //   window.open(url);
+  // };
 
   return (
     <Flex vertical="true">
@@ -79,17 +79,27 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
           pageSize: 4,
           position: ["bottomLeft"],
         }}
-        onRow={(record) => {
-          return {
-            onClick: (e) => handleRowClick(record),
-          };
-        }}
+        // onRow={(record) => {
+        //   return {
+        //     onClick: (e) => handleRowClick(record),
+        //   };
+        // }}
         dataSource={dataContract}
         columns={[
           {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
+            filters: dataContract
+            ? Array.from(
+                new Set(dataContract.map((item) => item.nombre))
+              ).map((nombre) => ({
+                text: nombre,
+                value: nombre,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.nombre.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
             width: "8rem",
             align: "center",
@@ -98,24 +108,64 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
+            filters: dataContract
+            ? Array.from(
+                new Set(dataContract.map((item) => item.matricula))
+              ).map((matricula) => ({
+                text: matricula,
+                value: matricula,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.matricula.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            filters: dataContract
+            ? Array.from(
+                new Set(dataContract.map((item) => item.marca))
+              ).map((marca) => ({
+                text: marca,
+                value: marca,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.marca.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+            filters: dataContract
+            ? Array.from(
+                new Set(dataContract.map((item) => item.modelo))
+              ).map((modelo) => ({
+                text: modelo,
+                value: modelo,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {
             title: t("mainContent.table.methodPayment"),
             dataIndex: "forma de pago",
             key: "forma de pago",
+            filters: dataContract
+            ? Array.from(
+                new Set(dataContract.map((item) => item['forma de pago']))
+              ).map((formapago) => ({
+                text: formapago,
+                value: formapago,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.formapago.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
           {

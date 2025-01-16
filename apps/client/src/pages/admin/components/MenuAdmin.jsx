@@ -59,7 +59,7 @@ const MenuAdmin = ({ isInline = false }) => {
             children: [
               {
                 label: t("sideBar.clientList"),
-                key: "listadoClientes",
+                key: "",
               },
               {
                 label: t("sideBar.clientNonCompliant"),

@@ -4,6 +4,7 @@ import { Card, Divider, Flex, FloatButton, Image, Layout } from "antd";
 import AppRouter from "./components/AppRoutes.home";
 import NavBarHome from "./components/NavBarHome";
 
+
 const { Sider, Header, Content, Footer } = Layout;
 
 const HomePage = () => {
@@ -19,10 +20,10 @@ const HomePage = () => {
       <Footer className="footer">
         <Flex
           align="center"
-          justify="end"
-          style={{ height: 40, textAlign: "center" }}
+          justify="space-between"
+          style={{ height: 20, width: 4000, textAlign: "center" }}
         >
-          <div>telefono: 53591352_______________ </div>
+          <div>telefono: 53591352 </div>
           <div> Email: rentamotos@gmail.com</div>
         </Flex>
       </Footer>

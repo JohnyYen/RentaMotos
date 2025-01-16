@@ -10,7 +10,7 @@ import {
 } from "antd";
 import "../App.css";
 import axios from "axios";
-import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalModMoto from "./ModalModMoto";
@@ -128,14 +128,7 @@ const ListMoto = () => {
     extractData().then((result) => {
       setDataSource(result);
     });
-    extractDataFilter().then((result) => {
-      setDataFilter(
-        result.map((marca) => ({
-          text: marca.nommarca,
-          value: marca.nomarca,
-        }))
-      );
-    });
+    
     window.addEventListener("resize", updatePageSize);
     updatePageSize();
   }, []);
@@ -240,6 +233,16 @@ const ListMoto = () => {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.matricula))
+              ).map((matricula) => ({
+                text: matricula,
+                value: matricula,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.matricula.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
             width: "8rem",
           },
@@ -247,21 +250,61 @@ const ListMoto = () => {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.marca))
+              ).map((marca) => ({
+                text: marca,
+                value: marca,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.marca.toLowerCase().includes(value.toLowerCase()),
           },
           {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.modelo))
+              ).map((modelo) => ({
+                text: modelo,
+                value: modelo,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.modelo.toLowerCase().includes(value.toLowerCase()),
           },
           {
             title: t("mainContent.table.situation"),
             dataIndex: "situacion",
             key: "situacion",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.situacion))
+              ).map((situacion) => ({
+                text: situacion,
+                value: situacion,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.situacion.toLowerCase().includes(value.toLowerCase()),
           },
           {
             title: t("mainContent.table.color"),
             dataIndex: "color",
             key: "color",
+            filters: dataSource
+            ? Array.from(
+                new Set(dataSource.map((item) => item.color))
+              ).map((color) => ({
+                text: color,
+                value: color,
+              }))
+            : [],
+            onFilter: (value, record) =>
+              record.nombre.toLowerCase().includes(value.toLowerCase()),
           },
           {
             title: t("mainContent.table.kmTraveled"),
@@ -273,12 +316,8 @@ const ListMoto = () => {
             key: "acciones",
             render: (_, record) => (
               <Flex align="center" justify="center" gap="1rem">
-                <Button onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary">
-                  {t("mainContent.table.modify")}
-                </Button>
-                <Button className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}}>
-                {t("mainContent.table.delete")}
-                </Button>
+                <Button icon={<EditOutlined />} onClick={() => {setVisible(true); setRow(record)}} className="actionTable" type="primary" />
+                <Button icon={<DeleteOutlined />} className="actionTable" type="primary" onClick={() => {setVisualize(true); setRow(record)}} />
               </Flex>
             ),
             fixed: "right",

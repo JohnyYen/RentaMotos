@@ -43,9 +43,22 @@ const MenuWorker = ({ isInline = false }) => {
         }}
         items={[
             {
-              label: t("sideBar.clientList"),
-              key: "listadoClientes",
+              label: t("sideBar.client"),
+              key: "listados",
               icon: <UserOutlined />,
+              children: [
+                {
+                  label: t("sideBar.clientList"),
+                  key: "",
+                  icon: <UserOutlined/>,
+                },
+                {
+                  label: t("sideBar.incumplidores"),
+                  key: "listadoIncumplidores",
+                  icon: <UserOutlined/>,
+                },  
+
+              ]
             },
             {
               label: t("sideBar.motorcycleList"),

@@ -17,15 +17,14 @@ const Profile = ({isOpen, setOpen}) => {
     <Content>
        <Flex style={{marginBottom:50}}justify="center"><Avatar  size={200}></Avatar></Flex> 
         
-    <Flex justify="center" className="perfilInfo" style={{}}>
+    <Flex justify="space-around" className="perfilInfo" style={{}}>
        
         
         
-        <Row gutter={0}> 
+        
             
-            <Col justify="center" wrapspan={0} >
-
-                <Flex style={{marginBottom: margin}}>
+            
+        <Flex vertical wrap > <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.username")}: </Tag>
                     <FormItemLabel  label={user?.nombre_usuario}/>
                 </Flex>
@@ -59,13 +58,12 @@ const Profile = ({isOpen, setOpen}) => {
                     <Tag>{t("profile.middleName")}: </Tag>
                     <FormItemLabel label={client?.segnombre}/>
                 </Flex>
-                
+                </Flex>
+               
             
-            </Col>
+            
 
-            <Col span={12}>
-                
-                <Flex style={{marginBottom: margin}}>  
+           <Flex wrap vertical="true"><Flex style={{marginBottom: margin}}>  
                     <Tag>{t("profile.lastName")}: </Tag>
                     <FormItemLabel label={client?.primapellido}/>
                 </Flex>
@@ -89,9 +87,11 @@ const Profile = ({isOpen, setOpen}) => {
                     <Tag>{t("profile.sex")}: </Tag>
                     <FormItemLabel label={client?.sexo}/>
                 </Flex>
-
-            </Col>
-        </Row>
+</Flex>
+                
+                
+            
+       
         
     </Flex></Content>
   )

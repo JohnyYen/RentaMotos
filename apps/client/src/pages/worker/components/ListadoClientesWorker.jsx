@@ -128,10 +128,14 @@ const ListadoClientesWorker = ({ data ,url }) => {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
-            filters: extractData.map((item) => ({
-              text: item.nombre,
-              value: item.nombre,
-            })),
+            filters: extractData
+            ? Array.from(
+                new Set(extractData.map((item) => item.nombre))
+              ).map((nombre) => ({
+                text: nombre,
+                value: nombre,
+              }))
+            : [],
             onFilter: (value, record) => record.nombre.toLowerCase().includes(value.toLowerCase()),
             align: "center",
           },
@@ -139,10 +143,14 @@ const ListadoClientesWorker = ({ data ,url }) => {
             title: "CI",
             dataIndex: "ci",
             key: "ci",
-            filters: extractData.map((item) => ({
-              text: item.ci,
-              value: item.ci.toString(),
-            })),
+            filters: extractData
+            ? Array.from(
+                new Set(extractData.map((item) => item.ci))
+              ).map((ci) => ({
+                text: ci,
+                value: ci,
+              }))
+            : [],
             onFilter: (value, record) => record.ci.toString().includes(value),      
             align: "center",
           },
