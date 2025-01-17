@@ -14,6 +14,14 @@ let situationData = [];
 
 let response = await axios.get('http://localhost:3000/api/moto/situacion');
 
+responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
+  headers: {
+    Authorization: `Bearer ${jwt}`
+  }
+});
+
+if(responseMarcData === 200) marcData = responseMarcData.data;
+
 if (response.status === 200)
   situationData = response.data.filter(
     (item) => item.situacion !== "Alquilada"

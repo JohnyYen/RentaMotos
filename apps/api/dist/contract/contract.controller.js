@@ -19,13 +19,10 @@ const contract_dto_1 = require("./dto/contract.dto");
 const swagger_1 = require("@nestjs/swagger");
 const formaPago_dto_1 = require("./dto/formaPago.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
-<<<<<<< HEAD
 const public_decorator_1 = require("../auth/public.decorator");
-=======
 const roles_guard_1 = require("../auth/roles.guard");
 const roles_decorator_1 = require("../auth/roles.decorator");
 const role_enum_1 = require("../auth/role.enum");
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
 let ContractController = class ContractController {
     constructor(contractService) {
         this.contractService = contractService;
@@ -117,7 +114,6 @@ let ContractController = class ContractController {
 };
 exports.ContractController = ContractController;
 __decorate([
-<<<<<<< HEAD
     (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
     (0, common_1.Get)('/formasPago'),
@@ -126,11 +122,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllFormaPago", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
-=======
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos" }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -257,21 +250,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagosByMun", null);
 __decorate([
-<<<<<<< HEAD
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
-=======
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
-    (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las formas de pago en la aplicación" }),
-    (0, common_1.Get)('/formasPago'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], ContractController.prototype, "getAllFormaPago", null);
-__decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo contrato" }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

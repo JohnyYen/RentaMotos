@@ -53,6 +53,9 @@ export class MotorcycleService {
 
     async getMarc() {
         const res = await  this.conn.query('SELECT nom_marca FROM marca');
+
+        console.log(res.rows);
+        
         return res.rows;
     }
 

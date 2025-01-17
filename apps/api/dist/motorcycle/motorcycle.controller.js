@@ -20,14 +20,11 @@ const swagger_1 = require("@nestjs/swagger");
 const marc_dto_1 = require("./dto/marc.dto");
 const model_dto_1 = require("./dto/model.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
-<<<<<<< HEAD
-const public_decorator_1 = require("../auth/public.decorator");
-const motorcyclePartial_dto_1 = require("./dto/motorcyclePartial.dto");
-=======
 const role_enum_1 = require("../auth/role.enum");
 const roles_decorator_1 = require("../auth/roles.decorator");
 const roles_guard_1 = require("../auth/roles.guard");
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
+const motorcyclePartial_dto_1 = require("./dto/motorcyclePartial.dto");
+const public_decorator_1 = require("../auth/public.decorator");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -123,8 +120,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getMotoClient", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve la situación de las motos" }),
     (0, common_1.Get)('/situation'),
     __metadata("design:type", Function),
@@ -142,12 +139,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getPDFSituation", null);
 __decorate([
-<<<<<<< HEAD
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, public_decorator_1.SkipAuth)(),
-=======
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User, role_enum_1.Role.Worker),
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los modelos de las motos" }),
     (0, common_1.Get)('/model'),
     __metadata("design:type", Function),
@@ -155,12 +148,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllModels", null);
 __decorate([
-<<<<<<< HEAD
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, public_decorator_1.SkipAuth)(),
-=======
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User, role_enum_1.Role.Worker),
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las situaciones posibles para las motos" }),
     (0, common_1.Get)('/situacion'),
     __metadata("design:type", Function),
@@ -168,12 +157,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getSituation", null);
 __decorate([
-<<<<<<< HEAD
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, public_decorator_1.SkipAuth)(),
-=======
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User, role_enum_1.Role.Worker),
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las marcas de las motos" }),
     (0, common_1.Get)('/marc'),
     __metadata("design:type", Function),
@@ -181,12 +166,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getMarc", null);
 __decorate([
-<<<<<<< HEAD
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
-=======
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
     (0, swagger_1.ApiBody)({ type: motorcycle_dto_1.MotorcycleDto, description: "Los datos de la moto" }),
     (0, swagger_1.ApiOperation)({ summary: "Crea una moto" }),
     (0, common_1.Post)(),

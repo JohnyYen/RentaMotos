@@ -34,13 +34,13 @@ if (response.status === 200) dataSource = response.data;
 let marcData = [];
 let modelData = [];
 
-// responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
-//   headers: {
-//     Authorization: `Bearer ${jwt}`
-//   }
-// });
+responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
+  headers: {
+    Authorization: `Bearer ${jwt}`
+  }
+});
 
-// if(responseMarcData === 200) marcData = responseMarcData.data;
+if(responseMarcData === 200) marcData = responseMarcData.data;
 
 const modelResponse = await axios.get("http://localhost:3000/api/moto/model", {
   headers: {

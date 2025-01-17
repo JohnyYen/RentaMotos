@@ -18,13 +18,10 @@ const client_service_1 = require("./client.service");
 const client_dto_1 = require("./dto/client.dto");
 const swagger_1 = require("@nestjs/swagger");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
-<<<<<<< HEAD
 const public_decorator_1 = require("../auth/public.decorator");
-=======
 const roles_guard_1 = require("../auth/roles.guard");
 const role_enum_1 = require("../auth/role.enum");
 const roles_decorator_1 = require("../auth/roles.decorator");
->>>>>>> a5287ddada0c7f4dea950d6bffa293d1af03495f
 let ClientController = class ClientController {
     constructor(clientService) {
         this.clientService = clientService;

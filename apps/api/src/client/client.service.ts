@@ -19,7 +19,7 @@ export class ClientService {
      */
     async getAllClients(pageSize:number=1, page:number=1) {
         //return await this.pgService.pagination('cliente_view');
-        const res = await this.conn.query(`SELECT * FROM cliente_view LIMIT ${pageSize} OFFSET ${(page-1) * pageSize}`);
+        const res = await this.conn.query(`SELECT * FROM cliente_view`);
         return res.rows;
     }
 

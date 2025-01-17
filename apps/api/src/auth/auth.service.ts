@@ -30,6 +30,7 @@ export class AuthService {
        if(!isCheked)
             throw new HttpException("PASSWORD_INCORRECT", 401);
        console.log(findUser);
+       
        const payload = {
             id:findUser.id_user,
             name:findUser.nombre_usuario,

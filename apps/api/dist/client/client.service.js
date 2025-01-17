@@ -25,7 +25,7 @@ let ClientService = class ClientService {
         this.pgService = pgService;
     }
     async getAllClients(pageSize = 1, page = 1) {
-        const res = await this.conn.query(`SELECT * FROM cliente_view LIMIT ${pageSize} OFFSET ${(page - 1) * pageSize}`);
+        const res = await this.conn.query(`SELECT * FROM cliente_view`);
         return res.rows;
     }
     async getClientByMun(mun) {

@@ -16,8 +16,15 @@ function Register() {
   const navigate = useNavigate(); 
   const [t] = useTranslation("global");
 
+  const clearInput = () => {
+    setEmail('');
+    setPassword('');
+    setUserName('');
+  }
+
   const handleLogger = () => {
     setVisible(!visible)
+    clearInput();
   }
 
   const handleLogin = async (e) => {
@@ -50,6 +57,7 @@ function Register() {
             Authorization: `Bearer ${response.data.token}`
           }
         });
+
         if(res.status === 200){
           console.log(res);
           message.success(t("messageSuccess.loginSuccess"))
@@ -83,6 +91,8 @@ function Register() {
       const response = await axios.post('http://localhost:3000/api/auth/register', client);
 
       if(response.status === 201)
+        // setClient(client);
+        // sessionStorage.setItem('jwt', JSON.stringify(response.data.token));
         navigate('/home');
     }
   }
@@ -94,11 +104,11 @@ function Register() {
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
+              <input value={user_name} type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+              <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button onClick={(e) => handleLogin(e)} value="Login" className="btn solid">Login</button>
           </form>
@@ -106,15 +116,15 @@ function Register() {
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
+              <input value={user_name} type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+              <input value={email} type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+              <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button onClick={(e) => handleRegister(e)} className="btn" value="Sign up">Sign up</button>
             <p className="social-text">Or Sign up with social platforms</p>

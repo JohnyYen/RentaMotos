@@ -10,6 +10,7 @@ import { Role } from 'src/auth/role.enum';
 import { Roles } from 'src/auth/roles.decorator';
 import { RoleGuard } from 'src/auth/roles.guard';
 import { MotorcyclePartial } from './dto/motorcyclePartial.dto';
+import { SkipAuth } from 'src/auth/public.decorator';
 
 @ApiBearerAuth()
 @ApiTags('Motocicletas')
@@ -48,8 +49,8 @@ export class MotorcycleController {
         return await this.motoService.getMotoClient();
     }
 
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.Worker)
+    @UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve la situación de las motos"})
     @Get('/situation')
     getSituationMoto(){
@@ -70,24 +71,24 @@ export class MotorcycleController {
         res.send(buffer);
     }
 
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.User, Role.Worker)
+    @UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve todos los modelos de las motos"})
     @Get('/model')
     async getAllModels() {
         return await this.motoService.getModels();
     }
 
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.User, Role.Worker)
+    @UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve todas las situaciones posibles para las motos"})
     @Get('/situacion')
     async getSituation(){
         return await this.motoService.getSituation();
     }
 
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.User, Role.Worker)
+    @UseGuards(JwtAuthGuard)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve todas las marcas de las motos"})
     @Get('/marc')
     async getMarc(){
