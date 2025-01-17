@@ -86,6 +86,7 @@ export class MotorcycleService {
 
     async createMotorcycle (moto : MotorcycleDto){
        try{
+        console.log(moto);
         //return await this.pgService.execute(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`)
         return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
        }catch(error){
@@ -108,6 +109,7 @@ export class MotorcycleService {
 
     async getModels(){
         const res = await this.conn.query('SELECT * FROM modelo');
+        console.log(res.rows);
         return res.rows;
     }
 

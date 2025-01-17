@@ -42,6 +42,7 @@ function Register() {
     console.log(response);
     if(response.status === 201){
       const tipoUsuario = response.data.user.tipo_usuario;
+      console.log(response.data.user.tipo_usuario);
       setUser(response.data.user);
       localStorage.setItem('userData', JSON.stringify(response.data.user));
       

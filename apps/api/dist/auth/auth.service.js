@@ -37,7 +37,6 @@ let AuthService = class AuthService {
         const isCheked = (0, bcrypt_1.compare)(userObject.password, findUser.contrasenia);
         if (!isCheked)
             throw new common_1.HttpException("PASSWORD_INCORRECT", 401);
-        console.log(findUser);
         const payload = {
             id: findUser.id_user,
             name: findUser.nombre_usuario,
@@ -45,7 +44,7 @@ let AuthService = class AuthService {
         };
         const token = this.jwtService.sign(payload);
         const data = {
-            userId: findUser.id_user,
+            user: findUser,
             token,
         };
         return data;

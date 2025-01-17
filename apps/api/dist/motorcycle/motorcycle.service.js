@@ -87,6 +87,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async createMotorcycle(moto) {
         try {
+            console.log(moto);
             return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
         }
         catch (error) {
@@ -107,6 +108,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async getModels() {
         const res = await this.conn.query('SELECT * FROM modelo');
+        console.log(res.rows);
         return res.rows;
     }
     async deleteModels(id) {

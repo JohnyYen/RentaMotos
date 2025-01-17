@@ -14,13 +14,14 @@ let situationData = [];
 
 let response = await axios.get('http://localhost:3000/api/moto/situacion');
 
-responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
+const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+let responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
   headers: {
     Authorization: `Bearer ${jwt}`
   }
 });
 
-if(responseMarcData === 200) marcData = responseMarcData.data;
+if(responseMarcData.status === 200) marcData = responseMarcData.data;
 
 if (response.status === 200)
   situationData = response.data.filter(
@@ -28,7 +29,7 @@ if (response.status === 200)
   );
 
 response = await axios.get('http://localhost:3000/api/moto/model');
-
+console.log(response.data);
 if (response.status === 200) modelData = response.data;
 
 const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => {
@@ -40,6 +41,7 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
   const [situation, setSituation] = useState("");
   const [items, setItem] = useState([]);
   const [t] = useTranslation("global");
+  const [imageBase64, setImageBase64] = useState('');
 
     const changeModel = (value) => {
         setMarca(value);
@@ -47,14 +49,13 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
     }
     
     const handlePetition = async () => {
-
         const moto = {
             matricula:matricula,
             color:color,
             cantKm:0,
             marca:marca,
             modelo:modelo,
-            situacion:situation
+            situacion:situation,
         }
 
         const jwt = JSON.parse(sessionStorage.getItem('jwt'))
@@ -190,11 +191,10 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
         </Select>
       </Form.Item>
         <Form.Item
-        label={"Imagen 400x400:"}
+        label={"Imagen de moto"}
         name="imagen"
-        rules={[{ required: true, message: t("messageError.emptySituation") }]}
         >
-            <UploadMoto />
+            <UploadMoto setImageBase64={setImageBase64} />
       </Form.Item>
     </Modal>
   );

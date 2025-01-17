@@ -26,19 +26,21 @@ export class AuthService {
         const findUser = response.rows[0]; 
         if(!findUser)
             throw new HttpException("USER_NOT_FOUND", 402);
+        
        const isCheked = compare(userObject.password, findUser.contrasenia);
        if(!isCheked)
             throw new HttpException("PASSWORD_INCORRECT", 401);
-       console.log(findUser);
        
        const payload = {
             id:findUser.id_user,
             name:findUser.nombre_usuario,
             roles: findUser.tipo_usuario,
         };
+
        const token = this.jwtService.sign(payload);
+
        const data = {
-        userId:findUser.id_user,
+        user:findUser,
         token,
        }
 

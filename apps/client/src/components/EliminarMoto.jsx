@@ -13,12 +13,19 @@ const EliminarMoto = ({ isOpen, setOpen, setDataSource, dataSource }) => {
 
   const Emoto = async () => {
     try {
+
+      const jwt = JSON.parse(sessionStorage.getItem('jwt'));
       const apiUrl = `http://localhost:3000/api/moto/${row?.matricula}`;
-      const response = await axios.delete(apiUrl);
-      if (response.status === 201) {
-        message.success(t("messageSuccess.deleteSuccess"));
-        setDataSource(dataSource.filter(moto => moto.matricula !== row.matricula));
+
+      const response = await axios.delete(apiUrl, {
+        headers : {
+          Authorization: `Bearer ${jwt}`
       }
+      
+      });
+
+      message.success(t("messageSuccess.deleteSuccess"));
+      setDataSource(dataSource.filter(moto => moto.matricula !== row.matricula));
     } catch (error) {
       message.error(error);
     }

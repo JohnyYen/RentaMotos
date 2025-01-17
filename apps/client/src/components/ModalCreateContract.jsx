@@ -34,7 +34,7 @@ if (response.status === 200) dataSource = response.data;
 let marcData = [];
 let modelData = [];
 
-responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
+let responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
   headers: {
     Authorization: `Bearer ${jwt}`
   }
