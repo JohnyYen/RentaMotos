@@ -10,7 +10,7 @@ import {
 } from "antd";
 import "../App.css";
 import axios from "axios";
-import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import { DownloadOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ModalModMoto from "./ModalModMoto";
@@ -77,24 +77,24 @@ const downloadPDF = async (url) => {
   }
 };
 
-// const extractDataFilter = async () => {
-//   let dataFilter = [];
-//   try {
-//     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-//     const response = await axios.get("http://localhost:3000/api/moto/marc", 
-//       {
-//         headers: {
-//           Authorization: `Bearer ${jwt}`,
-//         }
-//       });
-//     if (response.status === 200) {
-//       dataFilter = response.data;
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   return dataFilter;
-// };
+const extractDataFilter = async () => {
+  let dataFilter = [];
+  try {
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    const response = await axios.get("http://localhost:3000/api/moto/marc", 
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        }
+      });
+    if (response.status === 200) {
+      dataFilter = response.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataFilter;
+};
 
 const ListMoto = () => {
   const [dataSource, setDataSource] = useState([]);

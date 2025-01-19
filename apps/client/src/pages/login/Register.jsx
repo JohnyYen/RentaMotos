@@ -16,9 +16,18 @@ function Register() {
   const navigate = useNavigate(); 
   const [t] = useTranslation("global");
 
+  const resetInput = () => {
+    setEmail('');
+    setPassword('');
+    setUserName('');
+  }
+
   const handleLogger = () => {
     setVisible(!visible)
+
+    resetInput();
   }
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -94,11 +103,11 @@ function Register() {
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
+              <input type="text" value={user_name} placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+              <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button onClick={(e) => handleLogin(e)} value="Login" className="btn solid">Login</button>
           </form>
@@ -106,15 +115,15 @@ function Register() {
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
+              <input type="text" value={user_name} placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+              <input type="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+              <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button onClick={(e) => handleRegister(e)} className="btn" value="Sign up">Sign up</button>
             <p className="social-text">Or Sign up with social platforms</p>
