@@ -33,7 +33,7 @@ let ClientService = class ClientService {
         return res.rows;
     }
     async getClient(id) {
-        const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
+        const res = await this.conn.query(`SELECT * FROM cliente WHERE id_cliente = '${id}'`);
         return res.rows;
     }
     async getAllClientByPDF() {

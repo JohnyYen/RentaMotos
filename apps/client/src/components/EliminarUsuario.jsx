@@ -11,6 +11,7 @@ const EliminarUsuario = ({ isOpen, setOpen, setDataSource, dataSource }) => {
 
   const { row } = useContext(GlobalContext);
   const ECliente = async () => {
+    
     console.log(row);
 
     try {
@@ -23,8 +24,6 @@ const EliminarUsuario = ({ isOpen, setOpen, setDataSource, dataSource }) => {
     } catch (error) {
       message.error(error);
     }
-
-    window.location.reload();
   };
 
   return (

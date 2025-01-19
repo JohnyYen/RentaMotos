@@ -37,12 +37,13 @@ const UploadMoto = ({ setImageBase64 }) => {
       const file = info.file.originFileObj;
 
       const reader = new FileReader();
+      reader.readAsDataURL(file);
       reader.onload = (e) => {
-        const base64Image = e.target.result;
+        const base64Image = reader.result;
         console.log(base64Image);
         setImageBase64(base64Image);
       };
-      reader.readAsDataURL(file);
+      
   };
 
   

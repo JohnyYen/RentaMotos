@@ -17,7 +17,7 @@ const extractData = async () => {
     });
     console.log(response)
     if (response.status === 200) {
-      dataSource = response.data.data.map((element, index) => ({
+      dataSource = response.data.map((element, index) => ({
         key: index,
         nombre: element.nomvre,
         apellidos: element.prim_apellido + ' ' + element.seg_apellido,

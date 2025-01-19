@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'; 
 
 const response = await axios.get('http://localhost:3000/api/client/mun')
-let dataSource = [];
+let dataSourceMun = [];
 if(response.status === 200){
-    dataSource = response.data;
+    dataSourceMun = response.data;
 }
 
 const ModalCreateWorker = ({isOpen, setOpen, setDataSource, dataSource}) => {
@@ -38,9 +38,8 @@ const ModalCreateWorker = ({isOpen, setOpen, setDataSource, dataSource}) => {
             message.success(t("messageSuccess"));
             setDataSource([...dataSource, {
               key: dataSource[dataSource.length-1].key+1,
-              name,
-              password,
-              mun
+              usuario: name,
+              municipio: mun
             }])
         }
     }
@@ -83,8 +82,8 @@ const ModalCreateWorker = ({isOpen, setOpen, setDataSource, dataSource}) => {
         <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
           <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder={t("profile.municipality")}>
               {
-                  dataSource.map((item, i) => (
-                    <Option key={i}  value={item.nommun}>{item.nommun}</Option>
+                  dataSourceMun.map((item, i) => (
+                    <Option key={i}  value={item.nom_mun}>{item.nom_mun}</Option>
                   ))
               }
           </Select>

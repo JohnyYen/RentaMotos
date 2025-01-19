@@ -14,8 +14,8 @@ const GlobalProvider = ({children}) => {
   }
 
   useEffect(() => {
-    const userData = localStorage.getItem('userData');
-    const clientData = localStorage.getItem('clientData');
+    const userData = sessionStorage.getItem('userData');
+    const clientData = sessionStorage.getItem('clientData');
 
     if(userData)
       setUser(JSON.parse(userData));

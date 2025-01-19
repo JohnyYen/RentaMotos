@@ -31,9 +31,9 @@ const extractDataClient = async () => {
         Authorization: `Bearer ${jwt}`
       }
     });
-
+    console.log(response);
     if (response.status === 200) {
-      dataSource = response.data.data.map((element, index) => ({
+      dataSource = response.data.map((element, index) => ({
         key: index,
         municipio: element.municipio,
         nombre: element.nombre,
@@ -61,7 +61,7 @@ const extractDataContract = async () => {
     });
 
     if (response.status === 200) {
-      dataSource = response.data.data.map((element, index) => ({
+      dataSource = response.data.map((element, index) => ({
         key: index,
         nombre: element.nombre,
         matricula: element.matricula,
@@ -91,7 +91,7 @@ const extractDataIncome = async () => {
     }
    });
    if(response.status === 200){
-    dataSource = response.data.data.map((element, index) => ({
+    dataSource = response.data.map((element, index) => ({
       key: index,
       "ingreso anual": element.total_ventas,
       "ingreso enero": element.enero,

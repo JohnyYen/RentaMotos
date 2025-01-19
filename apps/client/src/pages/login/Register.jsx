@@ -44,7 +44,7 @@ function Register() {
       const tipoUsuario = response.data.user.tipo_usuario;
       console.log(response.data.user.tipo_usuario);
       setUser(response.data.user);
-      localStorage.setItem('userData', JSON.stringify(response.data.user));
+      sessionStorage.setItem('userData', JSON.stringify(response.data.user));
       
       if(tipoUsuario === 1){
         message.success(t("messageSuccess.loginSuccess"))
@@ -60,10 +60,10 @@ function Register() {
         });
 
         if(res.status === 200){
-          console.log(res);
+          console.log(res.data);
           message.success(t("messageSuccess.loginSuccess"))
-          setClient(res.data.data[0]);
-          localStorage.setItem('clientData', JSON.stringify(res.data.data[0]));
+          setClient(res.data[0]);
+          sessionStorage.setItem('clientData', JSON.stringify(res.data[0]));
           navigate('/home');
         }
       }
@@ -92,8 +92,8 @@ function Register() {
       const response = await axios.post('http://localhost:3000/api/auth/register', client);
 
       if(response.status === 201)
-        // setClient(client);
-        // sessionStorage.setItem('jwt', JSON.stringify(response.data.token));
+        setClient(client);
+        sessionStorage.setItem('jwt', JSON.stringify(response.data.token));
         navigate('/home');
     }
   }

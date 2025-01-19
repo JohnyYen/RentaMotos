@@ -61,10 +61,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
 
          <Row gutter={24}>
            <Col span={20}>
-              <Form.Item label={t("profile.name") + ":"} name="name" rules={[{required: true,message: t("messageError.emptyName"),},
-                {min:4, message: t("messageError.minCharName")},
-                {max:20, message: t("messageError.maxCharName")},
-              ]}>
+              <Form.Item label={t("profile.name") + ":"} name="name" >
                 <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")} defaultValue={row?.nombre}/>
               </Form.Item>
 
@@ -75,10 +72,10 @@ const ModalModClient = ({isOpen, setOpen}) => {
               </Form.Item> */}
 
 
-              <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
+              <Form.Item label={t("profile.municipality") + ":"} name="municipio" >
                 <Select style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder={t("profile.municipality")} defaultValue={row?.municipio}>
                   {dataSource.map((item, i) => (
-                    <Option key={i} value={item.nommun}>{item.nommun}</Option>
+                    <Option key={i} value={item.nom_mun}>{item.nom_mun}</Option>
                   ))}
                 </Select>
 

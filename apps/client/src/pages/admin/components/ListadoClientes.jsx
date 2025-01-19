@@ -45,6 +45,7 @@ const extractDataFilter = async () => {
         Authorization: `Bearer ${jwt}`
       }
      });
+     
     if(response.status === 200){
       dataFilter = response.data
     }
@@ -69,8 +70,8 @@ const ListadoClientes = ({ dataClient, setDataClient, url }) => {
     extractDataFilter().then(result => {
       setDataFilter(result.map(municipio => (
         {
-          text: municipio.nommun,
-          value: municipio.nommun,
+          text: municipio.nom_mun,
+          value: municipio.nom_mun,
         }
       )));
     });

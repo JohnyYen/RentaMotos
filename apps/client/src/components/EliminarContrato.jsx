@@ -12,6 +12,7 @@ const EliminarContrato = ({ isOpen, setOpen, setDataSource, dataSource }) => {
   const [t] = useTranslation("global");
 
   const Econtrato = async () => {
+    
     try {
       const apiUrl = `http://localhost:3000/api/contract/${row?.matricula}`;
       const response = await axios.delete(apiUrl);

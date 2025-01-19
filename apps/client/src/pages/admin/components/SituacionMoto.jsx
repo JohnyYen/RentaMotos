@@ -15,7 +15,7 @@ const extractData = async () => {
         Authorization: `Bearer ${jwt}`
       }
     });
-
+    
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,

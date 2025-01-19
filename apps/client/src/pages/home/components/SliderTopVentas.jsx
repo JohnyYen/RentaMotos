@@ -21,8 +21,7 @@ const CardMoto = ({marca,modelo,image})=>{
         {contextHolder} 
         <Card hoverable  className="CardMoto"
         cover={
-            <img a
-             
+            <img             
               src= {image}
             />
           }

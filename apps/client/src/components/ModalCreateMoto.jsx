@@ -12,27 +12,32 @@ let marcData = [];
 let modelData = [];
 let situationData = [];
 
-let response = await axios.get('http://localhost:3000/api/moto/situacion');
+let response = await axios.get("http://localhost:3000/api/moto/situacion");
 
-const jwt = JSON.parse(sessionStorage.getItem('jwt'));
-let responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
+const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+let responseMarcData = await axios.get("http://localhost:3000/api/moto/marc", {
   headers: {
-    Authorization: `Bearer ${jwt}`
-  }
+    Authorization: `Bearer ${jwt}`,
+  },
 });
 
-if(responseMarcData.status === 200) marcData = responseMarcData.data;
+if (responseMarcData.status === 200) marcData = responseMarcData.data;
 
 if (response.status === 200)
   situationData = response.data.filter(
     (item) => item.situacion !== "Alquilada"
   );
 
-response = await axios.get('http://localhost:3000/api/moto/model');
+response = await axios.get("http://localhost:3000/api/moto/model");
 console.log(response.data);
 if (response.status === 200) modelData = response.data;
 
-const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => {
+const ModalCreateMoto = ({
+  isVisible,
+  setVisible,
+  setDataSource,
+  dataSource,
+}) => {
   const [form] = Form.useForm();
   const [matricula, setMatricula] = useState("");
   const [color, setColor] = useState("");
@@ -41,56 +46,60 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
   const [situation, setSituation] = useState("");
   const [items, setItem] = useState([]);
   const [t] = useTranslation("global");
-  const [imageBase64, setImageBase64] = useState('');
+  const [imageBase64, setImageBase64] = useState("");
 
-    const changeModel = (value) => {
-        setMarca(value);
-        setItem(modelData.filter((item) => item.nom_marca === value));
-    }
-    
-    const handlePetition = async () => {
-        const moto = {
-            matricula:matricula,
-            color:color,
-            cantKm:0,
-            marca:marca,
-            modelo:modelo,
-            situacion:situation,
-        }
+  const changeModel = (value) => {
+    setMarca(value);
+    setItem(modelData.filter((item) => item.nom_marca === value));
+  };
 
-        const jwt = JSON.parse(sessionStorage.getItem('jwt'))
-        if(matricula && color && marca && modelo && situation){
-            const resp = await axios.post('http://localhost:3000/api/moto', moto, {
-                headers : {
-                    Authorization: `Bearer ${jwt}`
-                }
-            });
-                console.log({
-                    key: dataSource[dataSource.length-1].key+1,
-                    matricula,
-                    marca,
-                    modelo,
-                    situacion,
-                    color,
-                    kmRecorridos: 0,
-                })
-            if(resp.status === 201){
-                message.success(t("messageSuccess"))
-                setDataSource([...dataSource, {
-                    key: dataSource[dataSource.length-1].key+1,
-                    matricula,
-                    marca,
-                    modelo,
-                    situacion,
-                    color,
-                    kmRecorridos: 0,
-                }])
-            }
-                
-
-            setVisible();
-        }
+  const handlePetition = async () => {
+    const moto = {
+      matricula: matricula,
+      color: color,
+      cantKm: 0,
+      marca: marca,
+      modelo: modelo,
+      situacion: situation,
+      imagen: imageBase64,
     };
+    console.log(moto);
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+    if (matricula && color && marca && modelo && situation) {
+      const resp = await axios.post("http://localhost:3000/api/moto", moto, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log({
+        key: dataSource[dataSource.length - 1].key + 1,
+        matricula,
+        marca,
+        modelo,
+        situacion,
+        color,
+        kmRecorridos: 0,
+      });
+      console.log(resp);
+      if (resp.status === 201) {
+        message.success(t("messageSuccess"));
+        setDataSource([
+          ...dataSource,
+          {
+            key: dataSource[dataSource.length - 1].key + 1,
+            matricula: matricula,
+            marca: marca,
+            modelo: modelo,
+            situacion: situation,
+            color: color,
+            kmRecorridos: 0,
+          },
+        ]);
+      }
+
+      setVisible();
+    }
+  };
   return (
     <Modal
       okButtonProps={{ htmlType: "submit" }}
@@ -112,13 +121,25 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
         >
           {dom}
         </Form>
-      )}>
-       <Form.Item label={t("mainContent.table.serialNumber")} name="matricula" rules={[{required: true,message: t("messageError.emptySerialNumber"),},
-        {max:8, message: t("messageError.lengthSerialNumber")},
-        // {pattern: "^(?=(?:[^A-Z]*[A-Z]{3}))(?!.*\d{6}).*\d{1,5}", message: "Debe tener 1 letra mayuscula y 5 digitos"}
-       ]}>
-            <Input max={8} min={8} onChange={(e) => setMatricula(e.target.value)} style={{marginBottom:margin,width: 300}} placeholder='Ingrese la matricula'/>
-           </Form.Item>
+      )}
+    >
+      <Form.Item
+        label={t("mainContent.table.serialNumber")}
+        name="matricula"
+        rules={[
+          { required: true, message: t("messageError.emptySerialNumber") },
+          { max: 8, message: t("messageError.lengthSerialNumber") },
+          // {pattern: "^(?=(?:[^A-Z]*[A-Z]{3}))(?!.*\d{6}).*\d{1,5}", message: "Debe tener 1 letra mayuscula y 5 digitos"}
+        ]}
+      >
+        <Input
+          max={8}
+          min={8}
+          onChange={(e) => setMatricula(e.target.value)}
+          style={{ marginBottom: margin, width: 300 }}
+          placeholder="Ingrese la matricula"
+        />
+      </Form.Item>
 
       <Form.Item
         label="Color:"
@@ -157,21 +178,41 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
         </Select>
       </Form.Item>
 
-           <Form.Item label={t("mainContent.table.mark") + ":"} name="marca" rules={[{required: true,message: t("messageError.emptyMark"),},]}>
-            <Select onSelect={(value, _) => changeModel(value)} style={{marginBottom:margin,width: 150}} placeholder={t("mainContent.table.mark")}>
-                    {marcData.map((item, i) => (
-                        <Select.Option key={i} value={item.nom_marca}>{item.nom_marca}</Select.Option>
-                    ))}
-                </Select>
-           </Form.Item>
+      <Form.Item
+        label={t("mainContent.table.mark") + ":"}
+        name="marca"
+        rules={[{ required: true, message: t("messageError.emptyMark") }]}
+      >
+        <Select
+          onSelect={(value, _) => changeModel(value)}
+          style={{ marginBottom: margin, width: 150 }}
+          placeholder={t("mainContent.table.mark")}
+        >
+          {marcData.map((item, i) => (
+            <Select.Option key={i} value={item.nom_marca}>
+              {item.nom_marca}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
 
-           <Form.Item label={t("mainContent.table.model") + ":"} name="modelo" rules={[{required: true,message: t("messageError.emptyModel"),},]}>
-            <Select onChange={(value) => setModelo(value)} style={{marginBottom:margin, width: 200}} placeholder={t("mainContent.table.model")}>
-                    {items.map((item, i) => (
-                        <Select.Option key={i} value={item.nom_modelo}>{item.nom_modelo}</Select.Option>
-                    ))}
-                </Select>
-           </Form.Item>
+      <Form.Item
+        label={t("mainContent.table.model") + ":"}
+        name="modelo"
+        rules={[{ required: true, message: t("messageError.emptyModel") }]}
+      >
+        <Select
+          onChange={(value) => setModelo(value)}
+          style={{ marginBottom: margin, width: 200 }}
+          placeholder={t("mainContent.table.model")}
+        >
+          {items.map((item, i) => (
+            <Select.Option key={i} value={item.nom_modelo}>
+              {item.nom_modelo}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
 
       <Form.Item
         label={t("mainContent.table.situation") + ":"}
@@ -190,11 +231,8 @@ const ModalCreateMoto = ({isVisible, setVisible, setDataSource, dataSource}) => 
           ))}
         </Select>
       </Form.Item>
-        <Form.Item
-        label={"Imagen de moto"}
-        name="imagen"
-        >
-            <UploadMoto setImageBase64={setImageBase64} />
+      <Form.Item label={"Imagen de moto"} name="imagen">
+        <UploadMoto setImageBase64={setImageBase64} />
       </Form.Item>
     </Modal>
   );
