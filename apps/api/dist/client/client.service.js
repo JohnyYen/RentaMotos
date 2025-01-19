@@ -61,6 +61,7 @@ let ClientService = class ClientService {
         try {
             return await this.pgService.execute(`DELETE FROM cliente where id_cliente = '${id}'`);
             this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+            console.log("dsdsdsdsds");
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();
@@ -76,7 +77,7 @@ let ClientService = class ClientService {
     }
     async updateClient(client, id) {
         try {
-            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`);
+            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', seg_nombre = '${client.segNombre}', prim_apellido = '${client.primApellido}', seg_apellido = '${client.segApellido}', num_cont = '${client.numCont}'  WHERE idcliente = '${id}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();

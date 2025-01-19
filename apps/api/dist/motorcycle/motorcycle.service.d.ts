@@ -12,7 +12,7 @@ export declare class MotorcycleService {
     getPDF(): Promise<Buffer>;
     getSituation(): Promise<any>;
     getPDFSituation(): Promise<Buffer>;
-    deleteMotorcycle(id: number): Promise<void>;
+    deleteMotorcycle(id: string): Promise<void>;
     getMarc(): Promise<any>;
     deleteMarc(marc: number): Promise<void>;
     createMarc(marca: MarcDto): Promise<void>;

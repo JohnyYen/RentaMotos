@@ -78,7 +78,7 @@ let ContractService = class ContractService {
     }
     async updateContract(contract, matricula) {
         try {
-            this.conn.query(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
+            this.conn.query(`UPDATE Contrato SET forma_pago = '${contract.formaPago}', fecha_fin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', dias_prorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();
