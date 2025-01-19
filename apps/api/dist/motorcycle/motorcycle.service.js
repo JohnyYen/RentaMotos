@@ -50,7 +50,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async deleteMotorcycle(id) {
         try {
-            await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+            await this.conn.query(`DELETE FROM moto WHERE matricula = '${id}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();
@@ -94,7 +94,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async updateMotorcycle(moto, id) {
         try {
-            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+            this.conn.query(`UPDATE moto SET cant_km = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();

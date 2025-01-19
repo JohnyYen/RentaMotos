@@ -42,9 +42,9 @@ export class MotorcycleService {
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
 
-    async deleteMotorcycle( id : number){
+    async deleteMotorcycle( id : string){
         try {
-             await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+             await this.conn.query(`DELETE FROM moto WHERE matricula = '${id}'`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -91,7 +91,7 @@ export class MotorcycleService {
 
     async updateMotorcycle (moto : MotorcycleDto, id : string){
         try {
-            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+            this.conn.query(`UPDATE moto SET cant_km = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }

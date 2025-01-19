@@ -160,7 +160,7 @@ export class MotorcycleController {
     @ApiOperation({summary: "Elimina una moto según su id"})
     @Delete('/:id')
     async deleteMoto(@Param("id") id : string ) {
-        return await this.motoService.deleteMotorcycle(+id);
+        return await this.motoService.deleteMotorcycle(id);
     }
 
     @UseGuards(JwtAuthGuard, RoleGuard)

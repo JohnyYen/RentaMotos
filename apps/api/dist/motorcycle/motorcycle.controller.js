@@ -78,7 +78,7 @@ let MotorcycleController = class MotorcycleController {
         return await this.motoService.updateMarc(body, +id);
     }
     async deleteMoto(id) {
-        return await this.motoService.deleteMotorcycle(+id);
+        return await this.motoService.deleteMotorcycle(id);
     }
     async deleteModel(id) {
         return await this.motoService.deleteModels(+id);

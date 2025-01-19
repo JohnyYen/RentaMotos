@@ -19,7 +19,7 @@ export class ClientService {
      */
     async getAllClients(pageSize:number=1, page:number=1) {
         //return await this.pgService.pagination('cliente_view');
-        const res = await this.conn.query(`SELECT * FROM cliente_view LIMIT ${pageSize} OFFSET ${(page-1) * pageSize}`);
+        const res = await this.conn.query(`SELECT * FROM cliente_view`);
         return res.rows;
     }
 
@@ -93,8 +93,9 @@ export class ClientService {
      */
     async deleteClient(id : string){
         try {
-            return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
+            //return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
             this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+            console.log("dsdsdsdsds");
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -123,7 +124,7 @@ export class ClientService {
     async updateClient(client : ClientDto, id : string){
         try {
             //return await this.pgService.execute(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`)
-            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`)
+            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', seg_nombre = '${client.segNombre}', prim_apellido = '${client.primApellido}', seg_apellido = '${client.segApellido}', num_cont = '${client.numCont}'  WHERE idcliente = '${id}'`)
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
