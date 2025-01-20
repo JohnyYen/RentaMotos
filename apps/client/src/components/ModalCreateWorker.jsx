@@ -42,7 +42,9 @@ const ModalCreateWorker = ({isOpen, setOpen, setDataSource, dataSource}) => {
               municipio: mun
             }])
         }
-    }
+        setOpen(false);
+     }
+
   return (
     <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  centered={true} title={t("modal.createWorker")} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}
     modalRender={(dom) => (

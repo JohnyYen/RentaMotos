@@ -33,7 +33,7 @@ const extractData = async () => {
         }
       }
     );
-    console.log(response)
+    
     if (response.status === 200) {
      
       dataSource = response.data.map((element, index) => ({
@@ -132,7 +132,8 @@ const ListMoto = () => {
     
     window.addEventListener("resize", updatePageSize);
     updatePageSize();
-  }, []);
+    setDataSource([...dataSource]);
+  }, [dataSource]);
 
   const onClick = async () => {
     try {

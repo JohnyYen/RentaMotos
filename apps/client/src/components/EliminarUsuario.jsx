@@ -15,8 +15,13 @@ const EliminarUsuario = ({ isOpen, setOpen, setDataSource, dataSource }) => {
     console.log(row);
 
     try {
+      const jwt = JSON.parse(sessionStorage.getItem('jwt'));
       const apiUrl = `http://localhost:3000/api/client/${row?.ci}`;
-      const response = await axios.delete(apiUrl);
+      const response = await axios.delete(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
       if(response.status === 201){
         message.success(t("messageSuccess.deleteSuccess"));
         setDataSource(dataSource.filter(cliente => cliente.ci !== row.ci));

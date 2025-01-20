@@ -18,7 +18,7 @@ const extractDataWorker = async (user) => {
         Authorization: `Bearer ${jwt}`
       }
     });
-console.log(response)
+
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
@@ -45,7 +45,8 @@ const ListadoTrabajadores = () => {
     extractDataWorker().then(result => {
       setDataSource(result);
     })
-  }, [])
+    setDataSource([...dataSource]);
+  }, [dataSource])
 
   return (
     <Flex vertical="true">

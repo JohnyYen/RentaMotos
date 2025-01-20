@@ -93,11 +93,7 @@ export class ClientService {
      */
     async deleteClient(id : number){
         try {
-<<<<<<< HEAD
-            return await this.pgService.execute(`DELETE FROM cliente where id_cliente = '${id}'`);
-=======
             //return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
->>>>>>> 48e96a494a065df8bf332095dc285026a1467d54
             this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
             console.log("dsdsdsdsds");
         } catch (error) {

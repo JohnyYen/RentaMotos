@@ -29,6 +29,7 @@ const EliminarMoto = ({ isOpen, setOpen, setDataSource, dataSource }) => {
     } catch (error) {
       message.error(error);
     }
+    setOpen(false);
   };
 
   return (

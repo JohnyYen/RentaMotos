@@ -12,8 +12,13 @@ const EliminarWorker = ({ isOpen, setOpen, setDataSource, dataSource }) => {
 
   const EWorker = async () => {
     try {
+      const jwt = JSON.parse(sessionStorage.getItem("jwt"));
       const apiUrl = `http://localhost:3000/api/user/${row?.usuario}`;
-      const response = await axios.delete(apiUrl);
+      const response = await axios.delete(apiUrl, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        }
+      });
       if (response.status === 201) {
         message.success(t("messageSuccess.deleteSuccess"));
         setDataSource(dataSource.filter(worker => worker.usuario !== row.usuario));
@@ -22,7 +27,7 @@ const EliminarWorker = ({ isOpen, setOpen, setDataSource, dataSource }) => {
       message.error(error.text);
     }
 
-    //window.location.reload();
+    setOpen(false);
   };
   return (
     <Modal

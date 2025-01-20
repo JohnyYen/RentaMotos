@@ -75,7 +75,8 @@ const ListadoClientes = ({ dataClient, setDataClient, url }) => {
         }
       )));
     });
-  }, []);
+    setDataClient(dataClient);
+  }, [dataClient]);
 
   const onClick = async () => {
     try {
@@ -88,7 +89,7 @@ const ListadoClientes = ({ dataClient, setDataClient, url }) => {
   return (
     <Flex vertical="true">
       <Typography.Title level={3}>{t("client.clientListTitle")}</Typography.Title>
-      <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)}/>
+      <ModalModClient isOpen={visible} setOpen={() => setVisible(!visible)} dataSource={dataClient} setDataSource={setDataClient}/>
       <EliminarUsuario isOpen={open} setOpen={() => setOpen(!open)} setDataSource={setDataClient} dataSource={dataClient}/>
       <Flex align="center">
         <Typography.Text style={{ fontSize: "1rem", fontWeight: "500" }}>
