@@ -19,10 +19,12 @@ const pdfKit_1 = require("../libs/pdfKit");
 const jsonFormatter_1 = require("../libs/jsonFormatter");
 const errorHandler_1 = require("../libs/errorHandler");
 const pg_service_1 = require("../pg/pg.service");
+const mails_service_1 = require("../mails/mails.service");
 let ContractService = class ContractService {
-    constructor(conn, pgService) {
+    constructor(conn, pgService, mailService) {
         this.conn = conn;
         this.pgService = pgService;
+        this.mailService = mailService;
     }
     async getAllContract() {
         const res = await this.conn.query("SELECT * FROM contrato_view");
@@ -70,8 +72,10 @@ let ContractService = class ContractService {
     }
     async createContract(contract) {
         try {
-            console.log(contract);
+            const response = await this.conn.query(`SELECT nombre_usuario, email FROM public.usuario where id_cliente = '${contract.idCliente}'`);
+            const user = response.rows[0];
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
+            this.mailService.sendEmail(user.nombre_usuario, user.email);
         }
         catch (error) {
             return new errorHandler_1.ErrorHandler(error).returnError();
@@ -154,6 +158,7 @@ exports.ContractService = ContractService;
 exports.ContractService = ContractService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)(constants_1.PG_CONNECTION)),
-    __metadata("design:paramtypes", [Object, pg_service_1.PgService])
+    __metadata("design:paramtypes", [Object, pg_service_1.PgService,
+        mails_service_1.MailsService])
 ], ContractService);
 //# sourceMappingURL=contract.service.js.map

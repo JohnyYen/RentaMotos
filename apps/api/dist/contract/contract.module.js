@@ -11,12 +11,14 @@ const common_1 = require("@nestjs/common");
 const contract_controller_1 = require("./contract.controller");
 const contract_service_1 = require("./contract.service");
 const pg_module_1 = require("../pg/pg.module");
+const mails_module_1 = require("../mails/mails.module");
+const client_module_1 = require("../client/client.module");
 let ContractModule = class ContractModule {
 };
 exports.ContractModule = ContractModule;
 exports.ContractModule = ContractModule = __decorate([
     (0, common_1.Module)({
-        imports: [pg_module_1.PgModule],
+        imports: [pg_module_1.PgModule, mails_module_1.MailsModule, client_module_1.ClientModule],
         controllers: [contract_controller_1.ContractController],
         providers: [contract_service_1.ContractService]
     })

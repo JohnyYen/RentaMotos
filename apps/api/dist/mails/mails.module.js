@@ -45,6 +45,7 @@ exports.MailsModule = MailsModule = __decorate([
             })
         ],
         controllers: [mails_controller_1.MailsController],
+        exports: [mails_service_1.MailsService],
         providers: [mails_service_1.MailsService],
     })
 ], MailsModule);

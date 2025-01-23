@@ -1,0 +1,81 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Altura mínima de la ventana */
+    background-color: #f0f2f5; /* Color de fondo de la página */
+  }
+  
+  .app-container {
+    width: 800px; /* Ancho fijo */
+    height: 600px; /* Alto fijo */
+    background-color: #ffffff; /* Color de fondo */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Espaciado interno */
+    overflow: auto; /* Permite el desplazamiento interno */
+  }
+  
+  .steps {
+    margin-bottom: 24px; /* Espaciado inferior */
+  }
+  
+  .form-container {
+    margin-bottom: 24px; /* Espaciado inferior */
+    overflow: hidden; /* Evita desbordamiento */
+  }
+  
+  .sections-wrapper {
+    display: flex; /* Usa flexbox para organizar las secciones */
+    transition: transform 300ms ease-in-out; /* Transición suave */
+  }
+  
+  .section-content {
+    flex: 0 0 100%; /* Cada sección ocupa el 100% del ancho */
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out; /* Transición suave */
+    opacity: 0; /* Inicialmente oculta */
+    transform: translateX(100%); /* Fuera de la pantalla */
+    display: none; /* Oculta las secciones inactivas */
+  }
+  
+  .section-content.active {
+    opacity: 1; /* Visible */
+    transform: translateX(0); /* En su posición normal */
+    display: block; /* Muestra la sección activa */
+  }
+  
+  .section-content.inactive {
+    opacity: 0; /* Oculta */
+    transform: translateX(-100%); /* Fuera de la pantalla */
+    display: none; /* Oculta las secciones inactivas */
+  }
+  
+  .navigation-buttons {
+    text-align: center; /* Centra los botones */
+    margin-top: 20px; /* Espaciado superior */
+  }
+  
+  .custom-input {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-bottom: 1rem; /* Espaciado inferior */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .app-container {
+      width: 90%; /* Ancho más pequeño en móviles */
+      height: auto; /* Alto automático en móviles */
+      padding: 10px; /* Menor espaciado en móviles */
+    }
+  
+    .steps {
+      font-size: 12px; /* Tamaño de fuente más pequeño */
+    }
+  
+    .section-content {
+      padding: 0 10px; /* Espaciado interno en móviles */
+    }
+  }

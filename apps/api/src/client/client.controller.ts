@@ -96,8 +96,7 @@ export class ClientController {
         res.send(buffer);   
     }
     
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.Worker, Role.User)
+    @SkipAuth()
     @ApiOperation({summary: "Crea un nuevo cliente"})
     @Post()
     async createClient(@Body() clientDto : ClientDto){

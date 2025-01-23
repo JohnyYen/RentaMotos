@@ -6,10 +6,12 @@ import { arrayFormatter } from 'src/libs/jsonFormatter';
 import { ErrorHandler } from 'src/libs/errorHandler';
 import { FormaPagoDto } from './dto/formaPago.dto';
 import { PgService } from 'src/pg/pg.service';
+import { MailsService } from 'src/mails/mails.service';
 
 @Injectable()
 export class ContractService {
-    constructor (@Inject(PG_CONNECTION) private conn : any, private pgService: PgService){}
+    constructor (@Inject(PG_CONNECTION) private conn : any, private pgService: PgService
+    , private mailService: MailsService){}
 
     async getAllContract(){
         //return await this.pgService.pagination(`contrato_view`);
@@ -78,9 +80,11 @@ export class ContractService {
 
     async createContract(contract : ContractDto){
         try{
-            console.log(contract)
-            //return await this.pgService.execute(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`)
+            const response = await this.conn.query(`SELECT nombre_usuario, email FROM public.usuario where id_cliente = '${contract.idCliente}'`);
+            const user = response.rows[0];
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
+            
+            this.mailService.sendEmail(user.nombre_usuario, user.email);
         }
         catch(error){
             return new ErrorHandler(error).returnError();

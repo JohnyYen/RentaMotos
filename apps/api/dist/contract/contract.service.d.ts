@@ -1,10 +1,12 @@
 import { ContractDto } from './dto/contract.dto';
 import { FormaPagoDto } from './dto/formaPago.dto';
 import { PgService } from 'src/pg/pg.service';
+import { MailsService } from 'src/mails/mails.service';
 export declare class ContractService {
     private conn;
     private pgService;
-    constructor(conn: any, pgService: PgService);
+    private mailService;
+    constructor(conn: any, pgService: PgService, mailService: MailsService);
     getAllContract(): Promise<any>;
     getContractFilter(): Promise<any>;
     getContractMun(mun: string): Promise<any>;

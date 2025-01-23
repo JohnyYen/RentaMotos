@@ -7,6 +7,7 @@ import UserWorker from "./pages/worker/UserWorker";
 import GlobalProvider from "./context/GlobalContext";
 import { message, notification } from "antd";
 import Register from "./pages/login/Register";
+import Prueba from "./pages/Prueba";
 //import './register.css';
 
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/loguin/*" element={<Register/>}/>
             <Route path="/client/*" element={<UserClient/>}/>
+            <Route path="/prueba/*" element={<Prueba/>}/>
           </Routes>
         </GlobalProvider>
     </>

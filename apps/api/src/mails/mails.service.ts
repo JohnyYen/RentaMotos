@@ -12,6 +12,7 @@ export class MailsService {
       template: './contract',
       context:{
         name: userName,
+        
       }
     })
   }
