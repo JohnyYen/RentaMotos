@@ -27,9 +27,9 @@ const extractDataContract = async (user) => {
         },
       }
     );
-    console.log(response.data.data);
+    console.log(response.data);
     if (response.status === 200) {
-      dataSource = response.data.data.map((element, index) => ({
+      dataSource = response.data.map((element, index) => ({
         key: index,
         nombre: element.nombre,
         matricula: element.matricula,

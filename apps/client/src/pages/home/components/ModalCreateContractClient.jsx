@@ -71,10 +71,11 @@ const ModalCreateContractClient = ({
             },
           }
         );
-
+        
         if (res.status === 201) {
-          //setDataSourceMoto(dataSourceMoto.filter(moto => moto.matricula !== row?.matricula));
+          setDataSourceMoto(dataSourceMoto.filter(moto => moto.matricula !== row?.matricula));
           message.success(t("messageSuccess"));
+          setVisible(false);
         }
       } catch (error) {
         console.log(error);
@@ -119,13 +120,13 @@ const ModalCreateContractClient = ({
               {
                 validator: (rule, value, callback) => {
                   if (rule && value) {
-                    if (dateBegin && value.format("DD/MM/YYYY") > dateBegin)
+                    if (dateBegin && value.format("YYYY-MM-DD") > dateBegin)
                       callback(
                         new Error(
                           t("messageError.signatureDateBeforeStartDate")
                         )
                       );
-                    if (dateEnd && value.format("DD/MM/YYYY") > dateEnd)
+                    if (dateEnd && value.format("YYYY-MM-DD") > dateEnd)
                       callback(
                         new Error(t("messageError.signatureDateBeforeEndDate"))
                       );
@@ -137,8 +138,8 @@ const ModalCreateContractClient = ({
           >
             <DatePicker
               placement="bottomLeft"
-              format={"DD/MM/YYYY"}
-              onChange={(value) => setDateFirm(value.format("DD/MM/YYYY"))}
+              format={"YYYY-MM-DD"}
+              onChange={(value) => setDateFirm(value.format("YYYY-MM-DD"))}
               style={{ marginBottom: margin }}
               placeholder={t("modal.signatureDate")}
             />
@@ -152,13 +153,13 @@ const ModalCreateContractClient = ({
               {
                 validator: (rule, value, callback) => {
                   if (rule && value) {
-                    if (dateFirm && dateFirm > value.format("DD/MM/YYYY"))
+                    if (dateFirm && dateFirm > value.format("YYYY-MM-DD"))
                       callback(
                         new Error(
                           t("messageError.signatureDateBeforeStartDate")
                         )
                       );
-                    if (dateEnd && value.format("DD/MM/YYYY") > dateEnd)
+                    if (dateEnd && value.format("YYYY-MM-DD") > dateEnd)
                       callback(
                         new Error(t("messageError.startDateBeforeEndDate"))
                       );
@@ -170,8 +171,8 @@ const ModalCreateContractClient = ({
           >
             <DatePicker
               placement="bottomLeft"
-              format={"DD/MM/YYYY"}
-              onChange={(value) => setDateBegin(value.format("DD/MM/YYYY"))}
+              format={"YYYY-MM-DD"}
+              onChange={(value) => setDateBegin(value.format("YYYY-MM-DD"))}
               style={{ marginBottom: margin }}
               placeholder={t("modal.startDate")}
             />
@@ -187,14 +188,14 @@ const ModalCreateContractClient = ({
               {
                 validator: (rule, value, callback) => {
                   if (rule && value) {
-                    const end = value.format("DD/MM/YYYY");
+                    const end = value.format("YYYY-MM-DD");
                     if (dateFirm && dateFirm > end)
                       callback(
                         new Error(
                           t("messageError.signatureDateBeforeStartDate")
                         )
                       );
-                    if (dateEnd && dateBegin > value.format("DD/MM/YYYY"))
+                    if (dateEnd && dateBegin > value.format("YYYY-MM-DD"))
                       callback(
                         new Error(t("messageError.startDateBeforeEndDate"))
                       );
@@ -205,8 +206,8 @@ const ModalCreateContractClient = ({
             dependencies={["dateBegin", "dateFirm"]}
           >
             <DatePicker
-              format={"DD/MM/YYYY"}
-              onChange={(value) => setDateEnd(value.format("DD/MM/YYYY"))}
+              format={"YYYY-MM-DD"}
+              onChange={(value) => setDateEnd(value.format("YYYY-MM-DD"))}
               style={{ marginBottom: margin }}
               placeholder={t("modal.endDate")}
             />
@@ -225,8 +226,8 @@ const ModalCreateContractClient = ({
               placeholder={t("modal.methodPayment")}
             >
               {dataSource.map((item, i) => (
-                <Select.Option key={i} value={item.formapago}>
-                  {item.formaPago}
+                <Select.Option key={i} value={item.forma_pago}>
+                  {item.forma_Pago}
                 </Select.Option>
               ))}
             </Select>

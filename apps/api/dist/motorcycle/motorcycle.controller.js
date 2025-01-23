@@ -111,7 +111,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllMotoInPDF", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las motos que esten disponible" }),
     (0, common_1.Get)('/client'),

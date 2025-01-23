@@ -43,7 +43,7 @@ export class ClientService {
     async getClient(id : string){
         //return await this.pgService.pagination(`cliente WHERE idcliente = '${id}'`);
 
-        const res = await this.conn.query(`SELECT * FROM cliente WHERE id_cliente = '${id}'`);
+        const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
         return res.rows;
     }
 

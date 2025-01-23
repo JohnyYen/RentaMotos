@@ -44,7 +44,7 @@ function Register() {
       const tipoUsuario = response.data.user.tipo_usuario;
       console.log(response.data.user.tipo_usuario);
       setUser(response.data.user);
-      sessionStorage.setItem('userData', JSON.stringify(response.data.user));
+      localStorage.setItem('userData', JSON.stringify(response.data.user));
       
       if(tipoUsuario === 1){
         message.success(t("messageSuccess.loginSuccess"))
@@ -63,7 +63,7 @@ function Register() {
           console.log(res.data);
           message.success(t("messageSuccess.loginSuccess"))
           setClient(res.data[0]);
-          sessionStorage.setItem('clientData', JSON.stringify(res.data[0]));
+          localStorage.setItem('clientData', JSON.stringify(res.data[0]));
           navigate('/home');
         }
       }

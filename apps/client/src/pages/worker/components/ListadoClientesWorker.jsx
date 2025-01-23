@@ -21,7 +21,7 @@ const extractDataClient = async (user) => {
       });
   
       if (response.status === 200) {
-        dataSource = response.data.data.map((element, index) => ({
+        dataSource = response.data.map((element, index) => ({
           key: index,
           municipio: element.municipio,
           nombre: element.nombre,

@@ -17,7 +17,6 @@ class ContractDto {
 exports.ContractDto = ContractDto;
 __decorate([
     (0, swagger_1.ApiProperty)({ name: "idCliente", description: "Identificador del Cliente", example: '03121067683', type: String }),
-    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ContractDto.prototype, "idCliente", void 0);
 __decorate([
@@ -52,8 +51,6 @@ __decorate([
 ], ContractDto.prototype, "seguro", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ name: "diasProrroga", description: "Los dias de prorroga que tenga el contrato", example: 10, type: Number }),
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)
 ], ContractDto.prototype, "diasProrroga", void 0);
 //# sourceMappingURL=contract.dto.js.map

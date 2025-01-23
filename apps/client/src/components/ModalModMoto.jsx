@@ -14,7 +14,7 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
 
     const [form] = Form.useForm();
     const {row} = useContext(GlobalContext);
-
+  
     const [color, setColor] = useState('');
     const [cantKm, setCantKm] = useState(0);
     const [Situacion, setSituacion] = useState('');
@@ -27,10 +27,10 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
         setCantKm(row.kmRecorridos || 0);
         setSituacion(row.situacion || "");
       }
-    }, [row]);
+    }, [row, isOpen]);
 
   const margin = 0;
-
+    
   const handlePetition = async () => {
 
     const moto = {
@@ -39,7 +39,7 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
       cantKm:cantKm,
       situacion:Situacion
     }
-    
+    console.log(row)
     if(color && cantKm && Situacion){
 
       const jwt = JSON.parse(sessionStorage.getItem('jwt'));

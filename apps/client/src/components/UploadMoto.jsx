@@ -31,19 +31,18 @@ const UploadMoto = ({ setImageBase64 }) => {
   // const requiredWidth = 400; 
   // const requiredHeight = 400; 
 
-  const handleChange = (info) => {
-    console.log(info)
-    message.success(`${info.file.name} file uploaded successfully`);
-      const file = info.file.originFileObj;
+  const handleBeforeUpload = (file) => {
+    const reader = new FileReader();
 
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        const base64Image = reader.result;
-        console.log(base64Image);
-        setImageBase64(base64Image);
-      };
-      
+    reader.onload = (e) => {
+      const base64 = e.target.result;
+      setImageBase64(base64); // Actualiza el estado en el componente padre
+    };
+
+    reader.readAsDataURL(file); // Convierte la imagen a base64
+
+    // Evita que el archivo se suba automáticamente
+    return false;
   };
 
   
@@ -53,8 +52,8 @@ const UploadMoto = ({ setImageBase64 }) => {
       <Upload
         accept="image/*"
         maxCount={1}
-        onChange={handleChange}
-        beforeUpload={() => false} // Evita que el componente intente subir la imagen automáticamente
+        beforeUpload={handleBeforeUpload}
+        showUploadList={false}
       >
         <Button icon={<UploadOutlined />}>Subir imagen</Button>
       </Upload>

@@ -70,6 +70,7 @@ let ContractService = class ContractService {
     }
     async createContract(contract) {
         try {
+            console.log(contract);
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
         }
         catch (error) {

@@ -30,6 +30,7 @@ const response = await axios.get(
 
 let dataSource = [];
 if (response.status === 200) dataSource = response.data;
+console.log(dataSource)
 
 let marcData = [];
 let modelData = [];
@@ -39,7 +40,7 @@ let responseMarcData = await axios.get('http://localhost:3000/api/moto/marc', {
     Authorization: `Bearer ${jwt}`
   }
 });
-
+console.log(responseMarcData);
 if(responseMarcData === 200) marcData = responseMarcData.data;
 
 const modelResponse = await axios.get("http://localhost:3000/api/moto/model", {
@@ -76,27 +77,6 @@ const ModalCreateContractWorker = ({
   const [t] = useTranslation("global");
   const [signatureURL, setSignatureURL] = useState();
 
-  const showClientRegistrationWarning = () => {
-    const modal = Modal.warning({
-      title: "El cliente no se encuentra registrado.",
-      content: (
-        <div>
-          <p>¿Desea registrarlo?</p>
-        </div>
-      ),
-      okText: "Sí",
-      cancelText: "No",
-      onOk: () => {
-        modal.destroy();
-        setVisibleModalCreateCliente(true);
-      },
-      onCancel: () => {
-        modal.destroy();
-        setVisible(false);
-      },
-    });
-  };
-
   const showMotoNotFoundWarning = () => {
     messageApi.warning({
       content: `No se encontraron motos disponibles con la marca "${marca}" y el modelo "${modelo}".`,
@@ -109,16 +89,15 @@ const ModalCreateContractWorker = ({
     setItems(modelData.filter((item) => item.nom_marca === value));
   };
 
-  const selectMotoContract = async (idClientExist) => {
+  const handlePetition = async () => {
     try {
-      console.log("Entra al otro metodo");
       const responseMotos = await axios.get("http://localhost:3000/api/moto", {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       });
       console.log(responseMotos);
-      const motoRequired = responseMotos.data.data.find(
+      const motoRequired = responseMotos.data.find(
         (moto) =>
           moto.situacion === "Disponible" &&
           moto.marca === marca &&
@@ -129,7 +108,7 @@ const ModalCreateContractWorker = ({
       } else {
         const contract = {
           matricula: motoRequired.matricula,
-          carnetCliente: clientIdCard,
+          carnetCliente: client.idcliente,
           beginDate: dateBegin,
           endDate: dateEnd,
           firmaDate: dateFirm,
@@ -139,6 +118,7 @@ const ModalCreateContractWorker = ({
         };
 
         if (dateBegin && dateEnd && dateFirm && formaPago) {
+          console.log(contract);
           const res = await axios.post(
             "http://localhost:3000/api/contract/",
             contract,
@@ -177,33 +157,6 @@ const ModalCreateContractWorker = ({
     }
   };
 
-  const handlePetition = async () => {
-    if (clientIdCard) {
-      try {
-        const idClientExist = await axios.get(
-          `http://localhost:3000/api/client/sample/${clientIdCard}`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        );
-        console.log(idClientExist);
-        if (idClientExist.status === 200 && idClientExist.data.count === 0) {
-          showClientRegistrationWarning();
-          console.log("entra al if");
-          if (clientCreated) {
-            selectMotoContract(idClientExist);
-            console.log("entra al if 2");
-          }
-        } else {
-          console.log("entra al else");
-          selectMotoContract(idClientExist);
-        }
-      } catch (error) {}
-    }
-  };
-
   return (
     <>
       {contextHolder}
@@ -238,28 +191,6 @@ const ModalCreateContractWorker = ({
       >
         <Row gutter={16}>
           <Col span={8}>
-            {/* Carnet del Cliente */}
-            <Form.Item
-              label={t("modal.clientIdCard") + ":"}
-              name="carnetCliente"
-              rules={[
-                {
-                  required: true,
-                  message: t("messageError.emptyClientIdCard"),
-                },
-                {
-                  pattern: /^[0-9]{11}$/,
-                  message: t("messageError.invalidClientIdCard"),
-                },
-              ]}
-            >
-              <Input
-                maxLength={11}
-                onChange={(e) => setClientIdCard(e.target.value)}
-                placeholder={t("modal.clientIdCard")}
-                style={{ marginBottom: margin }}
-              />
-            </Form.Item>
 
             <Form.Item
               label={t("modal.signatureDate") + ":"}
@@ -272,8 +203,8 @@ const ModalCreateContractWorker = ({
               ]}
             >
               <DatePicker
-                format={"DD/MM/YYYY"}
-                onChange={(value) => setDateFirm(value.format("DD/MM/YYYY"))}
+                format={"YYYY-MM-DD"}
+                onChange={(value) => setDateFirm(value.format("YYYY-MM-DD"))}
                 style={{ marginBottom: margin }}
                 placeholder={t("modal.signatureDate")}
               />
@@ -287,8 +218,8 @@ const ModalCreateContractWorker = ({
               ]}
             >
               <DatePicker
-                format={"DD/MM/YYYY"}
-                onChange={(value) => setDateBegin(value.format("DD/MM/YYYY"))}
+                format={"YYYY-MM-DD"}
+                onChange={(value) => setDateBegin(value.format("YYYY-MM-DD"))}
                 style={{ marginBottom: margin }}
                 placeholder={t("modal.startDate")}
               />
@@ -312,21 +243,21 @@ const ModalCreateContractWorker = ({
                 placeholder={t("modal.methodPayment")}
               >
                 {dataSource.map((item, i) => (
-                  <Select.Option key={i} value={item.formapago}>
-                    {item.formapago}
+                  <Select.Option key={i} value={item.forma_pago}>
+                    {item.forma_pago}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
 
-            <Form.Item label={t("modal.extensionDays") + ":"} name="prorroga">
+            {/* <Form.Item label={t("modal.extensionDays") + ":"} name="prorroga">
               <Input
                 type="number"
                 onChange={(e) => setProrroga(e.target.value)}
                 style={{ marginBottom: margin }}
                 placeholder={t("modal.extensionDays")}
               />
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item
               label={t("modal.endDate") + ":"}
@@ -336,8 +267,8 @@ const ModalCreateContractWorker = ({
               ]}
             >
               <DatePicker
-                format={"DD/MM/YYYY"}
-                onChange={(value) => setDateEnd(value.format("DD/MM/YYYY"))}
+                format={"YYYY-MM-DD"}
+                onChange={(value) => setDateEnd(value.format("YYYY-MM-DD"))}
                 style={{ marginBottom: margin }}
                 placeholder={t("modal.endDate")}
               />
@@ -355,7 +286,7 @@ const ModalCreateContractWorker = ({
                 style={{ marginBottom: margin, width: 150 }}
                 placeholder={t("mainContent.table.mark")}
               >
-                {marcData.map((item, i) => (
+                {responseMarcData.data.map((item, i) => (
                   <Select.Option key={i} value={item.nom_marca}>
                     {item.nom_marca}
                   </Select.Option>

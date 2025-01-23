@@ -17,7 +17,7 @@ const extractData = async () => {
     });
 
     if (response.status === 200) {
-      dataSource = response.data.data.map((element, index) => ({
+      dataSource = response.data.map((element, index) => ({
         key: index,
         municipio: element.nommun,
         marca: element.marca,
@@ -29,10 +29,7 @@ const extractData = async () => {
       }));
     }
   } catch (error) {
-    notification.info({
-      message: "Descarga de PDF",
-      description: 'La lista de contratos por municipio esta vacia'
-    });
+    console.log(error);
   }
   return dataSource;
 };

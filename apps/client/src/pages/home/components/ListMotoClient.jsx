@@ -154,14 +154,14 @@ const ListMotoClient = () => {
                 >
                   <Card.Meta
                     title={`Matricula: ${item.matricula}`}
-                    description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Color: ${item.color} | Km: ${item['Km recorridos']}`}
+                    description={`Marca: ${item.marca} | Modelo: ${item.modelo} | Color: ${item.color}`}
                   />
                 </Card>
               </List.Item>
             )}
           />
         ) : (
-          <Empty style={{position: "fixed", bottom: "30%"}}
+          <Empty style={{position: "relative", bottom: "30%"}}
           image={<SmileOutlined style={{ fontSize: '64px', color: '#1890ff' }} />}
           description={
             <Flex vertical="true">
