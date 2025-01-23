@@ -1,15 +1,15 @@
 import { Col, Flex, Form, Input, InputNumber, message, Modal, Row, Select } from 'antd'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { GlobalContext } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 
 const response = await axios.get('http://localhost:3000/api/client/mun');
-let dataSource = [];
+let dataSourceMun = [];
 if(response.status === 200)
-  dataSource = response.data;
+  dataSourceMun = response.data;
 
-const ModalModClient = ({isOpen, setOpen}) => {
+const ModalModClient = ({isOpen, setOpen, dataSource, setDataSource}) => {
 
     const [form] = Form.useForm();
     const {row} = useContext(GlobalContext);
@@ -21,6 +21,19 @@ const ModalModClient = ({isOpen, setOpen}) => {
     const [secondLast, setSecondLast] = useState("");
     const [numCont, setNumCont] = useState("");
     const [t] = useTranslation("global");
+
+    useEffect(() => {
+      // Asegurarnos de que los valores del formulario se actualicen cuando `row` cambie.
+      if (row) {
+        setName(row.nombre || "");
+        setSecondName(row.segNombre || "");
+        setLastName(row.primApellido || "");
+        setSecondLast(row.segApellido || "");
+        setEdad(row.edad || 0);
+        setMunicipio(row.municipio || "");
+        setNumCont(row.numCont || "");
+      }
+    }, [row]); // Esto se ejecuta cada vez que `row` cambie.
 
     const handlePetition = async () => {
 
@@ -38,14 +51,25 @@ const ModalModClient = ({isOpen, setOpen}) => {
         numCont:numCont
       }
 
-      const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client);
+      const jwt = JSON.parse(sessionStorage.getItem('jwt'))
+      const res = await axios.patch(`http://localhost:3000/api/client/${row?.ci}`, client, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
+
+      if(res.status === 200){
+        
+        const index = dataSource.findIndex(
+          (item) => item.ci === client.idCliente
+        );
+        dataSource[index] = { ...dataSource[index], ...client };
+
+        setDataSource([...dataSource]);
+      }
 
       message.success('Creado con exito');
-      window.location.reload();
-
-      // if(name && lastName && edad && Municipio && numCont){
-       
-      // }
+      setOpen(false);
     }
     const margin = 0;
   return (
@@ -60,18 +84,31 @@ const ModalModClient = ({isOpen, setOpen}) => {
         <Flex vertical={true}>
 
          <Row gutter={24}>
-           <Col span={12}>
-              <Form.Item label={t("profile.name") + ":"} name="name" rules={[{required: true,message: t("messageError.emptyName"),},
-                {min:4, message: t("messageError.minCharName")},
-                {max:20, message: t("messageError.maxCharName")},
-              ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")}/>
+           <Col span={20}>
+              <Form.Item label={t("profile.name") + ":"} name="name" >
+                <Input value={name} style={{marginBottom:margin, width: 200}} onChange={(e) => setName(e.target.value)} placeholder={t("profile.name")} defaultValue={row?.nombre}/>
               </Form.Item>
 
-              <Form.Item label={t("profile.middleName") + ":"} name="secondName" rules={[{min: 4,message: t("messageError.minCharMiddleName"),},
+              {/* <Form.Item label={t("profile.contactNumber") + ":"} name="numCont" rules={[{required: true,message: t("messageError.emptyContactNumber"),},
+                {len:8, message: t("messageError.lengthContactNumber")}
+              ]}>
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setNumCont(e.target.value)} placeholder={t("profile.contactNumber")}/>   
+              </Form.Item> */}
+
+
+              <Form.Item label={t("profile.municipality") + ":"} name="municipio" >
+                <Select value={Municipio} style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder={t("profile.municipality")} defaultValue={row?.municipio}>
+                  {dataSourceMun.map((item, i) => (
+                    <Option key={i} value={item.nom_mun}>{item.nom_mun}</Option>
+                  ))}
+                </Select>
+
+              </Form.Item>
+
+              {/* <Form.Item label={t("profile.middleName") + ":"} name="secondName" rules={[{min: 4,message: t("messageError.minCharMiddleName"),},
                 {max:20,message: t("messageError.maxCharMiddleName"),}
               ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder={t("profile.lastName")}/>  
+                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondName(e.target.value)} placeholder={t("profile.lastName")} defaultValue={row?.segNombre}/>  
               </Form.Item>
 
 
@@ -79,7 +116,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
                 {min:4, message: t("messageError.minCharLastName")},
                 {max:25, message: t("messageError.maxCharLastName")},
               ]}>
-              <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder={t("profile.lastName")}/>        
+              <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setLastName(e.target.value)} placeholder={t("profile.lastName")} />        
               </Form.Item>
 
 
@@ -87,26 +124,7 @@ const ModalModClient = ({isOpen, setOpen}) => {
                 {max:25 ,message: t("messageError.maxCharLastName"),},
               ]}>
                 <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setSecondLast(e.target.value)} placeholder={t("profile.secondLastName")}/>    
-              </Form.Item>
-           </Col>
-
-           <Col span={12}>
-              <Form.Item label={t("profile.contactNumber") + ":"} name="numCont" rules={[{required: true,message: t("messageError.emptyContactNumber"),},
-                {len:8, message: t("messageError.lengthContactNumber")}
-              ]}>
-                <Input style={{marginBottom:margin, width: 200}} onChange={(e) => setNumCont(e.target.value)} placeholder={t("profile.contactNumber")}/>   
-              </Form.Item>
-
-
-              <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
-                <Select style={{marginBottom:margin, width:200}} onSelect={(value) => setMunicipio(value)} placeholder={t("profile.municipality")}>
-                  {dataSource.map((item, i) => (
-                    <Option key={i} value={item.nommun}>{item.nommun}</Option>
-                  ))}
-                </Select>
-
-              </Form.Item>
-
+              </Form.Item> */}
            </Col>
          </Row>
 

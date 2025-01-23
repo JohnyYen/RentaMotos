@@ -18,8 +18,8 @@ export class ClientService {
      * @returns Todos los clientes en forma de pagina
      */
     async getAllClients(pageSize:number=1, page:number=1) {
-        return await this.pgService.pagination('cliente_view');
-        const res = await this.conn.query(`SELECT * FROM cliente_view LIMIT ${pageSize} OFFSET ${(page-1) * pageSize}`);
+        //return await this.pgService.pagination('cliente_view');
+        const res = await this.conn.query(`SELECT * FROM cliente_view`);
         return res.rows;
     }
 
@@ -29,7 +29,7 @@ export class ClientService {
      * @returns Todos los clientes de un municipio en especifico
      */
     async getClientByMun(mun:string){
-        return await this.pgService.pagination(`cliente_view WHERE municipio = '${mun}'`);
+        //return await this.pgService.pagination(`cliente_view WHERE municipio = '${mun}'`);
 
         const res = await this.conn.query(`SELECT * FROM cliente_view WHERE municipio = '${mun}'`);
         return res.rows;
@@ -41,7 +41,7 @@ export class ClientService {
      * @returns Devuelve solamente el cliente
      */
     async getClient(id : string){
-        return await this.pgService.pagination(`cliente WHERE idcliente = '${id}'`);
+        //return await this.pgService.pagination(`cliente WHERE idcliente = '${id}'`);
 
         const res = await this.conn.query(`SELECT * FROM cliente WHERE idcliente = '${id}'`);
         return res.rows;
@@ -93,8 +93,9 @@ export class ClientService {
      */
     async deleteClient(id : number){
         try {
-            return await this.pgService.execute(`DELETE FROM cliente where id_cliente = '${id}'`);
+            //return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
             this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+            console.log("dsdsdsdsds");
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -123,7 +124,7 @@ export class ClientService {
     async updateClient(client : ClientDto, id : string){
         try {
             //return await this.pgService.execute(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`)
-            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`)
+            return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', seg_nombre = '${client.segNombre}', prim_apellido = '${client.primApellido}', seg_apellido = '${client.segApellido}', num_cont = '${client.numCont}'  WHERE idcliente = '${id}'`)
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -134,7 +135,7 @@ export class ClientService {
      * @returns Todos los clientes incumplidores
      */
     async getAllBadClients(){
-        return await this.pgService.execute(` clientesIncumplidores()`);
+        //return await this.pgService.execute(` clientesIncumplidores()`);
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
     }
@@ -156,7 +157,7 @@ export class ClientService {
      * @returns Todos los municipios
      */
     async getAllMun(){
-        return await this.pgService.execute('select * from municipio');
+        //return await this.pgService.execute('select * from municipio');
 
         const res = await this.conn.query('select * from municipio');
         return res.rows;

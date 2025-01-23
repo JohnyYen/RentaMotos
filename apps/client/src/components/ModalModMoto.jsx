@@ -1,6 +1,6 @@
 import { Button, Flex, Form, InputNumber, Modal, Select } from 'antd'
 import axios from 'axios';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import { useTranslation } from 'react-i18next';
 
@@ -14,16 +14,23 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
 
     const [form] = Form.useForm();
     const {row} = useContext(GlobalContext);
-
+  
     const [color, setColor] = useState('');
     const [cantKm, setCantKm] = useState(0);
     const [Situacion, setSituacion] = useState('');
 
     const [t] = useTranslation("global");
 
+    useEffect(() => {
+      if (row) {
+        setColor(row.color || "");
+        setCantKm(row.kmRecorridos || 0);
+        setSituacion(row.situacion || "");
+      }
+    }, [row, isOpen]);
+
   const margin = 0;
-  const val = row?.kmRecorridos;
-  console.log(val);
+    
   const handlePetition = async () => {
 
     const moto = {
@@ -32,7 +39,7 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
       cantKm:cantKm,
       situacion:Situacion
     }
-
+    console.log(row)
     if(color && cantKm && Situacion){
 
       const jwt = JSON.parse(sessionStorage.getItem('jwt'));
@@ -44,14 +51,14 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
           }
         }
       );
-      console.log(res.status);
-      if(res.status === 200){
-        const index = dataSource.findIndex(item = item.matricula === moto.matricula);
-        dataSource[index] = {...dataSource[index], moto};
 
-        setDataSource(dataSource);
+      if(res.status === 200){
+        const index = dataSource.findIndex((item) => item.matricula === moto.matricula);
+        dataSource[index] = {...dataSource[index], ...moto};
+
+        setDataSource([...dataSource]);
       }
-      setOpen();
+      setOpen(false);
     }
       
   }
@@ -63,8 +70,8 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
           {dom}
       </Form>
       )}>   
-      <Form.Item label="Color:" name={"color"} rules={[{required:true, message:t("messageError.emptyColor")}]}>
-          <Select style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder={row?.color}>
+      <Form.Item label="Color:" name={"color"}>
+          <Select value={color} style={{marginBottom:margin}}  onSelect={(value) => setColor(value)} placeholder={row?.color}>
               <Select.Option value='Rojo'>{t("mainContent.table.colors.red")}</Select.Option>
               <Select.Option value='Azul'>{t("mainContent.table.colors.blue")}</Select.Option>
               <Select.Option value='Negro'>{t("mainContent.table.colors.black")}</Select.Option>
@@ -76,13 +83,12 @@ const ModalModMoto = ({isOpen, setOpen, setDataSource, dataSource}) => {
           </Select>
         </Form.Item>
 
-       <Form.Item label={t("modal.cantKm") + ":"} name={"cantKm"} rules={[{required:true, message:("messageError.emptyKm")},
-       ]}>
-        <InputNumber min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
+       <Form.Item label={t("modal.cantKm") + ":"} name={"cantKm"}>
+        <InputNumber value={cantKm} min={row?.kmRecorridos} style={{marginBottom:margin}} onChange={(e) => setCantKm(e)} placeholder={row ? row.kmRecorridos : 0}/>
        </Form.Item>
 
-        {row?.situacion !== "Alquilada" && <Form.Item label={t("modal.situation") + ":"} name={"situacion"} rules={[{required:true, message:("messageError.emptySituation")}]}>
-        <Select style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
+        {row?.situacion !== "Alquilada" && <Form.Item label={t("modal.situation") + ":"} name={"situacion"}>
+        <Select value={Situacion} style={{marginBottom:margin}} onSelect={(e) => setSituacion(e)} placeholder={row?.situacion ? row.situacion : t("modal.Situation")}>
             {situations.map((item, i) => (
               <Select.Option key={i} value={item.situacion}>{item.situacion}</Select.Option>
             ))}

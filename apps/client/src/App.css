@@ -30,9 +30,9 @@
 .footer{
   background-color: #00162b;
   display: flex;
-  width: 90%;
+  width: 100%;
   height: 1%;
-  border-radius: 100rem;
+  
   padding: 2rem;
   margin: auto;
   font-size: 2rem;
@@ -42,14 +42,46 @@
   
   
 }
+.userCommentName{
+  padding: 0.4rem;
+  margin-right: 1rem;
+  margin-left:  0.5rem;
+  background-color: #00162b;
+  border-radius: 0.4rem;
+  text-decoration: double;
+  
+  font-style: normal;
+  font-weight: bolder;
+}
+.commentText{
+  background-color:#4667fa ;
+  border-radius: 0.3rem;
+  margin-left: 0.5rem;
+  padding: 0.4rem;
+  font-style: italic;
+}
+.avatarComment{
+  margin-right: 1rem;
+  size: 100rem;
+  background-color: #06325d;
+
+}
 .CardMoto{
   text-align: center;
- background-color: #00162b;
+ background-color: cadetblue;
  color: bisque;
- height: 13rem;
+ height: 18rem;
  width: 12rem;
- border-radius: 2rem;
+ border-radius: 0.5rem;
 
+}
+.CardComentario{
+  text-align: start;
+ background-color: cadetblue;
+ color: bisque;
+ height: 4rem;
+ width: 100rem;
+ border-radius: 0.7rem;
 }
 .espaciador{
   text-align: center;
@@ -69,19 +101,54 @@
 }
 
 .header {
-  /* position: relative;
+  position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center; */
+  align-items: center;
+  width: 100%;
   height: 5rem;
 }
 
+.header-title {
+  margin-left: 1rem;
+  color: white;
+  font-size: 2rem;
+  line-height: 2rem; 
+}
+
 @media (max-width: 1200px){
+  
   .footer{
     font-size: 1.5rem;
   }
 }
+@media (max-width: 545px){
+  
+  .CardComentario{
+    height: auto;
+  }
+}
+@media(min-width: 600px){
+  .toggle-menu{
+   visibility: hidden;
+  }
+  .sider{
+    display: none;
+  }
+}
 @media (max-width: 600px){
+  .perfiInfo{
+    margin-left: 0;
+  }
+
+   .sider {
+    display: block;
+   }
+
+   .content {
+    height: max-content;
+   }
+
   .footer{
     font-size: 0.7rem;
   }
@@ -95,6 +162,18 @@
 @media (max-width: 450px){
   .footer{
     font-size: 0.1rem;
+  }
+  
+}
+@media (max-width: 440px){
+
+  .commentText{
+    padding: 0.1rem;
+  }
+  .userCommentName{
+    padding: 0.2rem;
+    margin-right: 0;
+
   }
 }
 @media (max-width: 900px){
@@ -118,12 +197,11 @@
   text-align: center;
 }
 .header-button {
-  margin-top: 0.5rem;
   border: none;
 }
 
 .popup-language {
-  margin-top: 0.5rem;
+  margin-right: 0.5rem;
   background-color: darkblue;
   border-radius: 5px;
 }
@@ -131,13 +209,16 @@
 .popup-language span {
   color: white;
 }
-/* .content {
 
+.content {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
   background-image: url('../src/assets/background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-} */
+}
 
 .cover {
   padding: 0;
@@ -194,17 +275,33 @@
   background-color: darkblue;
 } */
 
-.sider-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.navBar-menu {
+  width:  52%;
   font-weight: 500;
 }
 
-.ant-menu-item-selected {
-  background-color: darkblue !important;
+.navBar-menu.inline {
+  display: block;
+  width: auto; 
 }
 
+.navBar-menu.horizontal {
+  display: flex;
+}
+.ant-menu-submenu-selected{
+  
+  background: none !important;
+  border-bottom: 2px solid darkblue !important ;
+}
+.ant-menu-item-selected {
+  
+  background: none !important;
+  border-bottom: 2px solid darkblue !important;
+}
+.ant-menu-item-only-child{
+  background: none !important;
+  border-bottom: none !important;
+}
 .App {
   display: flex;
   flex-direction: column;
@@ -220,6 +317,10 @@
   background-color: rgb(39, 39, 192) !important;
 }
 .subtitulo{
+  text-wrap: wrap;
+  font-weight: 100rem;
+  font-size: 1.7rem;
+  margin: 2rem;
   text-align: center;
 }
 
@@ -516,11 +617,6 @@
   flex-direction: column;
   gap: 1rem;
   font-weight: 500;
-}
-
-
-.ant-menu-item-selected {
-  background-color: darkblue !important;
 }
 
 .App {

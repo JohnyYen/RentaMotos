@@ -1,15 +1,15 @@
-import { Form, Input, Modal, Select } from 'antd'
+import { Form, Input, Modal, Select, message } from 'antd'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'; 
 
 const response = await axios.get('http://localhost:3000/api/client/mun')
-let dataSource = [];
+let dataSourceMun = [];
 if(response.status === 200){
-    dataSource = response.data;
+    dataSourceMun = response.data;
 }
 
-const ModalCreateWorker = ({isOpen, setOpen}) => {
+const ModalCreateWorker = ({isOpen, setOpen, setDataSource, dataSource}) => {
 
     const [form] = Form.useForm();
     const [name, setName] = useState('');
@@ -26,15 +26,25 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
         }
 
         console.log(worker);
+        const jwt = JSON.parse(sessionStorage.getItem('jwt'));
         if(name && password && mun){
-          const res = await axios.post('http://localhost:3000/api/user/worker', worker);
+          const res = await axios.post('http://localhost:3000/api/user/worker', worker, {
+            headers: {
+              Authorization: `Bearer ${jwt}` 
+            }
+          });
 
           if(res.status === 201)
-            message.success('Creado con exito')
-
-          window.location.reload();
+            message.success(t("messageSuccess"));
+            setDataSource([...dataSource, {
+              key: dataSource[dataSource.length-1].key+1,
+              usuario: name,
+              municipio: mun
+            }])
         }
-    }
+        setOpen(false);
+     }
+
   return (
     <Modal okButtonProps={{htmlType:'submit'}} afterClose={() => form.resetFields()}  centered={true} title={t("modal.createWorker")} open={isOpen} onClose={setOpen} onCancel={setOpen} onOk={handlePetition}
     modalRender={(dom) => (
@@ -74,8 +84,8 @@ const ModalCreateWorker = ({isOpen, setOpen}) => {
         <Form.Item label={t("profile.municipality") + ":"} name="municipio" rules={[{required: true,message: t("messageError.emptyMunicipality"),},]}>
           <Select onSelect={(value) => setMun(value)} style={{marginBottom:margin,width:200}} placeholder={t("profile.municipality")}>
               {
-                  dataSource.map((item, i) => (
-                    <Option key={i}  value={item.nommun}>{item.nommun}</Option>
+                  dataSourceMun.map((item, i) => (
+                    <Option key={i}  value={item.nom_mun}>{item.nom_mun}</Option>
                   ))
               }
           </Select>

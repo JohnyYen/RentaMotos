@@ -1,20 +1,12 @@
 import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/UserPages/HomePage";
-import UserAdmin from "./pages/UserPages/UserAdmin";
-import Loguin from "./component/Loguin";
-import UserClient from "./pages/UserPages/UserClient";
-import UserWorker from "./pages/UserPages/UserWorker";
-import Prueba from "./pages/UserPages/Prueba";
+import HomePage from "./pages/home/HomePage";
+import UserAdmin from "./pages/admin/UserAdmin";
+import UserClient from "./pages/UserClient";
+import UserWorker from "./pages/worker/UserWorker";
 import GlobalProvider from "./context/GlobalContext";
-import { Suspense } from "react";
 import { message, notification } from "antd";
-import axios from "axios";
-import { SiHomepage } from "react-icons/si";
-import { useNavigate } from "react-router-dom";
-import FaqBody from "./components/Faq";
-import ProtectedRoutes from "./utils/ProtectedRoutes";
-import Register from "./components/Register";
+import Register from "./pages/login/Register";
 //import './register.css';
 
 
@@ -35,9 +27,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/home/*" element={<HomePage/>}/>
-            <Route path="/login/*" element={<Register/>}/>
-            <Route path="/admin/*" element={<ProtectedRoutes children={<UserAdmin/>}/>}/>
-            <Route path="/worker/*" element={<ProtectedRoutes children={<UserWorker/>}/>}/>
+            <Route path="/worker/*" element={<UserWorker/>}/>
+            <Route path="/admin/*" element={<UserAdmin/>}/>
+            <Route path="/loguin/*" element={<Register/>}/>
+            <Route path="/client/*" element={<UserClient/>}/>
           </Routes>
         </GlobalProvider>
     </>

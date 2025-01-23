@@ -4,7 +4,6 @@ import { IsBoolean, IsDate, IsInt, IsString, Min, min } from "class-validator";
 export class ContractDto {
     
     @ApiProperty({name: "idCliente", description: "Identificador del Cliente", example: '03121067683', type: String})
-    @IsString()
     public idCliente : string;
 
     @ApiProperty({name: "matricula", description: "Matricula de la Moto", example: 'LH031210', type: String})
@@ -32,7 +31,5 @@ export class ContractDto {
     public seguro : boolean;
 
     @ApiProperty({name: "diasProrroga", description: "Los dias de prorroga que tenga el contrato", example: 10, type:Number})
-    @IsInt()
-    @Min(0)
     public diasProrroga : number;
 }

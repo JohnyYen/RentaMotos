@@ -14,7 +14,7 @@ export class MotorcycleService {
     constructor(@Inject(PG_CONNECTION) private conn : any, private pgService : PgService){}
 
     async getAllMotorcycle(){
-        return await this.pgService.pagination('moto_view');
+        //return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
@@ -43,9 +43,9 @@ export class MotorcycleService {
         return await generatePDF(Object.keys(moto[0]), arrayFormatter(moto));
     }
 
-    async deleteMotorcycle( id : number){
+    async deleteMotorcycle( id : string){
         try {
-             await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+             await this.conn.query(`DELETE FROM moto WHERE matricula = '${id}'`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -53,6 +53,9 @@ export class MotorcycleService {
 
     async getMarc() {
         const res = await  this.conn.query('SELECT nom_marca FROM marca');
+
+        console.log(res.rows);
+        
         return res.rows;
     }
 
@@ -83,6 +86,7 @@ export class MotorcycleService {
 
     async createMotorcycle (moto : MotorcycleDto){
        try{
+        console.log(moto);
         //return await this.pgService.execute(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`)
         return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
        }catch(error){
@@ -92,7 +96,7 @@ export class MotorcycleService {
 
     async updateMotorcycle (moto : MotorcyclePartial, id : string){
         try {
-            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+            this.conn.query(`UPDATE moto SET cant_km = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -105,6 +109,7 @@ export class MotorcycleService {
 
     async getModels(){
         const res = await this.conn.query('SELECT * FROM modelo');
+        console.log(res.rows);
         return res.rows;
     }
 

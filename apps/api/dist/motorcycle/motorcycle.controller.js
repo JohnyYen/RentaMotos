@@ -20,8 +20,11 @@ const swagger_1 = require("@nestjs/swagger");
 const marc_dto_1 = require("./dto/marc.dto");
 const model_dto_1 = require("./dto/model.dto");
 const jwtAuthGuard_1 = require("../auth/jwtAuthGuard");
-const public_decorator_1 = require("../auth/public.decorator");
+const role_enum_1 = require("../auth/role.enum");
+const roles_decorator_1 = require("../auth/roles.decorator");
+const roles_guard_1 = require("../auth/roles.guard");
 const motorcyclePartial_dto_1 = require("./dto/motorcyclePartial.dto");
+const public_decorator_1 = require("../auth/public.decorator");
 let MotorcycleController = class MotorcycleController {
     constructor(motoService) {
         this.motoService = motoService;
@@ -77,7 +80,7 @@ let MotorcycleController = class MotorcycleController {
         return await this.motoService.updateMarc(body, +id);
     }
     async deleteMoto(id) {
-        return await this.motoService.deleteMotorcycle(+id);
+        return await this.motoService.deleteMotorcycle(id);
     }
     async deleteModel(id) {
         return await this.motoService.deleteModels(+id);
@@ -88,16 +91,18 @@ let MotorcycleController = class MotorcycleController {
 };
 exports.MotorcycleController = MotorcycleController;
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las motos" }),
     (0, common_1.Get)(),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.User, role_enum_1.Role.Worker),
     (0, common_1.HttpCode)(200),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getAllMoto", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las motos en formato pdf" }),
     (0, common_1.Get)('/pdf'),
     __param(0, (0, common_1.Res)()),
@@ -106,7 +111,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllMotoInPDF", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las motos que esten disponible" }),
     (0, common_1.Get)('/client'),
     __metadata("design:type", Function),
@@ -115,6 +121,7 @@ __decorate([
 ], MotorcycleController.prototype, "getMotoClient", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve la situación de las motos" }),
     (0, common_1.Get)('/situation'),
     __metadata("design:type", Function),
@@ -122,7 +129,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MotorcycleController.prototype, "getSituationMoto", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve la situación de las motos en formato pdf" }),
     (0, common_1.Get)('/situation/pdf'),
     __param(0, (0, common_1.Res)()),
@@ -131,6 +139,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getPDFSituation", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los modelos de las motos" }),
     (0, common_1.Get)('/model'),
@@ -139,6 +148,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getAllModels", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las situaciones posibles para las motos" }),
     (0, common_1.Get)('/situacion'),
@@ -147,6 +157,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getSituation", null);
 __decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
     (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todas las marcas de las motos" }),
     (0, common_1.Get)('/marc'),
@@ -155,7 +166,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "getMarc", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiBody)({ type: motorcycle_dto_1.MotorcycleDto, description: "Los datos de la moto" }),
     (0, swagger_1.ApiOperation)({ summary: "Crea una moto" }),
     (0, common_1.Post)(),
@@ -165,7 +177,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "createMoto", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiBody)({ type: marc_dto_1.MarcDto, description: "Los datos de la marca" }),
     (0, swagger_1.ApiOperation)({ summary: "Crea una nueva marca de moto" }),
     (0, common_1.Post)('/marca'),
@@ -175,7 +188,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "createMarc", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiBody)({ type: model_dto_1.ModelDto, description: "Los datos para crear una nueva moto" }),
     (0, swagger_1.ApiOperation)({ summary: "Crea un nuevo modelo" }),
     (0, common_1.Post)('/model'),
@@ -185,7 +199,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "createModel", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiParam)({ name: "id", description: "La matricula de la moto" }),
     (0, swagger_1.ApiBody)({ type: motorcycle_dto_1.MotorcycleDto, description: "Los datos de las motos" }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica una moto según su id" }),
@@ -197,7 +212,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateMoto", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiBody)({ type: model_dto_1.ModelDto, description: "Los datos del modelo" }),
     (0, swagger_1.ApiParam)({ name: "id", description: "Identificador del modelo" }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica un modelo dado su identificador" }),
@@ -209,7 +225,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateModel", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiBody)({ type: marc_dto_1.MarcDto, description: "Los datos de la Marca" }),
     (0, swagger_1.ApiParam)({ name: "id", description: "Es el identificador de la marca", example: 1 }),
     (0, swagger_1.ApiOperation)({ summary: "Modifica una marca de moto" }),
@@ -221,7 +238,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "updateMarc", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiParam)({ name: "id", description: "Matricula de la Moto" }),
     (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su id" }),
     (0, common_1.Delete)('/:id'),
@@ -231,7 +249,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "deleteMoto", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador del modelo" }),
     (0, swagger_1.ApiOperation)({ summary: "Elimina un modelo de moto dado su identificador" }),
     (0, common_1.Delete)('/model/:id'),
@@ -241,9 +260,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MotorcycleController.prototype, "deleteModel", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, swagger_1.ApiParam)({ name: 'id', description: "Identificador de la marca", example: 1 }),
-    (0, swagger_1.ApiOperation)({ summary: "Elimina una moto según su ID" }),
+    (0, swagger_1.ApiOperation)({ summary: "Elimina una marca según su ID" }),
     (0, common_1.Delete)('/marc/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

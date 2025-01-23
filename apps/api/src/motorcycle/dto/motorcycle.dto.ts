@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsNumber, IsString, Max, Min } from "class-validator";
+import { IsBase64, IsInt, IsNumber, IsString, Max, Min } from "class-validator";
 
 export class MotorcycleDto{
 
@@ -27,4 +27,8 @@ export class MotorcycleDto{
     @ApiProperty({type:String, description:"La situacion de la moto", example: 'Disponible'})
     @IsString({message: "The situacion atribute can be a String"})
     public situacion : string;
+
+    // @ApiProperty({type:String, description: "La imagen de la moto"})
+    // @IsBase64()
+    // public image? : string;
 }

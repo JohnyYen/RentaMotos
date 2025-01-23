@@ -25,7 +25,6 @@ let MotorcycleService = class MotorcycleService {
         this.pgService = pgService;
     }
     async getAllMotorcycle() {
-        return await this.pgService.pagination('moto_view');
         const res = await this.conn.query("SELECT * FROM moto_view");
         return await res.rows;
     }
@@ -51,7 +50,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async deleteMotorcycle(id) {
         try {
-            await this.conn.query(`DELETE FROM moto WHERE id_moto = '${id}'`);
+            await this.conn.query(`DELETE FROM moto WHERE matricula = '${id}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();
@@ -59,6 +58,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async getMarc() {
         const res = await this.conn.query('SELECT nom_marca FROM marca');
+        console.log(res.rows);
         return res.rows;
     }
     async deleteMarc(marc) {
@@ -87,6 +87,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async createMotorcycle(moto) {
         try {
+            console.log(moto);
             return await this.conn.query(`INSERT INTO moto values ('${moto.matricula}', '${moto.color}', ${moto.cantKm}, '${moto.marca}', '${moto.modelo}', '${moto.situacion}')`);
         }
         catch (error) {
@@ -95,7 +96,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async updateMotorcycle(moto, id) {
         try {
-            this.conn.query(`UPDATE moto SET cantkm = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
+            this.conn.query(`UPDATE moto SET cant_km = ${moto.cantKm}, color = '${moto.color}', situacion = '${moto.situacion}' WHERE matricula = '${id}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();
@@ -107,6 +108,7 @@ let MotorcycleService = class MotorcycleService {
     }
     async getModels() {
         const res = await this.conn.query('SELECT * FROM modelo');
+        console.log(res.rows);
         return res.rows;
     }
     async deleteModels(id) {

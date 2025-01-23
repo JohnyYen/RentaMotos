@@ -10,6 +10,7 @@ function ProtectedRoutes({children}) {
         return <Navigate to="/home" replace />;
       }
     
+      
       return children;
 }
 

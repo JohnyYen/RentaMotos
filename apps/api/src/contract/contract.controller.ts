@@ -6,6 +6,10 @@ import { ApiBearerAuth, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
 import { FormaPagoDto } from './dto/formaPago.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuthGuard';
 import { SkipAuth } from 'src/auth/public.decorator';
+import { RoleGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
+
 @ApiBearerAuth()
 @ApiTags('Contratos')
 @Controller('api/contract')
@@ -19,14 +23,16 @@ export class ContractController {
         return await this.contractService.getAllFormaPago();
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker, Role.User)
     @ApiOperation({summary: "Devuelve todos los contratos"})
     @Get()
     async getContract(){
         return await this.contractService.getAllContract();
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los contratos en formato pdf"})
     @Get("/pdf")
     async getContractInPDF(@Res() res){
@@ -39,14 +45,16 @@ export class ContractController {
         res.send(buffer);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los contratos en un municipio"})
     @Get('/worker/:mun')
     async getContractsMunWorker(@Param('mun') mun : string){
         return await this.contractService.getContractMun(mun);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los contratos en un municipio en formato pdf"})
     @Get('/worker/pdf/:mun')
     async getPDFContractWorkerMun(@Param('mun') mun : string , @Res() res){
@@ -60,14 +68,16 @@ export class ContractController {
     }
 
 
-    @UseGuards(JwtAuthGuard)    
+    @UseGuards(JwtAuthGuard, RoleGuard)
     @ApiOperation({summary: "Devuelve todos los contratos según los municipios"})
+    @Roles(Role.Admin, Role.Worker)
     @Get('/mun')
     async getContractByMun(){
         return await this.contractService.getContractByMun();
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los contratos según los municipios en formato pdf"})
     @Get("/mun/pdf")
     async getContractInPDFMun(@Res() res){
@@ -81,14 +91,16 @@ export class ContractController {
     }
 
     
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los contratos según la marca y el modelo"})
     @Get('/marcxmodel')
     async getFilterContract(){
         return await this.contractService.getContractFilter();
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los contratos según la marca y el modelo en formato pdf"})
     @Get("/marcxmodel/pdf")
     async getContractInPDFMarc(@Res() res){
@@ -101,21 +113,24 @@ export class ContractController {
         res.send(buffer);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker, Role.User)
     @ApiOperation({summary: "Devuelve todos los contratos de un determinado cliente"})
     @Get('/:id')
     async getContractByCliente(@Param('id') id:string){
         return await this.contractService.getCotnractByCliente(id);
     }
   
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los cobros realizados"})
     @Get('/cobros')
     async getAllPagos(){
         return await this.contractService.getAllPagos();
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los cobros realizados en formato pdf"})
     @Get('/cobros/pdf')
     async getAllPagosPDF(@Res() res){
@@ -128,7 +143,8 @@ export class ContractController {
         res.send(buffer);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los cobros de un municipio en formato pdf"})
     @Get('/cobros/worker/pdf/:mun')
     async getAllPagosPDFMun(@Res() res, @Param('mun') mun : string){
@@ -141,35 +157,40 @@ export class ContractController {
         res.send(buffer);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Devuelve todos los cobros de un municipio"})
     @Get('/cobros/:mun')
     async getAllPagosByMun(@Param('mun') mun:string){
         return await this.contractService.getAllPagosByMun(mun);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker, Role.User)
     @ApiOperation({summary: "Crea un nuevo contrato"})
     @Post()
     async createContract(@Body() contract : ContractDto){
         return await this.contractService.createContract(contract);    
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin)
     @ApiOperation({summary: "Permite crear nuevas formas de pagos"})
     @Post('/formasPago')
     async createFormaPago(@Body() form : FormaPagoDto){
         return await this.contractService.createFormaPago(form);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Modifica un contrato según la matricula de la moto que está en renta"})
     @Patch('/:matricula')
     async updateContract(@Param("matricula") matricula : string, @Body() contract : ContractDto){
         return await this.contractService.updateContract(contract, matricula);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin)
     @ApiParam({name:'id', description:"Identificador de la forma de pago", example: 1})
     @ApiOperation({summary: "Modifica una forma de pago según su id"})
     @Patch('/formasPago/:id')
@@ -177,7 +198,8 @@ export class ContractController {
         return await this.contractService.updateFormaPago(body, id);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin)
     @ApiParam({name: "id", description: "Identificador de la forma de pago", example: 1, type: Number})
     @ApiOperation({summary: "Elimina una forma de pago"})
     @Delete("/formasPago/:id")
@@ -185,7 +207,8 @@ export class ContractController {
         return await this.contractService.deleteFormaPago(id);
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker)
     @ApiOperation({summary: "Elimina a un contrato según la matricula de la moto que está en renta"})
     @Delete('/:matricula')
     async deleteContract(@Param("matricula") matricula : string){
