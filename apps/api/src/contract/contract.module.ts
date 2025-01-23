@@ -10,4 +10,5 @@ import { ClientModule } from 'src/client/client.module';
   controllers: [ContractController],
   providers: [ContractService]
 })
+
 export class ContractModule {}
