@@ -10,6 +10,7 @@ const Profile = ({isOpen, setOpen}) => {
     const [t] = useTranslation("global");
 
     const {user, client} = useContext(GlobalContext);
+    console.log(user);
     console.log(client);
 
     const margin = 12;
@@ -18,25 +19,15 @@ const Profile = ({isOpen, setOpen}) => {
        <Flex style={{marginBottom:50}}justify="center"><Avatar  size={200}></Avatar></Flex> 
         
     <Flex justify="space-around" className="perfilInfo" style={{}}>
-       
-        
-        
-        
-            
-            
+           
         <Flex vertical wrap > <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.username")}: </Tag>
-                    <FormItemLabel  label={user?.nombre_usuario}/>
+                    <FormItemLabel  label={user?.user_name}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>CI: </Tag>
-                    <FormItemLabel label={client?.idcliente}/>
-                </Flex>
-
-                <Flex style={{marginBottom: margin}}>
-                    <Tag>{t("profile.password")}: </Tag>
-                    <FormItemLabel label={user?.contrasenia}/>
+                    <FormItemLabel label={client?.idCliente}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
@@ -46,7 +37,7 @@ const Profile = ({isOpen, setOpen}) => {
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.contactNumber")}: </Tag>
-                    <FormItemLabel label={client?.numcont}/>
+                    <FormItemLabel label={client?.numCont}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
@@ -56,7 +47,7 @@ const Profile = ({isOpen, setOpen}) => {
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.middleName")}: </Tag>
-                    <FormItemLabel label={client?.segnombre}/>
+                    <FormItemLabel label={client?.segNombre}/>
                 </Flex>
                 </Flex>
                
@@ -65,12 +56,12 @@ const Profile = ({isOpen, setOpen}) => {
 
            <Flex wrap vertical="true"><Flex style={{marginBottom: margin}}>  
                     <Tag>{t("profile.lastName")}: </Tag>
-                    <FormItemLabel label={client?.primapellido}/>
+                    <FormItemLabel label={client?.primApellido}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
                     <Tag>{t("profile.secondLastName")}: </Tag>
-                    <FormItemLabel label={client?.segapellido}/>
+                    <FormItemLabel label={client?.segApellido}/>
                 </Flex>
 
                 <Flex style={{marginBottom: margin}}>
@@ -89,10 +80,6 @@ const Profile = ({isOpen, setOpen}) => {
                 </Flex>
 </Flex>
                 
-                
-            
-       
-        
     </Flex></Content>
   )
 }

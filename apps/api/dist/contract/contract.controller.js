@@ -91,6 +91,7 @@ let ContractController = class ContractController {
         return await this.contractService.getAllPagosByMun(mun);
     }
     async getContractByCliente(id) {
+        console.log(id);
         return await this.contractService.getCotnractByCliente(id);
     }
     async createContract(contract) {

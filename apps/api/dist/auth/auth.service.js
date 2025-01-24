@@ -27,10 +27,8 @@ let AuthService = class AuthService {
         const plainToCrypto = await (0, bcrypt_1.hash)(password, 10);
         userObject = { ...userObject, password: plainToCrypto };
         const response = await this.conn.query(`INSERT INTO usuario(nombre_usuario, contrasenia, email, tipo_usuario, id_cliente) VALUES ('${user_name}', '${password}', '${email}', 2, '${ci}')`);
-        console.log(userObject);
         const createUser = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${user_name}'`);
-        const user = createUser[0];
-        console.log(user);
+        const user = createUser.rows[0];
         const payload = {
             name: user_name,
             roles: 2,

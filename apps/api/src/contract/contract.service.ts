@@ -14,34 +14,29 @@ export class ContractService {
     , private mailService: MailsService){}
 
     async getAllContract(){
-        //return await this.pgService.pagination(`contrato_view`);
 
         const res = await this.conn.query("SELECT * FROM contrato_view");
         return res.rows;
     }
 
     async getContractFilter(){
-        //return await this.pgService.pagination(`contratoxmarca_modelo`);
 
         const res = await this.conn.query('select * from contratoxmarca_modelo')
         return res.rows;
     }
 
     async getContractMun(mun:string){
-        //return await this.pgService.pagination(`cont_mun_view WHERE municipio = '${mun}'`);
 
         const res = await this.conn.query(`SELECT * FROM cont_mun_view WHERE municipio = '${mun}'`)
         return res.rows;
     }
 
     async getCotnractByCliente(id : string){
-        //return await this.pgService.pagination(`contrato_cliente_view WHERE idcliente = '${id}'`);
 
         const res = await this.conn.query(`SELECT * FROM contrato_cliente_view WHERE idcliente = '${id}'`)
         return res.rows;
     }
     async getContractByMun(){
-        //return await this.pgService.pagination(`cont_mun`);
 
         const res = await this.conn.query('select * from cont_mun');
         return res.rows
@@ -80,6 +75,7 @@ export class ContractService {
 
     async createContract(contract : ContractDto){
         try{
+            console.log(contract);
             const response = await this.conn.query(`SELECT nombre_usuario, email FROM public.usuario where id_cliente = '${contract.idCliente}'`);
             const user = response.rows[0];
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
@@ -93,7 +89,6 @@ export class ContractService {
 
     async updateContract(contract : ContractDto, matricula : string){
         try {
-            //return await this.pgService.execute(`UPDATE Contrato SET formapago = '${contract.formaPago}', fechafin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', diasprorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`)
             this.conn.query(`UPDATE Contrato SET forma_pago = '${contract.formaPago}', fecha_fin = '${contract.endDate}'::date ,seguro = '${contract.seguro}', dias_prorroga = ${contract.diasProrroga} WHERE matricula = '${matricula}'`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -102,7 +97,6 @@ export class ContractService {
 
     async deleteContract(matricula : string){
        try {
-            //return await this.pgService.execute(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
             this.conn.query(`DELETE FROM Contrato WHERE matricula = '${matricula}'`);
        } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -111,8 +105,6 @@ export class ContractService {
 
     async getAllFormaPago(){
 
-        //return await this.pgService.execute('SELECT * FROM formaPago');
-
         const res = await this.conn.query('SELECT * FROM formaPago');
 
         return res.rows;
@@ -120,7 +112,6 @@ export class ContractService {
 
     async createFormaPago(formaPago : FormaPagoDto){
         try {
-           // return await this.pgService.execute(`INSERT INTO formaPago values ('${formaPago.formaPago}')`)
             await this.conn.query(`INSERT INTO formaPago values ('${formaPago.formaPago}')`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -129,7 +120,6 @@ export class ContractService {
 
     async deleteFormaPago(formaPago : string){
        try {
-           // return await this.pgService.execute(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
             await this.conn.query(`DELETE FROM formaPago WHERE formaPago = '${formaPago}'`);
        } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -138,7 +128,6 @@ export class ContractService {
 
     async updateFormaPago(formaPago : FormaPagoDto, changeFormaPago : string){
        try {
-        //return await this.pgService.execute(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
         await this.conn.query(`UPDATE formaPago SET formaPago = '${formaPago.formaPago}' WHERE formapago = '${changeFormaPago}'`);
        } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -153,7 +142,6 @@ export class ContractService {
     }
 
     async getAllPagosByMun(mun : string){
-       // return await this.pgService.execute(`SELECT * FROM pagos_mun_view WHERE municipio = '${mun}'`);
 
         const res = await this.conn.query(`SELECT * FROM pagos_mun_view WHERE municipio = '${mun}'`);
         return res.rows;
@@ -162,7 +150,7 @@ export class ContractService {
     async getAllPagosPDF(){
         const list = await this.getAllPagos();
         let counter = 0;
-        console.log(list);
+        
         for(const e of Object.values(list[0])){
            if(e === null)
             counter++;

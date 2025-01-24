@@ -13,6 +13,16 @@ const GlobalProvider = ({children}) => {
     else return false;
   }
 
+  const isAuthorization = (permissions) => {
+    const jwt = sessionStorage.getItem('jwt');
+
+    const [header, payload, signature] = jwt.split('.');
+
+    const role = JSON.parse(atob(payload)).roles;
+    
+    return permissions.includes(role);
+  }
+
   useEffect(() => {
     const userData = localStorage.getItem('userData');
     const clientData = localStorage.getItem('clientData');
@@ -25,7 +35,7 @@ const GlobalProvider = ({children}) => {
   }, [])
   
   return (
-    <GlobalContext.Provider value={{row, setRow, user, setUser, client, setClient, isAuthenticate}}>
+    <GlobalContext.Provider value={{row, setRow, user, setUser, client, setClient, isAuthenticate, isAuthorization}}>
       {children}
     </GlobalContext.Provider>
   )

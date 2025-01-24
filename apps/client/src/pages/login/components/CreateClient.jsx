@@ -7,16 +7,18 @@ import IdentityInformation from "./IdentityInformation";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../../context/GlobalContext";
+import UserInformation from "./UserInformation";
+import { User } from "../../../model/User";
+import { Cliente } from "../../../model/Client";
 
 const { Step } = Steps;
 
 const CreateClient = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [form] = Form.useForm();
-  const navigate = useNavigate();
 
   //Variables
-  const { client } = useContext(GlobalContext);
+  const { setClient, setUser } = useContext(GlobalContext);
   const [nombre, setNombre] = useState("");
   const [segundoNombre, setSegundoNombre] = useState("");
   const [primerApellido, setPrimerApellido] = useState("");
@@ -26,6 +28,10 @@ const CreateClient = () => {
   const [sexo, setSexo] = useState("");
   const [municipio, setMunicipio] = useState("");
   const [numeroContacto, setNumeroContacto] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -45,38 +51,70 @@ const CreateClient = () => {
       municipio &&
       numeroContacto
     ) {
-      const cliente = {
-        nombre: nombre,
-        segNombre: segundoNombre || '',
-        primApellido: primerApellido,
-        segApellido: segundoApellido || '',
-        idCliente: carnetIdentidad,
-        edad: edad,
-        sexo: sexo,
-        municipio: municipio,
-        numCont: numeroContacto,
-      };
+      // const cliente = {
+      //   nombre: nombre,
+      //   segNombre: segundoNombre || "",
+      //   primApellido: primerApellido,
+      //   segApellido: segundoApellido || "",
+      //   idCliente: carnetIdentidad,
+      //   edad: edad,
+      //   sexo: sexo,
+      //   municipio: municipio,
+      //   numCont: numeroContacto,
+      // };
 
-      console.log(client);
-
-      client.ci = carnetIdentidad;
-      const resClient = await axios.post("http://localhost:3000/api/client", cliente);
-      
-      const resUser = await axios.post(
-        "http://localhost:3000/api/auth/register",
-        client
+      const cliente = new Cliente(
+        nombre, 
+        primerApellido, 
+        carnetIdentidad, 
+        edad, 
+        sexo, 
+        municipio, 
+        numeroContacto, 
+        segundoNombre, 
+        segundoApellido
       );
 
-      console.log(resUser);
-      sessionStorage.setItem("jwt", JSON.stringify(resUser.data.token));
+      // const user = {
+      //   user_name: username,
+      //   password: password,
+      //   email: email,
+      //   ci: carnetIdentidad,
+      // };
 
+      const user = new User(username, password, email, carnetIdentidad,2);
+      console.log(cliente);
+      console.log(user);
+      const respClient = await axios.post(
+        "http://localhost:3000/api/client",
+        cliente.toJSON()
+      );
+      const respUser = await axios.post(
+        "http://localhost:3000/api/auth/register",
+        user.toJSON()
+      );
+
+      setClient(cliente);
+      localStorage.setItem('clientData', JSON.stringify(cliente));
+      setUser(user);
+      localStorage.setItem('userData', JSON.stringify(user));
+      sessionStorage.setItem("jwt", JSON.stringify(respUser.data.token));
 
       navigate("/home");
-        
     }
   };
 
   const steps = [
+    {
+      title: "Información de Usuario",
+      content: (
+        <UserInformation
+          setUsername={setUsername}
+          setPassword={setPassword}
+          setEmail={setEmail}
+        />
+      ),
+    },
     {
       title: "Información Personal",
       content: (
@@ -85,7 +123,6 @@ const CreateClient = () => {
           setSegNombre={setSegundoNombre}
           setPrimApellido={setPrimerApellido}
           setSegApellido={setSegundoApellido}
-          form={form}
         />
       ),
     },
@@ -96,7 +133,6 @@ const CreateClient = () => {
           setAge={setEdad}
           setId={setCarnetIdentidad}
           setSex={setSexo}
-          form={form}
         />
       ),
     },

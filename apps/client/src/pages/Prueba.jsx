@@ -5,8 +5,7 @@ const Prueba = () => {
     const [visible, setVisible] = useState(false)
   return (
     <>
-        <CreateClient/>
-       
+        <CreateClient/>      
     </>
   )
 }

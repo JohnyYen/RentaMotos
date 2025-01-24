@@ -22,10 +22,8 @@ let RoleGuard = class RoleGuard {
             context.getHandler(),
             context.getClass(),
         ]);
-        if (!requiredRoles)
-            return true;
         const { user } = context.switchToHttp().getRequest();
-        return requiredRoles.some((role) => (user.roles === role));
+        return requiredRoles.some((role) => user.roles === role);
     }
 };
 exports.RoleGuard = RoleGuard;

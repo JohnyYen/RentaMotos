@@ -1,11 +1,9 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-const PersonalInformation = ({ form, setPrimNombre, setSegNombre, setPrimApellido, setSegApellido }) => {
+const PersonalInformation = ({ setPrimNombre, setSegNombre, setPrimApellido, setSegApellido }) => {
   return (
-    <>
-      <Form form={form}>
-        
+    <>  
         <Form.Item
           name="primerNombre"
           label="Primer Nombre"
@@ -29,7 +27,6 @@ const PersonalInformation = ({ form, setPrimNombre, setSegNombre, setPrimApellid
         <Form.Item name="segundoApellido" label="Segundo Apellido">
           <Input onChange={(e) => setSegApellido(e.target.value)} placeholder="Ingrese su segundo apellido" />
         </Form.Item>
-      </Form>
     </>
   );
 };

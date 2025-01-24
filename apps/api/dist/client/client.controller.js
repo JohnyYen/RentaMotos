@@ -133,8 +133,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "getBadClientsByPDF", null);
 __decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
+    (0, public_decorator_1.SkipAuth)(),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve a un cliente según su identificador" }),
     (0, common_1.Get)('/sample/:id'),
     __param(0, (0, common_1.Param)('id')),

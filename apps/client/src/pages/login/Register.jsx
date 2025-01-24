@@ -3,8 +3,11 @@ import './styled-components/register.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../../context/GlobalContext';
+import CreateClient from './components/CreateClient';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { Cliente } from '../../model/Client';
+import { User } from '../../model/User';
 
 function Register() {
   const [visible, setVisible] = useState(false);
@@ -23,7 +26,7 @@ function Register() {
   }
 
   const handleLogger = () => {
-    setVisible(!visible)
+    navigate('/createClient');
     clearInput();
   }
 
@@ -62,8 +65,42 @@ function Register() {
         if(res.status === 200){
           console.log(res.data);
           message.success(t("messageSuccess.loginSuccess"))
-          setClient(res.data[0]);
-          localStorage.setItem('clientData', JSON.stringify(res.data[0]));
+          // const cliente = {
+          //   nombre: res.data[0].nombre,
+          //   segNombre: res.data[0].seg_nombre || "",
+          //   primApellido: res.data[0].prim_apellido,
+          //   segApellido: res.data[0].seg_apellido || "",
+          //   idCliente: res.data[0].idcliente,
+          //   edad: res.data[0].edad,
+          //   sexo: res.data[0].sexo,
+          //   municipio: res.data[0].municipio,
+          //   numCont: res.data[0].num_cont,
+          // };
+
+          const cliente = new Cliente(
+            res.data[0].nombre, 
+            res.data[0].prim_apellido, 
+            res.data[0].idcliente, 
+            res.data[0].edad, 
+            res.data[0].sexo, 
+            res.data[0].municipio, 
+            res.data[0].num_cont, 
+            res.data[0].seg_nombre, 
+            res.data[0].seg_apellido
+          );
+
+          setClient(cliente);
+          localStorage.setItem('clientData', JSON.stringify(cliente));
+          const user = new User(
+            response.data.user.nombre_usuario,
+            response.data.user.contrasenia,
+            response.data.user.email,
+            response.data.id_cliente ?? null,
+            response.data.tipo_usuario,
+          )
+          setUser(user);
+          localStorage.setItem('userData', JSON.stringify(user));
+          //localStorage.setItem('clientData', JSON.stringify(res.data[0]));
           navigate('/home');
         }
       }
@@ -110,21 +147,6 @@ function Register() {
             <button onClick={(e) => handleLogin(e)} value="Login" className="btn solid">Login</button>
           </form>
           <form className="sign-up-form">
-            <h2 className="title">Sign up</h2>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input value={user_name} type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
-            </div>
-            <div className="input-field">
-              <i className="fas fa-envelope"></i>
-              <input value={email} type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-            </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-            </div>
-            <button onClick={(e) => handleRegister(e)} className="btn" value="Sign up">Sign up</button>
-            <p className="social-text">Or Sign up with social platforms</p>
           </form>
         </div>
       </div>
@@ -153,6 +175,7 @@ function Register() {
               Sign in
             </button>
           </div>
+          
         </div>
       </div>
     </div>

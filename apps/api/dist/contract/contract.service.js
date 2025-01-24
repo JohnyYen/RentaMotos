@@ -70,6 +70,7 @@ let ContractService = class ContractService {
     }
     async createContract(contract) {
         try {
+            console.log(contract);
             const response = await this.conn.query(`SELECT nombre_usuario, email FROM public.usuario where id_cliente = '${contract.idCliente}'`);
             const user = response.rows[0];
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
@@ -134,7 +135,6 @@ let ContractService = class ContractService {
     async getAllPagosPDF() {
         const list = await this.getAllPagos();
         let counter = 0;
-        console.log(list);
         for (const e of Object.values(list[0])) {
             if (e === null)
                 counter++;

@@ -41,8 +41,8 @@ export class MotorcycleController {
        res.send(buffer);
     }
 
-    @Roles(Role.Admin, Role.Worker, Role.User)
-    @UseGuards(JwtAuthGuard, RoleGuard)
+   
+    @UseGuards(JwtAuthGuard)
     @ApiOperation({summary:"Devuelve todas las motos que esten disponible"})
     @Get('/client')
     async getMotoClient(){

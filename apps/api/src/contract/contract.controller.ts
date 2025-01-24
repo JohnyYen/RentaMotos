@@ -162,6 +162,7 @@ export class ContractController {
     @ApiOperation({summary: "Devuelve todos los contratos de un determinado cliente"})
     @Get('/:id')
     async getContractByCliente(@Param('id') id:string){
+        console.log(id);
         return await this.contractService.getCotnractByCliente(id);
     }
 

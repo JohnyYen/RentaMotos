@@ -14,6 +14,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { GlobalContext, useRow } from "../../../context/GlobalContext";
 import { useTranslation } from "react-i18next";
+import {Contract} from '../../../model/Contract'
 
 const jwt = JSON.parse(sessionStorage.getItem("jwt"));
 const response = await axios.get(
@@ -47,8 +48,9 @@ const ModalCreateContractClient = ({
   // const [signatureURL, setSignatureURL] = useState();
 
   const handlePetition = async () => {
+
     const contract = {
-      idCliente: client.idcliente,
+      idCliente: client.idCliente,
       matricula: row?.matricula,
       beginDate: dateBegin,
       endDate: dateEnd,
@@ -58,6 +60,8 @@ const ModalCreateContractClient = ({
       diasProrroga: 0,
     };
 
+    //const contract = new Contract();
+
     console.log(client);
     if (dateBegin && dateEnd && dateFirm && formaPago) {
       try {
@@ -66,7 +70,7 @@ const ModalCreateContractClient = ({
           contract,
           {
             headers: {
-              Authorization: `Bearer ${jwt}`,
+              'Authorization': `Bearer ${jwt}`,
             },
           }
         );

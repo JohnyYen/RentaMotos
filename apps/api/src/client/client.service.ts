@@ -93,9 +93,7 @@ export class ClientService {
      */
     async deleteClient(id : number){
         try {
-            //return await this.pgService.execute(`DELETE FROM cliente where idcliente = '${id}'`);
             this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
-            console.log("dsdsdsdsds");
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }
@@ -108,7 +106,6 @@ export class ClientService {
      */
     async createClient (client : ClientDto) {
         try {
-           // return await this.pgService.execute(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numCont}')`)
             return await this.conn.query(`INSERT INTO cliente values ('${client.idCliente}', '${client.nombre}', '${client.segNombre}', '${client.primApellido}', '${client.segApellido}', ${client.edad}, '${client.municipio}', '${client.sexo}', '${client.numCont}')`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -123,7 +120,6 @@ export class ClientService {
      */
     async updateClient(client : ClientDto, id : string){
         try {
-            //return await this.pgService.execute(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', segNombre = '${client.segNombre}', primApellido = '${client.primApellido}', segApellido = '${client.segApellido}', numcont = '${client.numCont}'  WHERE idcliente = '${id}'`)
             return await this.conn.query(`UPDATE cliente SET edad = ${client.edad},municipio = '${client.municipio}' ,nombre = '${client.nombre}', seg_nombre = '${client.segNombre}', prim_apellido = '${client.primApellido}', seg_apellido = '${client.segApellido}', num_cont = '${client.numCont}'  WHERE idcliente = '${id}'`)
         } catch (error) {
             throw new ErrorHandler(error).returnError();
@@ -135,7 +131,6 @@ export class ClientService {
      * @returns Todos los clientes incumplidores
      */
     async getAllBadClients(){
-        //return await this.pgService.execute(` clientesIncumplidores()`);
         const res = await this.conn.query(`SELECT * FROM clientesIncumplidores()`);
         return res.rows;
     }
@@ -157,7 +152,6 @@ export class ClientService {
      * @returns Todos los municipios
      */
     async getAllMun(){
-        //return await this.pgService.execute('select * from municipio');
 
         const res = await this.conn.query('select * from municipio');
         return res.rows;

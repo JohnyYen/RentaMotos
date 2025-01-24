@@ -13,8 +13,9 @@ const extractData = async (client) => {
   let dataSource = [];
   let response = null;
   try {
+    console.log(client);
     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-    response = await axios.get(`http://localhost:3000/api/contract/${client?.idcliente}`, {
+    response = await axios.get(`http://localhost:3000/api/contract/${client?.idCliente}`, {
       headers: {
         Authorization: `Bearer ${jwt}`
       }

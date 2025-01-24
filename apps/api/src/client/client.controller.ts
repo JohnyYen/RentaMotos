@@ -74,8 +74,7 @@ export class ClientController {
         res.send(buffer);
     }
     
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.Worker, Role.User)
+    @SkipAuth()
     @ApiOperation({summary: "Devuelve a un cliente según su identificador"})
     @Get('/sample/:id')
     async getClient(@Param('id') id : string){

@@ -16,7 +16,7 @@ const extractData = async () => {
   try {
     response = await axios.get("http://localhost:3000/api/moto/client", {
       headers: {
-        Authorization: `Bearer ${jwt}`,
+        'Authorization': `Bearer ${jwt}`,
       }
     });
 
