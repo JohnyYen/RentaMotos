@@ -125,7 +125,7 @@ export class ClientController {
     @ApiOperation({summary: "Elimina un cliente según su identificador"})
     @Delete('/:id')
     async deleteClient(@Param("id") id : string){
-        return await this.clientService.deleteClient(+id);
+        return await this.clientService.deleteClient(id);
     }
 
 }

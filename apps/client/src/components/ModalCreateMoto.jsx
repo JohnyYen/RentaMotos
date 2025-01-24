@@ -129,7 +129,10 @@ const ModalCreateMoto = ({
         rules={[
           { required: true, message: t("messageError.emptySerialNumber") },
           { max: 8, message: t("messageError.lengthSerialNumber") },
-          // {pattern: "^(?=(?:[^A-Z]*[A-Z]{3}))(?!.*\d{6}).*\d{1,5}", message: "Debe tener 1 letra mayuscula y 5 digitos"}
+          {
+            pattern: /^LH[A-Za-z0-9]{6}$/, // Expresión regular para validar que la matrícula comience con "LH"
+            message: "La matrícula debe comenzar con 'LH' y tener 8 caracteres.",
+          },
         ]}
       >
         <Input

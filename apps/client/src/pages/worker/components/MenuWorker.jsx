@@ -38,6 +38,7 @@ const MenuWorker = ({ isInline = false }) => {
               language("en");
             }
           } else {
+            sessionStorage.removeItem('jwt');
             navigate(`/loguin`);
           }
         }}

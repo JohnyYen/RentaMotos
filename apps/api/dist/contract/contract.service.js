@@ -20,6 +20,7 @@ const jsonFormatter_1 = require("../libs/jsonFormatter");
 const errorHandler_1 = require("../libs/errorHandler");
 const pg_service_1 = require("../pg/pg.service");
 const mails_service_1 = require("../mails/mails.service");
+const checkInternet_1 = require("../libs/checkInternet");
 let ContractService = class ContractService {
     constructor(conn, pgService, mailService) {
         this.conn = conn;
@@ -74,7 +75,8 @@ let ContractService = class ContractService {
             const response = await this.conn.query(`SELECT nombre_usuario, email FROM public.usuario where id_cliente = '${contract.idCliente}'`);
             const user = response.rows[0];
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
-            this.mailService.sendEmail(user.nombre_usuario, user.email);
+            if (await (0, checkInternet_1.checkInternetConnection)())
+                this.mailService.sendEmail(user.nombre_usuario, user.email);
         }
         catch (error) {
             return new errorHandler_1.ErrorHandler(error).returnError();

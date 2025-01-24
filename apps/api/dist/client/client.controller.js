@@ -72,7 +72,7 @@ let ClientController = class ClientController {
         return await this.clientService.updateClient(client, id);
     }
     async deleteClient(id) {
-        return await this.clientService.deleteClient(+id);
+        return await this.clientService.deleteClient(id);
     }
 };
 exports.ClientController = ClientController;

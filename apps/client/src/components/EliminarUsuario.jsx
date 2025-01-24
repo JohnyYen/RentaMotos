@@ -22,8 +22,9 @@ const EliminarUsuario = ({ isOpen, setOpen, setDataSource, dataSource }) => {
           Authorization: `Bearer ${jwt}`
         }
       });
-      if(response.status === 201){
-        message.success(t("messageSuccess.deleteSuccess"));
+      console.log(response);
+      if(response.status === 200){
+        setOpen(false);
         setDataSource(dataSource.filter(cliente => cliente.ci !== row.ci));
       }
     } catch (error) {

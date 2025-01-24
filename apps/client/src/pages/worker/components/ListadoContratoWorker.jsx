@@ -89,16 +89,9 @@ const ListadoContratosWorker = ({ url }) => {
     await downloadPDF(url);
   };
 
-  const handleRowClick = async (record) => {
-    const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
-    const url = URL.createObjectURL(blob);
-    window.open(url);
-  };
-
   useEffect(() => {
     extractDataContract(user).then((result) => {
       setDataSource(result);
-      console.log(result);
     });
   }, [user]);
 
@@ -110,20 +103,6 @@ const ListadoContratosWorker = ({ url }) => {
         {t("contract.contractList")}
       </Typography.Title>
       <Flex align="center" justify="flex-end">
-        <Button
-          onClickCapture={() => setVisibleCreateContract(true)}
-          className="actionTable"
-          style={{ marginBottom: "1rem", marginRight: "1rem" }}
-          type="primary"
-        >
-          {t("mainContent.createContract")}
-        </Button>
-        <ModalCreateContractWorker
-          isVisible={visibleCreateContract}
-          setVisible={() => setVisibleCreateContract(!visibleCreateContract)}
-          setDataContract={setDataSource}
-          dataContract={dataSource}
-        />
       </Flex>
       <Table
         scroll={{
@@ -132,11 +111,6 @@ const ListadoContratosWorker = ({ url }) => {
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],
-        }}
-        onRow={(record) => {
-          return {
-            onClick: (e) => handleRowClick(record),
-          };
         }}
         dataSource={dataSource}
         columns={[

@@ -97,7 +97,8 @@ const ListadoContratos = ({ url }) => {
     extractDataContract(user).then((result) => {
       setDataSource(result);
     })
-  }, [])
+    setDataSource(dataSource);
+  }, [dataSource])
 
   return (
     <Flex vertical="true">

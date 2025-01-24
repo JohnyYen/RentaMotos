@@ -91,9 +91,10 @@ export class ClientService {
      * @param id Identificador del cliente
      * @returns 
      */
-    async deleteClient(id : number){
+    async deleteClient(id : string){
         try {
-            this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+            console.log(id);
+            this.conn.query(`DELETE FROM cliente WHERE idcliente = '${id}'`);
         } catch (error) {
             throw new ErrorHandler(error).returnError();
         }

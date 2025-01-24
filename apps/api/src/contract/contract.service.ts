@@ -7,6 +7,7 @@ import { ErrorHandler } from 'src/libs/errorHandler';
 import { FormaPagoDto } from './dto/formaPago.dto';
 import { PgService } from 'src/pg/pg.service';
 import { MailsService } from 'src/mails/mails.service';
+import { checkInternetConnection } from 'src/libs/checkInternet';
 
 @Injectable()
 export class ContractService {
@@ -80,7 +81,8 @@ export class ContractService {
             const user = response.rows[0];
             await this.conn.query(`INSERT INTO Contrato values ('${contract.idCliente}', '${contract.matricula}', '${contract.beginDate}'::date, '${contract.endDate}'::date, '${contract.firmaDate}'::date, '${contract.formaPago}', ${contract.seguro}, ${contract.diasProrroga})`);
             
-            this.mailService.sendEmail(user.nombre_usuario, user.email);
+            if(await checkInternetConnection())
+                this.mailService.sendEmail(user.nombre_usuario, user.email);
         }
         catch(error){
             return new ErrorHandler(error).returnError();

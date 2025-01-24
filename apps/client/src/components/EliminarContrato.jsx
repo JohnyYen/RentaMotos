@@ -16,7 +16,7 @@ const EliminarContrato = ({ isOpen, setOpen, setDataSource, dataSource }) => {
     try {
       const apiUrl = `http://localhost:3000/api/contract/${row?.matricula}`;
       const response = await axios.delete(apiUrl , {headers : {'Authorization': `Bearer ${jwt}`}});
-      if(response.status === 201){
+      if(response.status === 200){
         message.success(t("messageSuccess.deleteSuccess"));
         setDataSource(dataSource.filter(contract => contract.matricula !== row.matricula)); 
         setOpen(false);

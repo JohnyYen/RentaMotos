@@ -131,7 +131,17 @@
     "cancel": "Cancelar",
     "rememberMe": "Recordar",
     "forgotPassword": "Olvidaste la contraseña?",
-    "loginIn": "Iniciar sesión"
+    "loginIn": "Iniciar sesión",
+    "title": "Iniciar Sesión",
+    "usernamePlaceholder": "Nombre de usuario",
+    "passwordPlaceholder": "Contraseña",
+    "loginButton": "Iniciar Sesión",
+    "newHereTitle": "¿Nuevo aquí?",
+    "newHereDescription": "¡Regístrate y comienza a disfrutar de nuestros servicios!",
+    "signUpButton": "Registrarse",
+    "oneOfUsTitle": "¿Ya eres uno de nosotros?",
+    "oneOfUsDescription": "Inicia sesión para acceder a tu cuenta.",
+    "signInButton": "Iniciar Sesión"
   },
   "profile": {
     "profile": "Perfil",
@@ -220,7 +230,8 @@
   "messageSuccess": {
     "success": "Creado con éxito",
     "loginSuccess": "Logueado con Exito",
-    "deleteSucces": "Eliminado exitosamente"
+    "deleteSucces": "Eliminado exitosamente",
+    "languageChanged": "Idioma cambiado correctamente"
   },
   "notification": {
     "deleteWorker": "¿Estás seguro que deseas eliminar al Trabajador?",

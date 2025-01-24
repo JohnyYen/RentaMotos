@@ -42,7 +42,6 @@ const ModalModContract = ({
   const [formaPago, setFormaPago] = useState("");
   const r = row ? row["seguro adicional"] === "✔" : true;
   const [seguro, setSeguro] = useState(r);
-  //console.log(a);
   const [diasProrroga, setDiasProrroga] = useState(0);
   const [date, setDate] = useState("");
   const [t] = useTranslation("global");
@@ -50,7 +49,6 @@ const ModalModContract = ({
 
   
   const margin = 0;
-  console.log(row)
   useEffect(() => {
     if (row) {
       setDiasProrroga(row.prorroga || 0);
@@ -81,12 +79,11 @@ const ModalModContract = ({
       );
      
       if (res.status === 200) {
-        const index = dataContract.findIndex(
-          (item) => item.matricula === contract.matricula
+        const updatedDataContract = dataContract.map((item) =>
+          item.matricula === contract.matricula ? { ...item, ...contract } : item
         );
-        dataContract[index] = { ...dataContract[index], ...contract };
-
-        setDataContract([...dataContract]);
+  
+        setDataContract(updatedDataContract);
         message.info("Se ha modificado con exito");
         setOpen(false);
       }
@@ -118,7 +115,7 @@ const ModalModContract = ({
     >
       <Flex vertical={true}>
         <Row gutter={24}>
-          <Col span={12}>
+          <Col span={24}>
             <Tag
               icon={<UserOutlined />}
               style={{ margin: 15, width: 150, height: 30 }}
@@ -164,7 +161,7 @@ const ModalModContract = ({
                 style={{ marginBottom: margin }}
                 onChange={(e) => setSeguro(e.target.checked)}
               >
-                {t("modal.methodPayment") + ":"}
+                {t("modal.insurance") + ":"}
               </Checkbox>
             </Form.Item>
 
@@ -195,7 +192,7 @@ const ModalModContract = ({
               ]}
             >
               <DatePicker
-                value={row?.fechaFin}
+                value={row?.['fecha de fin']}
                 disabledDate={(date) => {
                   return date && date < new Date(row?.fechaFin);
                 }}

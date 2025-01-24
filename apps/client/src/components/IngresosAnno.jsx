@@ -4,7 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import moment from "moment";
-const jwt = sessionStorage.getItem('jwt');
+const jwt = JSON.parse(sessionStorage.getItem('jwt'));
 const downloadPDF = async (url) => {
   try {
     const response = await axios({

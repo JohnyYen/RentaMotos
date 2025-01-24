@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Input, Button, message } from "antd";
+import React from "react";
+import { Form, Input } from "antd";
 
 const UserInformation = ({ setUsername, setPassword, setEmail }) => {
   return (
@@ -19,6 +19,7 @@ const UserInformation = ({ setUsername, setPassword, setEmail }) => {
         <Input
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Ingrese su nombre de usuario"
+          style={{ width: "300px" }} // Ancho fijo
         />
       </Form.Item>
 
@@ -34,6 +35,7 @@ const UserInformation = ({ setUsername, setPassword, setEmail }) => {
         <Input
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Ingrese su email"
+          style={{ width: "300px" }} // Ancho fijo
         />
       </Form.Item>
 
@@ -49,6 +51,7 @@ const UserInformation = ({ setUsername, setPassword, setEmail }) => {
         <Input.Password
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Ingrese su contraseña"
+          style={{ width: "300px" }} // Ancho fijo
         />
       </Form.Item>
 
@@ -69,7 +72,10 @@ const UserInformation = ({ setUsername, setPassword, setEmail }) => {
           }),
         ]}
       >
-        <Input.Password placeholder="Confirme su contraseña" />
+        <Input.Password
+          placeholder="Confirme su contraseña"
+          style={{ width: "300px" }} // Ancho fijo
+        />
       </Form.Item>
     </>
   );

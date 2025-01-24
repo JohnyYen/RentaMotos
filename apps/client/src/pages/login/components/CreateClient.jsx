@@ -42,6 +42,8 @@ const CreateClient = () => {
   };
 
   const handlePetition = async () => {
+
+    form.validateFields();
     if (
       nombre &&
       primerApellido &&
@@ -51,17 +53,6 @@ const CreateClient = () => {
       municipio &&
       numeroContacto
     ) {
-      // const cliente = {
-      //   nombre: nombre,
-      //   segNombre: segundoNombre || "",
-      //   primApellido: primerApellido,
-      //   segApellido: segundoApellido || "",
-      //   idCliente: carnetIdentidad,
-      //   edad: edad,
-      //   sexo: sexo,
-      //   municipio: municipio,
-      //   numCont: numeroContacto,
-      // };
 
       const cliente = new Cliente(
         nombre, 
@@ -74,13 +65,6 @@ const CreateClient = () => {
         segundoNombre, 
         segundoApellido
       );
-
-      // const user = {
-      //   user_name: username,
-      //   password: password,
-      //   email: email,
-      //   ci: carnetIdentidad,
-      // };
 
       const user = new User(username, password, email, carnetIdentidad,2);
       console.log(cliente);

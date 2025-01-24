@@ -131,7 +131,17 @@
     "cancel": "Cancel",
     "rememberMe": "Remember me",
     "forgotPassword": "Forgot password?",
-    "loginIn": "Login"
+    "loginIn": "Login",
+    "title": "Login",
+    "usernamePlaceholder": "Username",
+    "passwordPlaceholder": "Password",
+    "loginButton": "Login",
+    "newHereTitle": "New Here?",
+    "newHereDescription": "Sign up and start enjoying our services!",
+    "signUpButton": "Sign Up",
+    "oneOfUsTitle": "One of Us?",
+    "oneOfUsDescription": "Log in to access your account.",
+    "signInButton": "Sign In"
   },
   "profile": {
     "profile": "Profile",
@@ -219,7 +229,8 @@
   "messageSuccess": {
     "success": "Successfully created",
     "loginSuccess": "Successfully logged in",
-    "deleteSucces": "Successfully removed"
+    "deleteSucces": "Successfully removed",
+    "languageChanged": "Language changed successfully"
   },
   "notification": {
     "deleteWorker": "Are you sure you want to delete the Worker?",

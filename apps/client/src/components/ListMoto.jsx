@@ -137,6 +137,7 @@ const ListMoto = () => {
   }, [dataSource]);
 
   const onClick = async () => {
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
     try {
       await downloadPDF("http://localhost:3000/api/moto/pdf", 
         {

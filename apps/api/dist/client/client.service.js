@@ -59,7 +59,8 @@ let ClientService = class ClientService {
     }
     async deleteClient(id) {
         try {
-            this.conn.query(`DELETE FROM cliente where idcliente = '${id}'`);
+            console.log(id);
+            this.conn.query(`DELETE FROM cliente WHERE idcliente = '${id}'`);
         }
         catch (error) {
             throw new errorHandler_1.ErrorHandler(error).returnError();

@@ -10,6 +10,7 @@ import { GlobalContext } from "../../../context/GlobalContext";
 import EliminarUsuario from "../../../components/EliminarUsuario";
 
 const downloadPDF = async (url) => {
+  const jwt = JSON.parse(sessionStorage.getItem('jwt'));
   try {
     const response = await axios({
       url,
