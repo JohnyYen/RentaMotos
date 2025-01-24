@@ -49,8 +49,8 @@ export class ContractService {
 
     async getPDFContract(){
         const contract = await this.pgService.execute(`SELECT * FROM contrato_view`);
-        if(contract.length === 0)
-            throw new BadRequestException('La lista de contratos esta vacia');
+        // if(contract.length === 0)
+        //     throw new BadRequestException('La lista de contratos esta vacia');
         return await generatePDF(Object.keys(contract[0]), arrayFormatter(contract));
     }
 
@@ -146,10 +146,9 @@ export class ContractService {
     }
 
     async getAllPagos(){
-       // console.log(this.pgService.execute(`'SELECT * FROM pagos_view'`));
-        //return await this.pgService.execute('pagos_view');
 
         const res = await this.conn.query('SELECT * FROM pagos_view');
+
         return res.rows;
     }
 

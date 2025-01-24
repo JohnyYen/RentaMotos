@@ -13,7 +13,7 @@ const ContactInformation = ({ form, setMun, setContact }) => {
         label="Municipio"
         rules={[{ required: true, message: "Este campo es obligatorio" }]}
       >
-        <Input placeholder="Ingrese su municipio" />
+        <Input onChange={(e) => setMun(e.target.value)} placeholder="Ingrese su municipio" />
       </Form.Item>
 
       <Form.Item

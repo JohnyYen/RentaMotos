@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import '../login/styled-components/register.css'
+import './styled-components/register.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../../context/GlobalContext';
@@ -89,12 +89,8 @@ function Register() {
         email
       }
 
-      const response = await axios.post('http://localhost:3000/api/auth/register', client);
-
-      if(response.status === 201)
-        setClient(client);
-        sessionStorage.setItem('jwt', JSON.stringify(response.data.token));
-        navigate('/home');
+      setClient(client);
+      navigate('/loginClient');
     }
   }
   return (

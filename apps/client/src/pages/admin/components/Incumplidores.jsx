@@ -39,6 +39,7 @@ const downloadPDF = async (url) => {
       responseType: 'blob',
       headers: {
         'Content-Type': 'application/pdf',
+        'Authorization': `Bearer ${jwt}`
       },
     });
 

@@ -79,6 +79,9 @@ const downloadPDF = async (url) => {
       url,
       method: "GET",
       responseType: "blob",
+      headers: {
+        "Authorization": `Bearer ${jwt}`
+      }
     });
 
     const apiUrl = URL.createObjectURL(response.data);

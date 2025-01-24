@@ -13,11 +13,11 @@ export declare class ContractController {
     getContractInPDFMun(res: any): Promise<void>;
     getFilterContract(): Promise<any>;
     getContractInPDFMarc(res: any): Promise<void>;
-    getContractByCliente(id: string): Promise<any>;
     getAllPagos(): Promise<any>;
     getAllPagosPDF(res: any): Promise<void>;
     getAllPagosPDFMun(res: any, mun: string): Promise<void>;
     getAllPagosByMun(mun: string): Promise<any>;
+    getContractByCliente(id: string): Promise<any>;
     createContract(contract: ContractDto): Promise<void>;
     createFormaPago(form: FormaPagoDto): Promise<void>;
     updateContract(matricula: string, contract: ContractDto): Promise<void>;

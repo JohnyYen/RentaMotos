@@ -12,13 +12,14 @@ const EliminarContrato = ({ isOpen, setOpen, setDataSource, dataSource }) => {
   const [t] = useTranslation("global");
 
   const Econtrato = async () => {
-    
+    const jwt = JSON.parse(sessionStorage.getItem('jwt'))
     try {
       const apiUrl = `http://localhost:3000/api/contract/${row?.matricula}`;
-      const response = await axios.delete(apiUrl);
+      const response = await axios.delete(apiUrl , {headers : {'Authorization': `Bearer ${jwt}`}});
       if(response.status === 201){
         message.success(t("messageSuccess.deleteSuccess"));
         setDataSource(dataSource.filter(contract => contract.matricula !== row.matricula)); 
+        setOpen(false);
       }
     } catch (error) {
       message.error(error.text);

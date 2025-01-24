@@ -8,7 +8,11 @@ import {
   Modal,
 } from "antd";
 import { useState, useEffect, useContext } from "react";
-import { DeleteOutlined, DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import EliminarContrato from "../../../components/EliminarContrato";
@@ -17,14 +21,49 @@ import { GlobalContext } from "../../../context/GlobalContext";
 import DocumentPDF from "../../../components/DocumentPDF";
 import { pdf } from "@react-pdf/renderer";
 
+const extractDataContract = async () => {
+  let dataSource = [];
+  let response = null;
+
+  const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+  try {
+    response = await axios.get("http://localhost:3000/api/contract", {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    });
+
+    if (response.status === 200) {
+      dataSource = response.data.map((element, index) => ({
+        key: index,
+        nombre: element.nombre,
+        matricula: element.matricula,
+        marca: element.marca,
+        modelo: element.modelo,
+        "forma de pago": element.formapago,
+        "fecha de inicio": element.fechainicio,
+        fechaFin: element.fechafin,
+        prorroga: element.diasprorroga,
+        "seguro adicional": element.seguro ? "Si" : "No",
+        "importe total": element.importe,
+      }));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return dataSource;
+};
+
 const downloadPDF = async (url) => {
   try {
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     const response = await axios({
       url,
       method: "GET",
       responseType: "blob",
       headers: {
         "Content-Type": "application/pdf",
+        'Authorization': `Bearer ${jwt}`,
       },
     });
 
@@ -43,30 +82,31 @@ const downloadPDF = async (url) => {
   }
 };
 
-const ListadoContratos = ({ dataContract, setDataContract, url }) => {
+const ListadoContratos = ({ url }) => {
   const [t] = useTranslation("global");
-  const { setRow } = useContext(GlobalContext);
+  const { setRow, user } = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+  const [dataSource, setDataSource] = useState();
 
   const onClick = async () => {
     await downloadPDF(url);
   };
 
-  // const handleRowClick = async (record) => {
-  //   const blob = await pdf(<DocumentPDF dataContract={record} />).toBlob();
-  //   const url = URL.createObjectURL(blob);
-  //   window.open(url);
-  // };
+  useEffect(() => {
+    extractDataContract(user).then((result) => {
+      setDataSource(result);
+    })
+  }, [])
 
   return (
     <Flex vertical="true">
-      <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)} />
+      <ModalModContract isOpen={visible} setOpen={() => setVisible(!visible)} dataContract={dataSource} setDataContract={setDataSource} />
       <EliminarContrato
         isOpen={open}
         setOpen={() => setOpen(!open)}
-        setDataSource={setDataContract}
-        dataSource={dataContract}
+        setDataSource={setDataSource}
+        dataSource={dataSource}
       />
       <Typography.Title level={3}>
         {t("contract.contractList")}
@@ -84,20 +124,20 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
         //     onClick: (e) => handleRowClick(record),
         //   };
         // }}
-        dataSource={dataContract}
+        dataSource={dataSource}
         columns={[
           {
             title: t("mainContent.table.name"),
             dataIndex: "nombre",
             key: "nombre",
-            filters: dataContract
-            ? Array.from(
-                new Set(dataContract.map((item) => item.nombre))
-              ).map((nombre) => ({
-                text: nombre,
-                value: nombre,
-              }))
-            : [],
+            filters: dataSource
+              ? Array.from(
+                  new Set(dataSource.map((item) => item.nombre))
+                ).map((nombre) => ({
+                  text: nombre,
+                  value: nombre,
+                }))
+              : [],
             onFilter: (value, record) =>
               record.nombre.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
@@ -108,14 +148,14 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
             title: t("mainContent.table.serialNumber"),
             dataIndex: "matricula",
             key: "matricula",
-            filters: dataContract
-            ? Array.from(
-                new Set(dataContract.map((item) => item.matricula))
-              ).map((matricula) => ({
-                text: matricula,
-                value: matricula,
-              }))
-            : [],
+            filters: dataSource
+              ? Array.from(
+                  new Set(dataSource.map((item) => item.matricula))
+                ).map((matricula) => ({
+                  text: matricula,
+                  value: matricula,
+                }))
+              : [],
             onFilter: (value, record) =>
               record.matricula.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -124,14 +164,14 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
-            filters: dataContract
-            ? Array.from(
-                new Set(dataContract.map((item) => item.marca))
-              ).map((marca) => ({
-                text: marca,
-                value: marca,
-              }))
-            : [],
+            filters: dataSource
+              ? Array.from(new Set(dataSource.map((item) => item.marca))).map(
+                  (marca) => ({
+                    text: marca,
+                    value: marca,
+                  })
+                )
+              : [],
             onFilter: (value, record) =>
               record.marca.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -140,14 +180,14 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
             title: t("mainContent.table.model"),
             dataIndex: "modelo",
             key: "modelo",
-            filters: dataContract
-            ? Array.from(
-                new Set(dataContract.map((item) => item.modelo))
-              ).map((modelo) => ({
-                text: modelo,
-                value: modelo,
-              }))
-            : [],
+            filters: dataSource
+              ? Array.from(
+                  new Set(dataSource.map((item) => item.modelo))
+                ).map((modelo) => ({
+                  text: modelo,
+                  value: modelo,
+                }))
+              : [],
             onFilter: (value, record) =>
               record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -156,14 +196,14 @@ const ListadoContratos = ({ dataContract, setDataContract, url }) => {
             title: t("mainContent.table.methodPayment"),
             dataIndex: "forma de pago",
             key: "forma de pago",
-            filters: dataContract
-            ? Array.from(
-                new Set(dataContract.map((item) => item['forma de pago']))
-              ).map((formapago) => ({
-                text: formapago,
-                value: formapago,
-              }))
-            : [],
+            filters: dataSource
+              ? Array.from(
+                  new Set(dataSource.map((item) => item["forma de pago"]))
+                ).map((formapago) => ({
+                  text: formapago,
+                  value: formapago,
+                }))
+              : [],
             onFilter: (value, record) =>
               record.formapago.toLowerCase().includes(value.toLowerCase()),
             align: "center",

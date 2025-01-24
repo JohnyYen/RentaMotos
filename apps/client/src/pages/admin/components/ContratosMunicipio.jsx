@@ -57,7 +57,10 @@ const downloadPDF = async (url) => {
     const response = await axios({
       url,
       method: "GET",
-      responseType: "blob"
+      responseType: "blob",
+      headers: {
+        "Authorization": `Bearer ${jwt}`
+      }
     });
 
     const apiUrl = URL.createObjectURL(response.data);

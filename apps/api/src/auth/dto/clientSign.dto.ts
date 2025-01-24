@@ -6,5 +6,5 @@ export class ClientSignDto extends User{
   
     // @ApiProperty({type:String, description: "Carnet de Identidad del Usuario"})
     // @IsString()
-    // ci?:string
+     ci?:string
 }

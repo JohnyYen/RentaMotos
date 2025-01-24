@@ -28,7 +28,7 @@ export class ContractDto {
 
     @ApiProperty({name: "seguro", description: "Si el contrato tiene seguro o no", example: false, type:Boolean})
     @IsBoolean()
-    public seguro : boolean;
+    public seguro? : boolean;
 
     @ApiProperty({name: "diasProrroga", description: "Los dias de prorroga que tenga el contrato", example: 10, type:Number})
     public diasProrroga : number;

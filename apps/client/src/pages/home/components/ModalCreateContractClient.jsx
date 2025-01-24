@@ -14,7 +14,6 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { GlobalContext, useRow } from "../../../context/GlobalContext";
 import { useTranslation } from "react-i18next";
-import SignaturePad from "../../../components/SignaturePad";
 
 const jwt = JSON.parse(sessionStorage.getItem("jwt"));
 const response = await axios.get(

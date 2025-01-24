@@ -70,9 +70,6 @@ let ContractController = class ContractController {
         res.setHeader('Content-Length', buffer.length);
         res.send(buffer);
     }
-    async getContractByCliente(id) {
-        return await this.contractService.getCotnractByCliente(id);
-    }
     async getAllPagos() {
         return await this.contractService.getAllPagos();
     }
@@ -92,6 +89,9 @@ let ContractController = class ContractController {
     }
     async getAllPagosByMun(mun) {
         return await this.contractService.getAllPagosByMun(mun);
+    }
+    async getContractByCliente(id) {
+        return await this.contractService.getCotnractByCliente(id);
     }
     async createContract(contract) {
         return await this.contractService.createContract(contract);
@@ -201,16 +201,6 @@ __decorate([
 ], ContractController.prototype, "getContractInPDFMarc", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
-    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos de un determinado cliente" }),
-    (0, common_1.Get)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], ContractController.prototype, "getContractByCliente", null);
-__decorate([
-    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker),
     (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los cobros realizados" }),
     (0, common_1.Get)('/cobros'),
@@ -249,6 +239,16 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ContractController.prototype, "getAllPagosByMun", null);
+__decorate([
+    (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),
+    (0, swagger_1.ApiOperation)({ summary: "Devuelve todos los contratos de un determinado cliente" }),
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ContractController.prototype, "getContractByCliente", null);
 __decorate([
     (0, common_1.UseGuards)(jwtAuthGuard_1.JwtAuthGuard, roles_guard_1.RoleGuard),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin, role_enum_1.Role.Worker, role_enum_1.Role.User),

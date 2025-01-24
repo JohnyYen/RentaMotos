@@ -112,14 +112,6 @@ export class ContractController {
  
         res.send(buffer);
     }
-
-    @UseGuards(JwtAuthGuard, RoleGuard)
-    @Roles(Role.Admin, Role.Worker, Role.User)
-    @ApiOperation({summary: "Devuelve todos los contratos de un determinado cliente"})
-    @Get('/:id')
-    async getContractByCliente(@Param('id') id:string){
-        return await this.contractService.getCotnractByCliente(id);
-    }
   
     @UseGuards(JwtAuthGuard, RoleGuard)
     @Roles(Role.Admin, Role.Worker)
@@ -163,6 +155,14 @@ export class ContractController {
     @Get('/cobros/:mun')
     async getAllPagosByMun(@Param('mun') mun:string){
         return await this.contractService.getAllPagosByMun(mun);
+    }
+
+    @UseGuards(JwtAuthGuard, RoleGuard)
+    @Roles(Role.Admin, Role.Worker, Role.User)
+    @ApiOperation({summary: "Devuelve todos los contratos de un determinado cliente"})
+    @Get('/:id')
+    async getContractByCliente(@Param('id') id:string){
+        return await this.contractService.getCotnractByCliente(id);
     }
 
     @UseGuards(JwtAuthGuard, RoleGuard)

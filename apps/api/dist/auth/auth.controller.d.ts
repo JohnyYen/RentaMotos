@@ -8,5 +8,8 @@ export declare class AuthController {
         user: any;
         token: string;
     }>;
-    register(authObject: ClientSignDto): void;
+    register(authObject: ClientSignDto): Promise<{
+        user: any;
+        token: string;
+    }>;
 }

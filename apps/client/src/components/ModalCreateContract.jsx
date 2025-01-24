@@ -16,7 +16,6 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { useTranslation } from "react-i18next";
 import ModalCreateClient from "./ModalCreateClient";
-import SignaturePad from "./SignaturePad";
 
 const jwt = JSON.parse(sessionStorage.getItem("jwt"));
 const response = await axios.get(

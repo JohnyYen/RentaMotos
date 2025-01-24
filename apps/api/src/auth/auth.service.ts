@@ -11,14 +11,30 @@ export class AuthService {
     constructor (private jwtService: JwtService, @Inject(PG_CONNECTION) private conn : any ){}
 
     async register(userObject:ClientSignDto){
-        const {password, email, user_name} = userObject;
+        const {password, email, user_name, ci} = userObject;
 
         const plainToCrypto = await hash(password, 10);
         userObject = {...userObject, password:plainToCrypto};
         
-        const response = await this.conn.query(`INSERT INTO usuario(nombre_usuario, contrasenia, email, tipo_usuario) VALUES ('${user_name}', '${password}', '${email}', 2)`);
+        const response = await this.conn.query(`INSERT INTO usuario(nombre_usuario, contrasenia, email, tipo_usuario, id_cliente) VALUES ('${user_name}', '${password}', '${email}', 2, '${ci}')`);
+        console.log(userObject)
+        const createUser = await this.conn.query(`SELECT * FROM usuario WHERE nombre_usuario = '${user_name}'`);
 
-        return true;
+        const user = createUser[0];
+        console.log(user);
+        const payload = {
+            name:user_name,
+            roles: 2,
+        };
+
+        const token = this.jwtService.sign(payload);
+
+        const data = {
+         user:user,
+         token,
+        }
+        console.log(data);
+        return data;
     }
 
     async login(userObject:LoginObjectDto){

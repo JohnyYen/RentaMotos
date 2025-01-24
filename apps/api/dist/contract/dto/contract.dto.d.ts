@@ -5,6 +5,6 @@ export declare class ContractDto {
     endDate: string;
     firmaDate: string;
     formaPago: string;
-    seguro: boolean;
+    seguro?: boolean;
     diasProrroga: number;
 }

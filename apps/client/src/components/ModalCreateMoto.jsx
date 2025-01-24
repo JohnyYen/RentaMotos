@@ -231,9 +231,6 @@ const ModalCreateMoto = ({
           ))}
         </Select>
       </Form.Item>
-      <Form.Item label={"Imagen de moto"} name="imagen">
-        <UploadMoto setImageBase64={setImageBase64} />
-      </Form.Item>
     </Modal>
   );
 };

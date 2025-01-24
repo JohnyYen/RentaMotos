@@ -28,7 +28,6 @@ const IdentityInformation = ({ form, setId, setAge, setSex }) => {
         <Select onSelect={(e) => setSex(e)} placeholder="Seleccione su sexo">
           <Select.Option value="M">Masculino</Select.Option>
           <Select.Option value="F">Femenino</Select.Option>
-          <Select.Option value="otro">Otro</Select.Option>
         </Select>
       </Form.Item>
     </>

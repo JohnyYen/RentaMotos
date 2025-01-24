@@ -2,12 +2,13 @@ import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/home/HomePage";
 import UserAdmin from "./pages/admin/UserAdmin";
+import UserWorker from './pages/worker/UserWorker'
 import UserClient from "./pages/UserClient";
-import UserWorker from "./pages/worker/UserWorker";
 import GlobalProvider from "./context/GlobalContext";
 import { message, notification } from "antd";
 import Register from "./pages/login/Register";
-import Prueba from "./pages/Prueba";
+import CreateClient from "./pages/login/components/CreateClient";
+import ProtectedRoutes from './utils/ProtectedRoutes'
 //import './register.css';
 
 
@@ -28,11 +29,11 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/home/*" element={<HomePage/>}/>
-            <Route path="/worker/*" element={<UserWorker/>}/>
+            <Route path="/worker/*" element={<ProtectedRoutes><UserWorker/></ProtectedRoutes>}/>
             <Route path="/admin/*" element={<UserAdmin/>}/>
             <Route path="/loguin/*" element={<Register/>}/>
             <Route path="/client/*" element={<UserClient/>}/>
-            <Route path="/prueba/*" element={<Prueba/>}/>
+            <Route path="/loginClient/*" element={<CreateClient/>}/>
           </Routes>
         </GlobalProvider>
     </>

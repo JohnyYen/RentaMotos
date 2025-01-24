@@ -63,19 +63,11 @@ const ListadoContratos = () => {
 
   return (
     <Flex vertical="true">
-        <ModalCreateContract isVisible={visible} setVisible={() => setVisible(!visible)} setDataSource={setDataSource} dataSource={dataSource}/>
+
       <Typography.Title level={3}>
         {t("contract.contractList")}
       </Typography.Title>
       <Flex align="center" justify="flex-end">
-        <Button
-          onClick={() => setVisible(true)}
-          className="actionTable"
-          style={{ marginBottom: "1rem", marginRight: "1rem" }}
-          type="primary"
-        >
-          {t("mainContent.createContract")}
-        </Button>
       </Flex>
       <Table
          scroll={{

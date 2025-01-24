@@ -48,8 +48,6 @@ let ContractService = class ContractService {
     }
     async getPDFContract() {
         const contract = await this.pgService.execute(`SELECT * FROM contrato_view`);
-        if (contract.length === 0)
-            throw new common_1.BadRequestException('La lista de contratos esta vacia');
         return await (0, pdfKit_1.default)(Object.keys(contract[0]), (0, jsonFormatter_1.arrayFormatter)(contract));
     }
     async getPDFContractXModelo() {

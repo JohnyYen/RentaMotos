@@ -9,13 +9,13 @@ const extractData = async () => {
   let dataSource = [];
   let response = null;
   try {
-    const jwt = JSON.parse(sessionStorage.getItem('jwt'));
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     response = await axios.get("http://localhost:3000/api/moto/situation", {
       headers: {
-        Authorization: `Bearer ${jwt}`
-      }
+        Authorization: `Bearer ${jwt}`,
+      },
     });
-    
+
     if (response.status === 200) {
       dataSource = response.data.map((element, index) => ({
         key: index,
@@ -37,25 +37,26 @@ const downloadPDF = async (url) => {
   try {
     const response = await axios({
       url,
-      method: 'GET',
-      responseType: 'blob',
+      method: "GET",
+      responseType: "blob",
       headers: {
-        'Content-Type': 'application/pdf',
+        "Content-Type": "application/pdf",
+        Authorization: `Bearer ${jwt}`,
       },
     });
 
     const urlObject = URL.createObjectURL(response.data);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = urlObject;
-    link.download = 'Situacion moto.pdf';
+    link.download = "Situacion moto.pdf";
     link.click();
-    
+
     // Limpiar el objeto URL creado
     URL.revokeObjectURL(urlObject);
   } catch (error) {
     notification.info({
       message: "Descarga de PDF",
-      description: 'La lista de la situacion de las motos esta vacia'
+      description: "La lista de la situacion de las motos esta vacia",
     });
   }
 };
@@ -87,13 +88,13 @@ const SituacionMoto = () => {
           style={{ width: "8rem", fontSize: "1rem", fontWeight: "500" }}
           readOnly
           variant="borderless"
-          defaultValue={moment().format('L')}
+          defaultValue={moment().format("L")}
         />
       </Flex>
       <Table
-       scroll={{
-        x: 920,
-      }}
+        scroll={{
+          x: 920,
+        }}
         pagination={{
           pageSize: 4,
           position: ["bottomLeft"],
@@ -126,7 +127,7 @@ const SituacionMoto = () => {
             key: "Fin de contrato",
             align: "center",
           },
-        ]}        
+        ]}
       ></Table>
       <Button
         className="ant-btn-download"

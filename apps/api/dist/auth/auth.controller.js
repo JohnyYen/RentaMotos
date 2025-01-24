@@ -28,7 +28,7 @@ let AuthController = class AuthController {
         return this.authService.login(authObject);
     }
     register(authObject) {
-        this.authService.register(authObject);
+        return this.authService.register(authObject);
     }
 };
 exports.AuthController = AuthController;

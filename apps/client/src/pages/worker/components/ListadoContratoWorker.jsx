@@ -57,6 +57,7 @@ const downloadPDF = async (url) => {
       responseType: "blob",
       headers: {
         "Content-Type": "application/pdf",
+        Authorization: `Bearer ${jwt}`,
       },
     });
 
@@ -144,13 +145,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "nombre",
             key: "nombre",
             filters: dataSource
-            ? Array.from(
-                new Set(dataSource.map((item) => item.nombre))
-              ).map((nombre) => ({
-                text: nombre,
-                value: nombre,
-              }))
-            : [],
+              ? Array.from(new Set(dataSource.map((item) => item.nombre))).map(
+                  (nombre) => ({
+                    text: nombre,
+                    value: nombre,
+                  })
+                )
+              : [],
             onFilter: (value, record) =>
               record.nombre.toLowerCase().includes(value.toLowerCase()),
             fixed: "left",
@@ -161,28 +162,29 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "matricula",
             key: "matricula",
             filters: dataSource
-            ? Array.from(
-                new Set(dataSource.map((item) => item.matricula))
-              ).map((matricula) => ({
-                text: matricula,
-                value: matricula,
-              }))
-            : [],
+              ? Array.from(
+                  new Set(dataSource.map((item) => item.matricula))
+                ).map((matricula) => ({
+                  text: matricula,
+                  value: matricula,
+                }))
+              : [],
             onFilter: (value, record) =>
               record.matricula.toLowerCase().includes(value.toLowerCase()),
-            align: "center",          },
+            align: "center",
+          },
           {
             title: t("mainContent.table.mark"),
             dataIndex: "marca",
             key: "marca",
             filters: dataSource
-            ? Array.from(
-                new Set(dataSource.map((item) => item.marca))
-              ).map((marca) => ({
-                text: marca,
-                value: marca,
-              }))
-            : [],
+              ? Array.from(new Set(dataSource.map((item) => item.marca))).map(
+                  (marca) => ({
+                    text: marca,
+                    value: marca,
+                  })
+                )
+              : [],
             onFilter: (value, record) =>
               record.marca.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -192,13 +194,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "modelo",
             key: "modelo",
             filters: dataSource
-            ? Array.from(
-                new Set(dataSource.map((item) => item.modelo))
-              ).map((modelo) => ({
-                text: modelo,
-                value: modelo,
-              }))
-            : [],
+              ? Array.from(new Set(dataSource.map((item) => item.modelo))).map(
+                  (modelo) => ({
+                    text: modelo,
+                    value: modelo,
+                  })
+                )
+              : [],
             onFilter: (value, record) =>
               record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",
@@ -208,13 +210,13 @@ const ListadoContratosWorker = ({ url }) => {
             dataIndex: "forma de pago",
             key: "forma de pago",
             filters: dataSource
-            ? Array.from(
-                new Set(dataSource.map((item) => item['forma de pago']))
-              ).map((formapago) => ({
-                text: formapago,
-                value: formapago,
-              }))
-            : [],
+              ? Array.from(
+                  new Set(dataSource.map((item) => item["forma de pago"]))
+                ).map((formapago) => ({
+                  text: formapago,
+                  value: formapago,
+                }))
+              : [],
             onFilter: (value, record) =>
               record.modelo.toLowerCase().includes(value.toLowerCase()),
             align: "center",

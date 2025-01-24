@@ -24,6 +24,6 @@ export class AuthController {
     @ApiBody({type:SignObjectDto, description: "Revisar la documentación del Sign Dto"})
     @Post("/register")
     register(@Body() authObject:ClientSignDto){
-        this.authService.register(authObject);
+        return this.authService.register(authObject);
     }
 }
