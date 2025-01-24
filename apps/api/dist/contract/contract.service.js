@@ -136,7 +136,6 @@ let ContractService = class ContractService {
     async getAllPagosPDF() {
         const list = await this.getAllPagos();
         let counter = 0;
-        console.log(list);
         for (const e of Object.values(list[0])) {
             if (e === null)
                 counter++;

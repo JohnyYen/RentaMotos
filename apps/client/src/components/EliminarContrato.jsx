@@ -10,7 +10,7 @@ const EliminarContrato = ({ isOpen, setOpen, setDataSource, dataSource }) => {
 
   // Translation
   const [t] = useTranslation("global");
-
+  
   const Econtrato = async () => {
     
     try {

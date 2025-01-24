@@ -3,6 +3,7 @@ import '../login/styled-components/register.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../../context/GlobalContext';
+import CreateClient from './components/CreateClient';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +24,7 @@ function Register() {
   }
 
   const handleLogger = () => {
-    setVisible(!visible)
+    navigate('/createClient');
     clearInput();
   }
 
@@ -114,21 +115,6 @@ function Register() {
             <button onClick={(e) => handleLogin(e)} value="Login" className="btn solid">Login</button>
           </form>
           <form className="sign-up-form">
-            <h2 className="title">Sign up</h2>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input value={user_name} type="text" placeholder="Username" onChange={(e) => setUserName(e.target.value)}/>
-            </div>
-            <div className="input-field">
-              <i className="fas fa-envelope"></i>
-              <input value={email} type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-            </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-            </div>
-            <button onClick={(e) => handleRegister(e)} className="btn" value="Sign up">Sign up</button>
-            <p className="social-text">Or Sign up with social platforms</p>
           </form>
         </div>
       </div>
@@ -157,6 +143,7 @@ function Register() {
               Sign in
             </button>
           </div>
+          
         </div>
       </div>
     </div>

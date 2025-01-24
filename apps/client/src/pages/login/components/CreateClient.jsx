@@ -6,6 +6,7 @@ import ContactInformation from './ContactInformation';
 import IdentityInformation from './IdentityInformation';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import UserInformation from "./UserInformation";
 
 const { Step } = Steps;
 
@@ -23,6 +24,10 @@ const App = () => {
   const [sexo, setSexo] = useState("");
   const [municipio, setMunicipio] = useState("");
   const [numeroContacto, setNumeroContacto] = useState("");
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const navigate = useNavigate();
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -49,16 +54,31 @@ const App = () => {
           numeroContacto,
         };
 
-        const response = await axios.post("localhost/3000/api/client", cliente)
+        const user = {
+          user_name: username,
+          password: password,
+          email: email,
+          ci: carnetIdentidad
+      }
+
+        const respUser = await axios.post('http://localhost:3000/api/auth/register', user);
+        const respClient = await axios.post("localhost/3000/api/client", cliente)
 
         if(response.status === 201)
-          useNavigate('/home');
+          navigate('/home');
 
-        message.error("No se pudo crear el cliente");
       }
   };
 
   const steps = [
+    {
+      title: "Información de Usuario",
+      content: <UserInformation
+        setUsername={setUsername}
+        setPassword={setPassword}
+        setEmail={setEmail}
+      />
+    },
     {
       title: "Información Personal",
       content: <PersonalInformation 
@@ -89,7 +109,8 @@ const App = () => {
   ];
 
   return (
-    <div className="app-container">
+   <div className="body">
+     <div className="app-container">
       <Steps current={currentStep} className="steps">
         {steps.map((step, index) => (
           <Step key={index} title={step.title} />
@@ -131,6 +152,7 @@ const App = () => {
         )}
       </div>
     </div>
+   </div>
   );
 };
 

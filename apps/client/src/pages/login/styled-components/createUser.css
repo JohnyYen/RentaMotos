@@ -1,5 +1,4 @@
-/* Estilos generales */
-body {
+.body {
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,7 +9,7 @@ body {
   }
   
   .app-container {
-    width: 800px; /* Ancho fijo */
+    width: 1000px; /* Ancho fijo */
     height: 600px; /* Alto fijo */
     background-color: #ffffff; /* Color de fondo */
     border-radius: 8px; /* Bordes redondeados */
